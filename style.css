@@ -1,8 +1,8 @@
 /*!
 Theme Name: chocolate passion
-Theme URI: http://underscores.me/
-Author: Underscores.me
-Author URI: http://underscores.me/
+Theme URI: github.com/peterhsteele/chocolate-passion
+Author: Peter Steele
+Author URI: http://github.com/peterhsteele
 Description: Description
 Version: 1.0.0
 License: GNU General Public License v2 or later
@@ -470,6 +470,7 @@ html {
 
 body {
 	background: #fff;
+	font-family: 'Nunito', sans-serif;
 	/* Fallback for when there is no custom background color defined. */
 }
 
@@ -636,6 +637,8 @@ a:hover, a:active {
 /*--------------------------------------------------------------
 ## Menus
 --------------------------------------------------------------*/
+/* Main Navigation */
+
 .main-navigation {
 	clear: both;
 	display: block;
@@ -648,6 +651,7 @@ a:hover, a:active {
 	list-style: none;
 	margin: 0;
 	padding-left: 0;
+	background: black;
 }
 
 .main-navigation ul ul {
@@ -681,13 +685,20 @@ a:hover, a:active {
 .main-navigation li {
 	float: left;
 	position: relative;
+	clear:both;
 }
 
 .main-navigation a {
 	display: block;
 	text-decoration: none;
+	color: white;
+	padding: .5em .75em;
+	font-weight: 900;
 }
 
+.main-navigation a:first-child{
+	padding-left: 0;
+}
 /* Small menu. */
 .menu-toggle,
 .main-navigation.toggled ul {
@@ -701,6 +712,30 @@ a:hover, a:active {
 	.main-navigation ul {
 		display: block;
 	}
+
+	.main-navigation li{
+		clear: none;
+	}
+}
+
+/* Secondary Header Nav */
+.secondary-navigation{
+
+}
+
+.secondary-navigation ul{
+	list-style: none;
+}
+
+.secondary-navigation li{
+	float:left;
+}
+
+.secondary-navigation a{
+	text-decoration: none;
+	color: #b9bec3;
+	display: block;
+	padding: .5em;
 }
 
 .site-main .comment-navigation, .site-main
@@ -982,4 +1017,71 @@ object {
 
 .gallery-caption {
 	display: block;
+}
+
+/*
+=========
+Layout
+=========
+*/
+
+.row{
+	display: flex;
+	justify-content: space-between;
+	align-items: flex-end;
+}
+
+/*Site Header*/
+.secondary-menu-wrap{
+	align-self: flex-end;
+}
+
+/*
+=============
+Custom Styles 
+=============
+*/
+
+/*
+============
+Header
+============
+*/
+
+.header-row-one,
+.header-row-two{
+	color: white;
+	background: black;
+}
+
+.site-info{
+	color: black;
+	background: white;
+	text-align: center
+}
+
+.site-info h1,
+.site-info p{
+	margin: .5em 0;
+}
+
+.site-info h1{
+	font-size: 3em;
+}
+
+.site-info p{
+	font-size: 1.5em;
+}
+
+/*
+===============
+Media Queries
+===============
+*/
+
+@media all and (min-width: 900px){
+	.col-80{
+		width: 80%;
+		margin: 0 auto;
+	}
 }

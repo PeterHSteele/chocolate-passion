@@ -25,34 +25,73 @@
 	<a class="skip-link screen-reader-text" href="#content"><?php esc_html_e( 'Skip to content', 'chocolate-passion' ); ?></a>
 
 	<header id="masthead" class="site-header">
-		<div class="site-branding">
-			<?php
-			the_custom_logo();
-			if ( is_front_page() && is_home() ) :
-				?>
-				<h1 class="site-title"><a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home"><?php bloginfo( 'name' ); ?></a></h1>
-				<?php
-			else :
-				?>
-				<p class="site-title"><a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home"><?php bloginfo( 'name' ); ?></a></p>
-				<?php
-			endif;
-			$chocolate_passion_description = get_bloginfo( 'description', 'display' );
-			if ( $chocolate_passion_description || is_customize_preview() ) :
-				?>
-				<p class="site-description"><?php echo $chocolate_passion_description; /* WPCS: xss ok. */ ?></p>
-			<?php endif; ?>
-		</div><!-- .site-branding -->
+				<div class="header-row-one">
+					<div class="col-80">
+						<div class="row">
+							<div class="site-branding">
+								<?php
+									the_custom_logo();
+								?>
+							</div><!-- .site-branding -->
 
-		<nav id="site-navigation" class="main-navigation">
-			<button class="menu-toggle" aria-controls="primary-menu" aria-expanded="false"><?php esc_html_e( 'Primary Menu', 'chocolate-passion' ); ?></button>
-			<?php
-			wp_nav_menu( array(
-				'theme_location' => 'menu-1',
-				'menu_id'        => 'primary-menu',
-			) );
-			?>
-		</nav><!-- #site-navigation -->
+							<div class="header secondary-menu-wrap">
+								<nav id="secondary-menu" class="secondary-navigation">
+									<button class="menu-toggle" aria-controls="seconary-menu"></button>
+									<?php 
+										wp_nav_menu( array(
+											'theme_location' => 'menu-2',
+											'menu_id' => 'nav-secondary-menu'
+										));
+									?>
+								</nav>
+
+							</div><!--secondary-menu-wrap-->
+						</div><!--.row-->
+					</div><!--.col-80-->
+				</div><!--.row-->
+				<div class="header-row-two">
+					<div class="col-80"> 
+						<div class="row">
+							<nav id="site-navigation" class="main-navigation">
+								<button class="menu-toggle" aria-controls="primary-menu" aria-expanded="false"><?php esc_html_e( 'Primary Menu', 'chocolate-passion' ); ?></button>
+								<?php
+								wp_nav_menu( array(
+									'theme_location' => 'menu-1',
+									'menu_id'        => 'primary-menu',
+								) );
+								?>
+							</nav><!-- #site-navigation -->
+						</div>
+					</div><!--.col-80-->
+				</div><!--.row-->
+
+				<div class="header-row-three">
+					<div class="col-80">
+						<div class="row">
+							<div class="site-info">
+							<?php
+								if ( is_front_page() && is_home() ) :
+									?>
+									<h1 class="site-title"><a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home"><?php bloginfo( 'name' ); ?></a></h1>
+									<?php
+								/*else :
+									?>
+									<p class="site-title"><a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home"><?php bloginfo( 'name' ); ?></a></p>
+									<?php
+									*/
+									$chocolate_passion_description = get_bloginfo( 'description', 'display' );
+									if ( $chocolate_passion_description || is_customize_preview() ) :
+										?>
+										<p class="site-description"><?php echo $chocolate_passion_description; /* WPCS: xss ok. */ ?></p>
+									<?php 
+									endif; 
+								endif; 
+							?>
+								
+							</div><!--.site-info-->
+						</div>
+					</div>
+				</div>
 	</header><!-- #masthead -->
 
 	<div id="content" class="site-content">

@@ -45,6 +45,7 @@ if ( ! function_exists( 'chocolate_passion_setup' ) ) :
 		// This theme uses wp_nav_menu() in one location.
 		register_nav_menus( array(
 			'menu-1' => esc_html__( 'Primary', 'chocolate-passion' ),
+			'menu-2' => esc_html__( 'Secondary Header Menu' , 'chocolate-passion' )
 		) );
 
 		/*
@@ -121,6 +122,8 @@ add_action( 'widgets_init', 'chocolate_passion_widgets_init' );
  */
 function chocolate_passion_scripts() {
 	wp_enqueue_style( 'chocolate-passion-style', get_stylesheet_uri() );
+
+	wp_enqueue_style( 'chocolate-passion-google-font', 'https://fonts.googleapis.com/css?family=Nunito&display=swap' );
 
 	wp_enqueue_script( 'chocolate-passion-navigation', get_template_directory_uri() . '/js/navigation.js', array(), '20151215', true );
 
