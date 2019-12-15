@@ -397,8 +397,8 @@ optgroup,
 textarea {
 	color: #404040;
 	font-family: sans-serif;
-	font-size: 16px;
-	font-size: 1rem;
+	font-size: 14px;
+	font-size: .875rem;
 	line-height: 1.5;
 }
 
@@ -646,11 +646,11 @@ a:hover, a:active {
 	width: 100%;
 }
 
-.main-navigation ul {
-	display: none;
+.main-navigation ul{
 	list-style: none;
 	margin: 0;
 	padding-left: 0;
+	display: none;
 	background: black;
 }
 
@@ -696,19 +696,27 @@ a:hover, a:active {
 	font-weight: 900;
 }
 
-.main-navigation a:first-child{
-	padding-left: 0;
-}
 /* Small menu. */
 .menu-toggle,
 .main-navigation.toggled ul {
 	display: block;
 }
 
+.main-navigation a:first-child{
+	padding-left: 0em;
+}
+
 @media screen and (min-width: 37.5em) {
 	.menu-toggle {
 		display: none;
 	}
+
+	/*
+	===============
+	Main Navigation
+	===============
+	*/
+
 	.main-navigation ul {
 		display: block;
 	}
@@ -716,18 +724,18 @@ a:hover, a:active {
 	.main-navigation li{
 		clear: none;
 	}
-}
-
-/* Secondary Header Nav */
-.secondary-navigation{
 
 }
+
+/* Secondary Nav */
 
 .secondary-navigation ul{
 	list-style: none;
+	margin: 0;
+	padding-left: 0;
 }
 
-.secondary-navigation li{
+.site-header .secondary-navigation li{
 	float:left;
 }
 
@@ -735,29 +743,94 @@ a:hover, a:active {
 	text-decoration: none;
 	color: #b9bec3;
 	display: block;
+	padding: 0 .5em;
+}
+
+.site-header .secondary-navigation a{
 	padding: .5em;
 }
 
 .site-main .comment-navigation, .site-main
 .posts-navigation, .site-main
 .post-navigation {
-	margin: 0 0 1.5em;
+	/*margin: 0 0 1.5em;*/
 	overflow: hidden;
 }
 
 .comment-navigation .nav-previous,
 .posts-navigation .nav-previous,
 .post-navigation .nav-previous {
-	float: left;
-	width: 50%;
+	text-align: right;
 }
 
 .comment-navigation .nav-next,
 .posts-navigation .nav-next,
 .post-navigation .nav-next {
-	float: right;
-	text-align: right;
+	text-align: left;
+}
+
+.nav-links{
+	text-align: center;
+}
+
+.nav-links:after{
+	clear: both;
+	display: table;
+	content: "";
+}
+
+.comment-navigation .nav-previous ,
+.posts-navigation .nav-previous ,
+.post-navigation .nav-previous ,
+.comment-navigation .nav-next,
+.posts-navigation .nav-next ,
+.post-navigation .nav-next {
+	float: left;
 	width: 50%;
+}
+
+.comment-navigation .nav-previous ,
+.posts-navigation .nav-previous ,
+.post-navigation .nav-previous {
+	padding: .2em .2em .2em; 
+}
+
+.comment-navigation .nav-next,
+.posts-navigation .nav-next ,
+.post-navigation .nav-next{
+	padding: .2em 0 .2em .2em;
+}
+
+.comment-navigation .nav-previous a,
+.posts-navigation .nav-previous a,
+.post-navigation .nav-previous a,
+.comment-navigation .nav-next a,
+.posts-navigation .nav-next a,
+.post-navigation .nav-next a{
+	padding: .2em;
+	color: white;
+	background: black;
+	border-radius: .2em;
+	display: inline-block;
+	text-decoration: none;
+	border: 2px solid black;
+	transition: .2s all;
+}
+
+.comment-navigation .nav-previous a:hover,
+.comment-navigation .nav-previous a:focus,
+.posts-navigation .nav-previous a:hover,
+.posts-navigation .nav-previous a:focus,
+.post-navigation .nav-previous a:hover,
+.post-navigation .nav-previous a:focus,
+.comment-navigation .nav-next a:hover,
+.comment-navigation .nav-next a:focus,
+.posts-navigation .nav-next a:hover,
+.posts-navigation .nav-next a:focus,
+.post-navigation .nav-next a:hover,
+.post-navigation .nav-next a:focus{
+	background:white;
+	color: black;
 }
 
 /*--------------------------------------------------------------
@@ -1025,6 +1098,12 @@ Layout
 =========
 */
 
+/*
+============
+Header
+============
+*/
+
 .row{
 	display: flex;
 	justify-content: space-between;
@@ -1032,8 +1111,60 @@ Layout
 }
 
 /*Site Header*/
+.site-header .secondary-navigation{
+	display: none;
+}
+
 .secondary-menu-wrap{
 	align-self: flex-end;
+}
+
+/*
+============
+Posts Indexes ( Home & Archive Templates )
+============
+*/
+
+.home .site-main,
+.archive .site-main{
+	display: flex;
+	flex-wrap: wrap;
+	padding: .25%;
+}
+
+.home .site-main > article,
+.archive .site-main > article{
+	flex: 0 0 99.5%;
+	margin: .25%;
+}
+
+.page-header{
+	flex: 0 0 99.5%;
+	margin: .25%;
+}
+
+.posts-navigation{
+	flex-basis: 100%;
+}
+
+/*
+===========
+Single
+===========
+*/
+
+.site-main{
+	padding: .75em;
+}
+
+/*
+============
+Footer
+============
+*/
+
+.site-footer .secondary-nav{
+	display: block;
 }
 
 /*
@@ -1054,10 +1185,19 @@ Header
 	background: black;
 }
 
+.header-row-one{
+	padding: .75rem .75rem 0 .75rem;
+}
+
+.header-row-two{
+	padding: 0 .75rem;
+}
+
 .site-info{
 	color: black;
 	background: white;
-	text-align: center
+	text-align: center;
+	padding: .2em;
 }
 
 .site-info h1,
@@ -1074,14 +1214,165 @@ Header
 }
 
 /*
+============
+Content
+============
+*/
+
+.home .site-main,
+.archive .site-main{
+	background: #eee;
+}
+
+
+
+/*
+============
+Posts Index ( Home, Archive templates )
+============
+*/
+
+.home .site-main > article,
+.archive .site-main > article {
+	padding: .5em;
+	background: white;
+	border: 3px solid #ddd;
+}
+
+.home .site-main .attachment-post-thumbnail,
+.archive .site-main .attachment-post-thumbnail{
+	object-fit: cover;
+	width: 95%;
+	display:block;
+	margin: 0 auto;
+	height: 250px;
+	transition: .3s width;
+	border-bottom: 2px solid white;
+}
+
+.home .site-main .attachment-post-thumbnail:hover,
+.archive .site-main .attachment-post-thumbnail:hover{
+	width: 100%;
+	border-bottom: 2px solid gold;
+}
+
+.page-header{
+	background: white;
+	border: 3px solid #ddd;
+	padding: .5em;
+}
+
+.home .site-main > article.sticky{
+	/*background: #f9f9f9;*/
+	border: 3px solid gold;
+}
+
+
+
+/*
 ===============
 Media Queries
 ===============
 */
 
+@media all and (min-width: 750px){
+
+	/*
+	==============
+	Elements
+	==============
+	*/
+
+	
+	/*
+	==============
+	Layout
+	==============
+	*/
+	
+	.home .site-main > article,
+	.archive .site-main > article{
+		flex: 0 0 49.5%;
+		max-width: 49.5%;
+	}
+}
+
 @media all and (min-width: 900px){
+
+	/*
+	==============
+	Elements
+	==============
+	*/
+
+	body{
+		font-size: 1rem;
+	}
+	
+	/*
+	==============
+	Layout
+	==============
+	*/
+	
 	.col-80{
 		width: 80%;
 		margin: 0 auto;
+	}
+
+	/*
+	=============
+	Custom Styles
+	=============
+	*/
+
+	/*
+	=============
+	Header
+	=============
+	*/
+
+	.header-row-one,
+	.header-row-two{
+		padding: 0;
+	}
+
+	.header-row-one,
+	.header-row-two{
+		padding: 0;
+	}
+
+	.site-header .secondary-navigation{
+		display: block;
+	}
+
+	.site-info{
+		padding: 0;
+	}
+
+	/*
+	=============
+	Posts Index
+	=============
+	*/
+
+	/*
+	=============
+	Single
+	=============
+	*/
+
+	.site-main{
+		padding: 0;
+	}
+
+	/*
+	=============
+	Footer
+	=============
+	*/
+
+	.site-footer .secondary-navigation{
+		display: none;
 	}
 }

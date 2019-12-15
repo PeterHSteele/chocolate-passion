@@ -16,6 +16,7 @@ get_header();
 ?>
 
 	<div id="primary" class="content-area">
+		<div class="col-80">
 		<main id="main" class="site-main">
 
 		<?php
@@ -42,7 +43,7 @@ get_header();
 
 			endwhile;
 
-			the_posts_navigation();
+
 
 		else :
 
@@ -52,8 +53,9 @@ get_header();
 		?>
 
 		</main><!-- #main -->
+		<?php the_posts_navigation(); ?>
+		</div>
 	</div><!-- #primary -->
 
 <?php
-get_sidebar();
 get_footer();

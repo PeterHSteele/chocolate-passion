@@ -14,6 +14,21 @@
 	</div><!-- #content -->
 
 	<footer id="colophon" class="site-footer">
+		<div class="row">
+			<div class="col-80">
+			<div class="secondary-menu-wrap">
+				<nav id="secondary-menu" class="secondary-navigation">
+					<!--<button class="menu-toggle" aria-controls="seconary-menu"></button>-->
+					<?php 
+						wp_nav_menu( array(
+							'theme_location' => 'menu-2',
+							'menu_id' => 'nav-secondary-menu'
+						));
+					?>
+				</nav>
+			</div><!--secondary-menu-wrap-->
+			</div>
+		</div><!--.row-->		
 		<div class="site-info">
 			<a href="<?php echo esc_url( __( 'https://wordpress.org/', 'chocolate-passion' ) ); ?>">
 				<?php

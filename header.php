@@ -36,7 +36,7 @@
 
 							<div class="header secondary-menu-wrap">
 								<nav id="secondary-menu" class="secondary-navigation">
-									<button class="menu-toggle" aria-controls="seconary-menu"></button>
+									<!--<button class="menu-toggle" aria-controls="seconary-menu"></button>-->
 									<?php 
 										wp_nav_menu( array(
 											'theme_location' => 'menu-2',
@@ -48,7 +48,7 @@
 							</div><!--secondary-menu-wrap-->
 						</div><!--.row-->
 					</div><!--.col-80-->
-				</div><!--.row-->
+				</div><!--.header-row-one-->
 				<div class="header-row-two">
 					<div class="col-80"> 
 						<div class="row">

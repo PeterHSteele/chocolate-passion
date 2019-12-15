@@ -62,14 +62,21 @@ if ( ! function_exists( 'chocolate_passion_entry_footer' ) ) :
 			$categories_list = get_the_category_list( esc_html__( ', ', 'chocolate-passion' ) );
 			if ( $categories_list ) {
 				/* translators: 1: list of categories. */
-				printf( '<span class="cat-links">' . esc_html__( 'Posted in %1$s', 'chocolate-passion' ) . '</span>', $categories_list ); // WPCS: XSS OK.
+				printf( '<span class="cat-links"><span class="screen-reader-text">' . esc_html__( 'Posted in ', 'chocolate-passion' ) . '</span><i class="fas fa-folder-open"></i> '. esc_html_x( '%1$s', 'Category Name', 'chocolate-passion' ) . '</span>', $categories_list ); // WPCS: XSS OK.
+
+				//separator
+				echo '<span class="sep"> </span>';
 			}
 
 			/* translators: used between list items, there is a space after the comma */
 			$tags_list = get_the_tag_list( '', esc_html_x( ', ', 'list item separator', 'chocolate-passion' ) );
 			if ( $tags_list ) {
+
 				/* translators: 1: list of tags. */
-				printf( '<span class="tags-links">' . esc_html__( 'Tagged %1$s', 'chocolate-passion' ) . '</span>', $tags_list ); // WPCS: XSS OK.
+				printf( '<span class="tags-links"><i class="fas fa-tags"></i> <span class="screen-reader-text>' . esc_html__( 'Tagged' , 'chocolate-passion' ) . '</span>' . esc_html__( ' %1$s', 'chocolate-passion' ) . '</span>', $tags_list ); // WPCS: XSS OK.
+
+				//separator
+				echo '<span class="sep"> </span>';
 			}
 		}
 

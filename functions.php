@@ -121,6 +121,9 @@ add_action( 'widgets_init', 'chocolate_passion_widgets_init' );
  * Enqueue scripts and styles.
  */
 function chocolate_passion_scripts() {
+	//fontawesome
+	wp_enqueue_style( 'fontawesome', get_stylesheet_directory_uri() . '/assets/fontawesome/css/all.css' );
+
 	wp_enqueue_style( 'chocolate-passion-style', get_stylesheet_uri() );
 
 	wp_enqueue_style( 'chocolate-passion-google-font', 'https://fonts.googleapis.com/css?family=Nunito&display=swap' );
