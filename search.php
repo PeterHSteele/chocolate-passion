@@ -11,6 +11,7 @@ get_header();
 ?>
 
 	<section id="primary" class="content-area">
+		<div class="col-80">
 		<main id="main" class="site-main">
 
 		<?php if ( have_posts() ) : ?>
@@ -48,6 +49,7 @@ get_header();
 		?>
 
 		</main><!-- #main -->
+		</div><!--.col-80-->
 	</section><!-- #primary -->
 
 <?php
