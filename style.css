@@ -1635,8 +1635,7 @@ Media Queries
 	=============
 	*/
 
-	.header-row-one,
-	.header-row-two{
+	.header-row-one{
 		padding: 0;
 	}
 
