@@ -73,7 +73,7 @@ if ( ! function_exists( 'chocolate_passion_entry_footer' ) ) :
 			if ( $tags_list ) {
 
 				/* translators: 1: list of tags. */
-				printf( '<span class="tags-links"><i class="fas fa-tags"></i> <span class="screen-reader-text>' . esc_html__( 'Tagged' , 'chocolate-passion' ) . '</span>' . esc_html__( ' %1$s', 'chocolate-passion' ) . '</span>', $tags_list ); // WPCS: XSS OK.
+				printf( '<span class="tags-links"><i class="fas fa-tags"></i> <span class="screen-reader-text">' . esc_html__( 'Tagged' , 'chocolate-passion' ) . '</span>' . esc_html( '%1$s' , 'chocolate-passion' ) .'</span>', $tags_list ); // WPCS: XSS OK.
 
 				//separator
 				echo '<span class="sep"> </span>';
