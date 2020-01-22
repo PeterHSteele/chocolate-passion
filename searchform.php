@@ -18,10 +18,10 @@
 			<i class="fas fa-search"></i>
 			<span class="screen-reader-text"><?php esc_html_e( 'Submit search form', 'chocolate-passion' ); ?></span>
 		</button>
-		
+		<!--
 		<button type="button" id="searchbar-close" class="toggler">
 			<i class="fas fa-times fa-lg"></i>
 			<span class="screen-reader-text"><?php esc_html_e( 'Close Search', 'chocolate-passion' ); ?></span>
 		</button>
-	
+		-->
 </form> 

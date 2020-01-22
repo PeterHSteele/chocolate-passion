@@ -650,6 +650,30 @@ a:hover, a:active {
 	/*flex: 1 0 100%;*/
 }
 
+.search-form{
+	float: right;
+	margin-right: 33px;
+	font-size: .65rem;
+}
+
+.search-form input,
+.search-form button{
+	font-size: inherit;
+	padding: .45rem;
+	margin: 0;
+	border-radius: 0;
+	border: 2px solid white;
+}
+
+.search-form button{
+	background: #eee;
+	border: 5px solid #eee;
+}
+
+.main-navigation .search-form input{
+	line-height: 1rem;
+}
+
 .main-navigation.toggled{
 	flex: 1 0 100%;
 }
@@ -659,7 +683,7 @@ a:hover, a:active {
 	margin: 0;
 	padding-left: 0;
 	display: none;
-	background: black;
+	clear: both;
 }
 
 .main-navigation ul ul {
@@ -707,20 +731,20 @@ a:hover, a:active {
 	float: left;
 	position: relative;
 	clear: both;
-	width: 100%;
-	background: black;
+	width:100%;
 }
-
+/*
 .main-navigation > div > ul > li:first-child{
 	margin-top: 3px;
 }
-
+*/
 .main-navigation a {
 	padding-left: .1em;
 	display: block;
 	text-decoration: none;
 	color: white;
-	padding: .5em .75em;
+	font-size: .65rem;
+	padding: .45rem;
 	font-weight: 900;
 	transition: .2s all;
 }
@@ -731,12 +755,26 @@ a:hover, a:active {
 }
 
 /* Small menu. */
-.menu-toggle,
-{
-	display: block;
+.menu-toggle{
+	width: 33px;
+	position: absolute;
+	padding: .45rem;
+	background: orangered;
+	top: 0;
+	right: 0;
+	border-radius: 0;
+	border: 5px solid orangered;
+	font-size: .65rem;
 }
 
-/* .main-navigation.toggled ul */
+.menu-toggle:hover,
+.menu-toggle:focus{
+	border: 5px solid orangered;
+}
+
+ .main-navigation.toggled ul{
+ 	/*display: block;*/
+ }
 
 /*
 .menu-toggle{
@@ -745,11 +783,11 @@ a:hover, a:active {
 	right: 0;
 	z-index: 100;
 }
-*/
+
 .main-navigation > div > ul{
 	margin-left: -.75em;
 }
-
+*/
 @media screen and (min-width: 900px) {
 	.menu-toggle {
 		display: none;
@@ -763,6 +801,8 @@ a:hover, a:active {
 
 	.main-navigation ul {
 		display: block;
+		float: left;
+		clear: none;
 	}
 
 	.main-navigation li{
@@ -1287,10 +1327,10 @@ Header
 .site-info p{
 	font-size: 1.5em;
 }
-
+/*
 .site-header button{
 	background: white;
-}
+}*/
 
 
 
@@ -1299,7 +1339,7 @@ Header
 Header Search Form
 ==================
 */
-
+/*
 .header-search{
 	height: 2.5em;
 }
@@ -1378,7 +1418,7 @@ Header Search Form
 .main-navigation.toggled + .header-search .toggler{
 	order: 1;
 }
-
+*/
 /*
 ============
 Content
@@ -1457,7 +1497,7 @@ Media Queries
 ===============
 */
 
-@media all and (min-width: 270px){
+@media all and (min-width: 300px){
 
 	/*
 	==============
@@ -1471,9 +1511,46 @@ Media Queries
 	==============
 	*/
 
+	/*
+	==============
+	Navigation
+	==============
+	*/
+
+	.main-navigation a{
+		font-size: .875rem;
+	}
+
+	.search-form{
+		margin-right: 37px;
+		font-size: .875em;
+	}
+
 	.search-form input{
 		max-width: none;
 	}
+
+	.menu-toggle{
+		width: 37px;
+		border: 3px solid orangered;
+	}
+
+	.menu-toggle:hover,
+	.menu-toggle:focus{
+		border: 3px solid orangered;
+	}
+
+	.menu-toggle,
+	.search-form input, 
+	.search-form button{
+		font-size: .875rem;
+		padding: .6rem;
+	}
+
+	.search-form button{
+		border: 3px solid #eee;
+	}
+
 
 }
 
@@ -1518,6 +1595,21 @@ Media Queries
 	body{
 		font-size: 1rem;
 	}
+
+	/*
+	==============
+	Navigation
+	==============
+	*/
+
+	.search-form{
+		margin-right: 0;
+	}
+
+	.main-navigation a{
+		font-size: 1rem;
+	}
+
 	
 	/*
 	==============
@@ -1535,6 +1627,7 @@ Media Queries
 	Custom Styles
 	=============
 	*/
+
 
 	/*
 	=============
@@ -1559,6 +1652,14 @@ Media Queries
 		display: none;
 	}
 	*/
+
+	.search-form button{
+		border: 2.5px solid #eee;
+	}
+
+	.search-form input{
+		border: 1.5px solid white;
+	}
 
 	/*
 	=============

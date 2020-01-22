@@ -51,9 +51,8 @@
 				</div><!--.header-row-one-->
 				<div class="header-row-two">
 					<div class="col-80"> 
-						<div class="row">
-							
-							<nav id="site-navigation" class="main-navigation">
+							<nav id="site-navigation" class="main-navigation clear">
+								<?php get_search_form(); ?>
 								<button class="menu-toggle toggle" aria-controls="primary-menu" aria-expanded="false">
 									<i class="fas fa-bars"></i>
 									<span class="sr-only"><?php esc_html_e( 'Primary Menu', 'chocolate-passion' ); ?></span>
@@ -62,25 +61,18 @@
 								wp_nav_menu( array(
 									'theme_location' => 'menu-1',
 									'menu_id'        => 'primary-menu',
+									'menu_class'	 => 'clear'
 								) );
 								?>
 							</nav><!-- #site-navigation -->
-							
-							<div class="header-search">
-							<button class="search-toggle toggle" aria-controls="primary-menu" aria-expanded="false">
+							<!--<button class="search-toggle toggle" aria-controls="primary-menu" aria-expanded="false">
 								<i class="fas fa-search"></i>
 								<span class="sr-only">
 								<?php 
 									esc_html_e( 'Search', 'chocolate-passion' ) . ' ' . bloginfo('name')
 								?>
 								</span>
-							</button>	
-							<div class="searchform-wrap"> 
-							<?php get_search_form(); ?>
-							</div>	
-							</div>
-									
-						</div><!--.row-->
+							</button>-->						
 					</div><!--.col-80-->
 				</div><!--.header-row-two-->
 				<div class="header-row-three">
