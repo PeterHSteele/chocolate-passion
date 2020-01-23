@@ -741,6 +741,36 @@ a:hover, a:active {
 	clear: both;
 	width:100%;
 }
+
+li.menu-item-has-children a{
+	padding-right: 2rem;
+}
+
+/* Down arrow to indicate submenu */
+li.menu-item-has-children > a:after{
+	content:'';
+	position: absolute;
+	height: 0;
+	width: 0;
+	right: .625rem;
+	top: 1.05rem;
+	border-top: .42em solid white;
+	border-right: .48em solid transparent;
+	border-left: .48em solid transparent;
+	transition: .1s border;
+}
+
+li.menu-item-has-children a:hover:after{
+	border-top: .42em solid black;
+}
+
+ul ul li.menu-item-has-children > a:after{
+	border-top: .42em solid black;
+}
+
+ul ul li.menu-item-has-children > a:hover:after{
+	border-top: .42em solid white;
+}
 /*
 .main-navigation > div > ul > li:first-child{
 	margin-top: 3px;
