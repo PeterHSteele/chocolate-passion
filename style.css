@@ -396,8 +396,9 @@ select,
 optgroup,
 textarea {
 	color: #404040;
+	color: black;
 	font-family: sans-serif;
-	font-size: 14px;
+	font-size: 16px;
 	font-size: .875rem;
 	line-height: 1.5;
 	word-break: break-word;
@@ -474,7 +475,7 @@ html {
 
 body {
 	background: #fff;
-	font-family: 'Nunito', sans-serif;
+	font-family: 'Nunito', helvetica, sans-serif;
 	/* Fallback for when there is no custom background color defined. */
 }
 
@@ -818,7 +819,8 @@ a:hover, a:active {
 
 /* Secondary Nav */
 
-.secondary-navigation ul{
+.secondary-navigation ul,
+.footer-links ul{
 	list-style: none;
 	margin: 0;
 	padding-left: 0;
@@ -828,15 +830,26 @@ a:hover, a:active {
 	float:left;
 }
 
-.secondary-navigation a{
+.site-header .secondary-navigation a:hover{
+	color: white;
+	text-decoration: underline
+}
+
+.secondary-navigation a,
+.footer-links a{
 	text-decoration: none;
-	color: #b9bec3;
 	display: block;
 	padding: 0 .5em;
 }
 
 .site-header .secondary-navigation a{
 	padding: .5em;
+	color: #b9bec3;
+}
+
+footer .secondary-navigation a,
+.footer-links a{
+	color: white;
 }
 
 .site-main .comment-navigation, .site-main
@@ -1188,9 +1201,9 @@ Layout
 */
 
 /*
-============
-Header
-============
+=========
+Layout - General
+=========
 */
 
 .row{
@@ -1199,11 +1212,16 @@ Header
 	align-items: flex-start;
 }
 
+/*
+============
+Layout - Site Header
+============
+*/
+
 .header-row-two .row{
 	flex-wrap: wrap;
 }	
 
-/*Site Header*/
 .site-header .secondary-navigation{
 	display: none;
 }
@@ -1214,7 +1232,7 @@ Header
 
 /*
 ============
-Posts Indexes ( Home & Archive Templates )
+Layout - Posts Indexes ( Home & Archive Templates )
 ============
 */
 
@@ -1233,7 +1251,7 @@ Posts Indexes ( Home & Archive Templates )
 
 .page-header{
 	flex: 0 0 99.5%;
-	margin: .25%;
+	margin: .25% 0;
 }
 
 .posts-navigation{
@@ -1242,7 +1260,7 @@ Posts Indexes ( Home & Archive Templates )
 
 /*
 ===========
-Single
+Layout - Single Posts/Pages
 ===========
 */
 
@@ -1252,7 +1270,7 @@ Single
 
 /*
 ============
-Pages
+Layout - Page.php
 ============
 */
 
@@ -1260,9 +1278,17 @@ Pages
 
 /*
 ============
-Footer
+Layout - Footer
 ============
 */
+
+footer .row{
+	justify-content: flex-start;
+}
+
+footer .row > *{
+	flex: 1 0;
+}
 
 .site-footer .secondary-nav{
 	display: block;
@@ -1276,7 +1302,7 @@ Custom Styles
 
 /*
 =============
-General
+Custom Styles - General
 =============
 */
 
@@ -1286,7 +1312,7 @@ General
 
 /*
 ============
-Header
+Custom Styles - Header
 ============
 */
 
@@ -1301,7 +1327,7 @@ Header
 }
 
 .header-row-two{
-	padding: .5em;
+	padding: .5em 0;
 }
 
 .header-row-two{
@@ -1421,7 +1447,7 @@ Header Search Form
 */
 /*
 ============
-Content
+Custom Styles - Page, Post Content
 ============
 */
 
@@ -1432,7 +1458,7 @@ Content
 
 /*
 ============
-Posts Index ( Home, Archive templates )
+Custom Styles - Posts Index ( including Home, Archive templates )
 ============
 */
 .blog .site-main > article,
@@ -1472,7 +1498,7 @@ Posts Index ( Home, Archive templates )
 
 /*
 ===============
-Comments
+Custom Styles - Comments
 ===============
 */
 
@@ -1482,7 +1508,7 @@ Comments
 
 /*
 ===============
-404 Page
+Custom Styles - 404 Page
 ===============
 */
 
@@ -1490,6 +1516,20 @@ Comments
 	border: none;
 	padding: 0;
 }
+
+/*
+===============
+Custom Styles - Footer
+===============
+*/
+
+.site-footer{
+	background: black;
+	color: white;
+	padding: 1em 0;
+}
+
+
 
 /*
 ===============
@@ -1634,6 +1674,10 @@ Media Queries
 	Header
 	=============
 	*/
+
+	.header-row-one{
+		padding: .75rem 0;
+	}
 
 	.site-header .secondary-navigation{
 		display: block;

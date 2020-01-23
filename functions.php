@@ -45,7 +45,9 @@ if ( ! function_exists( 'chocolate_passion_setup' ) ) :
 		// This theme uses wp_nav_menu() in one location.
 		register_nav_menus( array(
 			'menu-1' => esc_html__( 'Primary', 'chocolate-passion' ),
-			'menu-2' => esc_html__( 'Secondary Header Menu' , 'chocolate-passion' )
+			'menu-2' => esc_html__( 'Secondary' , 'chocolate-passion' ),
+			'menu-3' => esc_html__( 'Footer Links 1' , 'chocolate-passion' ),
+			'menu-4' => esc_html__( 'Footer Links 2' , 'chocolate-passion' ),
 		) );
 
 		/*

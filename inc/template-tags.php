@@ -96,7 +96,7 @@ if ( ! function_exists( 'chocolate_passion_entry_footer' ) ) :
 					get_the_title()
 				)
 			);
-			echo '</span>';
+			echo ' </span>';
 		}
 
 		edit_post_link(
