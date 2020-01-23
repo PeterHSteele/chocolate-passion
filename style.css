@@ -648,12 +648,13 @@ a:hover, a:active {
 	clear: both;
 	display: block;
 	position: relative;
+	margin-right: .5em;
 	/*flex: 1 0 100%;*/
 }
 
 .search-form{
 	float: right;
-	margin-right: 33px;
+	margin-right: 36px;
 	font-size: .65rem;
 }
 
@@ -669,6 +670,12 @@ a:hover, a:active {
 .search-form button{
 	background: #eee;
 	border: 5px solid #eee;
+}
+
+.search-form button:hover,
+.search-form button:focus{
+	background: orangered;
+	border: 5px solid orangered;
 }
 
 .main-navigation .search-form input{
@@ -760,16 +767,17 @@ a:hover, a:active {
 	width: 33px;
 	position: absolute;
 	padding: .45rem;
-	background: orangered;
+	background: #eee;
 	top: 0;
 	right: 0;
 	border-radius: 0;
-	border: 5px solid orangered;
+	border: 5px solid #eee;
 	font-size: .65rem;
 }
 
 .menu-toggle:hover,
 .menu-toggle:focus{
+	background: orangered;
 	border: 5px solid orangered;
 }
 
@@ -799,6 +807,10 @@ a:hover, a:active {
 	Main Navigation
 	===============
 	*/
+
+	.main-navigation{
+		margin-right: 0;
+	}
 
 	.main-navigation ul {
 		display: block;
@@ -1562,7 +1574,7 @@ Media Queries
 	}
 
 	.search-form{
-		margin-right: 37px;
+		margin-right: 40px;
 		font-size: .875em;
 	}
 
@@ -1572,7 +1584,7 @@ Media Queries
 
 	.menu-toggle{
 		width: 37px;
-		border: 3px solid orangered;
+		border: 3px solid #eee;
 	}
 
 	.menu-toggle:hover,
@@ -1589,6 +1601,11 @@ Media Queries
 
 	.search-form button{
 		border: 3px solid #eee;
+	}
+
+	.search-form button:hover{
+		background: orangered;
+		border: 3px solid orangered;
 	}
 
 
@@ -1643,10 +1660,11 @@ Media Queries
 	*/
 
 	.search-form{
-		margin-right: 0;
+		margin-right: 0px;
 	}
 
 	.main-navigation a{
+		margin-right: 0;
 		font-size: 1rem;
 	}
 
@@ -1676,7 +1694,7 @@ Media Queries
 	*/
 
 	.header-row-one{
-		padding: .75rem 0;
+		padding: .75rem 0 0 0;
 	}
 
 	.site-header .secondary-navigation{
@@ -1698,6 +1716,11 @@ Media Queries
 
 	.search-form input{
 		border: 1.5px solid white;
+	}
+
+	.search-form button:hover,
+	.search-form button:focus{
+		border: 2.5px solid orangered;
 	}
 
 	/*
