@@ -48,6 +48,7 @@ if ( ! function_exists( 'chocolate_passion_setup' ) ) :
 			'menu-2' => esc_html__( 'Secondary' , 'chocolate-passion' ),
 			'menu-3' => esc_html__( 'Footer Links 1' , 'chocolate-passion' ),
 			'menu-4' => esc_html__( 'Footer Links 2' , 'chocolate-passion' ),
+			'menu-5' => esc_html__( 'Footer Links 3' , 'chocolate-passion' ),
 		) );
 
 		/*
@@ -169,3 +170,17 @@ if ( defined( 'JETPACK__VERSION' ) ) {
 	require get_template_directory() . '/inc/jetpack.php';
 }
 
+if ( ! function_exists( 'chocolate_passion_footer_nav_class' ) ):
+
+	function chocolate_passion_footer_nav_class(){
+		$footer_lists = 0;
+		//count the number of navs in the footer (not including the secondary menu that shows up there on small screens)
+		for ( $i = 3; $i <= 5; $i++ ){
+			if ( has_nav_menu( 'menu-' . $i ) ){
+				$footer_lists++;
+			}
+		}
+		//use number of navs in a css class to help with alignment
+		return 'footer-links footer-has-' . $footer_lists .'-navs';
+	}
+endif;

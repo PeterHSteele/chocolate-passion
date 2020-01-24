@@ -14,6 +14,11 @@ jQuery(document).ready(function($){
 			button.attr('aria-pressed','true');
 			navContainer.slideDown(200);
 		}
-	})
+	});
+
+	$(window).resize(function(){
+		$('.main-navigation ul').attr( 'style', '' );
+		navigation.removeClass( 'toggled' )
+	});
 });
 

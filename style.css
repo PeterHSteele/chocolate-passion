@@ -882,6 +882,7 @@ ul ul li.menu-item-has-children > a:hover:after{
 	text-decoration: none;
 	display: block;
 	padding: 0 .5em;
+	color: white;
 }
 
 .site-header .secondary-navigation a{
@@ -891,7 +892,7 @@ ul ul li.menu-item-has-children > a:hover:after{
 
 footer .secondary-navigation a,
 .footer-links a{
-	color: white;
+	
 }
 
 .site-main .comment-navigation, .site-main
@@ -1326,15 +1327,18 @@ Layout - Footer
 
 footer .row{
 	justify-content: flex-start;
+	flex-wrap: wrap;
 }
 
-footer .row > *{
-	flex: 1 0;
+.footer-links{
+	flex: 0 0 100%;
 }
 
 .site-footer .secondary-nav{
 	display: block;
 }
+
+
 
 /*
 =============
@@ -1571,6 +1575,24 @@ Custom Styles - Footer
 	padding: 1em 0;
 }
 
+.footer-links{
+	box-sizing: border-box;
+	padding: 0 .5em;
+}
+
+.footer-links a{
+	text-decoration: none;
+	display: inline;
+	padding: 0 .5em;
+	color: white;
+	transition: .3s all;
+}
+
+.footer-links a:hover{
+	text-decoration: underline;
+	color: orangered;
+}
+
 
 
 /*
@@ -1580,6 +1602,23 @@ Media Queries
 */
 
 @media all and (min-width: 300px){
+
+/*
+==============
+Layout
+==============
+*/
+
+/*
+==============
+Layout - Footer - Min. 300px
+==============
+*/
+
+.footer-links{
+	flex: 0 0 50%;
+}
+
 
 	/*
 	==============
@@ -1668,7 +1707,25 @@ Media Queries
 	==============
 	*/
 
+/*
+==============
+Layout
+==============
+*/
 
+/*
+==============
+Layout - Footer - Large Screen
+==============
+*/
+
+	.footer-links{
+		flex: 1 0;
+	}
+
+	.footer-has-2-navs{
+		max-width: 25%
+	}
 }
 
 @media all and (min-width: 900px){
@@ -1709,6 +1766,21 @@ Media Queries
 		width: 80%;
 		margin: 0 auto;
 	}
+
+	/*
+	==============
+	Layout - Footer - XL Screen
+	==============
+	*/
+
+	.footer-has-2-navs{
+		max-width: none;
+	}
+
+	.footer-has-3-navs{
+		max-width: 25%
+	}
+
 
 	/*
 	=============

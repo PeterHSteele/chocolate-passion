@@ -153,3 +153,40 @@ if ( ! function_exists( 'chocolate_passion_post_thumbnail' ) ) :
 		endif; // End is_singular().
 	}
 endif;
+
+if ( ! function_exists( 'chocolate_passion_menu_name' ) ) :
+	/**
+	* Displays the name of a menu
+	*
+	* This will print the menu name as it appears in Dashboard -> Appearance -> Menus.
+	* @param string 	$location 	theme location of menu whose name to display
+	*/
+	function chocolate_passion_menu_name( $location = '' ){
+		echo get_term( get_nav_menu_locations()[$location] )->name;
+	}
+
+endif;
+
+if ( ! function_exists( 'chocolate_passion_footer_nav' ) ):
+	/**
+	* Displays a list of auxiliary links.
+	*
+	* Allows you to stuff the footer with additional links.
+	* @param string 	$location 	the theme location slug of the menu to print.
+	* @param string 	$class 		css class to use for aligning navs in footer
+	*/
+	function chocolate_passion_footer_nav( $location, $class ){
+		?>
+			<nav class="<?php echo esc_attr( $class )?>">
+				<h3><?php chocolate_passion_menu_name( $location ) ?></h3>
+				<?php 
+					wp_nav_menu( array(
+						'theme_location' => $location,
+						'menu_id' => 'nav-secondary-menu',
+						'depth' => 1,
+					));
+				?>
+			</nav>	
+		<?php 	
+	}
+endif;
