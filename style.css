@@ -652,36 +652,6 @@ a:hover, a:active {
 	/*flex: 1 0 100%;*/
 }
 
-.search-form{
-	float: right;
-	margin-right: 36px;
-	font-size: .65rem;
-}
-
-.search-form input,
-.search-form button{
-	font-size: inherit;
-	padding: .45rem;
-	margin: 0;
-	border-radius: 0;
-	border: 2px solid white;
-}
-
-.search-form button{
-	background: #eee;
-	border: 5px solid #eee;
-}
-
-.search-form button:hover,
-.search-form button:focus{
-	background: orangered;
-	border: 5px solid orangered;
-}
-
-.main-navigation .search-form input{
-	line-height: 1rem;
-}
-
 .main-navigation.toggled{
 	flex: 1 0 100%;
 }
@@ -805,10 +775,53 @@ ul ul li.menu-item-has-children > a:hover:after{
 	font-size: .65rem;
 }
 
+.banner-header .menu-toggle{
+	position: static;	
+	display: block;
+	float: left;
+}
+
 .menu-toggle:hover,
 .menu-toggle:focus{
 	background: orangered;
 	border: 5px solid orangered;
+}
+
+.banner-header .main-navigation{
+	float: left;
+	position: relative;
+	width: 100%;
+}
+
+.banner-header .main-navigation ul{
+	clear:both;
+}
+
+.banner-header .main-navigation li{
+	float: none;
+}
+
+.banner-header .main-navigation a{
+	background: white;
+	color: black;
+}
+
+.banner-header .menu-item-has-children > a:after{
+	border-top: .42em solid black;
+}
+
+.banner-header .menu-toggle{
+	border: none;
+	outline: none;
+	background: white;
+	color: #404040;
+}
+
+.banner-header .menu-toggle:hover,
+.banner-header .menu-toggle:focus{
+	background: #404040;
+	color: white;
+	border: none;
 }
 
  .main-navigation.toggled ul{
@@ -857,6 +870,21 @@ ul ul li.menu-item-has-children > a:hover:after{
 		margin-top: 0;
 	}
 
+	/*
+	===============
+	Main Navigation - Banner Header Template
+	===============
+	*/
+
+	.banner-header .main-navigation ul{
+		display: none;
+	} 
+
+	.banner-header .main-navigation li{
+		clear: both;
+	}
+
+
 }
 
 /* Secondary Nav */
@@ -888,6 +916,10 @@ ul ul li.menu-item-has-children > a:hover:after{
 .site-header .secondary-navigation a{
 	padding: .5em;
 	color: #b9bec3;
+}
+
+.site-header .secondary-navigation li:last-child a{
+	padding: .5em 0 .5em .5em;
 }
 
 footer .secondary-navigation a,
@@ -1097,7 +1129,7 @@ footer .secondary-navigation a,
 
 .post,
 .page {
-	margin: 0 0 1.5em;
+	/*margin: 0 0 1.5em;*/
 }
 
 .updated:not(.published) {
@@ -1273,6 +1305,32 @@ Layout - Site Header
 	align-self: flex-end;
 }
 
+.banner-header .site-header:before,
+.banner-header .site-header:after{
+	display: none;
+}
+
+.banner-header .search-toggle{
+	float: left;
+}
+
+.banner-header .search-form{
+	margin-right: 0;
+	background: white;
+	position: absolute;
+	left: -300%;
+	transition: .2s left;
+	width: 100%;
+}
+
+.banner-header .search-form.toggled{
+	left: 0;
+}
+
+/*
+============
+Site Header
+
 /*
 ============
 Layout - Posts Indexes ( Home & Archive Templates )
@@ -1317,7 +1375,27 @@ Layout - Page.php
 ============
 */
 
+
+/*
+============
+Layout - Banner Header Template (banner-header.php)
+============
+*/
+
+.banner-header .chocolate-passion-banner{
+	padding-top: 75vh;
+	background-repeat: no-repeat;
+	background-size: cover;
+	background-position: center;
+}
  
+.banner-header .site-main{
+	padding: 0;
+} 
+
+.banner-header-content-wrap{
+	padding: .75em;
+}
 
 /*
 ============
@@ -1404,7 +1482,60 @@ Custom Styles - Header
 	background: white;
 }*/
 
+.search-form{
+	float: right;
+	margin-right: 36px;
+	font-size: .65rem;
+}
 
+.searchbar-close{
+	display: none;
+}
+
+.search-form input,
+.search-form button,
+.banner-header .search-toggle{
+	font-size: inherit;
+	padding: .45rem;
+	margin: 0;
+	border-radius: 0;
+	border: 2px solid white;
+}
+
+.search-form button{
+	background: #eee;
+	border: 5px solid #eee;
+}
+
+.search-form button:hover,
+.search-form button:focus{
+	background: orangered;
+	border: 5px solid orangered;
+}
+
+.main-navigation .search-form input{
+	line-height: 1rem;
+}
+
+.banner-header .searchbar-close{
+	display: block;
+}
+
+.banner-header .search-form button,
+.banner-header .search-toggle{
+	background: white;
+	color: #404040;
+	border: none;
+}
+
+.banner-header .search-form button:hover,
+.banner-header .search-form button:focus,
+.banner-header .search-toggle:hover,
+.banner-header .search-toggle:focus{
+	color: white;
+	background: #404040;
+	border: none;
+}
 
 /*
 ==================
@@ -1663,7 +1794,8 @@ Layout - Footer - Min. 300px
 
 	.menu-toggle,
 	.search-form input, 
-	.search-form button{
+	.search-form button,
+	.banner-header .search-toggle{
 		font-size: .875rem;
 		padding: .6rem;
 	}
@@ -1677,6 +1809,9 @@ Layout - Footer - Min. 300px
 		border: 3px solid orangered;
 	}
 
+	.banner-header .main-navigation{
+		width: 243px;
+	}
 
 }
 
@@ -1791,7 +1926,7 @@ Layout - Footer - Large Screen
 
 	/*
 	=============
-	Header
+	Custom Styles - Header - XL Screen
 	=============
 	*/
 
@@ -1837,7 +1972,8 @@ Layout - Footer - Large Screen
 	=============
 	*/
 
-	.site-main{
+	.site-main,
+	.banner-header-content-wrap{
 		padding: 0;
 	}
 
