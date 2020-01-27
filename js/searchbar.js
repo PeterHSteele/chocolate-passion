@@ -32,5 +32,30 @@ jQuery(document).ready(function($){
 		$('.main-navigation ul').attr( 'style', '' );
 		navigation.removeClass( 'toggled' )
 	});
+
+	
 });
+
+const BinarySearchTree = function( root = null ){
+		this.root = root;
+
+		this.depthFirstInOrder = function( node = this.root ){
+			if ( ! this.root ){
+				return false;
+			}
+
+			let leftValues = [],
+				rightValues = []
+
+			if ( node.left ){
+				 leftValues = this.depthFirstInOrder( node.left )
+			}
+
+			if ( node.right ){
+				rightValues = this.depthFirstInOrder( node.right )
+			}
+
+			return leftValues.concat(node.value).concat(rightValues);
+		}
+	}
 

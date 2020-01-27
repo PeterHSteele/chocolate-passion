@@ -49,6 +49,7 @@ if ( ! function_exists( 'chocolate_passion_setup' ) ) :
 			'menu-3' => esc_html__( 'Footer Links 1' , 'chocolate-passion' ),
 			'menu-4' => esc_html__( 'Footer Links 2' , 'chocolate-passion' ),
 			'menu-5' => esc_html__( 'Footer Links 3' , 'chocolate-passion' ),
+			'menu-social' => esc_html__( 'Social Menu' , 'chocolate-passion' ),
 		) );
 
 		/*
@@ -126,6 +127,10 @@ add_action( 'widgets_init', 'chocolate_passion_widgets_init' );
 function chocolate_passion_scripts() {
 	//fontawesome
 	wp_enqueue_style( 'fontawesome', get_stylesheet_directory_uri() . '/assets/fontawesome/css/all.css' );
+	
+	if ( is_page_template( 'page-templates/sidebar-right.php' ) ){
+		wp_enqueue_style( 'chocolate-passion-sidebar-right-style', get_template_directory_uri() . '/layouts/content-sidebar.css' );
+	}
 
 	wp_enqueue_style( 'chocolate-passion-style', get_stylesheet_uri() );
 

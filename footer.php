@@ -19,7 +19,7 @@
 				<div class="row">
 					<?php 	
 						//get menu locastions, exclude primary menu
-						$footer_navs = array_slice( get_nav_menu_locations(), 1 );
+						$footer_navs = array_slice( get_nav_menu_locations(), 1, 4 );
 						//add a css class based on how many menus there are
 						$footer_nav_class = chocolate_passion_footer_nav_class();
 						//print the menus
@@ -33,7 +33,18 @@
 				</div><!--.row-->
 			</div><!--.col-80-->
 		</div><!--.footer-navigation-->	
-		<!--<div class="site-info">-->
+		<div class="col-80">
+			<nav class="social-links">
+				<?php
+				wp_nav_menu(array(
+					'theme_location' => 'menu-social',
+					'depth'			 => 1
+				)); 
+				?>
+			</nav>
+		</div><!--.col-80-->
+		<div class="site-info col-80">
+			<span>&copy; 2020 <?php echo bloginfo('name') ?></span><span><?php the_privacy_policy_link(); ?></span>
 			<!--<a href="<?php echo esc_url( __( 'https://wordpress.org/', 'chocolate-passion' ) ); ?>">
 				<?php
 				/* translators: %s: CMS name, i.e. WordPress. */
@@ -44,8 +55,8 @@
 				<?php
 				/* translators: 1: Theme name, 2: Theme author. */
 				printf( esc_html__( 'Theme: %1$s by %2$s.', 'chocolate-passion' ), 'chocolate-passion', '<a href="'. esc_url( 'https://peterhsteele.com' ) . '">Peter Steele</a>' );
-				?>-->
-		<!--</div>--><!-- .site-info -->
+				?>
+		--></div><!-- .site-info -->
 	</footer><!-- #colophon -->
 </div><!-- #page -->
 
