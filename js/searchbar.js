@@ -33,6 +33,10 @@ jQuery(document).ready(function($){
 		navigation.removeClass( 'toggled' )
 	});
 
+	$('.slider-container').slick({
+		dots: true,
+	});
+
 	
 });
 

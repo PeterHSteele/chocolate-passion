@@ -23,7 +23,6 @@
 <body <?php body_class(); ?>>
 <div id="page" class="site">
 	<a class="skip-link screen-reader-text" href="#content"><?php esc_html_e( 'Skip to content', 'chocolate-passion' ); ?></a>
-
 	<header id="masthead" class="site-header">
 				<div class="header-row-one">
 					<div class="col-80">
@@ -80,21 +79,21 @@
 						<div class="row">
 							<div class="site-info">
 							<?php
-								if ( is_front_page() && is_home() ) :
+								if ( is_front_page() && is_home() && get_bloginfo( 'desription' ) ) :
 									?>
-									<h1 class="site-title"><a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home"><?php bloginfo( 'name' ); ?></a></h1>
+									<h1 class="site-title"><?php bloginfo( 'description' ); ?></h1>
 									<?php
 								/*else :
 									?>
 									<p class="site-title"><a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home"><?php bloginfo( 'name' ); ?></a></p>
 									<?php
-									*/
+									
 									$chocolate_passion_description = get_bloginfo( 'description', 'display' );
 									if ( $chocolate_passion_description || is_customize_preview() ) :
 										?>
-										<p class="site-description"><?php echo $chocolate_passion_description; /* WPCS: xss ok. */ ?></p>
+										<p class="site-description"><?php echo $chocolate_passion_description; /* WPCS: xss ok. *//* ?></p>
 									<?php 
-									endif; 
+									endif; */
 								endif; 
 							?>
 								

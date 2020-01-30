@@ -131,6 +131,11 @@ function chocolate_passion_scripts() {
 	if ( is_page_template( 'page-templates/sidebar-right.php' ) ){
 		wp_enqueue_style( 'chocolate-passion-sidebar-right-style', get_template_directory_uri() . '/layouts/content-sidebar.css' );
 	}
+	
+	if ( is_front_page() ){
+		wp_enqueue_style( 'chocolate-passion-slick-css', get_template_directory_uri() . '/js/slick/slick.css' );
+		wp_enqueue_script( 'chocolate-passion-slick-js', get_template_directory_uri() . '/js/slick/slick.js', array( 'jquery' ) );
+	}
 
 	wp_enqueue_style( 'chocolate-passion-style', get_stylesheet_uri() );
 
@@ -166,7 +171,7 @@ require get_template_directory() . '/inc/template-functions.php';
 /**
  * Customizer additions.
  */
-require get_template_directory() . '/inc/customizer.php';
+require get_template_directory() . '/inc/customizer/customizer.php';
 
 /**
  * Load Jetpack compatibility file.
@@ -188,4 +193,121 @@ if ( ! function_exists( 'chocolate_passion_footer_nav_class' ) ):
 		//use number of navs in a css class to help with alignment
 		return 'footer-links footer-has-' . $footer_lists .'-navs';
 	}
+endif;
+
+/* Retrieve customizer options for primary color and accent colors */
+/*
+if ( ! function_exists( 'chocolate_passion_primary_color' ) ):
+
+	function chocolate_passion_primary_color(){
+		return get_theme_mod('chocolate_passion_primary_color');
+	}
+
+endif;
+
+if ( ! function_exists( 'chocolate_passion_accent_color' ) ):
+
+	function chocolate_passion_accent_color(){
+		return get_theme_mod( 'chocolate_passion_accent_color' );
+	}
+
+endif;
+*/
+
+/* Retrieve customizer options for primary color and accent colors */
+
+if ( ! function_exists( 'chocolate_passion_customize_css' ) ):
+
+	function chocolate_passion_customize_css(){
+		$primary = esc_attr(get_theme_mod( 'chocolate_passion_primary_color' ));
+		$accent = esc_attr(get_theme_mod( 'chocolate_passion_accent_color' ));
+		$link = esc_attr(get_theme_mod( 'chocolate_passion_link_color' ));
+		$hover = esc_attr( get_theme_mod( 'chocolate_passion_hover_link_color' ));
+		?>
+		<style>
+			a{
+				color: <?php echo $link; ?>;
+			}
+
+			a:visited,
+			a:active{
+				color: <?php echo $accent; ?>;
+			}
+
+			a:hover{
+				color: <?php echo $hover ?>;
+			}
+
+			.header-row-one,
+			.header-row-two,
+			.site-footer{
+				background: <?php echo $primary ?>;
+			}
+
+			.blog .site-main > article.sticky{
+				border: 3px solid <?php echo $primary ?>;
+			}
+
+			.sticky-icon i{
+				color: <?php echo $primary ?>;
+			}
+
+			.menu-toggle:hover,
+			.menu-toggle:focus{
+				background: <?php echo $accent; ?>;
+				border: 5px solid <?php echo $accent; ?>;
+			}
+
+			.footer-links a:hover{
+				color: <?php echo $accent; ?>;
+			}
+
+			@media all and (min-width: 300px){
+				.menu-toggle:hover,
+				.menu-toggle:focus{
+					border: 3px solid <?php echo $accent; ?>;
+				}
+			}
+		</style>
+
+		<?php
+	}
+
+endif;
+
+add_action( 'wp_head', 'chocolate_passion_customize_css' );
+
+if ( ! function_exists( 'chocolate_passion_custom_excerpt' ) ):
+
+	function chocolate_passion_custom_excerpt( $content ){
+		
+		$mostly_stripped = wp_kses( 
+			substr( $content, 0, strpos( $content, '</p>' ) ), 
+			array(
+				'h2' => array(),
+				'h3' => array(),
+				'h4' => array(),
+				'h5' => array(),
+				'h6' => array(), 
+				'p' => array(),
+				'a' => array(
+					'href' => array(),
+				)
+
+			 )
+			);
+
+		return chocolate_passion_strip_headings( $mostly_stripped );
+	}
+
+endif;
+
+if ( ! function_exists( 'chocolate_passion_strip_headings' ) ):
+
+	function chocolate_passion_strip_headings( $content ){
+		$regex = '/<h[^>]+>.*<\/h[^>]+>/';
+		preg_match_all( $regex, $content, $matches, PREG_PATTERN_ORDER);
+		return str_replace( $matches[0], '', $content );
+	}
+
 endif;

@@ -723,7 +723,7 @@ li.menu-item-has-children a{
 }
 
 /* Down arrow to indicate submenu */
-li.menu-item-has-children > a:after{
+.main-navigation li.menu-item-has-children > a:after{
 	content:'';
 	position: absolute;
 	height: 0;
@@ -767,7 +767,12 @@ ul ul li.menu-item-has-children a:hover:after{
 	transition: .2s all;
 }
 
-.main-navigation a:hover{
+.main-navigation a:visited{
+	color: white;
+}
+
+.main-navigation a:hover,
+.main-navigation a:active{
 	color: black;
 	background: white;
 }
@@ -794,7 +799,8 @@ ul ul li.menu-item-has-children a:hover:after{
 .menu-toggle:hover,
 .menu-toggle:focus{
 	background: orangered;
-	border: 5px solid orangered;
+	border-width: 5px;
+	border-style: solid;
 }
 
 .banner-header .main-navigation{
@@ -878,7 +884,7 @@ Social Menu
 	margin-left: -.75em;
 }
 */
-@media screen and (min-width: 900px) {
+@media screen and (min-width: 1024px) {
 	.menu-toggle {
 		display: none;
 	}
@@ -938,7 +944,14 @@ Social Menu
 	float:left;
 }
 
-.site-header .secondary-navigation a:hover{
+.site-header .secondary-navigation a{
+	font-size: .95em;
+	color: #e2e2e2;
+}
+
+.site-header .secondary-navigation a:hover,
+.site-header .secondary-navigation a:active,
+.site-header .secondary-navigation a:visited{
 	color: white;
 	text-decoration: underline
 }
@@ -953,7 +966,6 @@ Social Menu
 
 .site-header .secondary-navigation a{
 	padding: .5em;
-	color: #b9bec3;
 }
 
 .site-header .secondary-navigation li:last-child a{
@@ -1026,7 +1038,9 @@ footer .secondary-navigation a,
 .post-navigation .nav-previous a,
 .comment-navigation .nav-next a,
 .posts-navigation .nav-next a,
-.post-navigation .nav-next a{
+.post-navigation .nav-next a,
+.slick-prev,
+.slick-next{
 	padding: .2em;
 	color: white;
 	background: black;
@@ -1048,9 +1062,40 @@ footer .secondary-navigation a,
 .posts-navigation .nav-next a:hover,
 .posts-navigation .nav-next a:focus,
 .post-navigation .nav-next a:hover,
-.post-navigation .nav-next a:focus{
+.post-navigation .nav-next a:focus,
+.slick-next:hover,
+.slick-next:focus,
+.slick-prev:hover,
+.slick-prev:focus{
 	background:white;
 	color: black;
+}
+
+.slick-next,
+.slick-prev{
+	margin: 0;
+	z-index: 10;
+	font-size: 1em;
+	position: absolute;
+	bottom: -44px;
+	line-height: 1.5em;
+	min-width: 5em;
+	outline: none;
+}
+
+.slick-prev:focus,
+.slick-next:focus,
+.slick-prev:hover,
+.slick-next:hover{
+	border: 2px solid black;
+}
+
+.slick-prev{
+	right: 50.2%;
+}
+
+.slick-next{
+	left: 50.2%;
 }
 
 /*--------------------------------------------------------------
@@ -1167,6 +1212,7 @@ footer .secondary-navigation a,
 ## Posts and pages
 --------------------------------------------------------------*/
 .sticky {
+	position: relative;
 	display: block;
 }
 
@@ -1463,7 +1509,8 @@ Layout - Footer
 ============
 */
 
-footer .row{
+.footer-navigation{
+	display:flex;
 	justify-content: flex-start;
 	flex-wrap: wrap;
 }
@@ -1518,9 +1565,17 @@ Custom Styles - Header
 	/*min-height: 40px;*/
 }
 
+
+
 .site-info h1,
 .site-info p{
 	margin: .5em 0;
+}
+
+.site-header .site-info {
+	/*box-shadow: inset 0 0  10px 0 rgb(235, 235, 235);
+	background: #fafafa;*/
+	flex: 1 0;
 }
 
 .site-info h1{
@@ -1718,7 +1773,7 @@ Custom Styles - Posts Index ( including Home, Archive templates )
 .blog .site-main .attachment-post-thumbnail:hover,
 .archive .site-main .attachment-post-thumbnail:hover{
 	width: 100%;
-	border-bottom: 2px solid gold;
+	border-bottom: 2px solid orangered;
 }
 
 .page-header{
@@ -1729,8 +1784,159 @@ Custom Styles - Posts Index ( including Home, Archive templates )
 
 .blog .site-main > article.sticky{
 	/*background: #f9f9f9;*/
-	border: 3px solid gold;
+	border: 3px solid black;
 }
+
+.sticky-icon{
+	position: absolute;
+	background: rgba(255,255,255,.8);
+	border-radius: 50%;
+	top:0px;
+	right:0;
+	z-index: 1;
+	padding: .5em;
+}
+
+/*
+============
+Custom Styles - Posts Index - Alternate Template ( template-parts/content-post-alternate.php )
+============
+*/
+
+.blog .site-main > article.post-image-top,
+.archive .site-main > article.post-image-top{
+	padding: 0;
+}
+
+.blog .site-main .post-image-top .attachment-post-thumbnail{
+	height: 300px;
+	width: 100%;
+}
+
+.blog .site-main .post-image-top .entry-content,
+.blog .site-main .post-image-top .entry-header,
+.blog .site-main .post-image-top .entry-footer{
+	padding: .5rem;
+	margin: 0;
+}
+
+.blog .site-main .post-image-top .entry-meta{
+	font-size: .9em;
+}
+
+.blog .site-main .post-image-top .entry-meta .posted-on{
+	padding-right: 4px;
+	border-right: 1px solid #404040;
+}
+
+.blog .site-main .post-image-top h2,
+.blog .site-main .post-image-top p{
+	padding: 0;
+	margin: 0;
+}
+
+
+
+/*
+===============
+Slider
+===============
+*/
+
+.slider{
+	padding: 0 0 50px;
+}
+
+.slider-container{
+	
+	padding: 0;
+	margin: 0;
+}
+
+.slide{
+	min-height: 500px;
+	position: relative;
+	background-size: cover;
+	background-position: center;
+	/*margin-bottom: 50px;*/
+}
+/*
+.slide .attachment-post-thumbnail{
+	height: 450px;
+	width: 100%;
+	object-fit: cover;
+}
+*/
+.slide-content{
+	padding: .5em;
+	width: 100%;
+	position: absolute;
+	left: 0;
+	bottom: 0;
+	background: rgba(255,255,255,.8);
+	border-top: 2px solid white;
+}
+
+.slide-content p{
+	line-height: 1em;
+}
+
+.slide-content h2,
+.slide-content h3,
+.slide-content h4,
+.slide-content h5,
+.slide-content h6,
+.slide-content p,
+.slide-content .entry-content{
+	margin: 0;
+	padding: 0;
+}
+
+.slick-dots{
+	list-style: none;
+	text-align: center;
+	margin: 0;
+	padding: 0;
+}
+
+.slick-dots:after{
+	clear:both;
+	content:'';
+	display: table;
+}
+
+.slick-dots li{
+	display:inline;
+	position: relative;
+	margin: 5px;
+}
+
+.slick-dots li button{
+	outline: none;
+	text-indent: -9999px;
+	width: 15px;
+	height: 15px;
+	background: black;
+	border: 2px solid white;
+	padding: 0;
+	border-radius: 50%;
+}
+
+.slick-dots li button:hover,
+.slick-dots li button:focus,
+.slick-dots li.slick-active button{
+	border: 2px solid black;
+	background: white;
+}
+/*
+.slick-dots li:after{
+	position: absolute;
+	content:'';
+	height: 2px;
+	width: 2px;
+	border-radius: 50%;
+	background: black;
+}*/
 
 /*
 ===============
@@ -1787,20 +1993,26 @@ Custom Styles - Footer
 ===============
 */
 
+.footer-row-one,
+.footer-row-two,
+.footer-row-three{
+	padding: 0 .75em;
+}
+
 .site-footer{
-	background: black;
+	background: #404040;
 	color: white;
-	padding: .75em;
 }
 
 .site-footer .site-info{
+	background:black;
 	padding: 2em 0 .5em;
 	font-size: .9em;
 	clear: both;
 }
 
 .site-info span{
-	color: #ddd	;
+
 }
 
 .site-footer .site-info span:not(:first-child){
@@ -1830,6 +2042,10 @@ Custom Styles - Footer
 .footer-links a:hover{
 	text-decoration: underline;
 	color: orangered;
+}
+
+.footer-links a:visited{
+	color: white;
 }
 
 .privacy-policy-link{
@@ -1905,7 +2121,7 @@ Layout - Footer - Min. 300px
 
 	.menu-toggle:hover,
 	.menu-toggle:focus{
-		border: 3px solid orangered;
+		/*border: 3px solid orangered;*/
 	}
 
 	.menu-toggle,
@@ -1993,7 +2209,6 @@ Layout - Sidebar - Medium Screen
 
 	.social-links a{
 		padding:.5em .75em;
-		color: #ddd;
 	}
 
 	.social-links a:first-child{
@@ -2007,6 +2222,7 @@ Layout - Sidebar - Medium Screen
 	*/
 
 	.col-60{
+		margin: 0 auto;
 		width: 70%;
 	}
 	
@@ -2034,6 +2250,7 @@ Layout - Footer - Large Screen
 ==============
 */
 
+
 	.footer-links{
 		flex: 1 0;
 	}
@@ -2054,7 +2271,7 @@ Custom Styles - Sidebar - Large Screen
 	}
 }
 
-@media all and (min-width: 900px){
+@media all and (min-width: 1024px){
 
 	/*
 	==============
@@ -2091,6 +2308,7 @@ Custom Styles - Sidebar - Large Screen
 	
 	.col-60{
 		width: 60%;
+		margin: 0;
 	}
 	
 	/*
@@ -2173,6 +2391,13 @@ Custom Styles - Sidebar - Large Screen
 	Footer
 	=============
 	*/
+
+
+	.footer-row-one,
+	.footer-row-two,
+	.footer-row-three{
+		padding: 0;
+	}
 
 	.site-footer .secondary-navigation{
 		display: none;

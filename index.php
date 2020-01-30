@@ -12,9 +12,10 @@
  * @package chocolate_passion
  */
 
-get_header();
+get_header(); 
+get_template_part( 'template-parts/slider' );
 ?>
-
+	
 	<div id="primary" class="content-area">
 		<div class="col-80">
 		<main id="main" class="site-main">
