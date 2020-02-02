@@ -730,10 +730,18 @@ li.menu-item-has-children a{
 	width: 0;
 	right: .625rem;
 	top: 1.05rem;
-	border-top: .42em solid white;
+	border-top: .42em solid black;
 	border-right: .48em solid transparent;
 	border-left: .48em solid transparent;
 	transition: .1s border;
+}
+
+body:not(.banner-header) .main-navigation > div > ul > .menu-item-has-children > a:after{
+	border-top: .42em solid white;
+}
+
+body:not(.banner-header) .main-navigation > div > ul > .menu-item-has-children > a:hover:after{
+	border-top: .42em solid black;
 }
 
 li.menu-item-has-children a:hover:after{
@@ -1439,6 +1447,7 @@ Layout - Posts Indexes ( Home & Archive Templates )
 	margin: .25%;
 }
 
+
 .page-header{
 	flex: 0 0 99.5%;
 	margin: .25% 0;
@@ -1583,11 +1592,11 @@ Custom Styles - Header
 }
 
 .site-info p{
-	font-size: 1.5em;
+	font-size: 1.5em;	
 }
 
 .site-info{
-	padding: 1em;
+	padding: 0 1em;
 }
 
 
@@ -1808,29 +1817,37 @@ Custom Styles - Posts Index - Alternate Template ( template-parts/content-post-a
 	padding: 0;
 }
 
-.blog .site-main .post-image-top .attachment-post-thumbnail{
+.blog .site-main .post-image-top .attachment-post-thumbnail,
+.archive .site-main .post-image-top .attachment-post-thumbnail{
 	height: 300px;
 	width: 100%;
 }
 
 .blog .site-main .post-image-top .entry-content,
 .blog .site-main .post-image-top .entry-header,
-.blog .site-main .post-image-top .entry-footer{
+.blog .site-main .post-image-top .entry-footer,
+.archive .site-main .post-image-top .entry-content,
+.archive .site-main .post-image-top .entry-header,
+.archive .site-main .post-image-top .entry-footer{
 	padding: .5rem;
 	margin: 0;
 }
 
-.blog .site-main .post-image-top .entry-meta{
+.blog .site-main .post-image-top .entry-meta,
+.archive .site-main .post-image-top .entry-meta{
 	font-size: .9em;
 }
 
-.blog .site-main .post-image-top .entry-meta .posted-on{
+.blog .site-main .post-image-top .entry-meta .posted-on,
+.archive .site-main .post-image-top .entry-meta .posted-on{
 	padding-right: 4px;
 	border-right: 1px solid #404040;
 }
 
 .blog .site-main .post-image-top h2,
-.blog .site-main .post-image-top p{
+.blog .site-main .post-image-top p,
+.archive .site-main .post-image-top h2,
+.archive .site-main .post-image-top p{
 	padding: 0;
 	margin: 0;
 }
@@ -1976,6 +1993,7 @@ Custom Styles - Sidebar
 }
 
 .widget-area .search-form input{
+	outline:none;
 	box-sizing: border-box;
 }
 
@@ -2267,7 +2285,6 @@ Custom Styles - Sidebar - Large Screen
 
 	.widget-area{
 		display: block;
-		padding: .75em 0;
 	}
 }
 

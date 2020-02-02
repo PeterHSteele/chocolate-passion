@@ -26,6 +26,12 @@ if ( ! function_exists( 'chocolate_passion_setup' ) ) :
 
 		// Add default posts and comments RSS feed links to head.
 		add_theme_support( 'automatic-feed-links' );
+		
+
+		/**
+		* Support woocommerce
+		*/
+		add_theme_support( 'woocommerce' );
 
 		/*
 		 * Let WordPress manage the document title.
@@ -127,23 +133,31 @@ add_action( 'widgets_init', 'chocolate_passion_widgets_init' );
 function chocolate_passion_scripts() {
 	//fontawesome
 	wp_enqueue_style( 'fontawesome', get_stylesheet_directory_uri() . '/assets/fontawesome/css/all.css' );
+
+	wp_enqueue_script( 'chocolate-passion-searchbar', get_template_directory_uri() . '/js/searchbar.js', array( 'jquery' ), '20151215', true );
 	
 	if ( is_page_template( 'page-templates/sidebar-right.php' ) ){
 		wp_enqueue_style( 'chocolate-passion-sidebar-right-style', get_template_directory_uri() . '/layouts/content-sidebar.css' );
 	}
 	
-	if ( is_front_page() ){
+	if ( is_front_page() && chocolate_passion_get_slides() ){
 		wp_enqueue_style( 'chocolate-passion-slick-css', get_template_directory_uri() . '/js/slick/slick.css' );
 		wp_enqueue_script( 'chocolate-passion-slick-js', get_template_directory_uri() . '/js/slick/slick.js', array( 'jquery' ) );
+		/*if ( wp_script_is( 'jquery', 'done' ) ){
+			wp_enqueue_script('jquery');
+		}*/
+		wp_add_inline_script( 'chocolate-passion-searchbar', 'jQuery(".slider-container").slick({dots: true,})' );
 	}
 
 	wp_enqueue_style( 'chocolate-passion-style', get_stylesheet_uri() );
 
+	if ( is_woocommerce() ){
+		wp_enqueue_style( 'woocommerce-style', get_stylesheet_directory_uri() . '/woocommerce.css' );
+	}
+
 	wp_enqueue_style( 'chocolate-passion-google-font', 'https://fonts.googleapis.com/css?family=Nunito&display=swap' );
 
 	wp_enqueue_script( 'chocolate-passion-navigation', get_template_directory_uri() . '/js/navigation.js', array(), '20151215', true );
-
-	wp_enqueue_script( 'chocolate-passion-searchbar', get_template_directory_uri() . '/js/searchbar.js', array( 'jquery' ), '20151215', true );
 
 	wp_enqueue_script( 'chocolate-passion-skip-link-focus-fix', get_template_directory_uri() . '/js/skip-link-focus-fix.js', array(), '20151215', true );
 
@@ -252,6 +266,23 @@ if ( ! function_exists( 'chocolate_passion_customize_css' ) ):
 				color: <?php echo $primary ?>;
 			}
 
+			.woocommerce span.onsale{
+				background-color: <?php echo $accent ?>;
+			}
+
+			.woocommerce ul.products li.product .price,
+			.woocommerce div.product p.price{
+				color: <?php echo $accent ?>;
+			}
+
+			.woocommerce button.button.alt{
+				background: <?php echo $primary?>;
+			}
+
+			.woocommerce button.button.alt:hover{
+				background: <?php echo $accent?>;
+			}
+
 			.menu-toggle:hover,
 			.menu-toggle:focus{
 				background: <?php echo $accent; ?>;
@@ -308,6 +339,74 @@ if ( ! function_exists( 'chocolate_passion_strip_headings' ) ):
 		$regex = '/<h[^>]+>.*<\/h[^>]+>/';
 		preg_match_all( $regex, $content, $matches, PREG_PATTERN_ORDER);
 		return str_replace( $matches[0], '', $content );
+	}
+
+endif;
+
+function chocolate_passion_rearrange_hooks(){
+	remove_action( 'woocommerce_after_shop_loop','woocommerce_pagination');
+	remove_action( 'woocommerce_sidebar', 'woocommerce_get_sidebar' );
+	remove_action( 'woocommerce_before_main_content', 'woocommerce_breadcrumb', 20 );
+	remove_action( 'woocommerce_before_shop_loop','woocommerce_result_count', 20 );
+	remove_action( 'woocommerce_before_shop_loop', 'woocommerce_catalog_ordering', 30);
+	add_action( 'woocommerce_after_main_content', 'woocommerce_pagination');
+	add_action( 'woocommerce_archive_description', 'woocommerce_breadcrumb', 5);
+	add_action( 'woocommerce_archive_description', 'woocommerce_result_count', 20);
+	add_action( 'woocommerce_archive_description', 'woocommerce_catalog_ordering', 30);
+}
+
+add_action( 'init' , 'chocolate_passion_rearrange_hooks' );
+
+function chocolate_passion_add_opening_tag(){
+	//if ( is_archive() ) : ?>
+		<div class="col-80">
+	<?php //endif; 
+}
+/*$args = array(
+	'tag' => "col-80"
+);
+add_action( 'woocommerce_before_main_content', function() use ( $args ){chocolate_passion_add_opening_tag($args);}, 10 , 1);*/
+add_action( 'woocommerce_before_main_content', 'chocolate_passion_add_opening_tag', 1 , 1);
+
+function chocolate_passion_closing_tag(){
+	echo '</div>';
+}
+add_action( 'woocommerce_after_main_content', 'chocolate_passion_closing_tag',100);
+
+	/**
+	* Initiazes homepage slider if slides have been set
+	* in customizer.
+	*/
+
+if ( ! function_exists('chocolate_passion_slick_init') ):
+	function chocolate_passion_slick_init(){
+		if ( is_front_page() && chocolate_passion_get_slides() ) :
+		?>
+		<script type="text/javascript">
+			
+		</script>
+		<?php
+		endif;
+	}
+endif;
+
+add_action( 'wp_footer', 'chocolate_passion_slick_init' );
+
+if ( ! function_exists('chocolate_passion_get_slides') ):
+
+	/**
+	* Gets pages/posts for homepage slideshow.
+	*/
+
+	function chocolate_passion_get_slides(){
+		$slides = array();
+		for ( $count = 1; $count <= 8; $count++ ){
+			$id = get_theme_mod( 'chocolate_passion_slider_posts_' . $count );
+			if ( $id && has_post_thumbnail( $id ) ){
+				$slides[] = $id;
+			}	
+		}
+		return !empty( $slides ) ? $slides : false;
 	}
 
 endif;

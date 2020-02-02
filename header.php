@@ -77,7 +77,7 @@
 				<div class="header-row-three">
 					<div class="col-80">
 						<div class="row">
-							<div class="site-info">
+							<div class="site-info">	
 							<?php
 								if ( is_front_page() && is_home() && get_bloginfo( 'desription' ) ) :
 									?>
