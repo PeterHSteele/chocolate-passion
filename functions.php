@@ -143,9 +143,6 @@ function chocolate_passion_scripts() {
 	if ( is_front_page() && chocolate_passion_get_slides() ){
 		wp_enqueue_style( 'chocolate-passion-slick-css', get_template_directory_uri() . '/js/slick/slick.css' );
 		wp_enqueue_script( 'chocolate-passion-slick-js', get_template_directory_uri() . '/js/slick/slick.js', array( 'jquery' ) );
-		/*if ( wp_script_is( 'jquery', 'done' ) ){
-			wp_enqueue_script('jquery');
-		}*/
 		wp_add_inline_script( 'chocolate-passion-searchbar', 'jQuery(".slider-container").slick({dots: true,})' );
 	}
 
@@ -195,6 +192,11 @@ if ( defined( 'JETPACK__VERSION' ) ) {
 }
 
 if ( ! function_exists( 'chocolate_passion_footer_nav_class' ) ):
+
+	/**
+	* Applies a class to 'more links' navs in footer depending
+	* on how many are active.
+	*/
 
 	function chocolate_passion_footer_nav_class(){
 		$footer_lists = 0;
@@ -310,6 +312,12 @@ add_action( 'wp_head', 'chocolate_passion_customize_css' );
 
 if ( ! function_exists( 'chocolate_passion_custom_excerpt' ) ):
 
+	/**
+	* Chocolate Passion Custom Excerpt
+	*
+	* Generates custom excerpt that allows functioning links.
+	*/
+
 	function chocolate_passion_custom_excerpt( $content ){
 		
 		$mostly_stripped = wp_kses( 
@@ -372,25 +380,6 @@ function chocolate_passion_closing_tag(){
 	echo '</div>';
 }
 add_action( 'woocommerce_after_main_content', 'chocolate_passion_closing_tag',100);
-
-	/**
-	* Initiazes homepage slider if slides have been set
-	* in customizer.
-	*/
-
-if ( ! function_exists('chocolate_passion_slick_init') ):
-	function chocolate_passion_slick_init(){
-		if ( is_front_page() && chocolate_passion_get_slides() ) :
-		?>
-		<script type="text/javascript">
-			
-		</script>
-		<?php
-		endif;
-	}
-endif;
-
-add_action( 'wp_footer', 'chocolate_passion_slick_init' );
 
 if ( ! function_exists('chocolate_passion_get_slides') ):
 
