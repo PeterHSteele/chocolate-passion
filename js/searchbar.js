@@ -1,7 +1,7 @@
 jQuery(document).ready(function($){
 	let button = $('.menu-toggle'),
 		navigation = $('.main-navigation');
-		navContainer = $('.menu-primary-container ul'),
+		navContainer = $('.main-navigation > div > ul'),
 		searchToggle = $('.search-toggle'),
 		searchForm 	 = $('.search-form'),
 		searchClose  = $('#searchbar-close');
