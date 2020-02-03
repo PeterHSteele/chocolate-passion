@@ -1048,7 +1048,8 @@ footer .secondary-navigation a,
 .posts-navigation .nav-next a,
 .post-navigation .nav-next a,
 .slick-prev,
-.slick-next{
+.slick-next,
+.comment-form input[type="submit"]{
 	padding: .2em;
 	color: white;
 	background: black;
@@ -1057,6 +1058,20 @@ footer .secondary-navigation a,
 	text-decoration: none;
 	border: 2px solid black;
 	transition: .2s all;
+	font-size: 1rem;
+	line-height: 1.5em;
+}
+
+.comment-form input[type="submit"],
+.comment-form button{
+	background: white;
+	color: black;
+}
+
+.comment-form input[type="submit"]:hover,
+.comment-form input[type="submit"]:focus{
+	background: black;
+	color: white;
 }
 
 .comment-navigation .nav-previous a:hover,
@@ -1083,7 +1098,6 @@ footer .secondary-navigation a,
 .slick-prev{
 	margin: 0;
 	z-index: 10;
-	font-size: 1em;
 	position: absolute;
 	bottom: -44px;
 	line-height: 1.5em;
@@ -2284,6 +2298,7 @@ Custom Styles - Sidebar - Large Screen
 */	
 
 	.widget-area{
+		padding: 0 .5em 0 1.5em;
 		display: block;
 	}
 }
