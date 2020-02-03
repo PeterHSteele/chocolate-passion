@@ -606,10 +606,47 @@ textarea:focus {
 	color: #111;
 }
 
-select {
-	border: 1px solid #ccc;
+select{
+	border: 1px solid black;
+	background: white;
+	border-radius: .2em;
 }
 
+/*
+select{
+	padding: 0 .5em;
+	-webkit-appearance: none;
+	-moz-appearance: none;
+	text-indent: 1px;
+	text-overflow: '';
+	position: relative;
+	box-shadow: 3px 3px 5px 0 #999;
+}
+
+select:before{
+	display:block;
+	z-index: 1;
+	height: 0;
+	width: 0;
+	position: absolute;
+	content: '';
+	right: 5px;
+	top: 10px;
+	border-left: 8px solid transparent;
+	border-right: 8px solid transparent;
+	border-top: 10px solid white;
+	content:'';
+	position: absolute;
+	height: 0;
+	width: 0;
+	right: .625rem;
+	top: 1.05rem;
+	border-top: .42em solid white;
+	border-right: .48em solid transparent;
+	border-left: .48em solid transparent;
+	transition: .1s border;
+}
+*/
 textarea {
 	width: 100%;
 }
@@ -1049,7 +1086,8 @@ footer .secondary-navigation a,
 .post-navigation .nav-next a,
 .slick-prev,
 .slick-next,
-.comment-form input[type="submit"]{
+.comment-form input[type="submit"]/*,
+select*/{
 	padding: .2em;
 	color: white;
 	background: black;
@@ -1061,7 +1099,11 @@ footer .secondary-navigation a,
 	font-size: 1rem;
 	line-height: 1.5em;
 }
-
+/*
+select{
+	font-size: .875rem
+}
+*/
 .comment-form input[type="submit"],
 .comment-form button{
 	background: white;
@@ -1089,11 +1131,18 @@ footer .secondary-navigation a,
 .slick-next:hover,
 .slick-next:focus,
 .slick-prev:hover,
-.slick-prev:focus{
+.slick-prev:focus/*,
+select:hover,
+select:focus*/{
 	background:white;
 	color: black;
 }
-
+/*
+select:hover,
+select:focus{
+	box-shadow: none;
+}
+*/
 .slick-next,
 .slick-prev{
 	margin: 0;

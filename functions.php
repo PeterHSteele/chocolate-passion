@@ -258,11 +258,13 @@ if ( ! function_exists( 'chocolate_passion_customize_css' ) ):
 				color: <?php echo $accent ?>;
 			}
 
-			.woocommerce button.button.alt{
+			.woocommerce button.button.alt,
+			.woocommerce a.button.alt{
 				background: <?php echo $primary?>;
 			}
 
-			.woocommerce button.button.alt:hover{
+			.woocommerce button.button.alt:hover,
+			.woocommerce a.button.alt:hover{
 				background: <?php echo $accent?>;
 			}
 
