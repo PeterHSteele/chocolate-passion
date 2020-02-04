@@ -1037,13 +1037,13 @@ footer .secondary-navigation a,
 .comment-navigation .nav-previous,
 .posts-navigation .nav-previous,
 .post-navigation .nav-previous {
-	text-align: right;
+	text-align: left;
 }
 
 .comment-navigation .nav-next,
 .posts-navigation .nav-next,
 .post-navigation .nav-next {
-	text-align: left;
+	text-align: right;
 }
 
 .nav-links{
@@ -1062,20 +1062,20 @@ footer .secondary-navigation a,
 .comment-navigation .nav-next,
 .posts-navigation .nav-next ,
 .post-navigation .nav-next {
-	float: left;
+	float: right;
 	width: 50%;
 }
 
 .comment-navigation .nav-previous ,
 .posts-navigation .nav-previous ,
 .post-navigation .nav-previous {
-	padding: .2em .2em .2em; 
+	padding: .2em 0 .2em .2em;
 }
 
 .comment-navigation .nav-next,
 .posts-navigation .nav-next ,
 .post-navigation .nav-next{
-	padding: .2em 0 .2em .2em;
+	padding: .2em .2em .2em; 
 }
 
 .comment-navigation .nav-previous a,
