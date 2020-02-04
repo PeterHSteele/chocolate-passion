@@ -991,13 +991,13 @@ Social Menu
 
 .site-header .secondary-navigation a{
 	font-size: .95em;
-	color: #e2e2e2;
+	color: #f6f6f6;
 }
 
 .site-header .secondary-navigation a:hover,
 .site-header .secondary-navigation a:active,
 .site-header .secondary-navigation a:visited{
-	color: white;
+	color: #f6f6f6;
 	text-decoration: underline
 }
 
