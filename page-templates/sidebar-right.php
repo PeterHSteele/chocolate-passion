@@ -34,5 +34,5 @@ get_header();
 get_sidebar();
 ?>
 </div><!--.col-80-->
-<?
+<?php
 get_footer();
