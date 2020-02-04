@@ -235,6 +235,11 @@ if ( ! function_exists( 'chocolate_passion_customize_css' ) ):
 				color: <?php echo esc_attr( $hover )?>;
 			}
 
+			.main-navigation a:hover,
+			.main-navigation a:active{
+				color: <?php echo esc_attr( $primary )?>;
+			}
+
 			.header-row-one,
 			.header-row-two,
 			.site-footer{
@@ -308,6 +313,7 @@ if ( ! function_exists( 'chocolate_passion_customize_css' ) ):
 			.slick-prev:hover,
 			.slick-prev:focus{
 				color: <?php echo esc_attr( $primary )?>;
+				border: 2px solid <?php echo esc_attr( $primary ) ?>;
 			}
 
 			.comment-form input[type="submit"],
@@ -356,28 +362,23 @@ if ( ! function_exists( 'chocolate_passion_custom_excerpt' ) ):
 	/**
 	* Chocolate Passion Custom Excerpt
 	*
-	* Generates custom excerpt that allows links.
+	* Generates excerpt that allows links. For use in homepage slider.
 	*/
 
 	function chocolate_passion_custom_excerpt( $content ){
 		
-		$mostly_stripped = wp_kses( 
-			substr( $content, 0, strpos( $content, '</p>' ) ), 
+		$no_headings = chocolate_passion_strip_headings( $content );
+
+		echo wp_kses( 
+			substr( $no_headings, 0, strpos( $no_headings, '</p>' ) ), 
 			array(
-				'h2' => array(),
-				'h3' => array(),
-				'h4' => array(),
-				'h5' => array(),
-				'h6' => array(), 
 				'p' => array(),
 				'a' => array(
 					'href' => array(),
+					'class' => array()
 				)
-
-			 )
-			);
-
-		return chocolate_passion_strip_headings( $mostly_stripped );
+			)
+		);
 	}
 
 endif;
