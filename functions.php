@@ -245,11 +245,11 @@ if ( ! function_exists( 'chocolate_passion_customize_css' ) ):
 			.site-footer{
 				background: <?php echo esc_attr( $primary )?>;
 			}
-
+			/*
 			.blog .site-main > article.sticky{
-				border: 3px solid <?php echo esc_attr( $primary ) ?>;
+				border-bottom: 3px solid <?php echo esc_attr( $primary ) ?>;
 			}
-
+			*/
 			.sticky-icon i{
 				color: <?php echo esc_attr( $primary )?>;
 			}

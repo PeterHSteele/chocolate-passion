@@ -1855,8 +1855,8 @@ Custom Styles - Posts Index ( including Home, Archive templates )
 }
 
 .blog .site-main > article.sticky{
-	/*background: #f9f9f9;*/
-	border: 3px solid black;
+	/*background: #f9f9f9;
+	border-bottom: 3px solid #bbb;*/
 }
 
 .sticky-icon{
