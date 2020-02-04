@@ -25,9 +25,7 @@ if ( !empty($slides) ) :
 
 				<div class="entry-content">
 
-					<?php 
-					chocolate_passion_custom_excerpt( get_the_content( null, false, $slide ) ); 
-					?>
+					<?php chocolate_passion_custom_excerpt( get_the_content( null, false, $slide ) ); ?>
 				</div>
 			</div><!--.slide-content-->
 			</div><!--.slide-->
