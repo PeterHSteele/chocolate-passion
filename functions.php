@@ -356,7 +356,7 @@ if ( ! function_exists( 'chocolate_passion_custom_excerpt' ) ):
 	/**
 	* Chocolate Passion Custom Excerpt
 	*
-	* Generates custom excerpt that allows functioning links.
+	* Generates custom excerpt that allows links.
 	*/
 
 	function chocolate_passion_custom_excerpt( $content ){
@@ -411,10 +411,7 @@ function chocolate_passion_add_opening_tag(){
 		<div class="col-80">
 	<?php //endif; 
 }
-/*$args = array(
-	'tag' => "col-80"
-);
-add_action( 'woocommerce_before_main_content', function() use ( $args ){chocolate_passion_add_opening_tag($args);}, 10 , 1);*/
+
 add_action( 'woocommerce_before_main_content', 'chocolate_passion_add_opening_tag', 1 , 1);
 
 function chocolate_passion_closing_tag(){
