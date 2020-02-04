@@ -15,7 +15,7 @@ function chocolate_passion_dropdown_posts(){
 			?>	
 			<select <?php $this->link() ?>>
 			<?php foreach ( $posts as $post ) : ?>
-				<option value="<?php esc_attr_e($post->ID;) ?>"><?php echo esc_html( get_the_title( $post ) )?></option>
+				<option value="<?php esc_attr($post->ID); ?>"><?php echo esc_html( get_the_title( $post ) )?></option>
 			<?php endforeach; ?>
 			</select>
 			<?php
