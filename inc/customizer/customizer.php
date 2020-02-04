@@ -31,43 +31,47 @@ function chocolate_passion_customize_register( $wp_customize ) {
 
 	$wp_customize->add_setting( 'chocolate_passion_primary_color', array(
 		'default' => '#000000',
+		'sanitize_callback' => 'sanitize_hex_color'
 	));
 
 	$wp_customize->add_control( new WP_Customize_Color_Control( $wp_customize, 'chocolate_passion_primary_color', array(
-		'label' => __( 'Primary Color', 'chocolate_passion' ),
+		'label' => __( 'Primary Color', 'chocolate-passion' ),
 		'section' => 'colors',
 		'settings' => 'chocolate_passion_primary_color'
 	)));
 
 	$wp_customize->add_setting( 'chocolate_passion_accent_color', array(
 		'default' => '#ff4500',
+		'sanitize_callback' => 'sanitize_hex_color'
 	));
 
 	$wp_customize->add_control( new WP_Customize_Color_Control( $wp_customize, 'chocolate_passion_accent_color', array(
-		'label' => __( 'Accent Color', 'chocolate_passion' ),
+		'label' => __( 'Accent Color', 'chocolate-passion' ),
 		'section' => 'colors',
 		'settings' => 'chocolate_passion_accent_color'
 	)));
 
 	$wp_customize->add_setting( 'chocolate_passion_link_color', array(
 		'default' => '#4169E1',
+		'sanitize_callback' => 'sanitize_hex_color'
 	));
 
 	$wp_customize->add_control( new WP_Customize_Color_Control( $wp_customize, 'chocolate_passion_link_color', array(
-		'label' => __( 'Link Color', 'chocolate_passion' ),
+		'label' => __( 'Link Color', 'chocolate-passion' ),
 		'section' => 'colors',
-		'description' => __( 'The color for unvisited links in the content.' , 'chocolate_passion' ),
+		'description' => __( 'The color for unvisited links in the content.' , 'chocolate-passion' ),
 		'settings' => 'chocolate_passion_link_color'
 	)));
 
 	$wp_customize->add_setting( 'chocolate_passion_hover_link_color', array(
 		'default' => '#191970',
+		'sanitize_callback' => 'sanitize_hex_color'
 	));
 
 	$wp_customize->add_control( new WP_Customize_Color_Control( $wp_customize, 'chocolate_passion_hover_link_color', array(
-		'label' => __( 'Link Color', 'chocolate_passion' ),
+		'label' => __( 'Link Color', 'chocolate-passion' ),
 		'section' => 'colors',
-		'description' => __( 'The color links in the content when hovered by the mouse.' , 'chocolate_passion' ),
+		'description' => __( 'The color links in the content when hovered by the mouse.' , 'chocolate-passion' ),
 		'settings' => 'chocolate_passion_hover_link_color'
 	)));
 
@@ -75,10 +79,11 @@ function chocolate_passion_customize_register( $wp_customize ) {
 		'title' => __( 'Homepage' , 'chocolate-passion' ),
 		'active_callback' => 'is_front_page',
 	));
-
+/*
 	for( $count = 1; $count <= 4; $count++){
 		$wp_customize->add_setting( 'chocolate_passion_slider_posts_' . $count, array(
 			'default' => 0,
+			'sanitize_callback' => 'absint'
 		));
 
 		$wp_customize->add_control( 'chocolate_passion_slider_posts_' . $count, array(
@@ -87,10 +92,11 @@ function chocolate_passion_customize_register( $wp_customize ) {
 			'section' => 'chocolate_passion_homepage_settings',
 		));
 	}
-
+*/
 	for( $count = 1; $count <= 8; $count++){
 		$wp_customize->add_setting( 'chocolate_passion_slider_posts_' . $count, array(
 			'default' => '',
+			'sanitize_callback' => 'absint'
 		));
  		
  		if ( $count < 5 ){
