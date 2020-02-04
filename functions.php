@@ -216,72 +216,130 @@ endif;
 if ( ! function_exists( 'chocolate_passion_customize_css' ) ):
 
 	function chocolate_passion_customize_css(){
-		$primary = esc_attr(get_theme_mod( 'chocolate_passion_primary_color' ));
-		$accent = esc_attr(get_theme_mod( 'chocolate_passion_accent_color' ));
-		$link = esc_attr(get_theme_mod( 'chocolate_passion_link_color' ));
-		$hover = esc_attr( get_theme_mod( 'chocolate_passion_hover_link_color' ));
+		$primary = get_theme_mod( 'chocolate_passion_primary_color' );
+		$accent = get_theme_mod( 'chocolate_passion_accent_color' );
+		$link = get_theme_mod( 'chocolate_passion_link_color' );
+		$hover = get_theme_mod( 'chocolate_passion_hover_link_color' );
 		?>
 		<style>
 			a{
-				color: <?php echo $link; ?>;
+				color: <?php echo esc_attr( $link ); ?>;
 			}
 
 			a:visited,
 			a:active{
-				color: <?php echo $accent; ?>;
+				color: <?php echo esc_attr( $accent ); ?>;
 			}
 
 			a:hover{
-				color: <?php echo $hover ?>;
+				color: <?php echo esc_attr( $hover )?>;
 			}
 
 			.header-row-one,
 			.header-row-two,
 			.site-footer{
-				background: <?php echo $primary ?>;
+				background: <?php echo esc_attr( $primary )?>;
 			}
 
 			.blog .site-main > article.sticky{
-				border: 3px solid <?php echo $primary ?>;
+				border: 3px solid <?php echo esc_attr( $primary ) ?>;
 			}
 
 			.sticky-icon i{
-				color: <?php echo $primary ?>;
+				color: <?php echo esc_attr( $primary )?>;
 			}
 
 			.woocommerce span.onsale{
-				background-color: <?php echo $accent ?>;
+				background-color: <?php echo esc_attr( $accent )?>;
 			}
 
 			.woocommerce ul.products li.product .price,
 			.woocommerce div.product p.price{
-				color: <?php echo $accent ?>;
+				color: <?php echo esc_attr( $accent )?>;
 			}
 
 			.woocommerce button.button.alt,
 			.woocommerce a.button.alt{
-				background: <?php echo $primary?>;
+				background: <?php echo esc_attr( $primary )?>;
 			}
 
 			.woocommerce button.button.alt:hover,
 			.woocommerce a.button.alt:hover{
-				background: <?php echo $accent?>;
+				background: <?php echo esc_attr( $accent )?>;
 			}
 
 			.menu-toggle:hover,
 			.menu-toggle:focus{
-				background: <?php echo $accent; ?>;
-				border: 5px solid <?php echo $accent; ?>;
+				background: <?php echo esc_attr( $accent ); ?>;
+				border: 5px solid <?php echo esc_attr( $accent ); ?>;
 			}
 
 			.footer-links a:hover{
-				color: <?php echo $accent; ?>;
+				color: <?php echo esc_attr( $accent ); ?>;
+			}
+
+			.comment-navigation .nav-previous a,
+			.posts-navigation .nav-previous a,
+			.post-navigation .nav-previous a,
+			.comment-navigation .nav-next a,
+			.posts-navigation .nav-next a,
+			.post-navigation .nav-next a,
+			.slick-prev,
+			.slick-next,
+			.comment-form input[type="submit"]{
+				background: <?php echo esc_attr( $primary )?>;
+				border: 2px solid <?php echo esc_attr( $primary )?>;
+			}
+
+			.comment-navigation .nav-previous a:hover,
+			.comment-navigation .nav-previous a:focus,
+			.posts-navigation .nav-previous a:hover,
+			.posts-navigation .nav-previous a:focus,
+			.post-navigation .nav-previous a:hover,
+			.post-navigation .nav-previous a:focus,
+			.comment-navigation .nav-next a:hover,
+			.comment-navigation .nav-next a:focus,
+			.posts-navigation .nav-next a:hover,
+			.posts-navigation .nav-next a:focus,
+			.post-navigation .nav-next a:hover,
+			.post-navigation .nav-next a:focus,
+			.slick-next:hover,
+			.slick-next:focus,
+			.slick-prev:hover,
+			.slick-prev:focus{
+				color: <?php echo esc_attr( $primary )?>;
+			}
+
+			.comment-form input[type="submit"],
+			.comment-form button{
+				color: <?php echo esc_attr( $primary )?>>;
+			}
+
+			.comment-form input[type="submit"]:hover,
+			.comment-form input[type="submit"]:focus{
+				background: <?php echo esc_attr( $primary )?>;
+			}
+
+			.woocommerce nav.woocommerce-pagination ul li{
+				border: 2px solid <?php echo esc_attr( $primary )?>;
+			}
+
+			.page-numbers li a,
+			.page-numbers li a:visited,
+			.page-numbers li a:active{
+				background: <?php echo esc_attr( $primary )?>;
+			}
+
+			.woocommerce nav.woocommerce-pagination ul li a:hover,
+			.woocommerce nav.woocommerce-pagination ul li a:focus,
+			.woocommerce nav.woocommerce-pagination ul li span.current{
+				color: <?php echo esc_attr( $primary )?>;
 			}
 
 			@media all and (min-width: 300px){
 				.menu-toggle:hover,
 				.menu-toggle:focus{
-					border: 3px solid <?php echo $accent; ?>;
+					border: 3px solid <?php echo esc_attr( $accent ); ?>;
 				}
 			}
 		</style>
@@ -382,3 +440,11 @@ if ( ! function_exists('chocolate_passion_get_slides') ):
 	}
 
 endif;
+
+function asps(){
+	?>
+	<span style="color:green">boo</span>
+	<?php
+}
+
+add_action( 'woocommerce_single_product_summary', 'asps' );
