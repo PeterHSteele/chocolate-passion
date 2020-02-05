@@ -1915,7 +1915,57 @@ Custom Styles - Posts Index - Alternate Template ( template-parts/content-post-a
 	margin: 0;
 }
 
+/*
+============
+Custom Styles - Posts Index - "Thinkpiece" Alternate Template
+============
+*/
+/*
+.home .site-main > article.thinkpiece{
+	padding: 0;
+}
 
+.home .site-main .post-thumbnail{
+	padding:  .5em;
+}
+*/
+.thinkpiece-flex-container{
+	margin-top: .5em;
+	display: flex;
+	align-items: stretch;
+}
+
+.thinkpiece .entry-title{
+	margin: .2em 0;
+}
+
+.thinkpiece .tags-links,
+.thinkpiece .cat-links,
+.thinkpiece .entry-date,
+.thnkpiece .comments-link,
+.thinkpiece .edit-link,
+.thinkpiece .byline{
+	font-size: .875em;
+	display:block;
+}
+
+.thinkpiece .entry-header,
+.thinkpiece .entry-content{
+	float: left;
+}
+
+.thinkpiece .entry-header{
+	padding: .5em;
+	flex: 0 0 38%;
+	/*border-right: 1px dotted #ccc;
+	box-shadow: 3px 3px 10px 0px #ccc;
+	border-radius: 0px 10px 10px 0px;*/
+}
+
+.thinkpiece .entry-content{
+	padding: .5em .5em .5em 1.5em ;
+	flex: 0 0 62%;
+}
 
 /*
 ===============
@@ -2123,7 +2173,8 @@ Custom Styles - Footer
 	color: orangered;
 }
 
-.footer-links a:visited{
+.footer-links a:visited,
+.privacy-policy-link:visited{
 	color: white;
 }
 

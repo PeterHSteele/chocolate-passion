@@ -26,7 +26,7 @@ if ( ! function_exists( 'chocolate_passion_posted_on' ) ) :
 
 		$posted_on = sprintf(
 			/* translators: %s: post date. */
-			esc_html_x( 'Posted on %s', 'post date', 'chocolate-passion' ),
+			esc_html_x( /*'Posted on'.*/' %s', 'post date', 'chocolate-passion' ),
 			'<a href="' . esc_url( get_permalink() ) . '" rel="bookmark">' . $time_string . '</a>'
 		);
 
@@ -42,7 +42,7 @@ if ( ! function_exists( 'chocolate_passion_posted_by' ) ) :
 	function chocolate_passion_posted_by() {
 		$byline = sprintf(
 			/* translators: %s: post author. */
-			esc_html_x( 'by %s', 'post author', 'chocolate-passion' ),
+			esc_html_x( 'By %s', 'post author', 'chocolate-passion' ),
 			'<span class="author vcard"><a class="url fn n" href="' . esc_url( get_author_posts_url( get_the_author_meta( 'ID' ) ) ) . '">' . esc_html( get_the_author() ) . '</a></span>'
 		);
 
