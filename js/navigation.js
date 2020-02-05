@@ -1,81 +1,82 @@
-/**
- * File navigation.js.
- *
- * Handles toggling the navigation menu for small screens and enables TAB key
- * navigation support for dropdown menus.
- */
-( function() {
-	var container, button, menu, links, i, len;
+jQuery(document).ready(function($){
+	var container, menu, links, i, len;
 
-	container = document.getElementById( 'site-navigation' );
-	if ( ! container ) {
-		return;
-	}
-
-	button = container.getElementsByTagName( 'button' )[0];
-	if ( 'undefined' === typeof button ) {
-		return;
-	}
-
-	menu = container.getElementsByTagName( 'ul' )[0];
+	let button = $('.menu-toggle'),
+		navigation = $('.main-navigation'),
+		navContainer = $('.main-navigation > div > ul'),
+		searchToggle = $('.search-toggle'),
+		searchForm 	 = $('.search-form'),
+		searchClose  = $('#searchbar-close');
 
 	// Hide menu toggle button if menu is empty and return early.
-	if ( 'undefined' === typeof menu ) {
-		button.style.display = 'none';
-		return;
+	if ( ! navContainer ){
+		button.attr('style','display: none;')
+		return
 	}
 
-	menu.setAttribute( 'aria-expanded', 'false' );
-	if ( -1 === menu.className.indexOf( 'nav-menu' ) ) {
-		menu.className += ' nav-menu';
-	}
-	/*
-	button.onclick = function() {
-		if ( -1 !== container.className.indexOf( 'toggled' ) ) {
-			container.className = container.className.replace( ' toggled', '' );
-			button.setAttribute( 'aria-expanded', 'false' );
-			menu.setAttribute( 'aria-expanded', 'false' );
+	//set up attributes and classes on the main nav ul
+	navContainer.attr( 'aria-expanded', 'false' ).addClass('nav-menu');
+	
+	//handle clicks on the menu-toggle button
+	button.click(function(){
+		if ( navigation.hasClass('toggled') ){
+			navigation.removeClass('toggled')
+			navigation.attr('aria-expanded',false);
+			button.attr('aria-pressed','false');
+			navContainer.slideUp(200);
 		} else {
-			container.className += ' toggled';
-			button.setAttribute( 'aria-expanded', 'true' );
-			menu.setAttribute( 'aria-expanded', 'true' );
+			navigation.addClass('toggled')
+			navigation.attr('aria-expanded',true);
+			button.attr('aria-pressed','true');
+			navContainer.slideDown(200);
 		}
-	};
-*/
+	});
+
+	//handle clicks on the search toggle
+	searchToggle.click(function(){
+		searchForm.addClass('toggled');
+	})
+
+	searchClose.click(function(){
+		searchForm.removeClass('toggled');
+	})
+
+	$(window).resize(function(){
+		$('.main-navigation ul').attr( 'style', '' );
+		navigation.removeClass( 'toggled' )
+	});
+	
 	// Get all the link elements within the menu.
-	links    = menu.getElementsByTagName( 'a' );
+	links    = $('.main-navigation ul a')
 
 	// Each time a menu link is focused or blurred, toggle focus.
-	for ( i = 0, len = links.length; i < len; i++ ) {
-		links[i].addEventListener( 'focus', toggleFocus, true );
-		links[i].addEventListener( 'blur', toggleFocus, true );
-	}
+	links.focus(function(){
+		toggleFocus($(this));
+	})
 
-	/**
-	 * Sets or removes .focus class on an element.
-	 */
-	function toggleFocus() {
-		var self = this;
-
-		// Move up through the ancestors of the current link until we hit .nav-menu.
-		while ( -1 === self.className.indexOf( 'nav-menu' ) ) {
-
-			// On li elements toggle the class .focus.
-			if ( 'li' === self.tagName.toLowerCase() ) {
-				if ( -1 !== self.className.indexOf( 'focus' ) ) {
-					self.className = self.className.replace( ' focus', '' );
+	links.blur(function(){
+		toggleFocus($(this));
+	})
+	
+	function toggleFocus( ele ) {
+		while ( ! ele.hasClass('nav-menu') ){
+			if ( ele.is( 'li' ) ){
+				if ( ele.hasClass('focus') ){
+					ele.removeClass(' focus' );
 				} else {
-					self.className += ' focus';
+					ele.addClass( 'focus' );
 				}
 			}
-
-			self = self.parentElement;
+			ele = ele.parent()
 		}
 	}
 
 	/**
 	 * Toggles `focus` class to allow submenu access on tablets.
 	 */
+
+	 container = document.getElementsByClassName('main-navigation')[0];
+	 
 	( function( container ) {
 		var touchStartFn, i,
 			parentLink = container.querySelectorAll( '.menu-item-has-children > a, .page_item_has_children > a' );
@@ -103,4 +104,5 @@
 			}
 		}
 	}( container ) );
-} )();
+
+});

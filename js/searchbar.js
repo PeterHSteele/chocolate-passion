@@ -1,4 +1,4 @@
-jQuery(document).ready(function($){
+/*jQuery(document).ready(function($){
 	let button = $('.menu-toggle'),
 		navigation = $('.main-navigation');
 		navContainer = $('.main-navigation > div > ul'),
@@ -33,4 +33,4 @@ jQuery(document).ready(function($){
 		navigation.removeClass( 'toggled' )
 	});
 
-});
+});*/

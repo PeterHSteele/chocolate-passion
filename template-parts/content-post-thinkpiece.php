@@ -9,11 +9,12 @@
 
 ?>
 
-<article id="post-<?php the_ID(); ?>" <?php post_class( 'post-image-top' ); ?>>
+<article id="post-<?php the_ID(); ?>" <?php post_class( 'thinkpiece' ); ?>>
 	<?php chocolate_passion_post_thumbnail(); ?>
 	<?php if ( is_sticky() && ! is_single() ): ?>
 		<span class="sticky-icon"><i class="fas fa-lg fa-thumbtack"></i></span>
 	<?php endif; ?>
+	<div class="thinkpiece-flex-container clear">  
 	<header class="entry-header">
 		<?php
 		if ( is_singular() ) :
@@ -31,6 +32,7 @@
 				?>
 			</div><!-- .entry-meta -->
 		<?php endif; ?>
+		<?php chocolate_passion_entry_footer(); ?>
 	</header><!-- .entry-header -->
 
 	
@@ -61,8 +63,8 @@
 		) );
 		?>
 	</div><!-- .entry-content -->
-
-	<footer class="entry-footer">
-		<?php chocolate_passion_entry_footer(); ?>
-	</footer><!-- .entry-footer -->
+	</div><!--.thinkpiece-flex-container-->
+	<!--<footer class="entry-footer">
+		
+	</footer>--><!-- .entry-footer -->
 </article><!-- #post-<?php the_ID(); ?> -->
