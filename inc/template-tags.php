@@ -65,7 +65,7 @@ if ( ! function_exists( 'chocolate_passion_entry_footer' ) ) :
 				printf( 
 					'<span class="cat-links"><span class="screen-reader-text">%1$s</span><i class="fas fa-folder-open"></i> %2$s</span>',
 				 	esc_html__( 'Posted in ', 'chocolate-passion' ),
-				 	esc_html( $categories_list )  
+				 	$categories_list // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 				 );
 
 				//separator
@@ -80,7 +80,7 @@ if ( ! function_exists( 'chocolate_passion_entry_footer' ) ) :
 				printf( 
 					'<span class="tags-links"><i class="fas fa-tags"></i> <span class="screen-reader-text">%1$s</span>%2$s</span><span class="sep"> </span>',
 					esc_html__( 'Tagged' , 'chocolate-passion' ),
-					esc_html( $tags_list )
+					$tags_list // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 					);
 			}
 		}
