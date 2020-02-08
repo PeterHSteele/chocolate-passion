@@ -1917,73 +1917,62 @@ Custom Styles - Posts Index - Alternate Template ( template-parts/content-post-a
 
 /*
 ============
-Custom Styles - Posts Index - "Thinkpiece" Alternate Template
+Custom Styles - Posts Index - Styles for 
 ============
 */
-/*
-.home .site-main > article.thinkpiece{
-	padding: 0;
-}
 
-.home .site-main .post-thumbnail{
-	padding:  .5em;
-}
-
-article.thinkpiece/*.no-post-thumbnail{
-	display: flex;
-	flex-direction: columns;
-	flex-wrap: nowrap;
-}
-*/
-.thinkpiece-flex-container{
+.cp-post-index-flex-container{
 	align-self: flex-end;
 	margin-top: 1em;
 	/*display: flex;
 	align-items: stretch;*/
 }
 
-.thinkpiece .entry-title{
+.cp-post-index .entry-title{
 	margin: 0 0 .2em 0;
 	line-height: 1.15em;
 }
 
-.thinkpiece .tags-links,
-.thinkpiece .cat-links,
-.thinkpiece .entry-date,
-.thinkpiece .comments-link,
-.thinkpiece .edit-link,
-.thinkpiece .byline{
+.cp-post-index .tags-links,
+.cp-post-index .cat-links,
+.cp-post-index .entry-date,
+.cp-post-index .comments-link,
+.cp-post-index .edit-link,
+.cp-post-index .byline{
 	line-height: 1.1em;
 	font-size: 1em;
 	display:block;
 }
 
-.thinkpiece .entry-header{
+.cp-post-index .entry-header{
 	float: left;
 }
 
-.thinkpiece .entry-header{
+.cp-post-index .entry-header{
 	padding: .5em 0 .5em .5em;
 	flex: 0 0 38%;
-	padding: .5em 1em 1em .5em;
+	padding: .5em .5em 1em .5em;
+	/*margin: 0em .5em .5em 0em;*/
+	max-width: 60%;
+	/*background: #f0f0f0;*/
 	/*box-shadow: 3px 3px 10px 0px #ccc;
 	border-radius: 0px 10px 10px 0px;*/
 }
 
-.thinkpiece .entry-header .header-content-wrap{
+.cp-post-index .entry-header .header-content-wrap{
 	padding-right: .5em;
-	/*border-right: 1px dotted #ccc;*/
+	border-right: 1px dotted #ccc;
 }
 
 
-.thinkpiece .entry-content{
+.cp-post-index .entry-content{
 	padding: .5em .5em .5em 1.5em ;
 	padding: .5em .5em .5em .5em ;;
 	flex: 0 0 62%;
-	margin:0;
+	margin: 0;
 }
 
-.thinkpiece .entry-content >*:first-child{
+.cp-post-index .entry-content >*:first-child{
 	margin-top: 0
 }
 

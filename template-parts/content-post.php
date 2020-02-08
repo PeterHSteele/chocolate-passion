@@ -9,28 +9,32 @@
 
 ?>
 
-<article id="post-<?php the_ID(); ?>" <?php post_class( 'post-thinkpiece' ); ?>>
+<article id="post-<?php the_ID(); ?>" <?php post_class( 'cp-post-index'/* . chocolate_passion_post_thumbnail_class()*/ ); ?>>
 	<?php chocolate_passion_post_thumbnail(); ?>
 	<?php if ( is_sticky() && ! is_single() ): ?>
 		<span class="sticky-icon"><i class="fas fa-lg fa-thumbtack"></i></span>
 	<?php endif; ?>
+	<div class="thinkpiece-flex-container clear">  
 	<header class="entry-header">
-		<?php
-		if ( is_singular() ) :
-			the_title( '<h1 class="entry-title">', '</h1>' );
-		else :
-			the_title( '<h2 class="entry-title"><a href="' . esc_url( get_permalink() ) . '" rel="bookmark">', '</a></h2>' );
-		endif;
+		<div class="header-content-wrap">
+			<?php
+			if ( is_singular() ) :
+				the_title( '<h1 class="entry-title">', '</h1>' );
+			else :
+				the_title( '<h2 class="entry-title"><a href="' . esc_url( get_permalink() ) . '" rel="bookmark">', '</a></h2>' );
+			endif;
 
-		if ( 'post' === get_post_type() ) :
-			?>
-			<div class="entry-meta">
-				<?php
-				chocolate_passion_posted_on();
-				chocolate_passion_posted_by();
+			if ( 'post' === get_post_type() ) :
 				?>
-			</div><!-- .entry-meta -->
-		<?php endif; ?>
+				<div class="entry-meta">
+					<?php
+					chocolate_passion_posted_on();
+					chocolate_passion_posted_by();
+					?>
+				</div><!-- .entry-meta -->
+			<?php endif; ?>
+			<?php //chocolate_passion_entry_footer(); ?>
+		</div>
 	</header><!-- .entry-header -->
 
 	
@@ -61,8 +65,8 @@
 		) );
 		?>
 	</div><!-- .entry-content -->
-
-	<footer class="entry-footer">
-		<?php chocolate_passion_entry_footer(); ?>
-	</footer><!-- .entry-footer -->
+	</div><!--.thinkpiece-flex-container-->
+	<!--<footer class="entry-footer">
+		
+	</footer>--><!-- .entry-footer -->
 </article><!-- #post-<?php the_ID(); ?> -->
