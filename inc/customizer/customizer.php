@@ -10,7 +10,7 @@
  *
  * @param WP_Customize_Manager $wp_customize Theme Customizer object.
  */
-require get_template_directory() . '/inc/customizer/class-dropdown-posts-control.php';
+require get_template_directory() . '/inc/customizer/class-dropdown-posts-control.php';// phpcs:ignore WPThemeReview.CoreFunctionality.FileInclude.FileIncludeFound
 
 function chocolate_passion_customize_register( $wp_customize ) {
 	
@@ -131,7 +131,7 @@ function chocolate_passion_render_dropdown_posts(){
 	?>
 	<select>
 	<?php foreach ($posts as $post): ?>
-		<option data-id="<?php echo $post->id; ?>">echo get_the_title( $post )</option>
+		<option data-id="<?php echo esc_attr( $post->id ) ?>">echo get_the_title( $post )</option>
 	<?php endforeach; ?>
 	</select>
 	<?php

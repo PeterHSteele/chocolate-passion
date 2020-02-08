@@ -23,14 +23,14 @@ if ( ! function_exists( 'chocolate_passion_posted_on' ) ) :
 			esc_attr( get_the_modified_date( DATE_W3C ) ),
 			esc_html( get_the_modified_date() )
 		);
-
+		/*
 		$posted_on = sprintf(
 			/* translators: %s: post date. */
-			esc_html_x( /*'Posted on'.*/' %s', 'post date', 'chocolate-passion' ),
+			/*esc_html_x( 'Posted on'.' %s', 'post date', 'chocolate-passion' ),
 			'<a href="' . esc_url( get_permalink() ) . '" rel="bookmark">' . $time_string . '</a>'
 		);
-
-		echo '<span class="posted-on">' . $posted_on . '</span>'; // WPCS: XSS OK.
+		*/
+		echo '<span class="posted-on">' . $time_string . '</span>';// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 
 	}
 endif;
@@ -46,7 +46,7 @@ if ( ! function_exists( 'chocolate_passion_posted_by' ) ) :
 			'<span class="author vcard"><a class="url fn n" href="' . esc_url( get_author_posts_url( get_the_author_meta( 'ID' ) ) ) . '">' . esc_html( get_the_author() ) . '</a></span>'
 		);
 
-		echo '<span class="byline"> ' . $byline . '</span>'; // WPCS: XSS OK.
+		echo '<span class="byline"> ' . $byline . '</span>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 
 	}
 endif;
@@ -62,7 +62,11 @@ if ( ! function_exists( 'chocolate_passion_entry_footer' ) ) :
 			$categories_list = get_the_category_list( esc_html__( ', ', 'chocolate-passion' ) );
 			if ( $categories_list ) {
 				/* translators: 1: list of categories. */
-				printf( '<span class="cat-links"><span class="screen-reader-text">' . esc_html__( 'Posted in ', 'chocolate-passion' ) . '</span><i class="fas fa-folder-open"></i> '. esc_html_x( '%1$s', 'Category Name', 'chocolate-passion' ) . '</span>', $categories_list ); // WPCS: XSS OK.
+				printf( 
+					'<span class="cat-links"><span class="screen-reader-text">%1$s</span><i class="fas fa-folder-open"></i> %2$s</span>',
+				 	esc_html__( 'Posted in ', 'chocolate-passion' ),
+				 	esc_html( $categories_list )  
+				 );
 
 				//separator
 				echo '<span class="sep"> </span>';
@@ -73,10 +77,11 @@ if ( ! function_exists( 'chocolate_passion_entry_footer' ) ) :
 			if ( $tags_list ) {
 
 				/* translators: 1: list of tags. */
-				printf( '<span class="tags-links"><i class="fas fa-tags"></i> <span class="screen-reader-text">' . esc_html__( 'Tagged' , 'chocolate-passion' ) . '</span>' . esc_html( '%1$s' , 'chocolate-passion' ) .'</span>', $tags_list ); // WPCS: XSS OK.
-
-				//separator
-				echo '<span class="sep"> </span>';
+				printf( 
+					'<span class="tags-links"><i class="fas fa-tags"></i> <span class="screen-reader-text">%1$s</span>%2$s</span><span class="sep"> </span>',
+					esc_html__( 'Tagged' , 'chocolate-passion' ),
+					esc_html( $tags_list )
+					);
 			}
 		}
 
@@ -158,11 +163,11 @@ if ( ! function_exists( 'chocolate_passion_menu_name' ) ) :
 	/**
 	* Displays the name of a menu
 	*
-	* This will print the menu name as it appears in Dashboard -> Appearance -> Menus.
+	* Prints the menu name as it appears in Dashboard -> Appearance -> Menus.
 	* @param string 	$location 	theme location of menu whose name to display
 	*/
 	function chocolate_passion_menu_name( $location = '' ){
-		echo get_term( get_nav_menu_locations()[$location] )->name;
+		echo esc_html( get_term( get_nav_menu_locations()[$location] )->name );
 	}
 
 endif;

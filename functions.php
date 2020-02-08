@@ -438,11 +438,16 @@ if ( ! function_exists('chocolate_passion_get_slides') ):
 	}
 
 endif;
+/*
+if ( ! function_exists( 'chocolate_passion_post_thumbnail_class' ) ):
 
-function asps(){
-	?>
-	<span style="color:green">boo</span>
-	<?php
+ 
+adds a class to a post depending on whether the class has a post thumbnail
+*/
+/*
+function chocolate_passion_post_thumbnail_class(){
+	return has_post_thumbnail() ? '' : 'no-post-thumbnail' ;
 }
 
-add_action( 'woocommerce_single_product_summary', 'asps' );
+endif;
+*/

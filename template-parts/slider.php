@@ -20,7 +20,7 @@ if ( !empty($slides) ) :
 			
 			<div class="slide-content">
 				<header class="entry-header">
-					<h2><?php echo get_the_title( $slide ); ?></h2>
+					<h2><?php echo esc_html( get_the_title( $slide ) ); ?></h2>
 				</header>
 
 				<div class="entry-content">

@@ -10,7 +10,7 @@
 ?>
 
 <article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
-	<div class="chocolate-passion-banner" style="background-image: url(<?php echo wp_get_attachment_image_src( get_post_thumbnail_id(), 'large' )[0]; ?>)">
+	<div class="chocolate-passion-banner" style="background-image: url(<?php echo esc_url( wp_get_attachment_image_src( get_post_thumbnail_id(), 'large' )[0]); ?>)">
 	</div><!-- .chocolate-passion-banner--> 
 	<div class="col-80">
 		<div class="col-60">
