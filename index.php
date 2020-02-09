@@ -12,8 +12,10 @@
  * @package chocolate_passion
  */
 
-get_header(); 
-get_template_part( 'template-parts/slider' );
+get_header();
+if ( is_front_page() ) {
+	get_template_part( 'template-parts/slider' );
+}
 ?>
 	
 	<div id="primary" class="content-area">
@@ -25,8 +27,8 @@ get_template_part( 'template-parts/slider' );
 
 			if ( is_home() && ! is_front_page() ) :
 				?>
-				<header>
-					<h1 class="page-title screen-reader-text"><?php single_post_title(); ?></h1>
+				<header class="page-header">
+					<h1 class="page-title"><?php single_post_title(); ?></h1>
 				</header>
 				<?php
 			endif;

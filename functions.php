@@ -428,7 +428,7 @@ if ( ! function_exists('chocolate_passion_get_slides') ):
 
 	function chocolate_passion_get_slides(){
 		$slides = array();
-		for ( $count = 1; $count <= 8; $count++ ){
+		for ( $count = 1; $count <= 10; $count++ ){
 			$id = get_theme_mod( 'chocolate_passion_slider_posts_' . $count );
 			if ( $id && has_post_thumbnail( $id ) ){
 				$slides[] = $id;

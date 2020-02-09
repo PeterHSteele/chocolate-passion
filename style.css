@@ -1453,6 +1453,10 @@ Layout - Site Header
 ============
 */
 
+.site-header{
+	margin-bottom: 1em;
+}
+
 .header-row-two .row{
 	flex-wrap: wrap;
 }	
@@ -1537,6 +1541,15 @@ Layout - Page.php
 */
 
 
+/*
+============
+Layout - Search Results (search.php)
+============
+*/
+
+.search .site-main > article{
+	margin-bottom: 7em;
+}
 
 /*
 ============
@@ -1861,10 +1874,10 @@ Custom Styles - Posts Index ( including Home, Archive templates )
 
 .sticky-icon{
 	position: absolute;
-	background: rgba(255,255,255,.8);
+	background: rgba(255,255,255,1);
 	border-radius: 50%;
-	top:0px;
-	right:0;
+	top:-5px;
+	right:-5px;
 	z-index: 1;
 	padding: .5em;
 }
@@ -2011,7 +2024,7 @@ Slider
 	position: absolute;
 	left: 0;
 	bottom: 0;
-	background: rgba(255,255,255,.8);
+	background: rgba(255,255,255,.9);
 	border-top: 2px solid white;
 }
 
@@ -2195,6 +2208,16 @@ Custom Styles - Footer
 .privacy-policy-link:hover,
 .privacy-policy-link:focus{
 	color: orangered;
+}
+
+/*
+===============
+Custom Styles - Customizer
+===============
+*/
+
+.dropdown-posts-text{
+	font-weight: 600
 }
 
 /*

@@ -8,7 +8,7 @@
  */
 
 $slides = chocolate_passion_get_slides();
-if ( !empty($slides) ) :
+if ( !empty( $slides ) ) :
 ?>
 	<section class="slider col-80">
 		<div class="slider-container">
