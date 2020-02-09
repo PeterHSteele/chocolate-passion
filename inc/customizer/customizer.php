@@ -76,7 +76,11 @@ function chocolate_passion_customize_register( $wp_customize ) {
 	)));
 
 	$wp_customize->add_section('chocolate_passion_homepage_settings',array(
-		'title' => __( 'Homepage' , 'chocolate-passion' ),
+		'title' => __( 'Homepage Slideshow' , 'chocolate-passion' ),
+		'description' => __( 
+			'Here you can add pages and posts to the slideshow on the homepage. 
+			Any slides left empty or that do not have a featured image will be skipped. ', 
+			'chocolate-passion'),
 		'active_callback' => 'is_front_page',
 	));
 /*
@@ -93,13 +97,13 @@ function chocolate_passion_customize_register( $wp_customize ) {
 		));
 	}
 */
-	for( $count = 1; $count <= 8; $count++){
+	for( $count = 1; $count <= 10; $count++){
 		$wp_customize->add_setting( 'chocolate_passion_slider_posts_' . $count, array(
 			'default' => '',
 			'sanitize_callback' => 'absint'
 		));
  		
- 		if ( $count < 5 ){
+ 		if ( $count % 2 ){
 		$wp_customize->add_control( 'chocolate_passion_slider_posts_' .  $count, array(
 			'label' => __( 'Page to include in homepage slider', 'chocolate-passion' ),
 			'type' => 'dropdown-pages',
