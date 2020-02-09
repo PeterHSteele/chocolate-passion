@@ -1934,13 +1934,6 @@ Custom Styles - Posts Index - Styles for
 ============
 */
 
-.cp-post-index-flex-container{
-	align-self: flex-end;
-	margin-top: 1em;
-	/*display: flex;
-	align-items: stretch;*/
-}
-
 .cp-post-index .entry-title{
 	margin: 0 0 .2em 0;
 	line-height: 1.15em;
@@ -2088,6 +2081,34 @@ Slider
 	border-radius: 50%;
 	background: black;
 }*/
+
+/*
+===============
+Custom Styles - Single Post
+===============
+*/
+
+.single-post h1{
+	margin-bottom: 0;
+}
+
+.single-post .entry-meta{
+}
+
+.single-post .posted-on,
+.single-post .byline{
+	font-style: italic;
+	padding: .2em .5em .2em .2em;
+}
+
+.single-post .posted-on{
+	padding: .2em .5em .2em 0;
+	border-right: 1px solid #ccc;
+}
+
+.single-post .byline{
+	padding-left: .3em;
+}
 
 /*
 ===============
