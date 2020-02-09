@@ -14,9 +14,9 @@
 	<header class="entry-header">
 		<?php the_title( '<h1 class="entry-title">', '</h1>' ); ?>
 	</header><!-- .entry-header -->
-
+	</div>
 	<?php chocolate_passion_post_thumbnail(); ?>
-	
+	<div class="col-60">
 	<div class="entry-content">
 		<?php
 		the_content();
