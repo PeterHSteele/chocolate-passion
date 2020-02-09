@@ -14,6 +14,7 @@
 	<?php if ( is_sticky() && ! is_single() ): ?>
 		<span class="sticky-icon"><i class="fas fa-lg fa-thumbtack"></i></span>
 	<?php endif; ?>
+	<div class="col-60">
 	<header class="entry-header">
 		<?php
 		if ( is_singular() ) :
@@ -66,4 +67,5 @@
 	<footer class="entry-footer">
 		<?php chocolate_passion_entry_footer(); ?>
 	</footer><!-- .entry-footer -->
+	</div><!--.col-60-->
 </article><!-- #post-<?php the_ID(); ?> -->

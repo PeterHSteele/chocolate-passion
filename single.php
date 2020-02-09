@@ -13,7 +13,7 @@ get_header();
 	<div id="primary" class="content-area">
 		<div class="col-80">
 			<main id="main" class="site-main">
-			<div class="col-60">
+			
 
 			<?php
 			while ( have_posts() ) :
@@ -29,7 +29,7 @@ get_header();
 			endwhile; // End of the loop.
 			?>
 
-			</div>
+			
 			<?php the_post_navigation(); ?>
 			</main><!-- #main -->
 		</div><!--.col-80-->	
