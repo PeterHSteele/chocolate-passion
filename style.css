@@ -910,7 +910,7 @@ Social Menu
 
 .social-links a{
 	color: white;
-	transition: 1s color;
+	transition: .2s color;
 }
 
 .social-links a:hover,
@@ -1457,6 +1457,12 @@ Layout - Site Header
 	margin-bottom: 1em;
 }
 
+.archive .site-header,
+.search-results .site-header,
+.blog .site-header{
+	margin-bottom: 0;
+}
+
 .header-row-two .row{
 	flex-wrap: wrap;
 }	
@@ -1858,7 +1864,7 @@ Custom Styles - Posts Index ( including Home, Archive templates )
 .blog .site-main .attachment-post-thumbnail:hover,
 .archive .site-main .attachment-post-thumbnail:hover{
 	width: 100%;
-	border-bottom: 2px solid orangered;
+	/*border-bottom: 2px solid orangered;*/
 }
 
 .page-header{
@@ -1946,8 +1952,9 @@ Custom Styles - Posts Index - Styles for
 .cp-post-index .edit-link,
 .cp-post-index .byline{
 	line-height: 1.1em;
-	font-size: 1em;
+	font-size: .875em;
 	display:block;
+	color: #444;
 }
 
 .cp-post-index .entry-header{
