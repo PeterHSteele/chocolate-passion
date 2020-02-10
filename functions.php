@@ -250,6 +250,8 @@ if ( ! function_exists( 'chocolate_passion_customize_css' ) ):
 				border-bottom: 3px solid <?php echo esc_attr( $primary ) ?>;
 			}
 			*/
+
+
 			.sticky-icon i{
 				color: <?php echo esc_attr( $primary )?>;
 			}
@@ -342,10 +344,36 @@ if ( ! function_exists( 'chocolate_passion_customize_css' ) ):
 				color: <?php echo esc_attr( $primary )?>;
 			}
 
+			.social-links a:hover,
+			.social-links a:focus{
+				color: <?php echo esc_attr( $accent) ?>;
+			}
+
+			.privacy-policy-link:hover,
+			.privacy-policy-link:focus{
+				color: <?php echo esc_attr( $accent) ?>;
+			}
+
 			@media all and (min-width: 300px){
+				
+				.search-form button:hover{
+					background: <?php echo esc_attr( $accent) ?>;
+					border: 3px solid <?php echo esc_attr( $accent) ?>;
+				}
+
 				.menu-toggle:hover,
 				.menu-toggle:focus{
 					border: 3px solid <?php echo esc_attr( $accent ); ?>;
+				}
+
+			}
+
+			@media all and (min-width: 1024px){
+				
+
+				.search-form button:hover,
+				.search-form button:focus{
+					border: 2.5px solid <?php echo esc_attr( $accent ); ?>;
 				}
 			}
 		</style>
