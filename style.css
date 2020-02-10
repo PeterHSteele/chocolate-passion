@@ -40,6 +40,9 @@ Nicolas Gallagher and Jonathan Neal https://necolas.github.io/normalize.css/
 # Media
 	## Captions
 	## Galleries
+# Layout
+# Custom Styles
+# Media Queries
 --------------------------------------------------------------*/
 /*--------------------------------------------------------------
 # Normalize
@@ -612,41 +615,7 @@ select{
 	border-radius: .2em;
 }
 
-/*
-select{
-	padding: 0 .5em;
-	-webkit-appearance: none;
-	-moz-appearance: none;
-	text-indent: 1px;
-	text-overflow: '';
-	position: relative;
-	box-shadow: 3px 3px 5px 0 #999;
-}
 
-select:before{
-	display:block;
-	z-index: 1;
-	height: 0;
-	width: 0;
-	position: absolute;
-	content: '';
-	right: 5px;
-	top: 10px;
-	border-left: 8px solid transparent;
-	border-right: 8px solid transparent;
-	border-top: 10px solid white;
-	content:'';
-	position: absolute;
-	height: 0;
-	width: 0;
-	right: .625rem;
-	top: 1.05rem;
-	border-top: .42em solid white;
-	border-right: .48em solid transparent;
-	border-left: .48em solid transparent;
-	transition: .1s border;
-}
-*/
 textarea {
 	width: 100%;
 }
@@ -686,7 +655,6 @@ a:hover, a:active {
 	display: block;
 	position: relative;
 	margin-right: .5em;
-	/*flex: 1 0 100%;*/
 }
 
 .main-navigation.toggled{
@@ -796,11 +764,7 @@ ul ul li.menu-item-has-children > a:hover:after{
 ul ul li.menu-item-has-children a:hover:after{
 	border-top: none;
 }
-/*
-.main-navigation > div > ul > li:first-child{
-	margin-top: 3px;
-}
-*/
+
 .main-navigation a {
 	padding-left: .1em;
 	display: block;
@@ -917,18 +881,7 @@ Social Menu
 .social-links a:focus{
 	color: orangered;
 }
-/*
-.menu-toggle{
-	position: absolute;
-	top: 0;
-	right: 0;
-	z-index: 100;
-}
 
-.main-navigation > div > ul{
-	margin-left: -.75em;
-}
-*/
 @media screen and (min-width: 1024px) {
 	.menu-toggle {
 		display: none;
@@ -1099,11 +1052,7 @@ select*/{
 	font-size: 1rem;
 	line-height: 1.5em;
 }
-/*
-select{
-	font-size: .875rem
-}
-*/
+
 .comment-form input[type="submit"],
 .comment-form button{
 	background: white;
@@ -1129,18 +1078,11 @@ select{
 .slick-next:hover,
 .slick-next:focus,
 .slick-prev:hover,
-.slick-prev:focus/*,
-select:hover,
-select:focus*/{
+.slick-prev:focus{
 	background:white;
 	color: black;
 }
-/*
-select:hover,
-select:focus{
-	box-shadow: none;
-}
-*/
+
 .slick-next,
 .slick-prev{
 	margin: 0;
@@ -1662,8 +1604,6 @@ Custom Styles - Header
 }
 
 .site-header .site-info {
-	/*box-shadow: inset 0 0  10px 0 rgb(235, 235, 235);
-	background: #fafafa;*/
 	flex: 1 0;
 }
 
@@ -1678,12 +1618,6 @@ Custom Styles - Header
 .site-info{
 	padding: 0 1em;
 }
-
-
-/*
-.site-header button{
-	background: white;
-}*/
 
 .search-form{
 	float: right;
@@ -1740,91 +1674,7 @@ Custom Styles - Header
 	border: none;
 }
 
-/*
-==================
-Header Search Form
-==================
-*/
-/*
-.header-search{
-	height: 2.5em;
-}
 
-.header-search.active,
-.main-navigation.toggled + .header-search{
-	flex: 1 0 100%;
-}
-
-.main-navigation.toggled + .header-search button{
-	float: left;
-}
-
-.search-toggle{
-	min-width: 3em;
-}
-
-.search-toggle{
-	float: right;
-}
-
-.search-form{
-	z-index: 1000;
-	position: absolute;
-	top: 0;
-	right: -100%;
-	background: white;
-	display: flex;
-	padding: .2em;
-	transition: .2s right;
-	width: 100%;
-}
-
-.header-search.expanded .search-form{
-	right: 0;
-}
-
-
-
-.searchform-wrap{
-	height: 100%;
-	overflow: hidden;
-	position: relative;
-	margin: .2em 0;
-}
-
-.search-form:after{
-	display: table;
-	content: '';
-	clear: both;
-}
-
-.search-form button{
-	background: white;
-}
-
-
-.search-form input{
-	flex: 1 0;
-	max-width: 110px;
-}
-
-.search-form input,
-.search-form button{
-	margin: 0 .1em;
-}
-
-.main-navigation.toggled + .header-search input{
-	order: 3;
-}
-
-.main-navigation.toggled + .header-search button{
-	order: 2;
-}
-
-.main-navigation.toggled + .header-search .toggler{
-	order: 1;
-}
-*/
 /*
 ============
 Custom Styles - Page, Post Content
@@ -1862,18 +1712,12 @@ Custom Styles - Posts Index ( including Home, Archive templates )
 .blog .site-main .attachment-post-thumbnail:hover,
 .archive .site-main .attachment-post-thumbnail:hover{
 	width: 100%;
-	/*border-bottom: 2px solid orangered;*/
 }
 
 .page-header{
 	background: white;
 	border: 3px solid #ddd;
 	padding: .5em;
-}
-
-.blog .site-main > article.sticky{
-	/*background: #f9f9f9;
-	border-bottom: 3px solid #bbb;*/
 }
 
 .sticky-icon{
@@ -1963,18 +1807,13 @@ Custom Styles - Posts Index - Styles for
 	padding: .5em 0 .5em .5em;
 	flex: 0 0 38%;
 	padding: .5em .5em 1em .5em;
-	/*margin: 0em .5em .5em 0em;*/
 	max-width: 60%;
-	/*background: #f0f0f0;*/
-	/*box-shadow: 3px 3px 10px 0px #ccc;
-	border-radius: 0px 10px 10px 0px;*/
 }
 
 .cp-post-index .entry-header .header-content-wrap{
 	padding-right: .5em;
 	border-right: 1px dotted #ccc;
 }
-
 
 .cp-post-index .entry-content{
 	padding: .5em .5em .5em 1.5em ;
@@ -2009,13 +1848,7 @@ Slider
 	background-size: cover;
 	background-position: center;
 }
-/*
-.slide .attachment-post-thumbnail{
-	height: 450px;
-	width: 100%;
-	object-fit: cover;
-}
-*/
+
 .slide-content{
 	padding: .5em;
 	width: 100%;
@@ -2077,15 +1910,6 @@ Slider
 	border: 2px solid black;
 	background: white;
 }
-/*
-.slick-dots li:after{
-	position: absolute;
-	content:'';
-	height: 2px;
-	width: 2px;
-	border-radius: 50%;
-	background: black;
-}*/
 
 /*
 ===============

@@ -292,8 +292,7 @@ if ( ! function_exists( 'chocolate_passion_customize_css' ) ):
 			.posts-navigation .nav-next a,
 			.post-navigation .nav-next a,
 			.slick-prev,
-			.slick-next/*,
-			.comment-form input[type="submit"]*/{
+			.slick-next{
 				background: <?php echo esc_attr( $primary )?>;
 				border: 2px solid <?php echo esc_attr( $primary )?>;
 			}
