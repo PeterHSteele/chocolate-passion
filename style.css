@@ -42,7 +42,7 @@ Nicolas Gallagher and Jonathan Neal https://necolas.github.io/normalize.css/
 	## Galleries
 # Layout
 # Custom Styles
-# Media Queries
+# Media Queries	
 --------------------------------------------------------------*/
 /*--------------------------------------------------------------
 # Normalize
@@ -2414,4 +2414,3 @@ Custom Styles - Sidebar - Large Screen
 	.site-footer .secondary-navigation{
 		display: none;
 	}
-}

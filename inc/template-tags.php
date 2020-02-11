@@ -189,6 +189,7 @@ if ( ! function_exists( 'chocolate_passion_footer_nav' ) ):
 						'theme_location' => $location,
 						'menu_id' => 'nav-secondary-menu',
 						'depth' => 1,
+						'fallback_cb' => false
 					));
 				?>
 			</nav>	

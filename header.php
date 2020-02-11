@@ -39,7 +39,8 @@
 									<?php 
 										wp_nav_menu( array(
 											'theme_location' => 'menu-2',
-											'menu_id' => 'nav-secondary-menu'
+											'menu_id' => 'nav-secondary-menu',
+											'fallback_cb' => false
 										));
 									?>
 								</nav>

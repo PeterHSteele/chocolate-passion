@@ -42,7 +42,8 @@
 					<?php
 					wp_nav_menu(array(
 						'theme_location' => 'menu-social',
-						'depth'			 => 1
+						'depth'			 => 1,
+						'fallback_cb'	 => false
 					)); 
 					?>
 				</nav>
