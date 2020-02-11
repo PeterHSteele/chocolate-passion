@@ -539,16 +539,16 @@ button,
 input[type="button"],
 input[type="reset"],
 input[type="submit"] {
-	border: 1px solid;
-	border-color: #ccc #ccc #bbb;
-	border-radius: 3px;
-	background: #e6e6e6;
-	color: rgba(0, 0, 0, 0.8);
-	font-size: 12px;
-	font-size: 0.75rem;
-	line-height: 1;
-	padding: .6em 1em .4em;
-	word-wrap: inherit;
+	padding: .2em;
+	color: white;
+	background: black;
+	border-radius: .2em;
+	display: inline-block;
+	text-decoration: none;
+	border: 2px solid black;
+	transition: .2s all;
+	font-size: 1rem;
+	line-height: 1em;
 }
 
 button:hover,
@@ -1632,6 +1632,7 @@ Custom Styles - Header
 .search-form input,
 .search-form button,
 .banner-header .search-toggle{
+	color: #505050;
 	font-size: inherit;
 	padding: .45rem;
 	margin: 0;

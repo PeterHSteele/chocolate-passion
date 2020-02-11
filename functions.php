@@ -149,7 +149,8 @@ function chocolate_passion_scripts() {
 	}
 
 	wp_enqueue_style( 'chocolate-passion-style', get_stylesheet_uri() );
-
+	wp_add_inline_style('chocolate-passion-style', chocolate_passion_customize_css() );
+	
 	wp_enqueue_style( 'chocolate-passion-google-font', 'https://fonts.googleapis.com/css?family=Nunito&display=swap' );
 
 	wp_enqueue_script( 'chocolate-passion-skip-link-focus-fix', get_template_directory_uri() . '/js/skip-link-focus-fix.js', array(), '20151215', true );
@@ -223,75 +224,90 @@ if ( ! function_exists( 'chocolate_passion_customize_css' ) ):
 		$accent = get_theme_mod( 'chocolate_passion_accent_color' );
 		$link = get_theme_mod( 'chocolate_passion_link_color' );
 		$hover = get_theme_mod( 'chocolate_passion_hover_link_color' );
-		?>
-		<style>
+		
+
+		$css ="
+		
 			a{
-				color: <?php echo esc_attr( $link ); ?>;
+				color: $link;
 			}
 
 			a:visited,
 			a:active{
-				color: <?php echo esc_attr( $accent ); ?>;
+				color: $accent;
 			}
 
 			a:hover{
-				color: <?php echo esc_attr( $hover )?>;
+				color: $hover;
+			}
+
+			button:hover,
+			input[type='button']:hover,
+			input[type='reset']:hover,
+			input[type='submit']:hover {
+				border-color: $primary;
+			}
+
+			button:active, button:focus,
+			input[type='button']:active,
+			input[type='button']:focus,
+			input[type='reset']:active,
+			input[type='reset']:focus,
+			input[type='submit']:active,
+			input[type='submit']:focus {
+				border-color: $primary;
 			}
 
 			.main-navigation a:hover,
 			.main-navigation a:active{
-				color: <?php echo esc_attr( $primary )?>;
+				color: $primary;
 			}
 
 			.header-row-one,
 			.header-row-two,
 			.site-footer{
-				background: <?php echo esc_attr( $primary )?>;
-			}
-
-			.header-row-woocommerce{
-				background: <?php //echo esc_attr( $primary ) ?>;
+				background: $primary;
 			}
 
 			ul.site-header-cart li{
-				background: <?php echo esc_attr( $primary ) ?>
+				background: $primary;
 			}
 
 			ul.site-header-cart li:hover{
-				background: <?php echo esc_attr( $accent ) ?>;
+				background: $accent
 			}
 
 			.sticky-icon i{
-				color: <?php echo esc_attr( $accent )?>;
+				color:  $accent;
 			}
 
 			.woocommerce span.onsale{
-				background-color: <?php echo esc_attr( $accent )?>;
+				background-color: $accent;
 			}
 
 			.woocommerce ul.products li.product .price,
 			.woocommerce div.product p.price{
-				color: <?php echo esc_attr( $accent )?>;
+				color: $accent;
 			}
 
 			.woocommerce button.button.alt,
 			.woocommerce a.button.alt{
-				background: <?php echo esc_attr( $primary )?>;
+				background: $primary;
 			}
 
 			.woocommerce button.button.alt:hover,
 			.woocommerce a.button.alt:hover{
-				background: <?php echo esc_attr( $accent )?>;
+				background: $accent;
 			}
 
 			.menu-toggle:hover,
 			.menu-toggle:focus{
-				background: <?php echo esc_attr( $accent ); ?>;
-				border: 5px solid <?php echo esc_attr( $accent ); ?>;
+				background: $accent;
+				border: 5px solid $accent;
 			}
 
 			.footer-links a:hover{
-				color: <?php echo esc_attr( $accent ); ?>;
+				color: $accent;
 			}
 
 			.comment-navigation .nav-previous a,
@@ -302,8 +318,8 @@ if ( ! function_exists( 'chocolate_passion_customize_css' ) ):
 			.post-navigation .nav-next a,
 			.slick-prev,
 			.slick-next{
-				background: <?php echo esc_attr( $primary )?>;
-				border: 2px solid <?php echo esc_attr( $primary )?>;
+				background: $primary;
+				border: $primary;
 			}
 
 			.comment-navigation .nav-previous a:hover,
@@ -322,77 +338,76 @@ if ( ! function_exists( 'chocolate_passion_customize_css' ) ):
 			.slick-next:focus,
 			.slick-prev:hover,
 			.slick-prev:focus{
-				color: <?php echo esc_attr( $primary )?>;
-				border: 2px solid <?php echo esc_attr( $primary ) ?>;
+				color: $primary;
+				border: $primary;
 			}
 
-			.comment-form input[type="submit"],
+			.comment-form input[type='submit'],
 			.comment-form button{
-				color: <?php echo esc_attr( $primary )?>;
-				border: 2px solid <?php echo esc_attr( $primary )?>;
+				color: $primary;
+				border: 2px solid $primary;
 			}
 
-			.comment-form input[type="submit"]:hover,
-			.comment-form input[type="submit"]:focus{
-				background: <?php echo esc_attr( $primary )?>;
+			.comment-form input[type='submit']:hover,
+			.comment-form input[type='submit']:focus{
+				background: $primary;
 			}
 
 			.woocommerce nav.woocommerce-pagination ul li{
-				border: 2px solid <?php echo esc_attr( $primary )?>;
+				border: 2px solid $primary;
 			}
 
 			.page-numbers li a,
 			.page-numbers li a:visited,
 			.page-numbers li a:active{
-				background: <?php echo esc_attr( $primary )?>;
+				background: $primary;
 			}
 
 			.woocommerce nav.woocommerce-pagination ul li a:hover,
 			.woocommerce nav.woocommerce-pagination ul li a:focus,
 			.woocommerce nav.woocommerce-pagination ul li span.current{
-				color: <?php echo esc_attr( $primary )?>;
+				color: $primary;
 			}
 
 			.social-links a:hover,
 			.social-links a:focus{
-				color: <?php echo esc_attr( $accent) ?>;
+				color: $accent;
 			}
 
 			.privacy-policy-link:hover,
 			.privacy-policy-link:focus{
-				color: <?php echo esc_attr( $accent) ?>;
+				color: $accent;
 			}
 
 			@media all and (min-width: 300px){
 				
 				.search-form button:hover{
-					background: <?php echo esc_attr( $accent) ?>;
-					border: 3px solid <?php echo esc_attr( $accent) ?>;
+					background: $accent;
+					border: $accent;
 				}
 
 				.menu-toggle:hover,
 				.menu-toggle:focus{
-					border: 3px solid <?php echo esc_attr( $accent ); ?>;
+					border: $accent;
 				}
 
 			}
 
 			@media all and (min-width: 1024px){
 				
-
 				.search-form button:hover,
 				.search-form button:focus{
-					border: 2.5px solid <?php echo esc_attr( $accent ); ?>;
+					border: 2.5px solid $accent;
 				}
 			}
-		</style>
+		";
 
-		<?php
+		return $css;
 	}
 
 endif;
 
-add_action( 'wp_head', 'chocolate_passion_customize_css' );
+//add_action( 'wp_head', 'chocolate_passion_customize_css' );
 
 if ( ! function_exists( 'chocolate_passion_custom_excerpt' ) ):
 
