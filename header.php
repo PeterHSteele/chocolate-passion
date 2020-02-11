@@ -35,7 +35,6 @@
 
 							<div class="header secondary-menu-wrap">
 								<nav id="secondary-menu" class="secondary-navigation">
-									<!--<button class="menu-toggle" aria-controls="seconary-menu"></button>-->
 									<?php 
 										wp_nav_menu( array(
 											'theme_location' => 'menu-2',
@@ -64,15 +63,7 @@
 									'menu_class'	 => 'clear'
 								) );
 								?>
-							</nav><!-- #site-navigation -->
-							<!--<button class="search-toggle toggle" aria-controls="primary-menu" aria-expanded="false">
-								<i class="fas fa-search"></i>
-								<span class="sr-only">
-								<?php 
-									esc_html_e( 'Search', 'chocolate-passion' ) . ' ' . bloginfo('name')
-								?>
-								</span>
-							</button>-->						
+							</nav><!-- #site-navigation -->					
 					</div><!--.col-80-->
 				</div><!--.header-row-two-->
 				<div class="header-row-three">
@@ -84,20 +75,8 @@
 									?>
 									<h1 class="site-title"><?php bloginfo( 'description' ); ?></h1>
 									<?php
-								/*else :
-									?>
-									<p class="site-title"><a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home"><?php bloginfo( 'name' ); ?></a></p>
-									<?php
-									
-									$chocolate_passion_description = get_bloginfo( 'description', 'display' );
-									if ( $chocolate_passion_description || is_customize_preview() ) :
-										?>
-										<p class="site-description"><?php echo $chocolate_passion_description; /* WPCS: xss ok. *//* ?></p>
-									<?php 
-									endif; */
 								endif; 
 							?>
-								
 							</div><!--.site-info-->
 						</div>
 					</div>
