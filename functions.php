@@ -149,11 +149,11 @@ function chocolate_passion_scripts() {
 	}
 
 	wp_enqueue_style( 'chocolate-passion-style', get_stylesheet_uri() );
-
-	if ( function_exists( 'is_woocommerce' ) && is_woocommerce() ){
+/*
+	if ( class_exists( 'is_woocommerce' ) && is_woocommerce() ){
 		wp_enqueue_style( 'woocommerce-style', get_stylesheet_directory_uri() . '/woocommerce.css' );
 	}
-
+*/
 	wp_enqueue_style( 'chocolate-passion-google-font', 'https://fonts.googleapis.com/css?family=Nunito&display=swap' );
 
 	wp_enqueue_script( 'chocolate-passion-skip-link-focus-fix', get_template_directory_uri() . '/js/skip-link-focus-fix.js', array(), '20151215', true );
@@ -183,6 +183,13 @@ require get_template_directory() . '/inc/template-functions.php';
  * Customizer additions.
  */
 require get_template_directory() . '/inc/customizer/customizer.php';
+
+/**
+ *  Woocommmerce-specific functions.
+ */
+if ( class_exists('WooCommerce') ){
+	require get_template_directory() . '/inc/woocommerce.php';
+}
 
 /**
  * Load Jetpack compatibility file.
@@ -420,33 +427,6 @@ if ( ! function_exists( 'chocolate_passion_strip_headings' ) ):
 	}
 
 endif;
-
-function chocolate_passion_rearrange_hooks(){
-	remove_action( 'woocommerce_after_shop_loop','woocommerce_pagination');
-	remove_action( 'woocommerce_sidebar', 'woocommerce_get_sidebar' );
-	remove_action( 'woocommerce_before_main_content', 'woocommerce_breadcrumb', 20 );
-	remove_action( 'woocommerce_before_shop_loop','woocommerce_result_count', 20 );
-	remove_action( 'woocommerce_before_shop_loop', 'woocommerce_catalog_ordering', 30);
-	add_action( 'woocommerce_after_main_content', 'woocommerce_pagination');
-	add_action( 'woocommerce_archive_description', 'woocommerce_breadcrumb', 5);
-	add_action( 'woocommerce_archive_description', 'woocommerce_result_count', 20);
-	add_action( 'woocommerce_archive_description', 'woocommerce_catalog_ordering', 30);
-}
-
-add_action( 'init' , 'chocolate_passion_rearrange_hooks' );
-
-function chocolate_passion_add_opening_tag(){
-	//if ( is_archive() ) : ?>
-		<div class="col-80">
-	<?php //endif; 
-}
-
-add_action( 'woocommerce_before_main_content', 'chocolate_passion_add_opening_tag', 1 , 1);
-
-function chocolate_passion_closing_tag(){
-	echo '</div>';
-}
-add_action( 'woocommerce_after_main_content', 'chocolate_passion_closing_tag',100);
 
 if ( ! function_exists('chocolate_passion_get_slides') ):
 
