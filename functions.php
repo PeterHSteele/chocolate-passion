@@ -150,7 +150,7 @@ function chocolate_passion_scripts() {
 
 	wp_enqueue_style( 'chocolate-passion-style', get_stylesheet_uri() );
 
-	if ( is_woocommerce() ){
+	if ( function_exists( 'is_woocommerce' ) && is_woocommerce() ){
 		wp_enqueue_style( 'woocommerce-style', get_stylesheet_directory_uri() . '/woocommerce.css' );
 	}
 
