@@ -220,11 +220,10 @@ endif;
 if ( ! function_exists( 'chocolate_passion_customize_css' ) ):
 
 	function chocolate_passion_customize_css(){
-		$primary = get_theme_mod( 'chocolate_passion_primary_color' );
-		$accent = get_theme_mod( 'chocolate_passion_accent_color' );
-		$link = get_theme_mod( 'chocolate_passion_link_color' );
-		$hover = get_theme_mod( 'chocolate_passion_hover_link_color' );
-		
+		$primary = esc_attr( get_theme_mod( 'chocolate_passion_primary_color' ) );
+		$accent = esc_attr( get_theme_mod( 'chocolate_passion_accent_color' ) );
+		$link = esc_attr( get_theme_mod( 'chocolate_passion_link_color' ) );
+		$hover = esc_attr( get_theme_mod( 'chocolate_passion_hover_link_color' ) );
 
 		$css ="
 		

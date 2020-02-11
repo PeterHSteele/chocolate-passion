@@ -251,12 +251,12 @@ if ( ! function_exists( 'chocolate_passion_woocommerce_cart_link' ) ) {
 	 */
 	function chocolate_passion_woocommerce_cart_link() {
 		?>
-		<a class="cart-contents" href="<?php echo esc_url( wc_get_cart_url() ); ?>" title="<?php esc_attr_e( 'View your shopping cart', 'chocolate_passion' ); ?>">
+		<a class="cart-contents" href="<?php echo esc_url( wc_get_cart_url() ); ?>" title="<?php esc_attr_e( 'View your shopping cart', 'chocolate-passion' ); ?>">
 			<i class="fas fa-shopping-cart"></i>
 			<?php
 			$item_count_text = sprintf(
 				/* translators: number of items in the mini cart. */
-				_n( '%d item', '%d items', WC()->cart->get_cart_contents_count(), 'chocolate_passion' ),
+				_n( '%d item', '%d items', WC()->cart->get_cart_contents_count(), 'chocolate-passion' ),
 				WC()->cart->get_cart_contents_count()
 			);
 			?>
