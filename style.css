@@ -1554,7 +1554,14 @@ Layout - Footer
 	display: block;
 }
 
+.footer-widgets .row{
+	align-items: stretch;
+	flex-wrap: wrap;
+}
 
+.footer-widgets section.widget{
+	flex: 0 0 50%;
+}
 
 /*
 =============
@@ -1945,11 +1952,19 @@ Custom Styles - Sidebar
 	padding: 0;
 }
 
+.widget_calendar thead{
+	text-align: left;
+}
+
 /*
 ===============
 Custom Styles - Footer
 ===============
 */
+
+.footer-navigation{
+	padding-bottom: 1em;
+}
 
 .footer-row{
 	padding: 0 .75em;
@@ -2008,6 +2023,18 @@ Custom Styles - Footer
 .privacy-policy-link:hover,
 .privacy-policy-link:focus{
 	color: orangered;
+}
+
+.footer-widgets{
+	
+}
+
+
+.footer-widgets section.widget a,
+.footer-widgets section.widget a:hover,
+.footer-widgets section.widget a:focus,
+.footer-widgets section.widget a:active{
+	color: white;
 }
 
 /*
@@ -2354,6 +2381,7 @@ Custom Styles - Sidebar - Large Screen
 	=============
 	*/
 
+	
 
 	.footer-row{
 		padding: 0;
