@@ -1650,6 +1650,11 @@ Custom Styles - Header
 	border: 5px solid orangered;
 }
 
+.search-form input:focus{
+	outline: none;
+	background: #E1EBF5;
+}
+
 .main-navigation .search-form input{
 	line-height: 1rem;
 }
@@ -1722,7 +1727,7 @@ Custom Styles - Posts Index ( including Home, Archive templates )
 
 .sticky-icon{
 	position: absolute;
-	background: '#fff';
+	background: #fff;
 	border-radius: 50%;
 	top:-5px;
 	right:-5px;
@@ -1933,15 +1938,6 @@ Custom Styles - Sidebar
 	float: none;
 	border: 3px solid #404040;
 	margin-right: 0;
-}
-
-.widget-area .search-form input{
-	outline:none;
-	box-sizing: border-box;
-}
-
-.widget-area .search-form input:focus{
-	background: #E1EBF5;
 }
 
 .widget ul{
