@@ -28,14 +28,11 @@
 				<div class="entry-meta">
 					<?php
 					chocolate_passion_posted_on();
-					//printf( '<span class="single-post-meta-sep">%1$s</span>', esc_html_e(' | ') )
 					chocolate_passion_posted_by();
 					?>
 				</div><!-- .entry-meta -->
 			<?php endif; ?>
 		</header><!-- .entry-header -->
-
-		
 
 		<div class="entry-content">
 			<?php
