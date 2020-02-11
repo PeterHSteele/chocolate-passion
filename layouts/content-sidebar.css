@@ -28,11 +28,3 @@
 
 }
 
-.no-sidebar .content-area {
-	float: none;
-	margin-left: auto;
-	margin-right: auto;
-}
-.no-sidebar .site-main {
-	margin-right: 0;
-}
