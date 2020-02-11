@@ -28,7 +28,7 @@ function chocolate_passion_customize_register( $wp_customize ) {
 			'render_callback' => 'chocolate_passion_customize_partial_blogdescription',
 		) );
 	}
-
+	//Colors
 	$wp_customize->add_setting( 'chocolate_passion_primary_color', array(
 		'default' => '#000000',
 		'sanitize_callback' => 'sanitize_hex_color'
@@ -74,7 +74,7 @@ function chocolate_passion_customize_register( $wp_customize ) {
 		'description' => __( 'The color links in the content when hovered by the mouse.' , 'chocolate-passion' ),
 		'settings' => 'chocolate_passion_hover_link_color'
 	)));
-
+	//Homepage Slideshow
 	$wp_customize->add_section('chocolate_passion_homepage_settings',array(
 		'title' => __( 'Homepage Slideshow' , 'chocolate-passion' ),
 		'description' => __( 
@@ -83,20 +83,7 @@ function chocolate_passion_customize_register( $wp_customize ) {
 			'chocolate-passion'),
 		'active_callback' => 'is_front_page',
 	));
-/*
-	for( $count = 1; $count <= 4; $count++){
-		$wp_customize->add_setting( 'chocolate_passion_slider_posts_' . $count, array(
-			'default' => 0,
-			'sanitize_callback' => 'absint'
-		));
 
-		$wp_customize->add_control( 'chocolate_passion_slider_posts_' . $count, array(
-			'label' => __( 'Post to include in homepage slider', 'chocolate-passion' ),
-			'type' => 'dropdown-pages',
-			'section' => 'chocolate_passion_homepage_settings',
-		));
-	}
-*/
 	for( $count = 1; $count <= 10; $count++){
 		$wp_customize->add_setting( 'chocolate_passion_slider_posts_' . $count, array(
 			'default' => '',
@@ -104,11 +91,11 @@ function chocolate_passion_customize_register( $wp_customize ) {
 		));
  		
  		if ( $count % 2 ){
-		$wp_customize->add_control( 'chocolate_passion_slider_posts_' .  $count, array(
-			'label' => __( 'Page to include in homepage slider', 'chocolate-passion' ),
-			'type' => 'dropdown-pages',
-			'section' => 'chocolate_passion_homepage_settings',
-		));
+			$wp_customize->add_control( 'chocolate_passion_slider_posts_' .  $count, array(
+				'label' => __( 'Page to include in homepage slider', 'chocolate-passion' ),
+				'type' => 'dropdown-pages',
+				'section' => 'chocolate_passion_homepage_settings',
+			));
 		} else{
 			
 			$wp_customize->add_control( new WP_Dropdown_Posts_Control( $wp_customize, 'chocolate_passion_slider_posts_' . $count, array(
@@ -117,9 +104,44 @@ function chocolate_passion_customize_register( $wp_customize ) {
 				'settings' => 'chocolate_passion_slider_posts_' . $count,
 			)));
 		}
-	}		
+	}
+
+	//Copyright
+	$wp_customize->add_setting( 'chocolate_passion_copyright_visible', array(
+		'default' => false,
+		'sanitize_callback' => 'chocolate_passion_sanitize_checkbox'
+	) );
+
+	$wp_customize->add_control( 'chocolate_passion_copyright_visible', array(
+		'label' => __( 'Show Copyright', 'chocolate-passion' ),
+		'type'  => 'checkbox',
+		'section' => 'title_tagline',
+		'priority' => 100
+	));
+
+	$wp_customize->add_setting( 'chocolate_passion_copyright_year', array(
+		'default' => date('o'),
+		'sanitize_callback' => 'chocolate_passion_sanitize_year'
+	) );
+
+	$wp_customize->add_control( 'chocolate_passion_copyright_year', array(
+		'label' => __( 'Copyright Year', 'chocolate-passion' ),
+		'type'  => 'number',
+		'section' => 'title_tagline',
+		'priority' => 105
+	));
+
 }
 add_action( 'customize_register', 'chocolate_passion_customize_register' );
+
+function chocolate_passion_sanitize_year( $year ){
+	return absint( substr( $year, 0, 4) );
+}
+
+function chocolate_passion_sanitize_checkbox( $input ){
+    //returns true if checkbox is checked
+    return $input > 0 ? 1 : 0;
+}
 
 /**
  * Render the site title for the selective refresh partial.

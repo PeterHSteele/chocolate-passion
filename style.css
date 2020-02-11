@@ -2013,19 +2013,11 @@ Custom Styles - Footer
 }
 
 .site-info span{
-
+	padding: 0 .5em;
 }
 
 .site-footer .site-info span:not(:first-child){
-	padding-left: .5em;
-}
-
-.site-footer .site-info span:not(:last-child){
-	padding-right: .5em;
-}
-
-.site-footer .site-info span:first-child{
-	border-right: 1px solid white;
+	border-left: 1px solid white;
 }
 
 .footer-links{

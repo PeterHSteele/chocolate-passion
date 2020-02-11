@@ -196,3 +196,25 @@ if ( ! function_exists( 'chocolate_passion_footer_nav' ) ):
 		<?php 	
 	}
 endif;
+
+if ( ! function_exists( 'chocolate_passion_copyright' ) ):
+	/**
+	* Prints a copyright statement.
+	*/
+	function chocolate_passion_copyright(){
+		$date = get_theme_mod( 'chocolate_passion_copyright_year' );
+		if ( isset( $date ) && get_theme_mod( 'chocolate_passion_copyright_visible' ) ){
+			?>
+			<span class="copyright">
+			<?php
+				printf(
+					esc_html__( '&copy; %2$s %1$s', 'chocolate-passion' ), 
+					get_bloginfo( 'name' ),
+					$date
+				); 
+			?>
+			</span>
+			<?php
+		}
+	}	
+endif;

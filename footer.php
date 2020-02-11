@@ -20,7 +20,7 @@
 					
 				
 					<?php 	
-						//get menu locastions, exclude primary menu
+						//get menu locations, exclude primary menu
 						$footer_navs = array_slice( get_nav_menu_locations(), 1, 4 );
 						//add a css class based on how many menus there are
 						$footer_nav_class = chocolate_passion_footer_nav_class();
@@ -50,23 +50,13 @@
 			</div><!--.col-80-->
 		</div><!--.footer-row-two-->	
 		<div class="footer-row-three">
-		<div class="site-info">
-			<div class="row">
-			<div class="col-80"> 
-			<span>&copy; 2020 <?php echo bloginfo('name') ?></span><span><?php the_privacy_policy_link(); ?></span>
-			<!--<a href="<?php echo esc_url( __( 'https://wordpress.org/', 'chocolate-passion' ) ); ?>">
-				<?php
-				/* translators: %s: CMS name, i.e. WordPress. */
-				printf( esc_html__( 'Proudly powered by %s', 'chocolate-passion' ), 'WordPress' );
-				?>
-			</a>
-			<span class="sep"> | </span>
-				<?php
-				/* translators: 1: Theme name, 2: Theme author. */
-				printf( esc_html__( 'Theme: %1$s by %2$s.', 'chocolate-passion' ), 'chocolate-passion', '<a href="'. esc_url( 'https://peterhsteele.com' ) . '">Peter Steele</a>' );
-				?>
-		 --></div><!--.col-80-->
-		 	</div><!--.row-->
+			<div class="site-info">
+				<div class="row">
+					<div class="col-80"> 
+						<?php chocolate_passion_copyright() ?>
+						<span><?php the_privacy_policy_link(); ?></span>
+					</div><!--.col-80-->
+			 	</div><!--.row-->
 			</div><!-- .site-info -->
 		</div><!--.footer-row-three-->
 	</footer><!-- #colophon -->

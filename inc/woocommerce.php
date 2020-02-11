@@ -15,13 +15,13 @@
  *
  * @return void
  */
-function chocolate_passion_woocommercechocolate_passionetup() {
-	add_themechocolate_passionupport( 'woocommerce' );
-	add_themechocolate_passionupport( 'wc-product-gallery-zoom' );
-	add_themechocolate_passionupport( 'wc-product-gallery-lightbox' );
-	add_themechocolate_passionupport( 'wc-product-gallery-slider' );
+function chocolate_passion_woocommerce_setup() {
+	add_theme_support( 'woocommerce' );
+	add_theme_support( 'wc-product-gallery-zoom' );
+	add_theme_support( 'wc-product-gallery-lightbox' );
+	add_theme_support( 'wc-product-gallery-slider' );
 }
-add_action( 'afterchocolate_passionetup_theme', 'chocolate_passion_woocommercechocolate_passionetup' );
+add_action( 'after_setup_theme', 'chocolate_passion_woocommerce_setup' );
 
 /**
  * WooCommerce specific scripts & stylesheets.
