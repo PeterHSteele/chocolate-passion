@@ -149,11 +149,7 @@ function chocolate_passion_scripts() {
 	}
 
 	wp_enqueue_style( 'chocolate-passion-style', get_stylesheet_uri() );
-/*
-	if ( class_exists( 'is_woocommerce' ) && is_woocommerce() ){
-		wp_enqueue_style( 'woocommerce-style', get_stylesheet_directory_uri() . '/woocommerce.css' );
-	}
-*/
+
 	wp_enqueue_style( 'chocolate-passion-google-font', 'https://fonts.googleapis.com/css?family=Nunito&display=swap' );
 
 	wp_enqueue_script( 'chocolate-passion-skip-link-focus-fix', get_template_directory_uri() . '/js/skip-link-focus-fix.js', array(), '20151215', true );
@@ -251,6 +247,18 @@ if ( ! function_exists( 'chocolate_passion_customize_css' ) ):
 			.header-row-two,
 			.site-footer{
 				background: <?php echo esc_attr( $primary )?>;
+			}
+
+			.header-row-woocommerce{
+				background: <?php //echo esc_attr( $primary ) ?>;
+			}
+
+			ul.site-header-cart li{
+				background: <?php echo esc_attr( $primary ) ?>
+			}
+
+			ul.site-header-cart li:hover{
+				background: <?php echo esc_attr( $accent ) ?>;
 			}
 
 			.sticky-icon i{

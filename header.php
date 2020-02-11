@@ -32,7 +32,6 @@
 									the_custom_logo();
 								?>
 							</div><!-- .site-branding -->
-
 							<div class="header secondary-menu-wrap">
 								<nav id="secondary-menu" class="secondary-navigation">
 									<?php 
@@ -78,9 +77,12 @@
 								endif; 
 							?>
 							</div><!--.site-info-->
-						</div>
-					</div>
-				</div>
+						</div><!--row-->
+					</div><!--.col-80-->
+				</div><!--.header-row-three-->
+				<?php if ( function_exists( 'is_woocommerce' ) && is_woocommerce() ) :
+					get_template_part( 'template-parts/header', 'shop' );
+				endif; ?>
 	</header><!-- #masthead -->
 
 	<div id="content" class="site-content">

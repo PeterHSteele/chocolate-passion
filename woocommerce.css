@@ -614,6 +614,34 @@ Products Header
 	margin: 0;
 }
 
+.header-row-woocommerce{
+	background: #444;
+	color: #fff;
+}
+
+ul.site-header-cart{
+	list-style: none;
+	padding: .5em 0 .5em .75em;
+}
+
+ul.site-header-cart li{
+	float: left;
+	border-radius: 4px;
+	transition: .2s background;
+}
+
+ul.site-header-cart li a,
+ul.site-header-cart li a:hover,
+ul.site-header-cart li a:visited{
+	display:block;
+	color: #fff;	
+	padding: .5em;
+}
+
+ul.site-header-cart li a i{
+	padding-right: .5em
+}
+
 /*
 ==================
 Products Index
@@ -625,7 +653,7 @@ Products Index
 	float: none;
 	width: auto;
 	flex: 0 0 99.5%;
-	margin: 0 .25%;
+	margin: .25%;
 	background: white;
 	border: 3px solid #ddd;
 	padding: .5em;
@@ -682,5 +710,11 @@ Forms
 	.woocommerce ul.products[class*=columns-] li.product{
 		flex: 0 0 49.5%;
 		max-width: 49.5%;
+	}
+
+}
+@media all and (min-width: 1024px){
+	ul.site-header-cart{
+		padding: .5em 0em;
 	}
 }
