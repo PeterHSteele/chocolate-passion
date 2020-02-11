@@ -1722,12 +1722,13 @@ Custom Styles - Posts Index ( including Home, Archive templates )
 
 .sticky-icon{
 	position: absolute;
-	background: rgba(255,255,255,1);
+	background: '#fff';
 	border-radius: 50%;
 	top:-5px;
 	right:-5px;
 	z-index: 1;
 	padding: .5em;
+	color: #ff4500;
 }
 
 /*
