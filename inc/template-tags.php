@@ -208,9 +208,10 @@ if ( ! function_exists( 'chocolate_passion_copyright' ) ):
 			<span class="copyright">
 			<?php
 				printf(
+					/* translators: %1$s: name of the site. %2$s: Copyright year */
 					esc_html__( '&copy; %2$s %1$s', 'chocolate-passion' ), 
-					get_bloginfo( 'name' ),
-					$date
+					get_bloginfo( 'name' ),// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+					$date// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 				); 
 			?>
 			</span>

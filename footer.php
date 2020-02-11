@@ -14,7 +14,7 @@
 	</div><!-- #content -->
 
 	<footer id="colophon" class="site-footer">
-		<div class="footer-row-one">
+		<div class="footer-row-one footer-row">
 			<div class="col-80">
 				<div class="footer-navigation">
 					
@@ -36,7 +36,7 @@
 				</div><!--.footer-navigation-->
 			</div><!--.col-80-->
 		</div><!--.footer-row-one-->
-		<div class="footer-row-two">
+		<div class="footer-row-two footer-row">
 			<div class="col-80">
 				<nav class="social-links">
 					<?php
@@ -48,12 +48,21 @@
 					?>
 				</nav>
 			</div><!--.col-80-->
-		</div><!--.footer-row-two-->	
-		<div class="footer-row-three">
+		</div><!--.footer-row-two-->
+		<div class="footer-row-three footer-row">
+			
+				<div class="row">
+					<div class="col-80"> 
+						
+					</div><!--.col-80-->
+			 	</div><!--.row-->
+			
+		</div><!--.footer-row-three-->	
+		<div class="footer-row-four footer-row">
 			<div class="site-info">
 				<div class="row">
 					<div class="col-80"> 
-						<?php chocolate_passion_copyright() ?>
+						<?php chocolate_passion_copyright(); ?>
 						<span><?php the_privacy_policy_link(); ?></span>
 					</div><!--.col-80-->
 			 	</div><!--.row-->
