@@ -9,12 +9,12 @@
 
 ?>
 
-<article id="post-<?php the_ID(); ?>" <?php post_class( 'cp-post-index'/* . chocolate_passion_post_thumbnail_class()*/ ); ?>>
+<article id="post-<?php the_ID(); ?>" <?php post_class( 'cp-post-index' ); ?>>
 	<?php chocolate_passion_post_thumbnail(); ?>
 	<?php if ( is_sticky() && ! is_single() ): ?>
 		<span class="sticky-icon"><i class="fas fa-lg fa-thumbtack"></i></span>
 	<?php endif; ?>
-	<div class="thinkpiece-flex-container clear">  
+	<div class="cp-post-index-flex-container clear">  
 	<header class="entry-header">
 		<div class="header-content-wrap">
 			<?php
@@ -33,31 +33,13 @@
 					?>
 				</div><!-- .entry-meta -->
 			<?php endif; ?>
-			<?php //chocolate_passion_entry_footer(); ?>
 		</div>
 	</header><!-- .entry-header -->
 
-	
-
 	<div class="entry-content">
 		<?php
-		if ( ! is_single() ){
-			the_excerpt();
-		} else {
-			the_content();
-		}
-		/*the_content( sprintf(
-			wp_kses(
-				/* translators: %s: Name of current post. Only visible to screen readers */
-				/*__( 'Continue reading<span class="screen-reader-text"> "%s"</span>', 'chocolate-passion' ),
-				array(
-					'span' => array(
-						'class' => array(),
-					),
-				)
-			),
-			get_the_title()
-		) );*/
+		
+		the_excerpt();
 
 		wp_link_pages( array(
 			'before' => '<div class="page-links">' . esc_html__( 'Pages:', 'chocolate-passion' ),
@@ -66,7 +48,7 @@
 		?>
 	</div><!-- .entry-content -->
 	</div><!--.thinkpiece-flex-container-->
-	<!--<footer class="entry-footer">
-		
-	</footer>--><!-- .entry-footer -->
+	<footer class="entry-footer">
+		<?php chocolate_passion_entry_footer(); ?>
+	</footer><!-- .entry-footer -->
 </article><!-- #post-<?php the_ID(); ?> -->
