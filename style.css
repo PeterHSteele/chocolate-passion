@@ -1962,6 +1962,8 @@ Custom Styles - Footer
 ===============
 */
 
+
+
 .footer-navigation{
 	padding-bottom: 1em;
 }
@@ -2026,9 +2028,28 @@ Custom Styles - Footer
 }
 
 .footer-widgets{
-	
+	background-size: 130%;
+	background-repeat: no-repeat;
+	background-position: -100px -2em;
 }
 
+/*
+.footer-widgets{
+	position: relative;
+	z-index: 1;
+	background: transparent;
+	overflow: hidden;
+}
+
+
+.footer-widgets svg{
+	position: absolute;
+	top: -2em;
+	left: -15%;
+	width: 130%;
+	z-index: -1
+}
+*/
 
 .footer-widgets section.widget a,
 .footer-widgets section.widget a:hover,
@@ -2036,7 +2057,36 @@ Custom Styles - Footer
 .footer-widgets section.widget a:active{
 	color: white;
 }
+/*
+.cls-1,
+.cls-3,
+.cls-5{
+	fill:none;
+}
 
+.cls-1,
+.cls-3,
+.cls-4,
+.cls-5{
+	stroke:#004;
+	stroke-miterlimit:10;
+}
+.cls-1{
+	clip-rule:evenodd;
+}
+
+.cls-2{
+	clip-path:url(#clip-path);
+}
+
+.cls-3{
+	stroke-width:8px;
+}
+			
+.cls-5{
+	fill-rule:evenodd;
+}
+*/
 /*
 ===============
 Custom Styles - Customizer

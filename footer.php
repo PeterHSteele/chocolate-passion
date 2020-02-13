@@ -36,11 +36,13 @@
 				</div><!--.footer-navigation-->
 			</div><!--.col-80-->
 		</div><!--.footer-row-one-->
-		<div class="footer-row-two footer-row footer-widgets">
+
+		<!---->	
+		<div class="footer-row-two footer-row footer-widgets" style="background-image: url(<?php echo get_template_directory_uri() . '/assets/img/bg4-fin.svg' ?>)">			
 			<div class="col-80">
-				<div class="row"> 
+				<aside class="row"> 
 					<?php dynamic_sidebar( 'sidebar-2' ) ?>	
-				</div><!--.col-80-->
+				</aside>
 			 </div><!--.row-->
 		</div><!--.footer-row-three-->	
 		<div class="footer-row-three footer-row">
