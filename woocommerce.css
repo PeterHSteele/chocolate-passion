@@ -75,6 +75,7 @@ table.shop_table_responsive tr td.download-actions .button {
 /**
  * Products
  */
+ /*
 ul.products {
 	content: "";
 	display: table;
@@ -82,11 +83,11 @@ ul.products {
 	margin: 0;
 	padding: 0;
 }
-
+*/
 ul.products li.product {
 	list-style: none;
 	position: relative;
-	margin-bottom: 2em;
+	/*margin-bottom: 2em;*/
 }
 
 ul.products li.product .woocommerce-loop-product__title {
@@ -102,7 +103,7 @@ ul.products li.product .button {
 }
 
 @media screen and (min-width: 48em) {
-	ul.products li.product {
+	/*ul.products li.product {
 		width: 30.7966666667%;
 		float: left;
 		margin-right: 3.8%;
@@ -131,7 +132,7 @@ ul.products li.product .button {
 	}
 	.columns-6 ul.products li.product {
 		width: 13.4933333333%;
-	}
+	}*/
 }
 
 /**
@@ -140,13 +141,14 @@ ul.products li.product .button {
 /**
  * Single Product
  */
+ /*
 .single-product div.product {
 	content: "";
 	display: table;
 	table-layout: fixed;
 	position: relative;
 }
-
+*/
 .single-product div.product .woocommerce-product-gallery {
 	position: relative;
 }
@@ -703,19 +705,6 @@ Products Index
 ==================
 */
 
-.woocommerce-sidebar{
-	border: 3px solid #ddd;
-	background: #fff;
-	margin: .25%;
-	flex: 1 0;
-	display: flex;
-	flex-flow: row wrap;
-}
-
-.woocommerce-sidebar section.widget{
-	flex: 0 0 50%;
-}
-
 .woocommerce ul.products[class*=columns-] li.product{
 	margin: 0;
 	float: none;
@@ -725,6 +714,41 @@ Products Index
 	background: white;
 	border: 3px solid #ddd;
 	padding: .5em;
+}
+
+/*
+==================
+Woocommerce Sidebar
+==================
+*/
+
+.woocommerce-sidebar{
+	border: 3px solid #ddd;
+	background: #fff;
+	margin: .25%;
+	flex: 1 0;
+	display: flex;
+	flex-flow: row wrap;
+	padding: .5em;
+}
+
+.woocommerce-sidebar section.widget{
+	flex: 0 0 100%;
+}
+
+.woocommerce-sidebar section.widget > *:first-child{
+	margin-top: 4em;
+}
+
+.woocommerce-sidebar section.widget > h2:first-child{
+	margin-top: 0;
+}
+
+.woocommerce-sidebar section.widget_product_search input,
+.woocommerce-sidebar section.widget_product_search button{
+	display: block;
+	width: 100%;
+	margin-bottom: .5em;
 }
 
 /*
@@ -778,6 +802,13 @@ Forms
 	transition: .1s background;
 }
 
+@media all and (min-width: 300px){
+
+	.woocommerce-sidebar section.widget{
+		flex: 0 0 50%;
+	}
+}
+
 @media all and (min-width: 750px){
 
 
@@ -789,6 +820,15 @@ Forms
 	.woocommerce ul.products[class*=columns-] li.product{
 		flex: 0 0 49.5%;
 		max-width: 49.5%;
+	}
+
+	.woocommerce-sidebar section.widget_product_search form{
+		width: 80%;
+	}
+
+	.woocommerce-sidebar section.widget_product_search button[type="submit"]{
+		/*width: 50%;
+		margin: 0 auto;*/
 	}
 
 }

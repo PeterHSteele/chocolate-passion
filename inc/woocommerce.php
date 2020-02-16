@@ -329,7 +329,7 @@ if ( ! function_exists( "chocolate_passion_load_wc_sidebar") ){
 
 	function chocolate_passion_load_wc_sidebar(){
 		?>
-		<aside class="woocommerce-sidebar widget-area">
+		<aside role="secondary" class="woocommerce-sidebar widget-area">
 			<?php dynamic_sidebar( 'sidebar-3' ); ?>
 		</aside>
 		<?php
