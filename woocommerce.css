@@ -704,9 +704,16 @@ Products Index
 */
 
 .woocommerce-sidebar{
+	border: 3px solid #ddd;
 	background: #fff;
 	margin: .25%;
 	flex: 1 0;
+	display: flex;
+	flex-flow: row wrap;
+}
+
+.woocommerce-sidebar section.widget{
+	flex: 0 0 50%;
 }
 
 .woocommerce ul.products[class*=columns-] li.product{
@@ -774,31 +781,10 @@ Forms
 @media all and (min-width: 750px){
 
 
-	/*.woocommerce .site-main{
-		width: 60%;
-		float: left;
-		margin-right: -40%
-
+	.woocommerce-sidebar section.widget{
+		flex: 1 0 25%;
 	}
-
-	.woocommerce.archive .widget-area{
-		float: right;
-		width: 40%;
-		border: none;
-	}
-*/
-	.woocommerce .site-main{
-		width: 75%;
-		float: left;
-		margin-right: -25%
-
-	}
-
-	.woocommerce.archive .widget-area{
-		float: right;
-		width: 25%;
-		border: none;
-	}
+	
 
 	.woocommerce ul.products[class*=columns-] li.product{
 		flex: 0 0 49.5%;

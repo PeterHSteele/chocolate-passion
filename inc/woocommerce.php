@@ -182,7 +182,7 @@ if ( ! function_exists( 'chocolate_passion_woocommerce_wrapper_before' ) ) {
 	 */
 	function chocolate_passion_woocommerce_wrapper_before() {
 		?>
-		<!--<div class="col-80">-->
+		<div class="col-80">
 			<div id="primary" class="content-area">
 				<main id="main" class="site-main" role="main">
 				<?php
@@ -203,7 +203,7 @@ if ( ! function_exists( 'chocolate_passion_woocommerce_wrapper_after' ) ) {
 			?>
 				</main><!-- #main -->
 			</div><!-- #primary -->
-		<!--</div>--><!--.col-80-->
+		</div><!--.col-80-->
 		<?php
 	}
 }
@@ -336,7 +336,7 @@ if ( ! function_exists( "chocolate_passion_load_wc_sidebar") ){
 	}
 }
 
-add_action( 'woocommerce_after_main_content', 'chocolate_passion_load_wc_sidebar' );
+add_action( 'woocommerce_before_shop_loop', 'chocolate_passion_load_wc_sidebar' );
 
 
 
