@@ -49,6 +49,35 @@ function chocolate_passion_woocommerce_scripts() {
 			.woocommerce-info{
 				border-top-color: $primary;
 			}
+			
+			.woocommerce span.onsale{
+				background-color: $primary;
+			}
+
+			.woocommerce ul.products li.product .price,
+			.woocommerce div.product p.price{
+				color: $primary;
+			}
+
+			.woocommerce button.button.alt,
+			.woocommerce a.button.alt{
+				background: $primary;
+			}
+
+			.woocommerce button.button.alt:hover,
+			.woocommerce a.button.alt:hover{
+				background: $primary;
+			}
+
+			.woocommerce nav.woocommerce-pagination ul li{
+				border: 2px solid $primary;
+			}
+
+			.woocommerce nav.woocommerce-pagination ul li a:hover,
+			.woocommerce nav.woocommerce-pagination ul li a:focus,
+			.woocommerce nav.woocommerce-pagination ul li span.current{
+				color: $primary;
+			}
 
 			.woocommerce a.button:hover{
 				color: $primary;

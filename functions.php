@@ -261,25 +261,6 @@ if ( ! function_exists( 'chocolate_passion_customize_css' ) ):
 				color:  $primary;
 			}
 
-			.woocommerce span.onsale{
-				background-color: $primary;
-			}
-
-			.woocommerce ul.products li.product .price,
-			.woocommerce div.product p.price{
-				color: $primary;
-			}
-
-			.woocommerce button.button.alt,
-			.woocommerce a.button.alt{
-				background: $primary;
-			}
-
-			.woocommerce button.button.alt:hover,
-			.woocommerce a.button.alt:hover{
-				background: $primary;
-			}
-
 			.menu-toggle:hover,
 			.menu-toggle:focus{
 				background: $primary;
@@ -333,20 +314,10 @@ if ( ! function_exists( 'chocolate_passion_customize_css' ) ):
 				background: $primary;
 			}
 
-			.woocommerce nav.woocommerce-pagination ul li{
-				border: 2px solid $primary;
-			}
-
 			.page-numbers li a,
 			.page-numbers li a:visited,
 			.page-numbers li a:active{
 				background: $primary;
-			}
-
-			.woocommerce nav.woocommerce-pagination ul li a:hover,
-			.woocommerce nav.woocommerce-pagination ul li a:focus,
-			.woocommerce nav.woocommerce-pagination ul li span.current{
-				color: $primary;
 			}
 
 			.social-links a:hover,
