@@ -793,13 +793,51 @@ Pagination
 	color: black;
 }
 
+/*
+==================
+Alerts
+==================
+*/
 
+.woocommerce-message,
+.woocommerce-info{
+	background: #eee;
+}
+
+.woocommerce-message:before,
+.woocommerce-info:before{
+	color: #999;
+}
+
+.woocommerce .woocommerce-message a.button{
+	margin-left: 1em
+}
+
+.woocommerce-notices-wrapper a.button{
+	color: white;
+	background: #ccc;
+	border-radius: .2em;
+	display: inline-block;
+	text-decoration: none;
+	border: 2px solid #999;
+	transition: .2s all;
+	margin:0 .1em;
+}
+
+.woocommerce-notices-wrapper a.button:hover,
+.woocommerce-notices-wrapper a.button:active,
+.woocommerce-notices-wrapper a.button:visited{
+	background: #fff;
+	color: #000;
+}
 
 /*
 ==================
 Forms
 ==================
 */
+
+
 
 .woocommerce button.button.alt{
 	transition: .1s background;

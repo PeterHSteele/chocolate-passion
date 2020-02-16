@@ -32,7 +32,7 @@ function chocolate_passion_woocommerce_scripts() {
 	wp_enqueue_style( 'chocolate-passion-woocommerce-style', get_template_directory_uri() . '/woocommerce.css' );
 
 	$font_path   = WC()->plugin_url() . '/assets/fonts/';
-	$inline_font = '@font-face {
+	$inline_style = '@font-face {
 			font-family: "star";
 			src: url("' . $font_path . 'star.eot");
 			src: url("' . $font_path . 'star.eot?#iefix") format("embedded-opentype"),
@@ -43,7 +43,19 @@ function chocolate_passion_woocommerce_scripts() {
 			font-style: normal;
 		}';
 
-	wp_add_inline_style( 'chocolate-passion-woocommerce-style', $inline_font );
+		$primary = get_theme_mod( 'chocolate_passion_primary_color' );
+		$inline_style .= "
+			.woocommerce-message,
+			.woocommerce-info{
+				border-top-color: $primary;
+			}
+
+			.woocommerce a.button:hover{
+				color: $primary;
+			}
+		";
+
+	wp_add_inline_style( 'chocolate-passion-woocommerce-style', $inline_style );
 }
 add_action( 'wp_enqueue_scripts', 'chocolate_passion_woocommerce_scripts' );
 
