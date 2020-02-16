@@ -723,17 +723,20 @@ Woocommerce Sidebar
 */
 
 .woocommerce-sidebar{
-	border: 3px solid #ddd;
-	background: #fff;
-	margin: .25%;
+	background: #eee;
+	margin: 0 .25%;
 	flex: 1 0;
 	display: flex;
 	flex-flow: row wrap;
-	padding: .5em;
+	padding: 0;
 }
 
 .woocommerce-sidebar section.widget{
+	background: #fff;
+	border: 3px solid #ddd;
+	margin: .25%;
 	flex: 0 0 100%;
+	padding: .5em;
 }
 
 .woocommerce-sidebar section.widget > *:first-child{
@@ -805,7 +808,7 @@ Forms
 @media all and (min-width: 300px){
 
 	.woocommerce-sidebar section.widget{
-		flex: 0 0 50%;
+		flex: 1 0 49.5%;
 	}
 }
 
@@ -820,15 +823,6 @@ Forms
 	.woocommerce ul.products[class*=columns-] li.product{
 		flex: 0 0 49.5%;
 		max-width: 49.5%;
-	}
-
-	.woocommerce-sidebar section.widget_product_search form{
-		width: 80%;
-	}
-
-	.woocommerce-sidebar section.widget_product_search button[type="submit"]{
-		/*width: 50%;
-		margin: 0 auto;*/
 	}
 
 }
