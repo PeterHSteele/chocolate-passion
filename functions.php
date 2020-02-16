@@ -249,14 +249,6 @@ if ( ! function_exists( 'chocolate_passion_customize_css' ) ):
 				color: $hover;
 			}
 
-			ul.site-header-cart > li{
-				background: $primary;
-			}
-
-			ul.site-header-cart > li:hover a{
-				color: $primary
-			}
-
 			.sticky-icon i{
 				color:  $primary;
 			}

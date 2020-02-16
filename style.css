@@ -1439,6 +1439,11 @@ Layout - Site Header
 	left: 0;
 }
 
+.custom-header-wrap img{
+	width: 100%;
+	object-fit: cover;
+}
+
 /*
 ============
 Site Header

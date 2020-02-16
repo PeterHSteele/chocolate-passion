@@ -83,6 +83,9 @@
 				<?php if ( function_exists( 'is_woocommerce' ) && is_woocommerce() ) :
 					get_template_part( 'template-parts/header', 'shop' );
 				endif; ?>
+				<div class="custom-header-wrap">
+					<?php the_header_image_tag(); ?>
+				</div>
 	</header><!-- #masthead -->
 
 	<div id="content" class="site-content">

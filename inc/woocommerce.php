@@ -69,18 +69,12 @@ function chocolate_passion_woocommerce_scripts() {
 				background: $primary;
 			}
 
-			.woocommerce nav.woocommerce-pagination ul li{
-				border: 2px solid $primary;
+			ul.site-header-cart > li{
+				background: $primary;
 			}
 
-			.woocommerce nav.woocommerce-pagination ul li a:hover,
-			.woocommerce nav.woocommerce-pagination ul li a:focus,
-			.woocommerce nav.woocommerce-pagination ul li span.current{
-				color: $primary;
-			}
-
-			.woocommerce a.button:hover{
-				color: $primary;
+			ul.site-header-cart > li:hover > a{
+				color: $primary
 			}
 		";
 
