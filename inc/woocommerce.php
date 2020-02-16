@@ -182,7 +182,7 @@ if ( ! function_exists( 'chocolate_passion_woocommerce_wrapper_before' ) ) {
 	 */
 	function chocolate_passion_woocommerce_wrapper_before() {
 		?>
-		<div class="col-80">
+		<!--<div class="col-80">-->
 			<div id="primary" class="content-area">
 				<main id="main" class="site-main" role="main">
 				<?php
@@ -203,7 +203,7 @@ if ( ! function_exists( 'chocolate_passion_woocommerce_wrapper_after' ) ) {
 			?>
 				</main><!-- #main -->
 			</div><!-- #primary -->
-		</div><!--.col-80-->
+		<!--</div>--><!--.col-80-->
 		<?php
 	}
 }
@@ -232,7 +232,7 @@ if ( ! function_exists( 'chocolate_passion_woocommerce_cart_link_fragment' ) ) {
 	 * @return array Fragments to refresh via AJAX.
 	 */
 	function chocolate_passion_woocommerce_cart_link_fragment( $fragments ) {
-		obchocolate_passiontart();
+		ob_start();
 		chocolate_passion_woocommerce_cart_link();
 		$fragments['a.cart-contents'] = ob_get_clean();
 
@@ -287,17 +287,57 @@ if ( ! function_exists( 'chocolate_passion_woocommerce_header_cart' ) ) {
 				$instance = array(
 					'title' => '',
 				);
-				$widget_cart_output = the_widget( 'WC_Widget_Cart', $instance ); 
-			if ( $widget_cart_output ) :
 			?>
 			<li>
-			<?php $widget_cart_output ?>
+				<?php the_widget( 'WC_Widget_Cart', $instance );  ?>
 			</li>
-			<?php endif; ?>
+			<!--<?php// endif; ?>-->
 		</ul>
 		<?php
 	}
 }
+
+if (! function_exists( 'chocolate_passion_register_wc_sidebar')){
+	/**
+	* Registers a sidebar for WC pages in which product filters 
+	* and other stuff can be placed.
+	*
+	* @return void
+	*/
+
+	function chocolate_passion_register_wc_sidebar(){
+			register_sidebar( array(
+			'name'          => esc_html__( 'Woocommerce Sidebar', 'chocolate-passion' ),
+			'id'            => 'sidebar-3',
+			'description'   => esc_html__( 'Add widgets here.', 'chocolate-passion' ),
+			'before_widget' => '<section id="%1$s" class="widget %2$s">',
+			'after_widget'  => '</section>',
+			'before_title'  => '<h2 class="widget-title">',
+			'after_title'   => '</h2>',
+		) );
+	}
+}
+
+add_action('widgets_init', 'chocolate_passion_register_wc_sidebar' );
+
+if ( ! function_exists( "chocolate_passion_load_wc_sidebar") ){
+	/**
+	* Adds the sidebar on WC pages.
+	*
+	* @return void
+	*/
+
+	function chocolate_passion_load_wc_sidebar(){
+		?>
+		<aside class="woocommerce-sidebar widget-area">
+			<?php dynamic_sidebar( 'sidebar-3' ); ?>
+		</aside>
+		<?php
+	}
+}
+
+add_action( 'woocommerce_after_main_content', 'chocolate_passion_load_wc_sidebar' );
+
 
 
 

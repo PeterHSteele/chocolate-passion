@@ -608,6 +608,12 @@ Products Header
 	margin: .25%;
 }
 
+.woocommerce-products-header:after{
+	display: table;
+	clear: both;
+	content:'';
+}
+
 .woocommerce .woocommerce-breadcrumb,
 .woocommerce .woocommerce-result-count,
 .woocommerce .woocommerce-ordering{
@@ -624,22 +630,71 @@ ul.site-header-cart{
 	padding: .5em 0 .5em .75em;
 }
 
-ul.site-header-cart li{
+ul.site-header-cart .widget_shopping_cart{
+	background: #fff;
+}
+
+ul.site-header-cart > li{
 	float: left;
 	border-radius: 4px;
 	transition: .2s background;
 }
 
-ul.site-header-cart li a,
-ul.site-header-cart li a:hover,
-ul.site-header-cart li a:visited{
+ul.site-header-cart span.quantity{
+	color: #000;
+}
+
+ul.site-header-cart a:hover{
+	text-decoration: none
+} 
+ul.site-header-cart > li > a{
 	display:block;
 	color: #fff;	
 	padding: .5em;
+	transition: .2s all;
+}
+
+ul.site-header-cart > li > a:hover,
+ul.site-header-cart > li > a:visited{
+	background: #fff;
+	border-radius: 5px;	
 }
 
 ul.site-header-cart li a i{
 	padding-right: .5em
+}
+
+ul.site-header-cart .widget_shopping_cart{
+	padding: .5em;
+	min-width: 222px
+}
+ul.site-header-cart .widget_shopping_cart p{
+	color:#000;
+}
+
+
+ul.site-header-cart .widget_shopping_cart .button{
+	padding: .2em;
+	color: white;
+	background: black;
+	border-radius: .2em;
+	display: inline-block;
+	text-decoration: none;
+	border: 2px solid black;
+	transition: .2s all;
+	font-size: 1rem;
+	line-height: 1.5em;
+	display: block;
+	text-align: center
+}
+
+ul.site-header-cart .widget_shopping_cart .button:hover{
+	background:#fff;
+	color: #000;
+}
+
+ul.site-header-cart .remove_from_cart_button{
+	border-radius: 0;
 }
 
 /*
@@ -647,6 +702,12 @@ ul.site-header-cart li a i{
 Products Index
 ==================
 */
+
+.woocommerce-sidebar{
+	background: #fff;
+	margin: .25%;
+	flex: 1 0;
+}
 
 .woocommerce ul.products[class*=columns-] li.product{
 	margin: 0;
@@ -664,6 +725,11 @@ Products Index
 Pagination
 ==================
 */
+
+.woocommerce nav.woocommerce-pagination{
+	clear: both;
+}
+
 .woocommerce nav.woocommerce-pagination ul{
 	border:none;
 }
@@ -707,6 +773,33 @@ Forms
 
 @media all and (min-width: 750px){
 
+
+	/*.woocommerce .site-main{
+		width: 60%;
+		float: left;
+		margin-right: -40%
+
+	}
+
+	.woocommerce.archive .widget-area{
+		float: right;
+		width: 40%;
+		border: none;
+	}
+*/
+	.woocommerce .site-main{
+		width: 75%;
+		float: left;
+		margin-right: -25%
+
+	}
+
+	.woocommerce.archive .widget-area{
+		float: right;
+		width: 25%;
+		border: none;
+	}
+
 	.woocommerce ul.products[class*=columns-] li.product{
 		flex: 0 0 49.5%;
 		max-width: 49.5%;
@@ -714,7 +807,11 @@ Forms
 
 }
 @media all and (min-width: 1024px){
+		
+
 	ul.site-header-cart{
 		padding: .5em 0em;
 	}
+
+	
 }

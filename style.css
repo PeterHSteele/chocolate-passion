@@ -555,7 +555,8 @@ button:hover,
 input[type="button"]:hover,
 input[type="reset"]:hover,
 input[type="submit"]:hover {
-	border-color: #ccc #bbb #aaa;
+	color: #000;
+	background: #fff;
 }
 
 button:active, button:focus,
@@ -565,7 +566,8 @@ input[type="reset"]:active,
 input[type="reset"]:focus,
 input[type="submit"]:active,
 input[type="submit"]:focus {
-	border-color: #aaa #bbb #bbb;
+	color: #000;
+	background: #fff;
 }
 
 input[type="text"],
@@ -1540,6 +1542,10 @@ Layout - Footer
 ============
 */
 
+.site-footer{
+	clear: both;
+}
+
 .footer-navigation{
 	display:flex;
 	justify-content: flex-start;
@@ -1973,7 +1979,7 @@ Custom Styles - Footer
 }
 
 .site-footer{
-	background: #404040;
+	background: #000;
 	color: white;
 }
 
@@ -2028,9 +2034,9 @@ Custom Styles - Footer
 }
 
 .footer-widgets{
-	background-size: 130%;
 	background-repeat: no-repeat;
-	background-position: -100px -2em;
+	background-size: 100%;
+	background-position: -5px -5em;
 }
 
 /*
@@ -2154,6 +2160,7 @@ Layout - Footer - Min. 300px
 	}
 
 	.menu-toggle{
+		color: #505050;
 		width: 37px;
 		border: 3px solid #eee;
 	}

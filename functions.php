@@ -231,7 +231,6 @@ if ( ! function_exists( 'chocolate_passion_customize_css' ) ):
 
 	function chocolate_passion_customize_css(){
 		$primary = esc_attr( get_theme_mod( 'chocolate_passion_primary_color' ) );
-		$accent = esc_attr( get_theme_mod( 'chocolate_passion_accent_color' ) );
 		$link = esc_attr( get_theme_mod( 'chocolate_passion_link_color' ) );
 		$hover = esc_attr( get_theme_mod( 'chocolate_passion_hover_link_color' ) );
 
@@ -243,60 +242,34 @@ if ( ! function_exists( 'chocolate_passion_customize_css' ) ):
 
 			a:visited,
 			a:active{
-				color: $accent;
+				color: $primary;
 			}
 
 			a:hover{
 				color: $hover;
 			}
 
-			button:hover,
-			input[type='button']:hover,
-			input[type='reset']:hover,
-			input[type='submit']:hover {
-				border-color: $primary;
-			}
 
-			button:active, button:focus,
-			input[type='button']:active,
-			input[type='button']:focus,
-			input[type='reset']:active,
-			input[type='reset']:focus,
-			input[type='submit']:active,
-			input[type='submit']:focus {
-				border-color: $primary;
-			}
 
-			.main-navigation a:hover,
-			.main-navigation a:active{
-				color: $primary;
-			}
-
-			.header-row-one,
-			.header-row-two,
-			.site-footer{
+			ul.site-header-cart > li{
 				background: $primary;
 			}
 
-			ul.site-header-cart li{
-				background: $primary;
-			}
-
-			ul.site-header-cart li:hover{
-				background: $accent
+			ul.site-header-cart > li:hover a{
+				color: $primary
 			}
 
 			.sticky-icon i{
-				color:  $accent;
+				color:  $primary;
 			}
 
 			.woocommerce span.onsale{
-				background-color: $accent;
+				background-color: $primary;
 			}
 
 			.woocommerce ul.products li.product .price,
 			.woocommerce div.product p.price{
-				color: $accent;
+				color: $primary;
 			}
 
 			.woocommerce button.button.alt,
@@ -306,17 +279,17 @@ if ( ! function_exists( 'chocolate_passion_customize_css' ) ):
 
 			.woocommerce button.button.alt:hover,
 			.woocommerce a.button.alt:hover{
-				background: $accent;
+				background: $primary;
 			}
 
 			.menu-toggle:hover,
 			.menu-toggle:focus{
-				background: $accent;
-				border: 5px solid $accent;
+				background: $primary;
+				border: 5px solid $primary;
 			}
 
 			.footer-links a:hover{
-				color: $accent;
+				color: $primary;
 			}
 
 			.comment-navigation .nav-previous a,
@@ -328,7 +301,7 @@ if ( ! function_exists( 'chocolate_passion_customize_css' ) ):
 			.slick-prev,
 			.slick-next{
 				background: $primary;
-				border: $primary;
+				border: 2px solid $primary;
 			}
 
 			.comment-navigation .nav-previous a:hover,
@@ -348,7 +321,7 @@ if ( ! function_exists( 'chocolate_passion_customize_css' ) ):
 			.slick-prev:hover,
 			.slick-prev:focus{
 				color: $primary;
-				border: $primary;
+				border: 2px solid $primary;
 			}
 
 			.comment-form input[type='submit'],
@@ -380,24 +353,24 @@ if ( ! function_exists( 'chocolate_passion_customize_css' ) ):
 
 			.social-links a:hover,
 			.social-links a:focus{
-				color: $accent;
+				color: $primary;
 			}
 
 			.privacy-policy-link:hover,
 			.privacy-policy-link:focus{
-				color: $accent;
+				color: $primary;
 			}
 
 			@media all and (min-width: 300px){
 				
 				.search-form button:hover{
-					background: $accent;
-					border: $accent;
+					background: $primary;
+					border: 3px solid $primary;
 				}
 
 				.menu-toggle:hover,
 				.menu-toggle:focus{
-					border: $accent;
+					border: 3px solid $primary;
 				}
 
 			}
@@ -406,7 +379,7 @@ if ( ! function_exists( 'chocolate_passion_customize_css' ) ):
 				
 				.search-form button:hover,
 				.search-form button:focus{
-					border: 2.5px solid $accent;
+					border: 2.5px solid $primary;
 				}
 			}
 		";

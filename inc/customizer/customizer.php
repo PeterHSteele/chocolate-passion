@@ -30,7 +30,7 @@ function chocolate_passion_customize_register( $wp_customize ) {
 	}
 	//Colors
 	$wp_customize->add_setting( 'chocolate_passion_primary_color', array(
-		'default' => '#000000',
+		'default' => '#ff4500',
 		'sanitize_callback' => 'sanitize_hex_color'
 	));
 
@@ -39,7 +39,7 @@ function chocolate_passion_customize_register( $wp_customize ) {
 		'section' => 'colors',
 		'settings' => 'chocolate_passion_primary_color'
 	)));
-
+/*
 	$wp_customize->add_setting( 'chocolate_passion_accent_color', array(
 		'default' => '#ff4500',
 		'sanitize_callback' => 'sanitize_hex_color'
@@ -50,7 +50,7 @@ function chocolate_passion_customize_register( $wp_customize ) {
 		'section' => 'colors',
 		'settings' => 'chocolate_passion_accent_color'
 	)));
-
+*/
 	$wp_customize->add_setting( 'chocolate_passion_link_color', array(
 		'default' => '#4169E1',
 		'sanitize_callback' => 'sanitize_hex_color'
