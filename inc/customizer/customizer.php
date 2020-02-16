@@ -39,18 +39,7 @@ function chocolate_passion_customize_register( $wp_customize ) {
 		'section' => 'colors',
 		'settings' => 'chocolate_passion_primary_color'
 	)));
-/*
-	$wp_customize->add_setting( 'chocolate_passion_accent_color', array(
-		'default' => '#ff4500',
-		'sanitize_callback' => 'sanitize_hex_color'
-	));
-
-	$wp_customize->add_control( new WP_Customize_Color_Control( $wp_customize, 'chocolate_passion_accent_color', array(
-		'label' => __( 'Accent Color', 'chocolate-passion' ),
-		'section' => 'colors',
-		'settings' => 'chocolate_passion_accent_color'
-	)));
-*/
+	
 	$wp_customize->add_setting( 'chocolate_passion_link_color', array(
 		'default' => '#4169E1',
 		'sanitize_callback' => 'sanitize_hex_color'
@@ -98,7 +87,7 @@ function chocolate_passion_customize_register( $wp_customize ) {
 			));
 		} else{
 			
-			$wp_customize->add_control( new WP_Dropdown_Posts_Control( $wp_customize, 'chocolate_passion_slider_posts_' . $count, array(
+			$wp_customize->add_control( new Chocolate_Passion_Dropdown_Posts_Control( $wp_customize, 'chocolate_passion_slider_posts_' . $count, array(
 				'label' => __( 'Post to include in homepage slider', 'chocolate-passion' ),
 				'section' => __( 'chocolate_passion_homepage_settings', 'chocolate-passion' ),
 				'settings' => 'chocolate_passion_slider_posts_' . $count,

@@ -303,7 +303,6 @@ if ( ! function_exists( 'chocolate_passion_woocommerce_header_cart' ) ) {
 			<li>
 				<?php the_widget( 'WC_Widget_Cart', $instance );  ?>
 			</li>
-			<!--<?php// endif; ?>-->
 		</ul>
 		<?php
 	}

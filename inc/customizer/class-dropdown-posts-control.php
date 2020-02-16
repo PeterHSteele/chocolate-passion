@@ -7,7 +7,7 @@
 */
 function chocolate_passion_dropdown_posts(){
 
-	class WP_Dropdown_Posts_Control extends WP_Customize_Control{
+	class Chocolate_Passion_Dropdown_Posts_Control extends WP_Customize_Control{
 		public $type = 'dropdown-posts';
 
 		public function render_content(){
