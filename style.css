@@ -801,17 +801,21 @@ ul ul li.menu-item-has-children a:hover:after{
 	font-size: .65rem;
 }
 
-.banner-header .menu-toggle{
-	position: static;	
-	display: block;
-	float: left;
-}
-
 .menu-toggle:hover,
 .menu-toggle:focus{
 	background: orangered;
 	border-width: 5px;
 	border-style: solid;
+}
+
+/*
+===============
+nav for banner header page template 
+===============
+*/
+
+.banner-header .site-header{
+	margin-bottom: 0;
 }
 
 .banner-header .main-navigation{
@@ -851,8 +855,11 @@ ul ul li.menu-item-has-children a:hover:after{
 .banner-header .menu-toggle{
 	border: none;
 	outline: none;
-	background: white;
+	background: #fff;
 	color: #404040;
+	position: static;	
+	display: block;
+	float: left;
 }
 
 .banner-header .menu-toggle:hover,
@@ -883,6 +890,12 @@ Social Menu
 .social-links a:focus{
 	color: orangered;
 }
+
+/*
+===============
+Nav Media Query
+===============
+*/
 
 @media screen and (min-width: 1024px) {
 	.menu-toggle {
@@ -927,7 +940,6 @@ Social Menu
 	.banner-header .main-navigation li{
 		clear: both;
 	}
-
 
 }
 
@@ -1446,10 +1458,6 @@ Layout - Site Header
 
 /*
 ============
-Site Header
-
-/*
-============
 Layout - Posts Indexes ( Home & Archive Templates )
 ============
 */
@@ -1487,12 +1495,6 @@ Layout - Single Posts/Pages
 	padding: .75em;
 }
 
-/*
-============
-Layout - Page.php
-============
-*/
-
 
 /*
 ============
@@ -1501,7 +1503,7 @@ Layout - Search Results (search.php)
 */
 
 .search .site-main > article{
-	margin-bottom: 7em;
+	margin-bottom: 110px;
 }
 
 /*
@@ -1610,12 +1612,6 @@ Custom Styles - Header
 	padding: .5em 0;
 }
 
-.header-row-two{
-	/*min-height: 40px;*/
-}
-
-
-
 .site-info h1,
 .site-info p{
 	margin: .5em 0;
@@ -1712,7 +1708,7 @@ Custom Styles - Page, Post Content
 
 /*
 ============
-Custom Styles - Posts Index ( including Home, Archive templates )
+Custom Styles - Posts Index ( styles for non-single posts including Home, Archive templates )
 ============
 */
 .blog .site-main > article,
@@ -1739,7 +1735,7 @@ Custom Styles - Posts Index ( including Home, Archive templates )
 }
 
 .page-header{
-	background: white;
+	background: #fff;
 	border: 3px solid #ddd;
 	padding: .5em;
 }
@@ -1754,12 +1750,6 @@ Custom Styles - Posts Index ( including Home, Archive templates )
 	padding: .5em;
 	color: #ff4500;
 }
-
-/*
-============
-Custom Styles - Posts Index - Styles for non-single posts
-============
-*/
 
 .cp-post-index .entry-title{
 	margin: 0 0 .2em 0;
@@ -1973,8 +1963,6 @@ Custom Styles - Footer
 ===============
 */
 
-
-
 .footer-navigation{
 	padding-bottom: 1em;
 }
@@ -2044,60 +2032,13 @@ Custom Styles - Footer
 	background-position: -5px -5em;
 }
 
-/*
-.footer-widgets{
-	position: relative;
-	z-index: 1;
-	background: transparent;
-	overflow: hidden;
-}
-
-
-.footer-widgets svg{
-	position: absolute;
-	top: -2em;
-	left: -15%;
-	width: 130%;
-	z-index: -1
-}
-*/
-
 .footer-widgets section.widget a,
 .footer-widgets section.widget a:hover,
 .footer-widgets section.widget a:focus,
 .footer-widgets section.widget a:active{
 	color: white;
 }
-/*
-.cls-1,
-.cls-3,
-.cls-5{
-	fill:none;
-}
 
-.cls-1,
-.cls-3,
-.cls-4,
-.cls-5{
-	stroke:#004;
-	stroke-miterlimit:10;
-}
-.cls-1{
-	clip-rule:evenodd;
-}
-
-.cls-2{
-	clip-path:url(#clip-path);
-}
-
-.cls-3{
-	stroke-width:8px;
-}
-			
-.cls-5{
-	fill-rule:evenodd;
-}
-*/
 /*
 ===============
 Custom Styles - Customizer
@@ -2124,7 +2065,7 @@ Layout
 
 /*
 ==============
-Layout - Footer - Min. 300px
+Layout - Footer - Small Screen
 ==============
 */
 
@@ -2141,13 +2082,7 @@ Layout - Footer - Min. 300px
 
 	/*
 	==============
-	Header
-	==============
-	*/
-
-	/*
-	==============
-	Navigation
+	Navigation - Small Screen
 	==============
 	*/
 
@@ -2168,11 +2103,6 @@ Layout - Footer - Min. 300px
 		color: #505050;
 		width: 37px;
 		border: 3px solid #eee;
-	}
-
-	.menu-toggle:hover,
-	.menu-toggle:focus{
-		/*border: 3px solid orangered;*/
 	}
 
 	.menu-toggle,
@@ -2217,7 +2147,7 @@ Layout - Sidebar - Medium Screen
 
 	/*
 	==============
-	Elements
+	Elements - Large Screen
 	==============
 	*/
 
@@ -2227,7 +2157,7 @@ Layout - Sidebar - Medium Screen
 
 	/*
 	==============
-	Navigation
+	Navigation - Large Screen
 	==============
 	*/
 
@@ -2401,11 +2331,6 @@ Custom Styles - Sidebar - Large Screen
 	.site-info{
 		padding: 0;
 	}
-	/*
-	.header-search > button{
-		display: none;
-	}
-	*/
 
 	.search-form button{
 		border: 2.5px solid #eee;
@@ -2443,8 +2368,6 @@ Custom Styles - Sidebar - Large Screen
 	=============
 	*/
 
-	
-
 	.footer-row{
 		padding: 0;
 	}
@@ -2452,3 +2375,4 @@ Custom Styles - Sidebar - Large Screen
 	.site-footer .secondary-navigation{
 		display: none;
 	}
+}
