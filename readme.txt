@@ -1,19 +1,14 @@
 === chocolate passion ===
 
-Contributors: automattic
-Tags: custom-background, custom-logo, custom-menu, featured-images, threaded-comments, translation-ready
-
-Requires at least: 4.5
-Tested up to: 4.8
+Contributors: @peterste
+Tags: custom-background, featured-images, threaded-comments, translation-ready, rtl
+Requires at least: 5.2
+Tested up to: 5.3
 Stable tag: 1.0.0
 License: GNU General Public License v2 or later
 License URI: https://www.gnu.org/licenses/old-licenses/gpl-2.0.en.html	
 
-A starter theme called chocolate passion.
-
-== Description ==
-
-Description
+A blogging or small business theme.
 
 == Installation ==
 
@@ -25,11 +20,11 @@ Description
 
 = Does this theme support any plugins? =
 
-chocolate passion includes support for Infinite Scroll in Jetpack.
+chocolate passion includes support for Infinite Scroll in Jetpack and WooCommerce.
 
 == Changelog ==
 
-= 1.0 - May 12 2015 =
+= 1.0 =
 * Initial release
 
 == Credits ==
