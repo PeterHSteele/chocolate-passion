@@ -230,9 +230,9 @@ endif;
 if ( ! function_exists( 'chocolate_passion_customize_css' ) ):
 
 	function chocolate_passion_customize_css(){
-		$primary = esc_attr( get_theme_mod( 'chocolate_passion_primary_color' ) );
-		$link = esc_attr( get_theme_mod( 'chocolate_passion_link_color' ) );
-		$hover = esc_attr( get_theme_mod( 'chocolate_passion_hover_link_color' ) );
+		$primary = esc_attr( get_theme_mod( 'chocolate_passion_primary_color' ), '#ff4500' );
+		$link = esc_attr( get_theme_mod( 'chocolate_passion_link_color' ), '#4169E1' );
+		$hover = esc_attr( get_theme_mod( 'chocolate_passion_hover_link_color', '#191970' ) );
 
 		$css ="
 		
@@ -350,14 +350,14 @@ if ( ! function_exists( 'chocolate_passion_customize_css' ) ):
 
 endif;
 
-//add_action( 'wp_head', 'chocolate_passion_customize_css' );
-
 if ( ! function_exists( 'chocolate_passion_custom_excerpt' ) ):
 
 	/**
 	* Chocolate Passion Custom Excerpt
 	*
 	* Generates excerpt that allows links. For use in homepage slider.
+	* @uses chocolate_passion_strip_headings
+	* @param string 	$content 	post content
 	*/
 
 	function chocolate_passion_custom_excerpt( $content ){
@@ -379,6 +379,13 @@ if ( ! function_exists( 'chocolate_passion_custom_excerpt' ) ):
 endif;
 
 if ( ! function_exists( 'chocolate_passion_strip_headings' ) ):
+
+	/**
+	* Chocolate Passion Strp Headings
+	*
+	* Removes heading tags along with text between them.
+	* @param string 	$content 	post contentHanna
+	*/
 
 	function chocolate_passion_strip_headings( $content ){
 		$regex = '/<h[^>]+>.*<\/h[^>]+>/';
