@@ -800,7 +800,8 @@ Alerts
 */
 
 .woocommerce-message,
-.woocommerce-info{
+.woocommerce-info,
+.woocommerce-noreviews{
 	background: #eee;
 }
 
