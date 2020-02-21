@@ -151,7 +151,7 @@ function chocolate_passion_scripts() {
 		wp_enqueue_style( 'chocolate-passion-sidebar-right-style', get_template_directory_uri() . '/layouts/content-sidebar.css' );
 	}
 	
-	if ( is_front_page() && chocolate_passion_get_slides() ){
+	if ( is_front_page() && chocolate_passion_get_panels() ){
 
 		wp_enqueue_style( 'chocolate-passion-slick-css', get_template_directory_uri() . '/js/slick/slick.css' );
 		wp_enqueue_script( 'chocolate-passion-slick-js', get_template_directory_uri() . '/js/slick/slick.js', array( 'jquery' ) );
@@ -161,7 +161,8 @@ function chocolate_passion_scripts() {
 	wp_enqueue_style( 'chocolate-passion-style', get_stylesheet_uri() );
 	wp_add_inline_style('chocolate-passion-style', chocolate_passion_customize_css() );
 	
-	wp_enqueue_style( 'chocolate-passion-google-font', 'https://fonts.googleapis.com/css?family=Nunito&display=swap' );
+	wp_enqueue_style( 'chocolate-passion-google-font-nunito', 'https://fonts.googleapis.com/css?family=Nunito&display=swap' );
+	wp_enqueue_style( 'chocolate-paddion-google-font-permanent', "https://fonts.googleapis.com/css?family=Abel&display=swap" );
 
 	wp_enqueue_script( 'chocolate-passion-skip-link-focus-fix', get_template_directory_uri() . '/js/skip-link-focus-fix.js', array(), '20151215', true );
 
@@ -371,21 +372,28 @@ if ( ! function_exists( 'chocolate_passion_strip_headings' ) ):
 
 endif;
 
-if ( ! function_exists('chocolate_passion_get_slides') ):
+if ( ! function_exists('chocolate_passion_get_panels') ):
 
 	/**
-	* Gets pages/posts for homepage slideshow.
+	* Gets pages/posts for homepage panels.
+	*
+	* Retrieves ids for posts/pages whose excerpts will be included in panels feature. 
+	* Also retrieves text position location for each panel.
 	*/
 
-	function chocolate_passion_get_slides(){
-		$slides = array();
-		for ( $count = 1; $count <= 10; $count++ ){
-			$id = get_theme_mod( 'chocolate_passion_slider_posts_' . $count );
+	function chocolate_passion_get_panels(){
+		$panels = array();
+		for ( $count = 1; $count <= 6; $count++ ){
+			$id = get_theme_mod( 'chocolate_passion_panel_posts_' . $count );
 			if ( $id && has_post_thumbnail( $id ) ){
-				$slides[] = $id;
+				$text_position = get_theme_mod( 'chocolate_passion_panel_text_position_' . $count, 'bottom-right');
+				$panels[] = array(
+					'id' => $id,
+					'position' => 'chocolate-passion-' . $text_position
+				);
 			}	
 		}
-		return !empty( $slides ) ? $slides : false;
+		return !empty( $panels ) ? $panels : false;
 	}
 
 endif;

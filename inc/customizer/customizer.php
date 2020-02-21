@@ -63,36 +63,54 @@ function chocolate_passion_customize_register( $wp_customize ) {
 		'description' => __( 'The color links in the content when hovered by the mouse.' , 'chocolate-passion' ),
 		'settings' => 'chocolate_passion_hover_link_color'
 	)));
-	//Homepage Slideshow
+	//Panels
 	$wp_customize->add_section('chocolate_passion_homepage_settings',array(
-		'title' => __( 'Homepage Slideshow' , 'chocolate-passion' ),
+		'title' => __( 'Homepage Panels' , 'chocolate-passion' ),
 		'description' => __( 
-			'Here you can add pages and posts to the slideshow on the homepage. 
-			Any slides left empty or that do not have a featured image will be skipped. ', 
+			'Here you can add pages and posts to the panels section on the homepage. 
+			Any panels left empty or that do not have a featured image will be skipped. ', 
 			'chocolate-passion'),
 		'active_callback' => 'is_front_page',
 	));
 
-	for( $count = 1; $count <= 10; $count++){
-		$wp_customize->add_setting( 'chocolate_passion_slider_posts_' . $count, array(
+	for( $count = 1; $count <= 6; $count++){
+		$wp_customize->add_setting( 'chocolate_passion_panel_posts_' . $count, array(
 			'default' => '',
 			'sanitize_callback' => 'absint'
 		));
  		
  		if ( $count % 2 ){
-			$wp_customize->add_control( 'chocolate_passion_slider_posts_' .  $count, array(
-				'label' => __( 'Page to include in homepage slider', 'chocolate-passion' ),
+			$wp_customize->add_control( 'chocolate_passion_panel_posts_' .  $count, array(
+				'label' => __( 'Page to include in homepage panels', 'chocolate-passion' ),
 				'type' => 'dropdown-pages',
 				'section' => 'chocolate_passion_homepage_settings',
 			));
 		} else{
 			
-			$wp_customize->add_control( new Chocolate_Passion_Dropdown_Posts_Control( $wp_customize, 'chocolate_passion_slider_posts_' . $count, array(
-				'label' => __( 'Post to include in homepage slider', 'chocolate-passion' ),
+			$wp_customize->add_control( new Chocolate_Passion_Dropdown_Posts_Control( $wp_customize, 'chocolate_passion_panel_posts_' . $count, array(
+				'label' => __( 'Post to include in homepage panels', 'chocolate-passion' ),
 				'section' => __( 'chocolate_passion_homepage_settings', 'chocolate-passion' ),
-				'settings' => 'chocolate_passion_slider_posts_' . $count,
+				'settings' => 'chocolate_passion_panel_posts_' . $count,
 			)));
 		}
+
+		$wp_customize->add_setting( 'chocolate_passion_panel_text_position_' . $count, array(
+			'default' => 'bottom-left',
+			'sanitize_callback' => 'chocolate_passion_sanitize_text_position'
+		) );
+
+		$wp_customize->add_control( 'chocolate_passion_panel_text_position_' .  $count, array(
+			'label' => sprintf( 
+				/*translators: %s: panel number.*/
+				__( 'Position for panel text %s', 'chocolate-passion' ),
+				$count
+			),
+			'type' => 'select',
+			'choices' => chocolate_passion_text_position_choices(),
+			'section' => 'chocolate_passion_homepage_settings',
+		));
+
+
 	}
 
 	//Copyright
@@ -130,6 +148,33 @@ function chocolate_passion_sanitize_year( $year ){
 function chocolate_passion_sanitize_checkbox( $input ){
     //returns true if checkbox is checked
     return $input > 0 ? 1 : 0;
+}
+
+function chocolate_passion_text_position_choices( ){
+	return array(
+		__('bottom-left','chocolate-passion'),
+		__('bottom-right','chocolate-passion'),
+		__('top-left', 'chocolate-passion'),
+		__('top-right', 'chocolate-passion')
+	);
+}
+
+function chocolate_passion_sanitize_text_position( $input ){
+	$save;
+	switch( $input ){
+		case 2: 
+			$save = 'top-left';
+			break;
+		case 3: 
+			$save = 'top-right';
+			break;
+		case 1: 
+			$save = 'bottom-right';
+			break;
+		default:
+			$save = 'bottom-left';
+	}
+	return $save;
 }
 
 /**

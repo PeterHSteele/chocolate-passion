@@ -1850,52 +1850,73 @@ Custom Styles - Posts Index ( styles for non-single posts including Home, Archiv
 
 /*
 ===============
-Slider
+Panels
 ===============
 */
 
-.slider{
+.panels{
 	padding: 0 0 50px;
 }
 
-.slider-container{
+.panel-container{
 	
 	padding: 0;
 	margin: 0;
 }
 
-.slide{
+.panel{
 	min-height: 500px;
 	position: relative;
 	background-size: cover;
 	background-position: center;
+	margin-bottom: 30px;
 }
 
-.slide-content{
+.panel-content{
 	padding: .5em;
-	width: 100%;
+	width: 350px;
 	position: absolute;
-	left: 0;
-	bottom: 0;
-	background: rgba(255,255,255,.9);
-	border-top: 2px solid white;
+	background: rgba(255,255,255,.88);
+	box-shadow: 5px 5px #fff;
+	font-family: 'Abel' , 'Nunito', arial, sans-serif;
+	font-size: 1rem;
 }
 
-.slide-content p{
-	line-height: 1em;
+.chocolate-passion-bottom-left{
+	left: 2em;
+	bottom: 2em;
 }
 
-.slide-content h2,
-.slide-content h3,
-.slide-content h4,
-.slide-content h5,
-.slide-content h6,
-.slide-content p,
-.slide-content .entry-content{
+.chocolate-passion-bottom-right{
+	bottom: 2em;
+	right: 2em;
+}
+
+.chocolate-passion-top-left{
+	top: 2em;
+	left: 2em;
+}
+
+.chocolate-passion-top-right{
+	top: 2em;
+	right: 2em;
+}
+
+.panel-content p{
+	line-height: 1.15em
+}
+
+.panel-content h2,
+.panel-content h3,
+.panel-content h4,
+.panel-content h5,
+.panel-content h6,
+.panel-content p,
+.panel-content .entry-content{
 	margin: 0;
 	padding: 0;
 }
-
+/*
 .slick-dots{
 	list-style: none;
 	text-align: center;
@@ -1932,7 +1953,7 @@ Slider
 	border: 2px solid black;
 	background: white;
 }
-
+*/
 /*
 ===============
 Custom Styles - Single Post

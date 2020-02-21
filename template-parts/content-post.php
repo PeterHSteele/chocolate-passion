@@ -12,7 +12,10 @@
 <article id="post-<?php the_ID(); ?>" <?php post_class( 'cp-post-index' ); ?>>
 	<?php chocolate_passion_post_thumbnail(); ?>
 	<?php if ( is_sticky() && ! is_single() ): ?>
-		<span class="sticky-icon"><i class="fas fa-lg fa-thumbtack"></i></span>
+		<span class="sticky-icon">
+			<span class="screen-reader-text"><?php esc_html_e( 'pinned post' , 'chocolate-passion' ) ?></span>
+			<i class="fas fa-lg fa-thumbtack"></i>
+		</span>
 	<?php endif; ?>
 	<div class="cp-post-index-flex-container clear">  
 		<header class="entry-header">

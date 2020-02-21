@@ -7,22 +7,30 @@
  * @package chocolate_passion
  */
 
-$slides = chocolate_passion_get_slides();
-if ( !empty( $slides ) ) :
+$panels = chocolate_passion_get_panels();
+if ( $panels ) :
 ?>
-	<section class="slider col-80">
-		<div class="slider-container">
+	<section class="panels col-80">
+		<div class="panels-container">
 			<?php 
 			global $post;
-			foreach( $slides as $slide ): 
-			$post = get_post($slide);
+			foreach( $panels as $panel ): 
+			$post = get_post( $panel['id'] );
 			$bg_img = wp_get_attachment_image_src( get_post_thumbnail_id(), 'full' )[0];
 			?>
-			<div class="slide" style="background-image: url(<?php echo esc_attr( $bg_img ); ?>); ">
+			<div class="panel" style="background-image: url(<?php echo esc_attr( $bg_img ); ?>); ">
 			
-			<div class="slide-content">
+			<div class="panel-content <?php esc_attr_e( $panel['position'] ) ?>">
 				<header class="entry-header">
-					<?php the_title( '<h2>', '</h2>' ); ?>
+					<?php 
+					the_title( 
+						sprintf(
+							'<h2><a href="%1$s">',
+							esc_url( get_the_permalink() )
+						), 
+						'</a></h2>' 
+					); 
+					?>
 				</header>
 
 				<div class="entry-content">
