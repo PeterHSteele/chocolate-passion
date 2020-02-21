@@ -295,8 +295,8 @@ if ( ! function_exists( 'chocolate_passion_customize_css' ) ):
 				border: 2px solid $primary;
 			}
 
-			.bypostauthor .comment-content{
-				color: $primary;
+			.bypostauthor{
+				border-left: 5px solid $primary;
 			}
 
 			.comment-form input[type='submit'],
