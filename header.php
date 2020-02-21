@@ -58,7 +58,7 @@
 								wp_nav_menu( array(
 									'theme_location' => 'menu-1',
 									'menu_id'        => 'primary-menu',
-									'menu_class'	 => 'clear'
+									'menu_class'	 => 'clear accessible-hide nav-menu'
 								) );
 								?>
 							</nav><!-- #site-navigation -->					

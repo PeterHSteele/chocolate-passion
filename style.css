@@ -670,10 +670,6 @@ a:hover, a:active {
 	clear: both;
 }
 
-.main-navigation > div > ul{
-	display: none;
-}
-
 .main-navigation ul ul {
 	box-shadow: 0 3px 3px rgba(0, 0, 0, 0.2);
 	float: left;
@@ -705,7 +701,8 @@ a:hover, a:active {
 	transition: .1s all;
 }
 
-.main-navigation ul ul a:hover{
+.main-navigation ul ul a:hover,
+.main-navigation ul ul a:focus{
 	background: black;
 	color: white;
 }
@@ -810,6 +807,7 @@ ul ul li.menu-item-has-children a:hover:after{
 	top: 0;
 	right: 0;
 	border-radius: 0;
+	color: #404040;
 	border: 5px solid #eee;
 	font-size: .65rem;
 }
@@ -839,10 +837,6 @@ nav for banner header page template
 
 .banner-header .main-navigation ul{
 	clear:both;
-}
-
-.banner-header .main-navigation > div > ul{
-	display: none;
 }
 
 .banner-header .main-navigation li{
@@ -884,7 +878,7 @@ nav for banner header page template
 .banner-header .menu-toggle:focus{
 	background: #404040;
 	color: white;
-	border: 2px solid white;
+	border: 2px solid #404040;
 }
 
 .banner-header li.menu-item-has-children > a:hover:after{
@@ -954,10 +948,6 @@ Nav Media Query
 	Main Navigation - Banner Header Template
 	===============
 	*/
-
-	.banner-header .main-navigation >div > ul{
-		display: none;
-	} 
 
 	.banner-header .main-navigation li{
 		clear: both;
@@ -1286,8 +1276,18 @@ select*/{
 /*--------------------------------------------------------------
 ## Comments
 --------------------------------------------------------------*/
+.comments-area{
+	margin-top: 75px;
+}
+
 .comment-content a {
 	word-wrap: break-word;
+}
+
+li.comment:nth-child(odd){
+	background: #eee;
+	margin: 5px 0;
+	padding: 5px;
 }
 
 .bypostauthor {
@@ -1610,6 +1610,11 @@ Custom Styles - General
 =============
 */
 
+.accessible-hide{
+	position: absolute;
+	left: -999em;
+}
+
 .no-display{
 	display: none;
 }
@@ -1684,7 +1689,7 @@ Custom Styles - Header
 .search-form button:hover,
 .search-form button:focus{
 	background: orangered;
-	border: 5px solid orangered;
+	border: 3px solid orangered;
 }
 
 .search-form input:focus{
@@ -2296,19 +2301,9 @@ Custom Styles - Sidebar - Large Screen
 
 	/*
 	==============
-	Elements
+	Navigation -XL Screen
 	==============
 	*/
-
-	/*
-	==============
-	Navigation
-	==============
-	*/
-
-	.main-navigation >div> ul{
-		display: block;
-	}
 
 	.search-form{
 		margin-right: 0px;
@@ -2322,7 +2317,7 @@ Custom Styles - Sidebar - Large Screen
 	
 	/*
 	==============
-	Layout
+	Layout - XL Screen
 	==============
 	*/
 	
@@ -2357,6 +2352,21 @@ Custom Styles - Sidebar - Large Screen
 	=============
 	*/
 
+	/*
+	=============
+	General
+	=============
+	*/
+
+	.accessible-hide{
+		position: static;
+		left: auto;
+	}
+
+	.banner-header .accessible-hide{
+		position: absolute;
+		left: -999px;
+	}
 
 	/*
 	=============
@@ -2391,13 +2401,7 @@ Custom Styles - Sidebar - Large Screen
 
 	/*
 	=============
-	Posts Index
-	=============
-	*/
-
-	/*
-	=============
-	Single
+	Custom Styles - Single Post
 	=============
 	*/
 

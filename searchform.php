@@ -17,6 +17,7 @@
 			<i class="fas fa-search"></i>
 			<span class="screen-reader-text"><?php esc_html_e( 'Submit search form', 'chocolate-passion' ); ?></span>
 		</button>
+		<!--screen reader users can use .search-toggle to hide search form, hence aria-hidden=true-->
 		<button type="button" id="searchbar-close" class="toggler">
 			<i class="fas fa-times fa-lg"></i>
 			<span class="screen-reader-text"><?php esc_html_e( 'Close Search', 'chocolate-passion' ); ?></span>

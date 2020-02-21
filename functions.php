@@ -295,6 +295,10 @@ if ( ! function_exists( 'chocolate_passion_customize_css' ) ):
 				border: 2px solid $primary;
 			}
 
+			.bypostauthor .comment-content{
+				color: $primary;
+			}
+
 			.comment-form input[type='submit'],
 			.comment-form button{
 				color: $primary;

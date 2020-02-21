@@ -22,8 +22,13 @@ get_header();
 				get_template_part( 'template-parts/content', 'post-single' );
 
 				// If comments are open or we have at least one comment, load up the comment template.
+
 				if ( comments_open() || get_comments_number() ) :
-					comments_template();
+				?>
+				<div class="col-60">
+				<?php comments_template(); ?>
+				</div>
+				<?php
 				endif;
 
 			endwhile; // End of the loop.

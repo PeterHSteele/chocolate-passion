@@ -26,22 +26,22 @@
 
 	<header id="masthead" class="site-header" role="banner">
 		<nav id="site-navigation" class="main-navigation clear" role="navigation">
-			<button class="search-toggle toggle" aria-controls="primary-menu" aria-expanded="false">
+			<button class="search-toggle toggle" aria-controls="primary-menu" aria-pressed="false">
 				<i class="fas fa-search"></i>
-					<span class="sr-only">
+					<span class="screen-reader-text">
 						<?php esc_html_e( 'Search', 'chocolate-passion' ) . ' ' . bloginfo('name') ?>
 					</span>
 			</button>
 			<?php get_search_form(); ?>
 			<button class="menu-toggle toggle" aria-controls="primary-menu" aria-expanded="false">
 				<i class="fas fa-bars"></i>
-				<span class="sr-only"><?php esc_html_e( 'Primary Menu', 'chocolate-passion' ); ?></span>
+				<span class="screen-reader-text"><?php esc_html_e( 'Primary Menu', 'chocolate-passion' ); ?></span>
 			</button>	
 			<?php
 				wp_nav_menu( array(
 					'theme_location' => 'menu-1',
 					'menu_id'        => 'primary-menu',
-					'menu_class'	 => 'clear'
+					'menu_class'	 => 'clear accessible-hide nav-menu'
 				) );
 			?>
 		</nav><!-- #site-navigation -->
