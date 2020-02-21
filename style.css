@@ -817,6 +817,7 @@ ul ul li.menu-item-has-children a:hover:after{
 	background: orangered;
 	border-width: 5px;
 	border-style: solid;
+	color: white;
 }
 
 /*
@@ -1284,10 +1285,13 @@ select*/{
 	word-wrap: break-word;
 }
 
-li.comment:nth-child(odd){
-	background: #eee;
+li.comment{
 	margin: 5px 0;
 	padding: 5px;
+}
+
+li.comment:nth-child(odd){
+	background: #eee;
 }
 
 .bypostauthor {
@@ -1528,6 +1532,21 @@ Layout - Search Results (search.php)
 	margin-bottom: 110px;
 }
 
+.no-results{
+	margin-bottom: 50px;
+}
+
+.no-results .search-form{
+	float: none;
+	margin-right: 0;
+	border: 2px solid #404040;
+	display: flex;
+}
+
+.no-results .search-form input[type="text"]{
+	flex: 1 0;
+}
+
 /*
 ============
 Layout - Sidebar
@@ -1690,6 +1709,7 @@ Custom Styles - Header
 .search-form button:focus{
 	background: orangered;
 	border: 3px solid orangered;
+	color: white;
 }
 
 .search-form input:focus{
@@ -2269,6 +2289,15 @@ Layout - Sidebar - Medium Screen
 Layout
 ==============
 */
+
+
+/*
+==============
+Layout - Search Results
+==============
+*/
+
+
 
 /*
 ==============

@@ -10,6 +10,7 @@
 ?>
 
 <section class="no-results not-found">
+	<div class="col-60">
 	<header class="page-header">
 		<h1 class="page-title"><?php esc_html_e( 'Nothing Found', 'chocolate-passion' ); ?></h1>
 	</header><!-- .page-header -->
@@ -35,17 +36,17 @@
 			?>
 
 			<p><?php esc_html_e( 'Sorry, but nothing matched your search terms. Please try again with some different keywords.', 'chocolate-passion' ); ?></p>
-			<?php
-			get_search_form();
-
+			<?php get_search_form();
+			
 		else :
 			?>
 
 			<p><?php esc_html_e( 'It seems we can&rsquo;t find what you&rsquo;re looking for. Perhaps searching can help.', 'chocolate-passion' ); ?></p>
-			<?php
-			get_search_form();
+			<?php 
+			get_search_form(); 
 
 		endif;
 		?>
 	</div><!-- .page-content -->
+	</div><!--.col-60-->
 </section><!-- .no-results -->
