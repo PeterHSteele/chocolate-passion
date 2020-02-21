@@ -24,8 +24,8 @@
 <div id="page" class="site">
 	<a class="skip-link screen-reader-text" href="#content"><?php esc_html_e( 'Skip to content', 'chocolate-passion' ); ?></a>
 
-	<header id="masthead" class="site-header">
-		<nav id="site-navigation" class="main-navigation clear">
+	<header id="masthead" class="site-header" role="banner">
+		<nav id="site-navigation" class="main-navigation clear" role="navigation">
 			<button class="search-toggle toggle" aria-controls="primary-menu" aria-expanded="false">
 				<i class="fas fa-search"></i>
 					<span class="sr-only">

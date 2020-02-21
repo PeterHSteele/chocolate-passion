@@ -13,7 +13,7 @@
 
 	</div><!-- #content -->
 
-	<footer id="colophon" class="site-footer">
+	<footer id="colophon" class="site-footer" role="contentinfo">
 		<div class="footer-row-one footer-row">
 			<div class="col-80">
 				<div class="footer-navigation">
@@ -41,14 +41,12 @@
 		<div class="footer-row-two footer-row footer-widgets" style="background-image: url(<?php echo esc_url( get_template_directory_uri() . '/assets/img/bgwidget.svg' )?>)">	
 			<?php //get_template_part('template-parts/footer','background'); ?>	
 			<div class="col-80">
-				<aside class="row"> 
-					<?php dynamic_sidebar( 'sidebar-2' ) ?>	
-				</aside>
+				<?php get_sidebar( 'footer' ); ?>
 			 </div><!--.row-->
 		</div><!--.footer-row-three-->	
 		<div class="footer-row-three footer-row">
 			<div class="col-80">
-				<nav class="social-links">
+				<nav class="social-links" role='navigation' aria-label="<?php esc_attr_e( 'Social' , 'chocolate-passion' ) ?>">
 					<?php
 					wp_nav_menu(array(
 						'theme_location' => 'menu-social',

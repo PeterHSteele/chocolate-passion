@@ -10,6 +10,6 @@
 */
 ?>
 
-<aside role="secondary" class="woocommerce-sidebar widget-area">
+<aside role="complementary" class="woocommerce-sidebar widget-area">
 	<?php dynamic_sidebar( 'sidebar-3' ); ?>
 </aside>

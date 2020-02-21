@@ -8,7 +8,6 @@
  */
 
 get_header();
-print_r('archive php');
 ?>
 
 	<div id="primary" class="content-area">

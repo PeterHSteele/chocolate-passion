@@ -3,7 +3,7 @@
 /**
 * template part for displaying woocommerce shopping cart
 *
-* @package 
+* @package chocolate-passion
 */
 
 ?>

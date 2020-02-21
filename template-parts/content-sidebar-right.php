@@ -1,6 +1,6 @@
 <?php
 /**
- * Template part for displaying page content with a sidebar
+ * Template part for displaying page content when page also contains sidebar.
  *
  * @link https://developer.wordpress.org/themes/basics/template-hierarchy/
  *

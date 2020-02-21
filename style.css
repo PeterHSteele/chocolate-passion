@@ -2,13 +2,12 @@
 Theme Name: chocolate passion
 Theme URI: github.com/peterhsteele/chocolate-passion
 Author: Peter Steele
-Author URI: http://github.com/peterhsteele
-Description: Description
+Description: A decluttered theme focused on readability and images.
 Version: 1.0.0
 License: GNU General Public License v2 or later
 License URI: https://www.gnu.org/licenses/old-licenses/gpl-2.0.en.html
 Text Domain: chocolate-passion
-Tags: custom-background, custom-logo, custom-menu, featured-images, threaded-comments, translation-ready
+Tags: custom-background, custom-logo, custom-menu, featured-images, threaded-comments, translation-ready, blog, e-commerce, two-columns, right-sidebar, footer-widgets
 
 This theme, like WordPress, is licensed under the GPL.
 Use it to make something cool, have fun, and share what you've learned with others.
@@ -637,6 +636,7 @@ a:visited {
 
 a:hover, a:focus, a:active {
 	color: midnightblue;
+	text-decoration: none;
 }
 
 a:focus {
@@ -667,8 +667,11 @@ a:hover, a:active {
 	list-style: none;
 	margin: 0;
 	padding-left: 0;
-	display: none;
 	clear: both;
+}
+
+.main-navigation > div > ul{
+	display: none;
 }
 
 .main-navigation ul ul {
@@ -751,6 +754,10 @@ body:not(.banner-header) .main-navigation > div > ul > .menu-item-has-children >
 	border-top: .42em solid black;
 }
 
+.main-navigation > div > ul > li.menu-item-has-children > ul > li.menu-item-has-children > a:after{
+	border-top: none;
+}
+
 li.menu-item-has-children a:hover:after{
 	border-top: .42em solid black;
 }
@@ -779,11 +786,17 @@ ul ul li.menu-item-has-children a:hover:after{
 }
 
 .main-navigation a:visited{
+	color: black;
+}
+
+.main-navigation > div > ul > li > a:visited{
 	color: white;
 }
 
-.main-navigation a:hover,
-.main-navigation a:active{
+
+
+.main-navigation > div > ul > li > a:hover,
+.main-navigation > div > ul > li > a:active{
 	color: black;
 	background: white;
 }
@@ -828,6 +841,10 @@ nav for banner header page template
 	clear:both;
 }
 
+.banner-header .main-navigation > div > ul{
+	display: none;
+}
+
 .banner-header .main-navigation li{
 	float: none;
 }
@@ -843,17 +860,18 @@ nav for banner header page template
 	color: white;
 }
 
-.banner-header .menu-item-has-children > a:after{
-	border-top: .42em solid black;
+.banner-header .main-navigation > div > ul > li > a:visited{
+	color: black;
 }
 
-.banner-header .main-navigation li.menu-item-has-children > a:hover:after,
-.banner-header .main-navigation li.menu-item-has-children > a:focus:after{
-	border-top: .42em solid white;
+.banner-header .main-navigation > div > ul > li > a:hover,
+.banner-header .main-navigation > div > ul > li > a:active{
+	color: white;
+	background: black;
 }
 
 .banner-header .menu-toggle{
-	border: none;
+	border: 2px solid white;
 	outline: none;
 	background: #fff;
 	color: #404040;
@@ -866,7 +884,11 @@ nav for banner header page template
 .banner-header .menu-toggle:focus{
 	background: #404040;
 	color: white;
-	border: none;
+	border: 2px solid white;
+}
+
+.banner-header li.menu-item-has-children > a:hover:after{
+	border-top: .4em solid white
 }
 
 /*
@@ -933,7 +955,7 @@ Nav Media Query
 	===============
 	*/
 
-	.banner-header .main-navigation ul{
+	.banner-header .main-navigation >div > ul{
 		display: none;
 	} 
 
@@ -1478,7 +1500,7 @@ Layout - Posts Indexes ( Home & Archive Templates )
 
 .page-header{
 	flex: 0 0 99.5%;
-	margin: .25% 0;
+	margin: .25%;
 }
 
 .posts-navigation{
@@ -1716,6 +1738,7 @@ Custom Styles - Posts Index ( styles for non-single posts including Home, Archiv
 	padding: .5em;
 	background: white;
 	border: 3px solid #ddd;
+	position: relative;
 }
 
 .blog .site-main .attachment-post-thumbnail,
@@ -1747,7 +1770,7 @@ Custom Styles - Posts Index ( styles for non-single posts including Home, Archiv
 	top:-5px;
 	right:-5px;
 	z-index: 1;
-	padding: .5em;
+	padding: 5px;
 	color: #ff4500;
 }
 
@@ -1774,18 +1797,19 @@ Custom Styles - Posts Index ( styles for non-single posts including Home, Archiv
 
 .cp-post-index .entry-header{
 	float: left;
+	padding: .2em;
 }
 
 .cp-post-index .entry-header{
 	padding: .5em 0 .5em .5em;
 	flex: 0 0 38%;
-	padding: .5em .5em 1em .5em;
+	padding: .5em 2em 1.5em .5em;
 	max-width: 60%;
 }
 
 .cp-post-index .entry-header .header-content-wrap{
 	padding-right: .5em;
-	border-right: 1px dotted #ccc;
+	padding: .2em;
 }
 
 .cp-post-index .entry-content{
@@ -1892,9 +1916,6 @@ Custom Styles - Single Post
 
 .single-post h1{
 	margin-bottom: 0;
-}
-
-.single-post .entry-meta{
 }
 
 .single-post .posted-on,
@@ -2113,6 +2134,12 @@ Layout - Footer - Small Screen
 		padding: .6rem;
 	}
 
+	.banner-header .menu-toggle,
+	.banner-header .menu-toggle:hover,
+	.banner-header .menu-toggle:focus{
+		border: none;
+	}
+
 	.search-form button{
 		border: 3px solid #eee;
 	}
@@ -2161,16 +2188,29 @@ Layout - Sidebar - Medium Screen
 	==============
 	*/
 
+
 	.main-navigation ul ul li:hover > ul,
 	.main-navigation ul ul li.focus > ul{
 	 	left: 100%;
 	 }
+
 
 	 ul ul li.menu-item-has-children > a:after{
 		border-top: .42em solid black;
 	}
 
 	 ul ul li.menu-item-has-children > a:hover:after{
+		border-top: .42em solid white;
+	}
+
+	.main-navigation > div > ul > li.menu-item-has-children > ul > li.menu-item-has-children > a:after{
+		border-top: .42em solid black
+	}
+
+	.main-navigation > div > ul > li.menu-item-has-children > a:hover:after,
+	.main-navigation > div > ul > li.menu-item-has-children > ul > li.menu-item-has-children > a:hover:after,
+	.main-navigation > div > ul > li.menu-item-has-children > a:focus:after,
+	.main-navigation > div > ul > li.menu-item-has-children > ul > li.menu-item-has-children > a:focus:after{
 		border-top: .42em solid white;
 	}
 
@@ -2265,6 +2305,10 @@ Custom Styles - Sidebar - Large Screen
 	Navigation
 	==============
 	*/
+
+	.main-navigation >div> ul{
+		display: block;
+	}
 
 	.search-form{
 		margin-right: 0px;

@@ -9,7 +9,7 @@
 
 ?>
 
-<article id="post-<?php the_ID(); ?>" <?php post_class( ); ?>>
+<article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
 	<?php chocolate_passion_post_thumbnail(); ?>
 	<?php if ( is_sticky() && ! is_single() ): ?>
 		<span class="sticky-icon"><i class="fas fa-lg fa-thumbtack"></i></span>

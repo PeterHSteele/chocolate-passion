@@ -105,7 +105,7 @@ function chocolate_passion_content_width() {
 	// This variable is intended to be overruled from themes.
 	// Open WPCS issue: {@link https://github.com/WordPress-Coding-Standards/WordPress-Coding-Standards/issues/1043}.
 	// phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedVariableFound
-	$GLOBALS['content_width'] = apply_filters( 'chocolate_passion_content_width', 640 );
+	$GLOBALS['content_width'] = apply_filters( 'chocolate_passion_content_width', 2048 );
 }
 add_action( 'after_setup_theme', 'chocolate_passion_content_width', 0 );
 
@@ -117,7 +117,7 @@ add_action( 'after_setup_theme', 'chocolate_passion_content_width', 0 );
 function chocolate_passion_widgets_init() {
 	register_sidebar( array(
 		'name'          => esc_html__( 'Sidebar', 'chocolate-passion' ),
-		'id'            => 'sidebar-1',
+		'id'            => 'sidebar-right',
 		'description'   => esc_html__( 'Add widgets here.', 'chocolate-passion' ),
 		'before_widget' => '<section id="%1$s" class="widget %2$s">',
 		'after_widget'  => '</section>',
@@ -127,7 +127,7 @@ function chocolate_passion_widgets_init() {
 
 	register_sidebar( array(
 		'name'  	    => esc_html__( 'Footer Widgets', 'chocolate-passion' ),
-		'id'		    => 'sidebar-2',
+		'id'		    => 'footer-widgets',
 		'description'   => esc_html__( 'Add widgets here', 'chocolate-passion' ),
 		'before_widget' => '<section id="%1$s" class="widget %2$s">',
 		'after_widget'  => '</section>',
@@ -155,7 +155,7 @@ function chocolate_passion_scripts() {
 
 		wp_enqueue_style( 'chocolate-passion-slick-css', get_template_directory_uri() . '/js/slick/slick.css' );
 		wp_enqueue_script( 'chocolate-passion-slick-js', get_template_directory_uri() . '/js/slick/slick.js', array( 'jquery' ) );
-		wp_add_inline_script( 'chocolate-passion-navigation', 'jQuery(".slider-container").slick({dots: true,autoplay:true,autoplaySpeed:15000})' );
+		wp_add_inline_script( 'chocolate-passion-navigation', 'jQuery(".slider-container").slick({dots: true})' );
 	}
 
 	wp_enqueue_style( 'chocolate-passion-style', get_stylesheet_uri() );
@@ -230,7 +230,7 @@ endif;
 if ( ! function_exists( 'chocolate_passion_customize_css' ) ):
 
 	function chocolate_passion_customize_css(){
-		$primary = esc_attr( get_theme_mod( 'chocolate_passion_primary_color' ), '#ff4500' );
+		$primary = esc_attr( get_theme_mod( "chocolate_passion_primary_color", '#db3a00' ));
 		$link = esc_attr( get_theme_mod( 'chocolate_passion_link_color' ), '#4169E1' );
 		$hover = esc_attr( get_theme_mod( 'chocolate_passion_hover_link_color', '#191970' ) );
 
@@ -350,41 +350,13 @@ if ( ! function_exists( 'chocolate_passion_customize_css' ) ):
 
 endif;
 
-if ( ! function_exists( 'chocolate_passion_custom_excerpt' ) ):
-
-	/**
-	* Chocolate Passion Custom Excerpt
-	*
-	* Generates excerpt that allows links. For use in homepage slider.
-	* @uses chocolate_passion_strip_headings
-	* @param string 	$content 	post content
-	*/
-
-	function chocolate_passion_custom_excerpt( $content ){
-		
-		$no_headings = chocolate_passion_strip_headings( $content );
-
-		echo wp_kses( 
-			substr( $no_headings, 0, strpos( $no_headings, '</p>' ) ), 
-			array(
-				'p' => array(),
-				'a' => array(
-					'href' => array(),
-					'class' => array()
-				)
-			)
-		);
-	}
-
-endif;
-
 if ( ! function_exists( 'chocolate_passion_strip_headings' ) ):
 
 	/**
 	* Chocolate Passion Strp Headings
 	*
 	* Removes heading tags along with text between them.
-	* @param string 	$content 	post contentHanna
+	* @param string 	$content 	post content
 	*/
 
 	function chocolate_passion_strip_headings( $content ){

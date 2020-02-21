@@ -181,8 +181,14 @@ if ( ! function_exists( 'chocolate_passion_footer_nav' ) ):
 	* @param string 	$class 		css class to use for aligning navs in footer
 	*/
 	function chocolate_passion_footer_nav( $location, $class ){
+		$labels = array(
+			'menu-2' 	  => __( 'secondary' , 'chocolate-passion' ),
+			'menu-3' 	  => __( 'first additional links', 'chocolate-passion'),
+			'menu-4' 	  => __( 'second additional links', 'chocolate-passion'),
+			'menu-5'	  => __( 'third additional links', 'chocolate-passion')
+		) 
 		?>
-			<nav class="<?php echo esc_attr( $class )?>">
+			<nav class="<?php echo esc_attr( $class )?>" role="navigation" aria-label="<?php echo esc_attr( $labels[$location] ); ?>">
 				<h3><?php chocolate_passion_menu_name( $location ) ?></h3>
 				<?php 
 					wp_nav_menu( array(

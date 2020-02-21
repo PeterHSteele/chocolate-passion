@@ -30,7 +30,7 @@ function chocolate_passion_customize_register( $wp_customize ) {
 	}
 	//Colors
 	$wp_customize->add_setting( 'chocolate_passion_primary_color', array(
-		'default' => '#ff4500',
+		'default' => '#db3a00',
 		'sanitize_callback' => 'sanitize_hex_color'
 	));
 

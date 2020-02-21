@@ -13,23 +13,27 @@ if ( !empty( $slides ) ) :
 	<section class="slider col-80">
 		<div class="slider-container">
 			<?php 
+			global $post;
 			foreach( $slides as $slide ): 
-			$bg_img = wp_get_attachment_image_src( get_post_thumbnail_id( $slide ), 'full' )[0];
+			$post = get_post($slide);
+			$bg_img = wp_get_attachment_image_src( get_post_thumbnail_id(), 'full' )[0];
 			?>
 			<div class="slide" style="background-image: url(<?php echo esc_attr( $bg_img ); ?>); ">
 			
 			<div class="slide-content">
 				<header class="entry-header">
-					<h2><?php echo esc_html( get_the_title( $slide ) ); ?></h2>
+					<?php the_title( '<h2>', '</h2>' ); ?>
 				</header>
 
 				<div class="entry-content">
-
-					<?php chocolate_passion_custom_excerpt( get_the_content( null, false, $slide ) ); ?>
+					<?php the_excerpt(); ?>
 				</div>
 			</div><!--.slide-content-->
 			</div><!--.slide-->
-			<?php endforeach; ?>
-		</div>
+			<?php 
+			endforeach; 
+			wp_reset_postdata();
+			?>
+		</div><!--.slider-container-->
 	</section><!--.slider-section-->
 <?php endif;

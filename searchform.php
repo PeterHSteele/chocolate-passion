@@ -8,9 +8,9 @@
 
 ?>
 
-<form method='get' class="search-form" action="<?php echo esc_url( home_url( '/' ) ); ?>">
-		<label for="search">
-			<span class="screen-reader-text"><?php esc_html_e( 'Search for:' , 'chocolate-passion'); ?></span>
+<form method='get' class="search-form" action="<?php echo esc_url( home_url( '/' ) ); ?>" role="search">
+		<label for="search" class="screen-reader-text">
+			<?php esc_html_e( 'Search for:' , 'chocolate-passion'); ?>
 		</label>
 		<input type='text' required placeholder="search" id='search' name='s'>
 		<button type="submit" role="submit">

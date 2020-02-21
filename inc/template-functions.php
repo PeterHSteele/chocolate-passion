@@ -14,3 +14,4 @@ function chocolate_passion_pingback_header() {
 	}
 }
 add_action( 'wp_head', 'chocolate_passion_pingback_header' );
+

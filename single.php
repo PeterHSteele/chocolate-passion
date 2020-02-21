@@ -12,7 +12,7 @@ get_header();
 
 	<div id="primary" class="content-area">
 		<div class="col-80">
-			<main id="main" class="site-main">
+			<main id="main" class="site-main" role="main">
 			
 
 			<?php
