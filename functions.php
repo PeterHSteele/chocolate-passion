@@ -105,7 +105,7 @@ function chocolate_passion_content_width() {
 	// This variable is intended to be overruled from themes.
 	// Open WPCS issue: {@link https://github.com/WordPress-Coding-Standards/WordPress-Coding-Standards/issues/1043}.
 	// phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedVariableFound
-	$GLOBALS['content_width'] = apply_filters( 'chocolate_passion_content_width', 2048 );
+	$GLOBALS['content_width'] = apply_filters( 'chocolate_passion_content_width', 640 );
 }
 add_action( 'after_setup_theme', 'chocolate_passion_content_width', 0 );
 
@@ -144,18 +144,10 @@ function chocolate_passion_scripts() {
 	//fontawesome
 	wp_enqueue_style( 'fontawesome', get_stylesheet_directory_uri() . '/assets/fontawesome/css/all.css' );
 
-	//wp_enqueue_script( 'chocolate-passion-searchbar', get_template_directory_uri() . '/js/searchbar.js', array( 'jquery' ), '20151215', true );
 	wp_enqueue_script( 'chocolate-passion-navigation', get_template_directory_uri() . '/js/navigation.js', array( 'jquery' ), '20151215', true );
 	
 	if ( is_page_template( 'page-templates/sidebar-right.php' ) ){
 		wp_enqueue_style( 'chocolate-passion-sidebar-right-style', get_template_directory_uri() . '/layouts/content-sidebar.css' );
-	}
-	
-	if ( is_front_page() && chocolate_passion_get_panels() ){
-
-		wp_enqueue_style( 'chocolate-passion-slick-css', get_template_directory_uri() . '/js/slick/slick.css' );
-		wp_enqueue_script( 'chocolate-passion-slick-js', get_template_directory_uri() . '/js/slick/slick.js', array( 'jquery' ) );
-		wp_add_inline_script( 'chocolate-passion-navigation', 'jQuery(".slider-container").slick({dots: true})' );
 	}
 
 	wp_enqueue_style( 'chocolate-passion-style', get_stylesheet_uri() );
@@ -327,10 +319,16 @@ if ( ! function_exists( 'chocolate_passion_customize_css' ) ):
 				color: $primary;
 			}
 
+			.search-form button:hover,
+			.search-form button:focus{
+				background: $primary;
+				border: 5px solid $primary;
+			}
+
 			@media all and (min-width: 300px){
 				
-				.search-form button:hover{
-					background: $primary;
+				.search-form button:hover,
+				.search-form button:focus{
 					border: 3px solid $primary;
 				}
 

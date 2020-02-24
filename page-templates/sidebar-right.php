@@ -7,9 +7,6 @@
  */
 
 get_header();
-if ( is_front_page() ){
-	get_template_part( 'template-parts/slider' );
-}
 ?>
 	<div class="col-80"> 
 	<div id="primary" class="content-area">

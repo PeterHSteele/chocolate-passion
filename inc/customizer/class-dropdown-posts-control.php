@@ -11,13 +11,14 @@ function chocolate_passion_dropdown_posts(){
 		public $type = 'dropdown-posts';
 
 		public function render_content(){
-			$posts = get_posts( array( 'numberposts' => -1 ) );
+			$posts = array_merge( get_posts( array( 'numberposts' => -1 )), get_pages() );
 			?>
 			<label>
-				<span style="font-weight: 600" class="dropdown-posts-text">
-					<?php esc_html_e( 'Post to include in homepage slideshow', 'chocolate-passion' ); ?>
+				<span class="dropdown-posts-text customize-control-title">
+					<?php echo esc_html($this->label); ?>
 				</span>
 				<select <?php $this->link() ?>>
+					<option value=""><?php esc_html_e( 'None (default)' , 'chocolate-passion' ) ?></option>
 				<?php foreach ( $posts as $post ) : ?>
 					<option value="<?php echo esc_attr($post->ID); ?>"><?php echo esc_html( get_the_title( $post ) )?></option>
 				<?php endforeach; ?>

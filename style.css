@@ -1638,6 +1638,10 @@ Custom Styles - General
 	display: none;
 }
 
+.absolute{
+	position: absolute;
+}
+
 /*
 ============
 Custom Styles - Header
@@ -1874,7 +1878,7 @@ Panels
 
 .panel-content{
 	padding: .5em;
-	width: 350px;
+	width: 220px;
 	position: absolute;
 	background: rgba(255,255,255,.88);
 	box-shadow: 5px 5px #fff;
@@ -1883,23 +1887,23 @@ Panels
 }
 
 .chocolate-passion-bottom-left{
-	left: 2em;
+	left:0;
 	bottom: 2em;
 }
 
 .chocolate-passion-bottom-right{
 	bottom: 2em;
-	right: 2em;
+	right: 0;
 }
 
 .chocolate-passion-top-left{
 	top: 2em;
-	left: 2em;
+	left: 0;
 }
 
 .chocolate-passion-top-right{
 	top: 2em;
-	right: 2em;
+	right:0;
 }
 
 .panel-content p{
@@ -2199,20 +2203,42 @@ Layout - Footer - Small Screen
 		width: 243px;
 	}
 
-/*
-==============
-Layout - Sidebar - Medium Screen
-==============
-*/
 
-.widget-area{
-	display: flex;
-	flex-wrap: wrap;
-}
 
-.widget{
-	flex: 0 0 50%;
-}
+	/*
+	==============
+	Layout - Sidebar - Medium Screen
+	==============
+	*/
+
+	.widget-area{
+		display: flex;
+		flex-wrap: wrap;
+	}
+
+	.widget{
+		flex: 0 0 50%;
+	}
+
+	/*
+	==============
+	Layout - Panels - Medium Screen
+	==============
+	*/
+
+	.panel-content{
+		width: 240px;
+	}
+	
+	.chocolate-passion-bottom-left,
+	.chocolate-passion-top-left{
+		left: 2em;
+	}
+
+	.chocolate-passion-bottom-right,
+	.chocolate-passion-top-right{
+		right: 2em;
+	}
 
 }
 
@@ -2314,12 +2340,13 @@ Layout
 
 /*
 ==============
-Layout - Search Results
+Layout - Panels
 ==============
 */
 
-
-
+.panel-content{
+	width: 350px;
+}
 /*
 ==============
 Layout - Footer - Large Screen
