@@ -705,6 +705,11 @@ Products Index
 ==================
 */
 
+.attachment-woocommerce_thumbnail{
+	max-height: 350px;
+	object-fit:cover;
+}
+
 .woocommerce ul.products[class*=columns-] li.product{
 	margin: 0;
 	float: none;
