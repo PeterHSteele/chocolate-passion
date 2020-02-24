@@ -80,11 +80,8 @@ function chocolate_passion_customize_register( $wp_customize ) {
 		));
  		
  		$wp_customize->add_control( new Chocolate_Passion_Dropdown_Posts_Control( $wp_customize, 'chocolate_passion_panel_posts_' . $count, array(
-			'label' => sprintf(
-				/*translators:  %s: panel number.*/
-				__( 'Panel %s Content', 'chocolate-passion' ),
-				$count
-			),
+			/* translators:  %s: panel number.*/
+			'label' => sprintf( __( 'Panel %s Content', 'chocolate-passion' ), $count ),
 			'section' => __( 'chocolate_passion_panels', 'chocolate-passion' ),
 			'settings' => 'chocolate_passion_panel_posts_' . $count,
 		)));
@@ -95,11 +92,8 @@ function chocolate_passion_customize_register( $wp_customize ) {
 		) );
 
 		$wp_customize->add_control( 'chocolate_passion_panel_text_position_' .  $count, array(
-			'label' => sprintf( 
-				/*translators: %s: panel number.*/
-				__( 'Panel Text %s Positioning', 'chocolate-passion' ),
-				$count
-			),
+			/* translators: %s: panel number */
+			'label' => sprintf( __( 'Panel Text %s Positioning', 'chocolate-passion' ), $count ),
 			'type' => 'select',
 			'choices' => chocolate_passion_text_position_choices(),
 			'section' => 'chocolate_passion_panels',

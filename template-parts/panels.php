@@ -13,35 +13,24 @@ if ( $panels ) :
 	<section class="panels col-80">
 		<div class="panels-container">
 			<?php 
-			global $post;
 			foreach( $panels as $panel ): 
-			$post = get_post( $panel['id'] );
-			$bg_img = wp_get_attachment_image_src( get_post_thumbnail_id(), 'full' )[0];
+			$bg_img = wp_get_attachment_image_src( get_post_thumbnail_id( $panel['post'] ), 'full' )[0];
 			?>
 			<div class="panel" style="background-image: url(<?php echo esc_attr( $bg_img ); ?>); ">
-			
-			<div class="panel-content <?php esc_attr_e( $panel['position'] ) ?>">
-				<header class="entry-header">
-					<?php 
-					the_title( 
-						sprintf(
-							'<h2><a href="%1$s">',
-							esc_url( get_the_permalink() )
-						), 
-						'</a></h2>' 
-					); 
-					?>
-				</header>
-
-				<div class="entry-content">
-					<?php the_excerpt(); ?>
-				</div>
-			</div><!--.slide-content-->
-			</div><!--.slide-->
-			<?php 
-			endforeach; 
-			wp_reset_postdata();
-			?>
-		</div><!--.slider-container-->
-	</section><!--.slider-section-->
+				<div class="panel-content <?php echo esc_attr( $panel['position'] ) ?>">
+					<header class="entry-header">
+						<h2>
+							<a href="<?php echo esc_url(get_the_permalink( $panel['post'])); ?>"> 
+								<?php echo esc_html( get_the_title( $panel['post'] ) ) ?>
+							</a>
+						</h2>
+					</header>
+					<div class="entry-content">
+						<p><?php echo get_the_excerpt( $panel['post'] ); ?></p>
+					</div>
+				</div><!--.panel-content-->
+			</div><!--.panel-->
+			<?php endforeach; ?>
+		</div><!--.panels-container-->
+	</section><!--.panels-->
 <?php endif;

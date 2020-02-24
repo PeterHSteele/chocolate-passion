@@ -252,7 +252,8 @@ if ( ! function_exists( 'chocolate_passion_customize_css' ) ):
 				border: 5px solid $primary;
 			}
 
-			.footer-links a:hover{
+			.footer-links a:hover,
+			.footer-links a:focus{
 				color: $primary;
 			}
 
@@ -386,7 +387,7 @@ if ( ! function_exists('chocolate_passion_get_panels') ):
 			if ( $id && has_post_thumbnail( $id ) ){
 				$text_position = get_theme_mod( 'chocolate_passion_panel_text_position_' . $count, 'bottom-right');
 				$panels[] = array(
-					'id' => $id,
+					'post' => get_post( $id ),
 					'position' => 'chocolate-passion-' . $text_position
 				);
 			}	
