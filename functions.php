@@ -145,7 +145,8 @@ function chocolate_passion_scripts() {
 	wp_enqueue_style( 'fontawesome', get_stylesheet_directory_uri() . '/assets/fontawesome/css/all.css' );
 
 	wp_enqueue_script( 'chocolate-passion-navigation', get_template_directory_uri() . '/js/navigation.js', array( 'jquery' ), '20151215', true );
-	
+	wp_localize_script( 'chocolate-passion-navigation', 'template', array( 'bannerHeader' => is_page_template('page-templates/banner-header.php') ) );
+
 	if ( is_page_template( 'page-templates/sidebar-right.php' ) ){
 		wp_enqueue_style( 'chocolate-passion-sidebar-right-style', get_template_directory_uri() . '/layouts/content-sidebar.css' );
 	}
@@ -224,7 +225,7 @@ if ( ! function_exists( 'chocolate_passion_customize_css' ) ):
 
 	function chocolate_passion_customize_css(){
 		$primary = esc_attr( get_theme_mod( "chocolate_passion_primary_color", '#db3a00' ));
-		$link = esc_attr( get_theme_mod( 'chocolate_passion_link_color' ), '#4169E1' );
+		$link = esc_attr( get_theme_mod( 'chocolate_passion_link_color' ), 'royalblue' );
 		$hover = esc_attr( get_theme_mod( 'chocolate_passion_hover_link_color', '#191970' ) );
 
 		$css ="
@@ -350,23 +351,6 @@ if ( ! function_exists( 'chocolate_passion_customize_css' ) ):
 		";
 
 		return $css;
-	}
-
-endif;
-
-if ( ! function_exists( 'chocolate_passion_strip_headings' ) ):
-
-	/**
-	* Chocolate Passion Strp Headings
-	*
-	* Removes heading tags along with text between them.
-	* @param string 	$content 	post content
-	*/
-
-	function chocolate_passion_strip_headings( $content ){
-		$regex = '/<h[^>]+>.*<\/h[^>]+>/';
-		preg_match_all( $regex, $content, $matches, PREG_PATTERN_ORDER);
-		return str_replace( $matches[0], '', $content );
 	}
 
 endif;

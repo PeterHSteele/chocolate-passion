@@ -11,30 +11,49 @@
     let primaryNavLink = $(".main-navigation > div > ul a")
     let searchToggle = $(".search-toggle");
     let searchForm = $(".search-form");
-    let searchInput = $(".banner-header .search-form #search");
+    let searchInput = $('.banner-header .site-header .search-form input');
+    let searchFormControls = $(
+      ".banner-header .site-header .search-form #search," +
+      ".banner-header .site-header .search-form button"
+    );
     let searchClose = $("#searchbar-close");
-
+    
   // Hide menu toggle button if menu is empty and return early.
   if ( ! navContainer ){
     button.attr("style","display: none;");
     return;
   }
 
-  let expandMenu = function(){
+  //Hides the search form in banner-header template
+  const cpCloseSearch = function(){
+    searchForm.removeClass("toggled").attr('aria-expanded',false);
+    searchToggle.attr('aria-expanded', false);
+  }
+
+  const cpOpenSearch = function(){
+    searchForm.addClass("toggled").attr('aria-expanded',true);
+    searchToggle.attr('aria-expanded',true);
+  }
+
+  //expands primary menu
+  const expandMenu = function(){
     button.attr("aria-expanded",true);
     navContainer.slideUp(0, function(){
-      navContainer.removeClass('accessible-hide').slideDown(200).attr('aria-expanded',true);
+      navContainer.removeClass('accessible-hide')
+      navContainer.slideDown(200).attr('aria-expanded',true);
     });
   }
 
-  let hideMenu = function(){
+  //hides primary menu
+  const hideMenu = function(){
     button.attr("aria-expanded",false);
     navContainer.slideUp(200,function(){
       navContainer.addClass('accessible-hide').slideDown(0).attr('aria-expanded',false);
     });
   }
 
-  let toggleMenu = function(){
+  //hides or expands primary menu based on current state
+  const toggleMenu = function(){
     if (! navContainer.hasClass("accessible-hide") ){
       hideMenu();
     } else {
@@ -48,41 +67,40 @@
   });
 
   //bring off-screen menus on-screen on when a link is focused
-  primaryNavLink.focus(function(){
-    if ( navContainer.hasClass("accessible-hide") ){
+  primaryNavLink.focus(function(e){
+    const isHidden = navContainer.hasClass("accessible-hide"),
+          clientWidth = document.getElementsByTagName('body')[0].clientWidth;
+
+    if ( isHidden && clientWidth < 1024 || isHidden && template.bannerHeader == true ){
       expandMenu();
     }
-  })
+  });
 
   //handle clicks on the search toggle and search close buttons in banner-header.php
   searchToggle.click(function(){
     if ( searchForm.hasClass('toggled') ){
-      searchForm.removeClass('toggled').attr( 'aria-expanded', false);
-      searchToggle.attr('aria-expanded', false);
+      cpCloseSearch();
     } else{
-      searchForm.addClass("toggled").attr('aria-expanded',true);
-      searchToggle.attr('aria-expanded',true);
+      cpOpenSearch()
     }
   });
 
-  //bring off-screen search form on screen when input is focused
-  searchInput.focus(function(){
+  //bring off-screen search form on screen when input is focused in banner-header.php
+  searchFormControls.focus(function(){
     if (!searchForm.hasClass("toggled")){
-      searchForm.addClass("toggled").attr('aria-expanded',true);
-      searchToggle.attr('aria-expanded',true);
+      cpOpenSearch();
     }
-  })
-
-  searchClose.click(function(){
-    searchForm.removeClass("toggled").attr('aria-expanded',false);
-    searchToggle.attr('aria-expanded', false);
   });
 
   //hide search form when its last focusable element blurs
-  searchClose.blur(function(){
-    searchForm.removeClass("toggled").attr('aria-expanded',false);
-    searchToggle.attr('aria-expanded', false);
+  searchFormControls.blur(function(){
+    cpCloseSearch();
+  })
+
+  searchClose.click(function(){
+    cpCloseSearch();
   });
+
 
   // Get all the link elements within the menu.
   links = $(".main-navigation ul a");
