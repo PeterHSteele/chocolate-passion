@@ -10,14 +10,14 @@
 $panels = chocolate_passion_get_panels();
 if ( $panels ) :
 ?>
-	<section class="panels col-80">
-		<div class="panels-container">
+	<section class="cp-panels col-80">
+		<div class="cp-panels-container">
 			<?php 
 			foreach( $panels as $panel ): 
 			$bg_img = wp_get_attachment_image_src( get_post_thumbnail_id( $panel['post'] ), 'full' )[0];
 			?>
-			<div class="panel" style="background-image: url(<?php echo esc_attr( $bg_img ); ?>); ">
-				<div class="panel-content <?php echo esc_attr( $panel['position'] ) ?>">
+			<div class="cp-panel" style="background-image: url(<?php echo esc_attr( $bg_img ); ?>); ">
+				<div class="cp-panel-content <?php echo esc_attr( $panel['position'] ) ?>">
 					<header class="entry-header">
 						<h2>
 							<a href="<?php echo esc_url(get_the_permalink( $panel['post'])); ?>"> 
@@ -26,7 +26,7 @@ if ( $panels ) :
 						</h2>
 					</header>
 					<div class="entry-content">
-						<p><?php echo get_the_excerpt( $panel['post'] ); ?></p>
+						<p><?php echo esc_html( get_the_excerpt( $panel['post'] ) ); ?></p>
 					</div>
 				</div><!--.panel-content-->
 			</div><!--.panel-->
