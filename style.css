@@ -423,6 +423,12 @@ dfn, cite, em, i {
 
 blockquote {
 	margin: 0 1.5em;
+	background: #eee;
+	padding: .3em;
+}
+
+blockquote p{
+	margin: 0;
 }
 
 address {
@@ -447,6 +453,12 @@ code, kbd, tt, var {
 	font-size: 0.9375rem;
 }
 
+code{
+	display: inline-block;
+	background: #eee;
+	padding: .3em;
+}
+
 abbr, acronym {
 	border-bottom: 1px dotted #666;
 	cursor: help;
@@ -460,6 +472,8 @@ mark, ins {
 big {
 	font-size: 125%;
 }
+
+
 
 /*--------------------------------------------------------------
 # Elements
@@ -668,6 +682,7 @@ a:hover, a:active {
 	margin: 0;
 	padding-left: 0;
 	clear: both;
+	z-index:1;
 }
 
 .main-navigation ul ul {
@@ -689,8 +704,9 @@ a:hover, a:active {
 }
 
 .main-navigation ul ul li:hover > ul,
-.main-navigation ul ul li.focus > ul {
-	left: 100%;
+.main-navigation ul ul li:focus > ul {
+	left: 0;
+	top: 100%;
 }
 
 .main-navigation ul ul a {
@@ -711,11 +727,6 @@ a:hover, a:active {
 .main-navigation ul li.focus > ul {
 	left: auto;
 }
-
-.main-navigation ul ul li:hover > ul,
-.main-navigation ul ul li.focus > ul{
- 	left: -999em;
- }
 
 .main-navigation li,
 .social-links li {
@@ -750,15 +761,15 @@ body:not(.banner-header) .main-navigation > div > ul > .menu-item-has-children >
 body:not(.banner-header) .main-navigation > div > ul > .menu-item-has-children > a:hover:after{
 	border-top: .42em solid black;
 }
-
+/*
 .main-navigation > div > ul > li.menu-item-has-children > ul > li.menu-item-has-children > a:after{
 	border-top: none;
 }
-
+*/
 li.menu-item-has-children a:hover:after{
 	border-top: .42em solid black;
 }
-
+/*
 ul ul li.menu-item-has-children > a:after{
 	border-top: none;
 }
@@ -770,7 +781,7 @@ ul ul li.menu-item-has-children > a:hover:after{
 ul ul li.menu-item-has-children a:hover:after{
 	border-top: none;
 }
-
+*/
 .main-navigation a {
 	padding-left: .1em;
 	display: block;
@@ -1633,6 +1644,7 @@ Custom Styles - General
 .accessible-hide{
 	position: absolute;
 	left: -999em;
+	top: 100%;
 }
 
 .no-display{
@@ -1859,17 +1871,17 @@ Panels
 ===============
 */
 
-.panels{
+.cp-panels{
 	padding: 0 0 50px;
 }
 
-.panel-container{
+.cp-panel-container{
 	
 	padding: 0;
 	margin: 0;
 }
 
-.panel{
+.cp-panel{
 	min-height: 500px;
 	position: relative;
 	background-size: cover;
@@ -1877,7 +1889,7 @@ Panels
 	margin-bottom: 30px;
 }
 
-.panel-content{
+.cp-panel-content{
 	padding: .5em;
 	width: 220px;
 	position: absolute;
@@ -1907,17 +1919,17 @@ Panels
 	right:0;
 }
 
-.panel-content p{
+.cp-panel-content p{
 	line-height: 1.15em
 }
 
-.panel-content h2,
-.panel-content h3,
-.panel-content h4,
-.panel-content h5,
-.panel-content h6,
-.panel-content p,
-.panel-content .entry-content{
+.cp-panel-content h2,
+.cp-panel-content h3,
+.cp-panel-content h4,
+.cp-panel-content h5,
+.cp-panel-content h6,
+.cp-panel-content p,
+.cp-panel-content .entry-content{
 	margin: 0;
 	padding: 0;
 }
@@ -2185,6 +2197,8 @@ Layout - Footer - Small Screen
 		padding: .6rem;
 	}
 
+
+
 	.banner-header .menu-toggle,
 	.banner-header .menu-toggle:hover,
 	.banner-header .menu-toggle:focus{
@@ -2265,6 +2279,7 @@ Layout - Footer - Small Screen
 	.main-navigation ul ul li:hover > ul,
 	.main-navigation ul ul li.focus > ul{
 	 	left: 100%;
+	 	top:0;
 	 }
 
 
@@ -2438,10 +2453,9 @@ Custom Styles - Sidebar - Large Screen
 
 	.accessible-hide{
 		position: static;
-		left: auto;
 	}
 
-	.banner-header .accessible-hide{
+	.banner-header ul.accessible-hide{
 		position: absolute;
 		left: -999px;
 	}
