@@ -69,11 +69,16 @@ function chocolate_passion_woocommerce_scripts() {
 				background: $primary;
 			}
 
+			.woocommerce .single_add_to_cart_button.button.alt{
+				border: 2px solid $primary;
+			}
+
 			ul.site-header-cart > li{
 				background: $primary;
 			}
 
-			ul.site-header-cart > li:hover > a{
+			ul.site-header-cart > li:hover > a,
+			.woocommerce .single_add_to_cart_button.button.alt:hover{
 				color: $primary
 			}
 		";

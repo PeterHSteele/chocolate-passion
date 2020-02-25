@@ -581,7 +581,7 @@ p.no-comments {
 
 /*
 ==================
-choco-pash woocommerce styles
+chocolate-passion woocommerce styles
 ==================
 */
 
@@ -594,6 +594,15 @@ choco-pash woocommerce styles
 	flex-wrap: wrap;
 	padding: .25%;
 	margin: 0;
+}
+
+.woocommerce a h2{
+	text-decoration: underline;
+}
+
+.woocommerce a h2:hover,
+.woocommerce a h2:focus{
+	text-decoration: none;
 }
 
 /*
@@ -843,11 +852,19 @@ Forms
 ==================
 */
 
-
+.woocommerce .single_add_to_cart_button.button.alt:hover{
+	background: #fff;
+}
 
 .woocommerce button.button.alt{
 	transition: .1s background;
 }
+
+/*
+==================
+Media Queries
+==================
+*/
 
 @media all and (min-width: 300px){
 
