@@ -52,7 +52,7 @@ get_header();
 			?>
 
 			</main><!-- #main -->
-		the_posts_navigation();
+		<?php the_posts_navigation(); ?>
 		</div><!--.col-80-->
 	</div><!-- #primary -->
 

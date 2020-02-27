@@ -335,11 +335,11 @@ $config = array(
 		'message'      => '',                      // Message to output right before the plugins table.	
 	);
 
-	tgmpa( $plugins, $config );
+	chocolate_passion( $plugins, $config );
 
 }
 
-add_action( 'tgmpa_register', 'chocolate_passion_register_required_plugins' );
+add_action( 'chocolate_passion_register', 'chocolate_passion_register_required_plugins' );
 
 
 /* Retrieve customizer options for primary color and accent colors */

@@ -128,7 +128,7 @@ if ( ! class_exists( 'TGM_Plugin_Activation' ) ) {
 		 *
 		 * @var string
 		 */
-		public $id = 'tgmpa';
+		public $id = 'chocolate_passion';
 
 		/**
 		 * Name of the query-string argument for the admin page.
@@ -137,7 +137,7 @@ if ( ! class_exists( 'TGM_Plugin_Activation' ) ) {
 		 *
 		 * @var string
 		 */
-		protected $menu = 'tgmpa-install-plugins';
+		protected $menu = 'chocolate_passion-install-plugins';
 
 		/**
 		 * Parent menu file slug.
@@ -242,7 +242,7 @@ if ( ! class_exists( 'TGM_Plugin_Activation' ) ) {
 
 		/**
 		 * Adds a reference of this object to $instance, populates default strings,
-		 * does the tgmpa_init action hook, and hooks in the interactions to init.
+		 * does the chocolate_passion_init action hook, and hooks in the interactions to init.
 		 *
 		 * {@internal This method should be `protected`, but as too many TGMPA implementations
 		 * haven't upgraded beyond v2.3.6 yet, this gives backward compatibility issues.
@@ -257,7 +257,7 @@ if ( ! class_exists( 'TGM_Plugin_Activation' ) ) {
 			$this->wp_version = $GLOBALS['wp_version'];
 
 			// Announce that the class is ready, and pass the object (for advanced use).
-			do_action_ref_array( 'tgmpa_init', array( $this ) );
+			do_action_ref_array( 'chocolate_passion_init', array( $this ) );
 
 
 
@@ -318,7 +318,7 @@ if ( ! class_exists( 'TGM_Plugin_Activation' ) ) {
 			 * @param bool $load Whether or not TGMPA should load.
 			 *                   Defaults to the return of `is_admin() && ! defined( 'DOING_AJAX' )`.
 			 */
-			if ( true !== apply_filters( 'tgmpa_load', ( is_admin() && ! defined( 'DOING_AJAX' ) ) ) ) {
+			if ( true !== apply_filters( 'chocolate_passion_load', ( is_admin() && ! defined( 'DOING_AJAX' ) ) ) ) {
 				return;
 			}
 
@@ -397,7 +397,7 @@ if ( ! class_exists( 'TGM_Plugin_Activation' ) ) {
 				'contact_admin'                   => __( 'Please contact the administrator of this site for help.', 'chocolate-passion' ),
 			);
 
-			do_action( 'tgmpa_register' );
+			do_action( 'chocolate_passion_register' );
 
 			/* After this point, the plugins should be registered and the configuration set. */
 
@@ -407,7 +407,7 @@ if ( ! class_exists( 'TGM_Plugin_Activation' ) ) {
 			}
 
 			// Set up the menu and notices if we still have outstanding actions.
-			if ( true !== $this->is_tgmpa_complete() ) {
+			if ( true !== $this->is_chocolate_passion_complete() ) {
 				// Sort the plugins.
 				array_multisort( $this->sort_order, SORT_ASC, $this->plugins );
 
@@ -518,7 +518,7 @@ if ( ! class_exists( 'TGM_Plugin_Activation' ) ) {
 		public function filter_plugin_action_links_update( $actions ) {
 			$actions['update'] = sprintf(
 				'<a href="%1$s" title="%2$s" class="edit">%3$s</a>',
-				esc_url( $this->get_tgmpa_status_url( 'update' ) ),
+				esc_url( $this->get_chocolate_passion_status_url( 'update' ) ),
 				esc_attr__( 'This plugin needs to be updated to be compatible with your theme.', 'chocolate-passion' ),
 				esc_html__( 'Update Required', 'chocolate-passion' )
 			);
@@ -545,23 +545,23 @@ if ( ! class_exists( 'TGM_Plugin_Activation' ) ) {
 		 * @since 2.1.0
 		 *
 		 * @global string $tab Used as iframe div class names, helps with styling
-		 * @global string $body_id Used as the iframe body ID, helps with styling
+		 * @global string $chocolate_passion_body_id Used as the iframe body ID, helps with styling
 		 *
 		 * @return null Returns early if not the TGMPA page.
 		 */
 		public function admin_init() {
-			if ( ! $this->is_tgmpa_page() ) {
+			if ( ! $this->is_chocolate_passion_page() ) {
 				return;
 			}
 
 			if ( isset( $_REQUEST['tab'] ) && 'plugin-information' === $_REQUEST['tab'] ) {
 				// Needed for install_plugin_information().
-				require_once ABSPATH . 'wp-admin/includes/plugin-install.php';
+				require ABSPATH . 'wp-admin/includes/plugin-install.php';
 
 				wp_enqueue_style( 'plugin-install' );
 
-				global $tab, $body_id;
-				$body_id = 'plugin-information';
+				global $tab, $chocolate_passion_body_id;
+				$chocolate_passion_body_id = 'plugin-information';
 				// @codingStandardsIgnoreStart
 				$tab     = 'plugin-information';
 				// @codingStandardsIgnoreEnd
@@ -584,7 +584,7 @@ if ( ! class_exists( 'TGM_Plugin_Activation' ) ) {
 		 * @since 2.1.0
 		 */
 		public function thickbox() {
-			if ( ! get_user_meta( get_current_user_id(), 'tgmpa_dismissed_notice_' . $this->id, true ) ) {
+			if ( ! get_user_meta( get_current_user_id(), 'chocolate_passion_dismissed_notice_' . $this->id, true ) ) {
 				add_thickbox();
 			}
 		}
@@ -611,7 +611,7 @@ if ( ! class_exists( 'TGM_Plugin_Activation' ) ) {
 			}
 
 			$args = apply_filters(
-				'tgmpa_admin_menu_args',
+				'chocolate_passion_admin_menu_args',
 				array(
 					'parent_slug' => $this->parent_slug,                     // Parent Menu slug.
 					'page_title'  => $this->strings['page_title'],           // Page title.
@@ -655,7 +655,7 @@ if ( ! class_exists( 'TGM_Plugin_Activation' ) ) {
 			$plugin_table = new TGMPA_List_Table;
 
 			// Return early if processing a plugin installation action.
-			if ( ( ( 'tgmpa-bulk-install' === $plugin_table->current_action() || 'tgmpa-bulk-update' === $plugin_table->current_action() ) && $plugin_table->process_bulk_actions() ) || $this->do_plugin_install() ) {
+			if ( ( ( 'chocolate_passion-bulk-install' === $plugin_table->current_action() || 'chocolate_passion-bulk-update' === $plugin_table->current_action() ) && $plugin_table->process_bulk_actions() ) || $this->do_plugin_install() ) {
 				return;
 			}
 
@@ -663,7 +663,7 @@ if ( ! class_exists( 'TGM_Plugin_Activation' ) ) {
 			wp_clean_plugins_cache( false );
 
 			?>
-			<div class="tgmpa wrap">
+			<div class="chocolate_passion wrap">
 				<h1><?php echo esc_html( get_admin_page_title() ); ?></h1>
 				<?php $plugin_table->prepare_items(); ?>
 
@@ -674,8 +674,8 @@ if ( ! class_exists( 'TGM_Plugin_Activation' ) ) {
 				?>
 				<?php $plugin_table->views(); ?>
 
-				<form id="tgmpa-plugins" action="" method="post">
-					<input type="hidden" name="tgmpa-page" value="<?php echo esc_attr( $this->menu ); ?>" />
+				<form id="chocolate_passion-plugins" action="" method="post">
+					<input type="hidden" name="chocolate_passion-page" value="<?php echo esc_attr( $this->menu ); ?>" />
 					<input type="hidden" name="plugin_status" value="<?php echo esc_attr( $plugin_table->view_context ); ?>" />
 					<?php $plugin_table->display(); ?>
 				</form>
@@ -716,26 +716,26 @@ if ( ! class_exists( 'TGM_Plugin_Activation' ) ) {
 			}
 
 			// Was an install or upgrade action link clicked?
-			if ( ( isset( $_GET['tgmpa-install'] ) && 'install-plugin' === $_GET['tgmpa-install'] ) || ( isset( $_GET['tgmpa-update'] ) && 'update-plugin' === $_GET['tgmpa-update'] ) ) {
+			if ( ( isset( $_GET['chocolate_passion-install'] ) && 'install-plugin' === $_GET['chocolate_passion-install'] ) || ( isset( $_GET['chocolate_passion-update'] ) && 'update-plugin' === $_GET['chocolate_passion-update'] ) ) {
 
 				$install_type = 'install';
-				if ( isset( $_GET['tgmpa-update'] ) && 'update-plugin' === $_GET['tgmpa-update'] ) {
+				if ( isset( $_GET['chocolate_passion-update'] ) && 'update-plugin' === $_GET['chocolate_passion-update'] ) {
 					$install_type = 'update';
 				}
 
-				check_admin_referer( 'tgmpa-' . $install_type, 'tgmpa-nonce' );
+				check_admin_referer( 'chocolate_passion-' . $install_type, 'chocolate_passion-nonce' );
 
 				// Pass necessary information via URL if WP_Filesystem is needed.
 				$url = wp_nonce_url(
 					add_query_arg(
 						array(
 							'plugin'                 => urlencode( $slug ),
-							'tgmpa-' . $install_type => $install_type . '-plugin',
+							'chocolate_passion-' . $install_type => $install_type . '-plugin',
 						),
-						$this->get_tgmpa_url()
+						$this->get_chocolate_passion_url()
 					),
-					'tgmpa-' . $install_type,
-					'tgmpa-nonce'
+					'chocolate_passion-' . $install_type,
+					'chocolate_passion-nonce'
 				);
 
 				$method = ''; // Leave blank so WP_Filesystem can populate it as necessary.
@@ -820,20 +820,20 @@ if ( ! class_exists( 'TGM_Plugin_Activation' ) ) {
 					}
 				}
 
-				$this->show_tgmpa_version();
+				$this->show_chocolate_passion_version();
 
 				// Display message based on if all plugins are now active or not.
-				if ( $this->is_tgmpa_complete() ) {
+				if ( $this->is_chocolate_passion_complete() ) {
 					echo '<p>', sprintf( esc_html( $this->strings['complete'] ), '<a href="' . esc_url( self_admin_url() ) . '">' . esc_html__( 'Return to the Dashboard', 'chocolate-passion' ) . '</a>' ), '</p>';
 					echo '<style type="text/css">#adminmenu .wp-submenu li.current { display: none !important; }</style>';
 				} else {
-					echo '<p><a href="', esc_url( $this->get_tgmpa_url() ), '" target="_parent">', esc_html( $this->strings['return'] ), '</a></p>';
+					echo '<p><a href="', esc_url( $this->get_chocolate_passion_url() ), '" target="_parent">', esc_html( $this->strings['return'] ), '</a></p>';
 				}
 
 				return true;
-			} elseif ( isset( $this->plugins[ $slug ]['file_path'], $_GET['tgmpa-activate'] ) && 'activate-plugin' === $_GET['tgmpa-activate'] ) {
+			} elseif ( isset( $this->plugins[ $slug ]['file_path'], $_GET['chocolate_passion-activate'] ) && 'activate-plugin' === $_GET['chocolate_passion-activate'] ) {
 				// Activate action link was clicked.
-				check_admin_referer( 'tgmpa-activate', 'tgmpa-nonce' );
+				check_admin_referer( 'chocolate_passion-activate', 'chocolate_passion-nonce' );
 
 				if ( false === $this->activate_single_plugin( $this->plugins[ $slug ]['file_path'], $slug ) ) {
 					return true; // Finish execution of the function early as we encountered an error.
@@ -894,7 +894,7 @@ if ( ! class_exists( 'TGM_Plugin_Activation' ) ) {
 		 * @return string $source
 		 */
 		public function maybe_adjust_source_dir( $source, $remote_source, $upgrader ) {
-			if ( ! $this->is_tgmpa_page() || ! is_object( $GLOBALS['wp_filesystem'] ) ) {
+			if ( ! $this->is_chocolate_passion_page() || ! is_object( $GLOBALS['wp_filesystem'] ) ) {
 				return $source;
 			}
 
@@ -958,7 +958,7 @@ if ( ! class_exists( 'TGM_Plugin_Activation' ) ) {
 
 				if ( is_wp_error( $activate ) ) {
 					echo '<div id="message" class="error"><p>', wp_kses_post( $activate->get_error_message() ), '</p></div>',
-						'<p><a href="', esc_url( $this->get_tgmpa_url() ), '" target="_parent">', esc_html( $this->strings['return'] ), '</a></p>';
+						'<p><a href="', esc_url( $this->get_chocolate_passion_url() ), '" target="_parent">', esc_html( $this->strings['return'] ), '</a></p>';
 
 					return false; // End it here if there is an error with activation.
 				} else {
@@ -1020,7 +1020,7 @@ if ( ! class_exists( 'TGM_Plugin_Activation' ) ) {
 		 */
 		public function notices() {
 			// Remove nag on the install page / Return early if the nag message has been dismissed or user < author.
-			if ( ( $this->is_tgmpa_page() || $this->is_core_update_page() ) || get_user_meta( get_current_user_id(), 'tgmpa_dismissed_notice_' . $this->id, true ) || ! current_user_can( apply_filters( 'tgmpa_show_admin_notice_capability', 'publish_posts' ) ) ) {
+			if ( ( $this->is_chocolate_passion_page() || $this->is_core_update_page() ) || get_user_meta( get_current_user_id(), 'chocolate_passion_dismissed_notice_' . $this->id, true ) || ! current_user_can( apply_filters( 'chocolate_passion_show_admin_notice_capability', 'publish_posts' ) ) ) {
 				return;
 			}
 
@@ -1136,7 +1136,7 @@ if ( ! class_exists( 'TGM_Plugin_Activation' ) ) {
 				}
 
 				// Register the nag messages and prepare them to be processed.
-				add_settings_error( 'tgmpa', 'tgmpa', $rendered, $this->get_admin_notice_class() );
+				add_settings_error( 'chocolate_passion', 'chocolate_passion', $rendered, $this->get_admin_notice_class() );
 			}
 
 			// Admin options pages already output settings_errors, so this is to avoid duplication.
@@ -1162,7 +1162,7 @@ if ( ! class_exists( 'TGM_Plugin_Activation' ) ) {
 				'install'  => '',
 				'update'   => '',
 				'activate' => '',
-				'dismiss'  => $this->dismissable ? '<a href="' . esc_url( wp_nonce_url( add_query_arg( 'tgmpa-dismiss', 'dismiss_admin_notices' ), 'tgmpa-dismiss-' . get_current_user_id() ) ) . '" class="dismiss-notice" target="_parent">' . esc_html( $this->strings['dismiss'] ) . '</a>' : '',
+				'dismiss'  => $this->dismissable ? '<a href="' . esc_url( wp_nonce_url( add_query_arg( 'chocolate_passion-dismiss', 'dismiss_admin_notices' ), 'chocolate_passion-dismiss-' . get_current_user_id() ) ) . '" class="dismiss-notice" target="_parent">' . esc_html( $this->strings['dismiss'] ) . '</a>' : '',
 			);
 
 			$link_template = '<a href="%2$s">%1$s</a>';
@@ -1172,14 +1172,14 @@ if ( ! class_exists( 'TGM_Plugin_Activation' ) ) {
 					$action_links['install'] = sprintf(
 						$link_template,
 						translate_nooped_plural( $this->strings['install_link'], $install_count, 'chocolate-passion' ),
-						esc_url( $this->get_tgmpa_status_url( 'install' ) )
+						esc_url( $this->get_chocolate_passion_status_url( 'install' ) )
 					);
 				}
 				if ( $update_count > 0 ) {
 					$action_links['update'] = sprintf(
 						$link_template,
 						translate_nooped_plural( $this->strings['update_link'], $update_count, 'chocolate-passion' ),
-						esc_url( $this->get_tgmpa_status_url( 'update' ) )
+						esc_url( $this->get_chocolate_passion_status_url( 'update' ) )
 					);
 				}
 			}
@@ -1188,17 +1188,17 @@ if ( ! class_exists( 'TGM_Plugin_Activation' ) ) {
 				$action_links['activate'] = sprintf(
 					$link_template,
 					translate_nooped_plural( $this->strings['activate_link'], $activate_count, 'chocolate-passion' ),
-					esc_url( $this->get_tgmpa_status_url( 'activate' ) )
+					esc_url( $this->get_chocolate_passion_status_url( 'activate' ) )
 				);
 			}
 
-			$action_links = apply_filters( 'tgmpa_notice_action_links', $action_links );
+			$action_links = apply_filters( 'chocolate_passion_notice_action_links', $action_links );
 
 			$action_links = array_filter( (array) $action_links ); // Remove any empty array items.
 
 			if ( ! empty( $action_links ) ) {
 				$action_links = sprintf( $line_template, implode( ' | ', $action_links ) );
-				return apply_filters( 'tgmpa_notice_rendered_action_links', $action_links );
+				return apply_filters( 'chocolate_passion_notice_rendered_action_links', $action_links );
 			} else {
 				return '';
 			}
@@ -1236,10 +1236,10 @@ if ( ! class_exists( 'TGM_Plugin_Activation' ) ) {
 		protected function display_settings_errors() {
 			global $wp_settings_errors;
 
-			settings_errors( 'tgmpa' );
+			settings_errors( 'chocolate_passion' );
 
 			foreach ( (array) $wp_settings_errors as $key => $details ) {
-				if ( 'tgmpa' === $details['setting'] ) {
+				if ( 'chocolate_passion' === $details['setting'] ) {
 					unset( $wp_settings_errors[ $key ] );
 					break;
 				}
@@ -1255,8 +1255,8 @@ if ( ! class_exists( 'TGM_Plugin_Activation' ) ) {
 		 * @since 2.1.0
 		 */
 		public function dismiss() {
-			if ( isset( $_GET['tgmpa-dismiss'] ) && check_admin_referer( 'tgmpa-dismiss-' . get_current_user_id() ) ) {
-				update_user_meta( get_current_user_id(), 'tgmpa_dismissed_notice_' . $this->id, 1 );
+			if ( isset( $_GET['chocolate_passion-dismiss'] ) && check_admin_referer( 'chocolate_passion-dismiss-' . get_current_user_id() ) ) {
+				update_user_meta( get_current_user_id(), 'chocolate_passion_dismissed_notice_' . $this->id, 1 );
 			}
 		}
 
@@ -1369,7 +1369,7 @@ if ( ! class_exists( 'TGM_Plugin_Activation' ) ) {
 			 * @param string $key     Sanitized key.
 			 * @param string $raw_key The key prior to sanitization.
 			 */
-			return apply_filters( 'tgmpa_sanitize_key', $key, $raw_key );
+			return apply_filters( 'chocolate_passion_sanitize_key', $key, $raw_key );
 		}
 
 		/**
@@ -1415,7 +1415,7 @@ if ( ! class_exists( 'TGM_Plugin_Activation' ) ) {
 		 */
 		public function actions( $install_actions ) {
 			// Remove action links on the TGMPA install page.
-			if ( $this->is_tgmpa_page() ) {
+			if ( $this->is_chocolate_passion_page() ) {
 				return false;
 			}
 
@@ -1616,7 +1616,7 @@ if ( ! class_exists( 'TGM_Plugin_Activation' ) ) {
 		 *
 		 * @return boolean True when on the TGMPA page, false otherwise.
 		 */
-		protected function is_tgmpa_page() {
+		protected function is_chocolate_passion_page() {
 			return isset( $_GET['page'] ) && $this->menu === $_GET['page'];
 		}
 
@@ -1653,13 +1653,13 @@ if ( ! class_exists( 'TGM_Plugin_Activation' ) ) {
 		 * Retrieve the URL to the TGMPA Install page.
 		 *
 		 * I.e. depending on the config settings passed something along the lines of:
-		 * http://example.com/wp-admin/themes.php?page=tgmpa-install-plugins
+		 * http://example.com/wp-admin/themes.php?page=chocolate_passion-install-plugins
 		 *
 		 * @since 2.5.0
 		 *
 		 * @return string Properly encoded URL (not escaped).
 		 */
-		public function get_tgmpa_url() {
+		public function get_chocolate_passion_url() {
 			static $url;
 
 			if ( ! isset( $url ) ) {
@@ -1682,19 +1682,19 @@ if ( ! class_exists( 'TGM_Plugin_Activation' ) ) {
 		 * Retrieve the URL to the TGMPA Install page for a specific plugin status (view).
 		 *
 		 * I.e. depending on the config settings passed something along the lines of:
-		 * http://example.com/wp-admin/themes.php?page=tgmpa-install-plugins&plugin_status=install
+		 * http://example.com/wp-admin/themes.php?page=chocolate_passion-install-plugins&plugin_status=install
 		 *
 		 * @since 2.5.0
 		 *
 		 * @param string $status Plugin status - either 'install', 'update' or 'activate'.
 		 * @return string Properly encoded URL (not escaped).
 		 */
-		public function get_tgmpa_status_url( $status ) {
+		public function get_chocolate_passion_status_url( $status ) {
 			return add_query_arg(
 				array(
 					'plugin_status' => urlencode( $status ),
 				),
-				$this->get_tgmpa_url()
+				$this->get_chocolate_passion_url()
 			);
 		}
 
@@ -1705,7 +1705,7 @@ if ( ! class_exists( 'TGM_Plugin_Activation' ) ) {
 		 *
 		 * @return bool True if complete, i.e. no outstanding actions. False otherwise.
 		 */
-		public function is_tgmpa_complete() {
+		public function is_chocolate_passion_complete() {
 			$complete = true;
 			foreach ( $this->plugins as $slug => $plugin ) {
 				if ( ! $this->is_plugin_active( $slug ) || false !== $this->does_plugin_have_update( $slug ) ) {
@@ -1907,7 +1907,7 @@ if ( ! class_exists( 'TGM_Plugin_Activation' ) ) {
 		 * @since 2.1.1
 		 */
 		public function update_dismiss() {
-			delete_metadata( 'user', null, 'tgmpa_dismissed_notice_' . $this->id, null, true );
+			delete_metadata( 'user', null, 'chocolate_passion_dismissed_notice_' . $this->id, null, true );
 		}
 
 		/**
@@ -1974,7 +1974,7 @@ if ( ! class_exists( 'TGM_Plugin_Activation' ) ) {
 		 *
 		 * @since 2.5.0
 		 */
-		public function show_tgmpa_version() {
+		public function show_chocolate_passion_version() {
 			echo '<p style="float: right; padding: 0em 1.5em 0.5em 0;"><strong><small>',
 				esc_html(
 					sprintf(
@@ -2009,7 +2009,7 @@ if ( ! class_exists( 'TGM_Plugin_Activation' ) ) {
 		 * @since 2.5.0
 		 */
 		function load_tgm_plugin_activation() {
-			$GLOBALS['tgmpa'] = TGM_Plugin_Activation::get_instance();
+			$GLOBALS['chocolate_passion_tgmpa'] = TGM_Plugin_Activation::get_instance();
 		}
 	}
 
@@ -2020,7 +2020,7 @@ if ( ! class_exists( 'TGM_Plugin_Activation' ) ) {
 	}
 }
 
-if ( ! function_exists( 'tgmpa' ) ) {
+if ( ! function_exists( 'chocolate_passion' ) ) {
 	/**
 	 * Helper function to register a collection of required plugins.
 	 *
@@ -2030,8 +2030,8 @@ if ( ! function_exists( 'tgmpa' ) ) {
 	 * @param array $plugins An array of plugin arrays.
 	 * @param array $config  Optional. An array of configuration values.
 	 */
-	function tgmpa( $plugins, $config = array() ) {
-		$instance = call_user_func( array( get_class( $GLOBALS['tgmpa'] ), 'get_instance' ) );
+	function chocolate_passion( $plugins, $config = array() ) {
+		$instance = call_user_func( array( get_class( $GLOBALS['chocolate_passion_tgmpa'] ), 'get_instance' ) );
 
 		foreach ( $plugins as $plugin ) {
 			call_user_func( array( $instance, 'register' ), $plugin );
@@ -2065,7 +2065,7 @@ if ( ! function_exists( 'tgmpa' ) ) {
  * @since 2.2.0
  */
 if ( ! class_exists( 'WP_List_Table' ) ) {
-	require_once ABSPATH . 'wp-admin/includes/class-wp-list-table.php';
+	require ABSPATH . 'wp-admin/includes/class-wp-list-table.php';
 }
 
 if ( ! class_exists( 'TGMPA_List_Table' ) ) {
@@ -2095,7 +2095,7 @@ if ( ! class_exists( 'TGMPA_List_Table' ) ) {
 		 *
 		 * @var object
 		 */
-		protected $tgmpa;
+		protected $chocolate_passion;
 
 		/**
 		 * The currently chosen view.
@@ -2126,7 +2126,7 @@ if ( ! class_exists( 'TGMPA_List_Table' ) ) {
 		 * @since 2.2.0
 		 */
 		public function __construct() {
-			$this->tgmpa = call_user_func( array( get_class( $GLOBALS['tgmpa'] ), 'get_instance' ) );
+			$this->chocolate_passion = call_user_func( array( get_class( $GLOBALS['chocolate_passion'] ), 'get_instance' ) );
 
 			parent::__construct(
 				array(
@@ -2140,7 +2140,7 @@ if ( ! class_exists( 'TGMPA_List_Table' ) ) {
 				$this->view_context = sanitize_key( $_REQUEST['plugin_status'] );
 			}
 
-			add_filter( 'tgmpa_table_data_items', array( $this, 'sort_table_items' ) );
+			add_filter( 'chocolate_passion_table_data_items', array( $this, 'sort_table_items' ) );
 		}
 
 		/**
@@ -2165,8 +2165,8 @@ if ( ! class_exists( 'TGMPA_List_Table' ) ) {
 		 */
 		protected function _gather_plugin_data() {
 			// Load thickbox for plugin links.
-			$this->tgmpa->admin_init();
-			$this->tgmpa->thickbox();
+			$this->chocolate_passion->admin_init();
+			$this->chocolate_passion->thickbox();
 
 			// Categorize the plugins which have open actions.
 			$plugins = $this->categorize_plugins_to_views();
@@ -2186,23 +2186,23 @@ if ( ! class_exists( 'TGMPA_List_Table' ) ) {
 			foreach ( $plugins[ $this->view_context ] as $slug => $plugin ) {
 				$table_data[ $i ]['sanitized_plugin']  = $plugin['name'];
 				$table_data[ $i ]['slug']              = $slug;
-				$table_data[ $i ]['plugin']            = '<strong>' . $this->tgmpa->get_info_link( $slug ) . '</strong>';
+				$table_data[ $i ]['plugin']            = '<strong>' . $this->chocolate_passion->get_info_link( $slug ) . '</strong>';
 				$table_data[ $i ]['source']            = $this->get_plugin_source_type_text( $plugin['source_type'] );
 				$table_data[ $i ]['type']              = $this->get_plugin_advise_type_text( $plugin['required'] );
 				$table_data[ $i ]['status']            = $this->get_plugin_status_text( $slug );
-				$table_data[ $i ]['installed_version'] = $this->tgmpa->get_installed_version( $slug );
+				$table_data[ $i ]['installed_version'] = $this->chocolate_passion->get_installed_version( $slug );
 				$table_data[ $i ]['minimum_version']   = $plugin['version'];
-				$table_data[ $i ]['available_version'] = $this->tgmpa->does_plugin_have_update( $slug );
+				$table_data[ $i ]['available_version'] = $this->chocolate_passion->does_plugin_have_update( $slug );
 
 				// Prep the upgrade notice info.
-				$upgrade_notice = $this->tgmpa->get_upgrade_notice( $slug );
+				$upgrade_notice = $this->chocolate_passion->get_upgrade_notice( $slug );
 				if ( ! empty( $upgrade_notice ) ) {
 					$table_data[ $i ]['upgrade_notice'] = $upgrade_notice;
 
-					add_action( "tgmpa_after_plugin_row_{$slug}", array( $this, 'wp_plugin_update_row' ), 10, 2 );
+					add_action( "chocolate_passion_after_plugin_row_{$slug}", array( $this, 'wp_plugin_update_row' ), 10, 2 );
 				}
 
-				$table_data[ $i ] = apply_filters( 'tgmpa_table_data_item', $table_data[ $i ], $plugin );
+				$table_data[ $i ] = apply_filters( 'chocolate_passion_table_data_item', $table_data[ $i ], $plugin );
 
 				$i++;
 			}
@@ -2223,21 +2223,21 @@ if ( ! class_exists( 'TGMPA_List_Table' ) ) {
 				'activate' => array(),
 			);
 
-			foreach ( $this->tgmpa->plugins as $slug => $plugin ) {
-				if ( $this->tgmpa->is_plugin_active( $slug ) && false === $this->tgmpa->does_plugin_have_update( $slug ) ) {
+			foreach ( $this->chocolate_passion->plugins as $slug => $plugin ) {
+				if ( $this->chocolate_passion->is_plugin_active( $slug ) && false === $this->chocolate_passion->does_plugin_have_update( $slug ) ) {
 					// No need to display plugins if they are installed, up-to-date and active.
 					continue;
 				} else {
 					$plugins['all'][ $slug ] = $plugin;
 
-					if ( ! $this->tgmpa->is_plugin_installed( $slug ) ) {
+					if ( ! $this->chocolate_passion->is_plugin_installed( $slug ) ) {
 						$plugins['install'][ $slug ] = $plugin;
 					} else {
-						if ( false !== $this->tgmpa->does_plugin_have_update( $slug ) ) {
+						if ( false !== $this->chocolate_passion->does_plugin_have_update( $slug ) ) {
 							$plugins['update'][ $slug ] = $plugin;
 						}
 
-						if ( $this->tgmpa->can_plugin_activate( $slug ) ) {
+						if ( $this->chocolate_passion->can_plugin_activate( $slug ) ) {
 							$plugins['activate'][ $slug ] = $plugin;
 						}
 					}
@@ -2311,11 +2311,11 @@ if ( ! class_exists( 'TGMPA_List_Table' ) ) {
 		 * @return string
 		 */
 		protected function get_plugin_status_text( $slug ) {
-			if ( ! $this->tgmpa->is_plugin_installed( $slug ) ) {
+			if ( ! $this->chocolate_passion->is_plugin_installed( $slug ) ) {
 				return __( 'Not Installed', 'chocolate-passion' );
 			}
 
-			if ( ! $this->tgmpa->is_plugin_active( $slug ) ) {
+			if ( ! $this->chocolate_passion->is_plugin_active( $slug ) ) {
 				$install_status = __( 'Installed But Not Activated', 'chocolate-passion' );
 			} else {
 				$install_status = __( 'Active', 'chocolate-passion' );
@@ -2323,13 +2323,13 @@ if ( ! class_exists( 'TGMPA_List_Table' ) ) {
 
 			$update_status = '';
 
-			if ( $this->tgmpa->does_plugin_require_update( $slug ) && false === $this->tgmpa->does_plugin_have_update( $slug ) ) {
+			if ( $this->chocolate_passion->does_plugin_require_update( $slug ) && false === $this->chocolate_passion->does_plugin_have_update( $slug ) ) {
 				$update_status = __( 'Required Update not Available', 'chocolate-passion' );
 
-			} elseif ( $this->tgmpa->does_plugin_require_update( $slug ) ) {
+			} elseif ( $this->chocolate_passion->does_plugin_require_update( $slug ) ) {
 				$update_status = __( 'Requires Update', 'chocolate-passion' );
 
-			} elseif ( false !== $this->tgmpa->does_plugin_have_update( $slug ) ) {
+			} elseif ( false !== $this->chocolate_passion->does_plugin_have_update( $slug ) ) {
 				$update_status = __( 'Update recommended', 'chocolate-passion' );
 			}
 
@@ -2408,7 +2408,7 @@ if ( ! class_exists( 'TGMPA_List_Table' ) ) {
 
 					$status_links[ $type ] = sprintf(
 						'<a href="%s"%s>%s</a>',
-						esc_url( $this->tgmpa->get_tgmpa_status_url( $type ) ),
+						esc_url( $this->chocolate_passion->get_chocolate_passion_status_url( $type ) ),
 						( $type === $this->view_context ) ? ' class="current"' : '',
 						sprintf( $text, number_format_i18n( $count ) )
 					);
@@ -2478,11 +2478,11 @@ if ( ! class_exists( 'TGMPA_List_Table' ) ) {
 		public function column_version( $item ) {
 			$output = array();
 
-			if ( $this->tgmpa->is_plugin_installed( $item['slug'] ) ) {
+			if ( $this->chocolate_passion->is_plugin_installed( $item['slug'] ) ) {
 				$installed = ! empty( $item['installed_version'] ) ? $item['installed_version'] : _x( 'unknown', 'as in: "version nr unknown"', 'chocolate-passion' );
 
 				$color = '';
-				if ( ! empty( $item['minimum_version'] ) && $this->tgmpa->does_plugin_require_update( $item['slug'] ) ) {
+				if ( ! empty( $item['minimum_version'] ) && $this->chocolate_passion->does_plugin_require_update( $item['slug'] ) ) {
 					$color = ' color: #ff0000; font-weight: bold;';
 				}
 
@@ -2554,7 +2554,7 @@ if ( ! class_exists( 'TGMPA_List_Table' ) ) {
 				$columns['status']  = __( 'Status', 'chocolate-passion' );
 			}
 
-			return apply_filters( 'tgmpa_table_columns', $columns );
+			return apply_filters( 'chocolate_passion_table_columns', $columns );
 		}
 
 		/**
@@ -2598,18 +2598,18 @@ if ( ! class_exists( 'TGMPA_List_Table' ) ) {
 			$action_links = array();
 
 			// Display the 'Install' action link if the plugin is not yet available.
-			if ( ! $this->tgmpa->is_plugin_installed( $item['slug'] ) ) {
+			if ( ! $this->chocolate_passion->is_plugin_installed( $item['slug'] ) ) {
 				/* translators: %2$s: plugin name in screen reader markup */
 				$actions['install'] = __( 'Install %2$s', 'chocolate-passion' );
 			} else {
 				// Display the 'Update' action link if an update is available and WP complies with plugin minimum.
-				if ( false !== $this->tgmpa->does_plugin_have_update( $item['slug'] ) && $this->tgmpa->can_plugin_update( $item['slug'] ) ) {
+				if ( false !== $this->chocolate_passion->does_plugin_have_update( $item['slug'] ) && $this->chocolate_passion->can_plugin_update( $item['slug'] ) ) {
 					/* translators: %2$s: plugin name in screen reader markup */
 					$actions['update'] = __( 'Update %2$s', 'chocolate-passion' );
 				}
 
 				// Display the 'Activate' action link, but only if the plugin meets the minimum version.
-				if ( $this->tgmpa->can_plugin_activate( $item['slug'] ) ) {
+				if ( $this->chocolate_passion->can_plugin_activate( $item['slug'] ) ) {
 					/* translators: %2$s: plugin name in screen reader markup */
 					$actions['activate'] = __( 'Activate %2$s', 'chocolate-passion' );
 				}
@@ -2621,12 +2621,12 @@ if ( ! class_exists( 'TGMPA_List_Table' ) ) {
 					add_query_arg(
 						array(
 							'plugin'           => urlencode( $item['slug'] ),
-							'tgmpa-' . $action => $action . '-plugin',
+							'chocolate_passion-' . $action => $action . '-plugin',
 						),
-						$this->tgmpa->get_tgmpa_url()
+						$this->chocolate_passion->get_chocolate_passion_url()
 					),
-					'tgmpa-' . $action,
-					'tgmpa-nonce'
+					'chocolate_passion-' . $action,
+					'chocolate_passion-nonce'
 				);
 
 				$action_links[ $action ] = sprintf(
@@ -2637,7 +2637,7 @@ if ( ! class_exists( 'TGMPA_List_Table' ) ) {
 			}
 
 			$prefix = ( defined( 'WP_NETWORK_ADMIN' ) && WP_NETWORK_ADMIN ) ? 'network_admin_' : '';
-			return apply_filters( "tgmpa_{$prefix}plugin_action_links", array_filter( $action_links ), $item['slug'], $item, $this->view_context );
+			return apply_filters( "chocolate_passion_{$prefix}plugin_action_links", array_filter( $action_links ), $item['slug'], $item, $this->view_context );
 		}
 
 		/**
@@ -2658,7 +2658,7 @@ if ( ! class_exists( 'TGMPA_List_Table' ) ) {
 			 *
 			 * @since 2.5.0
 			 */
-			do_action( "tgmpa_after_plugin_row_{$item['slug']}", $item['slug'], $item, $this->view_context );
+			do_action( "chocolate_passion_after_plugin_row_{$item['slug']}", $item['slug'], $item, $this->view_context );
 		}
 
 		/**
@@ -2697,7 +2697,7 @@ if ( ! class_exists( 'TGMPA_List_Table' ) ) {
 		 */
 		public function extra_tablenav( $which ) {
 			if ( 'bottom' === $which ) {
-				$this->tgmpa->show_tgmpa_version();
+				$this->chocolate_passion->show_chocolate_passion_version();
 			}
 		}
 
@@ -2714,16 +2714,16 @@ if ( ! class_exists( 'TGMPA_List_Table' ) ) {
 
 			if ( 'update' !== $this->view_context && 'activate' !== $this->view_context ) {
 				if ( current_user_can( 'install_plugins' ) ) {
-					$actions['tgmpa-bulk-install'] = __( 'Install', 'chocolate-passion' );
+					$actions['chocolate_passion-bulk-install'] = __( 'Install', 'chocolate-passion' );
 				}
 			}
 
 			if ( 'install' !== $this->view_context ) {
 				if ( current_user_can( 'update_plugins' ) ) {
-					$actions['tgmpa-bulk-update'] = __( 'Update', 'chocolate-passion' );
+					$actions['chocolate_passion-bulk-update'] = __( 'Update', 'chocolate-passion' );
 				}
 				if ( current_user_can( 'activate_plugins' ) ) {
-					$actions['tgmpa-bulk-activate'] = __( 'Activate', 'chocolate-passion' );
+					$actions['chocolate_passion-bulk-activate'] = __( 'Activate', 'chocolate-passion' );
 				}
 			}
 
@@ -2740,12 +2740,12 @@ if ( ! class_exists( 'TGMPA_List_Table' ) ) {
 		 */
 		public function process_bulk_actions() {
 			// Bulk installation process.
-			if ( 'tgmpa-bulk-install' === $this->current_action() || 'tgmpa-bulk-update' === $this->current_action() ) {
+			if ( 'chocolate_passion-bulk-install' === $this->current_action() || 'chocolate_passion-bulk-update' === $this->current_action() ) {
 
 				check_admin_referer( 'bulk-' . $this->_args['plural'] );
 
 				$install_type = 'install';
-				if ( 'tgmpa-bulk-update' === $this->current_action() ) {
+				if ( 'chocolate_passion-bulk-update' === $this->current_action() ) {
 					$install_type = 'update';
 				}
 
@@ -2773,23 +2773,23 @@ if ( ! class_exists( 'TGMPA_List_Table' ) ) {
 
 				// Sanitize the received input.
 				$plugins_to_install = array_map( 'urldecode', $plugins_to_install );
-				$plugins_to_install = array_map( array( $this->tgmpa, 'sanitize_key' ), $plugins_to_install );
+				$plugins_to_install = array_map( array( $this->chocolate_passion, 'sanitize_key' ), $plugins_to_install );
 
 				// Validate the received input.
 				foreach ( $plugins_to_install as $key => $slug ) {
 					// Check if the plugin was registered with TGMPA and remove if not.
-					if ( ! isset( $this->tgmpa->plugins[ $slug ] ) ) {
+					if ( ! isset( $this->chocolate_passion->plugins[ $slug ] ) ) {
 						unset( $plugins_to_install[ $key ] );
 						continue;
 					}
 
 					// For install: make sure this is a plugin we *can* install and not one already installed.
-					if ( 'install' === $install_type && true === $this->tgmpa->is_plugin_installed( $slug ) ) {
+					if ( 'install' === $install_type && true === $this->chocolate_passion->is_plugin_installed( $slug ) ) {
 						unset( $plugins_to_install[ $key ] );
 					}
 
 					// For updates: make sure this is a plugin we *can* update (update available and WP version ok).
-					if ( 'update' === $install_type && false === $this->tgmpa->is_plugin_updatetable( $slug ) ) {
+					if ( 'update' === $install_type && false === $this->chocolate_passion->is_plugin_updatetable( $slug ) ) {
 						unset( $plugins_to_install[ $key ] );
 					}
 				}
@@ -2809,7 +2809,7 @@ if ( ! class_exists( 'TGMPA_List_Table' ) ) {
 
 				// Pass all necessary information if WP_Filesystem is needed.
 				$url = wp_nonce_url(
-					$this->tgmpa->get_tgmpa_url(),
+					$this->chocolate_passion->get_chocolate_passion_url(),
 					'bulk-' . $this->_args['plural']
 				);
 
@@ -2841,8 +2841,8 @@ if ( ! class_exists( 'TGMPA_List_Table' ) ) {
 
 				// Prepare the data for validated plugins for the install/upgrade.
 				foreach ( $plugins_to_install as $slug ) {
-					$name   = $this->tgmpa->plugins[ $slug ]['name'];
-					$source = $this->tgmpa->get_download_url( $slug );
+					$name   = $this->chocolate_passion->plugins[ $slug ]['name'];
+					$source = $this->chocolate_passion->get_download_url( $slug );
 
 					if ( ! empty( $name ) && ! empty( $source ) ) {
 						$names[] = $name;
@@ -2854,8 +2854,8 @@ if ( ! class_exists( 'TGMPA_List_Table' ) ) {
 								break;
 
 							case 'update':
-								$file_paths[]                 = $this->tgmpa->plugins[ $slug ]['file_path'];
-								$to_inject[ $slug ]           = $this->tgmpa->plugins[ $slug ];
+								$file_paths[]                 = $this->chocolate_passion->plugins[ $slug ]['file_path'];
+								$to_inject[ $slug ]           = $this->chocolate_passion->plugins[ $slug ];
 								$to_inject[ $slug ]['source'] = $source;
 								break;
 						}
@@ -2867,7 +2867,7 @@ if ( ! class_exists( 'TGMPA_List_Table' ) ) {
 				$installer = new TGMPA_Bulk_Installer(
 					new TGMPA_Bulk_Installer_Skin(
 						array(
-							'url'          => esc_url_raw( $this->tgmpa->get_tgmpa_url() ),
+							'url'          => esc_url_raw( $this->chocolate_passion->get_chocolate_passion_url() ),
 							'nonce'        => 'bulk-' . $this->_args['plural'],
 							'names'        => $names,
 							'install_type' => $install_type,
@@ -2876,23 +2876,23 @@ if ( ! class_exists( 'TGMPA_List_Table' ) ) {
 				);
 
 				// Wrap the install process with the appropriate HTML.
-				echo '<div class="tgmpa">',
+				echo '<div class="chocolate_passion">',
 					'<h2 style="font-size: 23px; font-weight: 400; line-height: 29px; margin: 0; padding: 9px 15px 4px 0;">', esc_html( get_admin_page_title() ), '</h2>
 					<div class="update-php" style="width: 100%; height: 98%; min-height: 850px; padding-top: 1px;">';
 
 				// Process the bulk installation submissions.
-				add_filter( 'upgrader_source_selection', array( $this->tgmpa, 'maybe_adjust_source_dir' ), 1, 3 );
+				add_filter( 'upgrader_source_selection', array( $this->chocolate_passion, 'maybe_adjust_source_dir' ), 1, 3 );
 
-				if ( 'tgmpa-bulk-update' === $this->current_action() ) {
+				if ( 'chocolate_passion-bulk-update' === $this->current_action() ) {
 					// Inject our info into the update transient.
-					$this->tgmpa->inject_update_info( $to_inject );
+					$this->chocolate_passion->inject_update_info( $to_inject );
 
 					$installer->bulk_upgrade( $file_paths );
 				} else {
 					$installer->bulk_install( $sources );
 				}
 
-				remove_filter( 'upgrader_source_selection', array( $this->tgmpa, 'maybe_adjust_source_dir' ), 1 );
+				remove_filter( 'upgrader_source_selection', array( $this->chocolate_passion, 'maybe_adjust_source_dir' ), 1 );
 
 				echo '</div></div>';
 
@@ -2900,7 +2900,7 @@ if ( ! class_exists( 'TGMPA_List_Table' ) ) {
 			}
 
 			// Bulk activation process.
-			if ( 'tgmpa-bulk-activate' === $this->current_action() ) {
+			if ( 'chocolate_passion-bulk-activate' === $this->current_action() ) {
 				check_admin_referer( 'bulk-' . $this->_args['plural'] );
 
 				// Did user actually select any plugins to activate ?
@@ -2914,7 +2914,7 @@ if ( ! class_exists( 'TGMPA_List_Table' ) ) {
 				$plugins = array();
 				if ( isset( $_POST['plugin'] ) ) {
 					$plugins = array_map( 'urldecode', (array) $_POST['plugin'] );
-					$plugins = array_map( array( $this->tgmpa, 'sanitize_key' ), $plugins );
+					$plugins = array_map( array( $this->chocolate_passion, 'sanitize_key' ), $plugins );
 				}
 
 				$plugins_to_activate = array();
@@ -2922,9 +2922,9 @@ if ( ! class_exists( 'TGMPA_List_Table' ) ) {
 
 				// Grab the file paths for the selected & inactive plugins from the registration array.
 				foreach ( $plugins as $slug ) {
-					if ( $this->tgmpa->can_plugin_activate( $slug ) ) {
-						$plugins_to_activate[] = $this->tgmpa->plugins[ $slug ]['file_path'];
-						$plugin_names[]        = $this->tgmpa->plugins[ $slug ]['name'];
+					if ( $this->chocolate_passion->can_plugin_activate( $slug ) ) {
+						$plugins_to_activate[] = $this->chocolate_passion->plugins[ $slug ]['file_path'];
+						$plugin_names[]        = $this->chocolate_passion->plugins[ $slug ]['name'];
 					}
 				}
 				unset( $slug );
@@ -2984,12 +2984,12 @@ if ( ! class_exists( 'TGMPA_List_Table' ) ) {
 			$this->_column_headers = array( $columns, $hidden, $sortable, $primary ); // Get all necessary column headers.
 
 			// Process our bulk activations here.
-			if ( 'tgmpa-bulk-activate' === $this->current_action() ) {
+			if ( 'chocolate_passion-bulk-activate' === $this->current_action() ) {
 				$this->process_bulk_actions();
 			}
 
 			// Store all of our plugin data into $items array so WP_List_Table can use it.
-			$this->items = apply_filters( 'tgmpa_table_data_items', $this->_gather_plugin_data() );
+			$this->items = apply_filters( 'chocolate_passion_table_data_items', $this->_gather_plugin_data() );
 		}
 
 		/* *********** DEPRECATED METHODS *********** */
@@ -3008,7 +3008,7 @@ if ( ! class_exists( 'TGMPA_List_Table' ) ) {
 		protected function _get_plugin_data_from_name( $name, $data = 'slug' ) {
 			_deprecated_function( __FUNCTION__, 'TGMPA 2.5.0', 'TGM_Plugin_Activation::_get_plugin_data_from_name()' );
 
-			return $this->tgmpa->_get_plugin_data_from_name( $name, $data );
+			return $this->chocolate_passion->_get_plugin_data_from_name( $name, $data );
 		}
 	}
 }
@@ -3051,21 +3051,21 @@ if ( ! class_exists( 'TGM_Bulk_Installer_Skin' ) ) {
  *
  * @since 2.2.0
  */
-add_action( 'admin_init', 'tgmpa_load_bulk_installer' );
-if ( ! function_exists( 'tgmpa_load_bulk_installer' ) ) {
+add_action( 'admin_init', 'chocolate_passion_load_bulk_installer' );
+if ( ! function_exists( 'chocolate_passion_load_bulk_installer' ) ) {
 	/**
 	 * Load bulk installer
 	 */
-	function tgmpa_load_bulk_installer() {
+	function chocolate_passion_load_bulk_installer() {
 		// Silently fail if 2.5+ is loaded *after* an older version.
-		if ( ! isset( $GLOBALS['tgmpa'] ) ) {
+		if ( ! isset( $GLOBALS['chocolate_passion'] ) ) {
 			return;
 		}
 
 		// Get TGMPA class instance.
-		$tgmpa_instance = call_user_func( array( get_class( $GLOBALS['tgmpa'] ), 'get_instance' ) );
+		$chocolate_passion_instance = call_user_func( array( get_class( $GLOBALS['chocolate_passion'] ), 'get_instance' ) );
 
-		if ( isset( $_GET['page'] ) && $tgmpa_instance->menu === $_GET['page'] ) {
+		if ( isset( $_GET['page'] ) && $chocolate_passion_instance->menu === $_GET['page'] ) {
 			if ( ! class_exists( 'Plugin_Upgrader', false ) ) {
 				require_once ABSPATH . 'wp-admin/includes/class-wp-upgrader.php';
 			}
@@ -3114,7 +3114,7 @@ if ( ! function_exists( 'tgmpa_load_bulk_installer' ) ) {
 					 *
 					 * @var object
 					 */
-					protected $tgmpa;
+					protected $chocolate_passion;
 
 					/**
 					 * Whether or not the destination directory needs to be cleared ( = on update).
@@ -3134,7 +3134,7 @@ if ( ! function_exists( 'tgmpa_load_bulk_installer' ) ) {
 					 */
 					public function __construct( $skin = null ) {
 						// Get TGMPA class instance.
-						$this->tgmpa = call_user_func( array( get_class( $GLOBALS['tgmpa'] ), 'get_instance' ) );
+						$this->chocolate_passion = call_user_func( array( get_class( $GLOBALS['chocolate_passion'] ), 'get_instance' ) );
 
 						parent::__construct( $skin );
 
@@ -3142,11 +3142,11 @@ if ( ! function_exists( 'tgmpa_load_bulk_installer' ) ) {
 							$this->clear_destination = true;
 						}
 
-						if ( $this->tgmpa->is_automatic ) {
+						if ( $this->chocolate_passion->is_automatic ) {
 							$this->activate_strings();
 						}
 
-						add_action( 'upgrader_process_complete', array( $this->tgmpa, 'populate_file_path' ) );
+						add_action( 'upgrader_process_complete', array( $this->chocolate_passion, 'populate_file_path' ) );
 					}
 
 					/**
@@ -3173,7 +3173,7 @@ if ( ! function_exists( 'tgmpa_load_bulk_installer' ) ) {
 						$result = parent::run( $options );
 
 						// Reset the strings in case we changed one during automatic activation.
-						if ( $this->tgmpa->is_automatic ) {
+						if ( $this->chocolate_passion->is_automatic ) {
 							if ( 'update' === $this->skin->options['install_type'] ) {
 								$this->upgrade_strings();
 							} else {
@@ -3371,7 +3371,7 @@ if ( ! function_exists( 'tgmpa_load_bulk_installer' ) ) {
 					 */
 					public function auto_activate( $bool ) {
 						// Only process the activation of installed plugins if the automatic flag is set to true.
-						if ( $this->tgmpa->is_automatic ) {
+						if ( $this->chocolate_passion->is_automatic ) {
 							// Flush plugins cache so the headers of the newly installed plugins will be read correctly.
 							wp_clean_plugins_cache();
 
@@ -3454,7 +3454,7 @@ if ( ! function_exists( 'tgmpa_load_bulk_installer' ) ) {
 					 *
 					 * @var object
 					 */
-					protected $tgmpa;
+					protected $chocolate_passion;
 
 					/**
 					 * Constructor. Parses default args with new ones and extracts them for use.
@@ -3465,7 +3465,7 @@ if ( ! function_exists( 'tgmpa_load_bulk_installer' ) ) {
 					 */
 					public function __construct( $args = array() ) {
 						// Get TGMPA class instance.
-						$this->tgmpa = call_user_func( array( get_class( $GLOBALS['tgmpa'] ), 'get_instance' ) );
+						$this->chocolate_passion = call_user_func( array( get_class( $GLOBALS['chocolate_passion'] ), 'get_instance' ) );
 
 						// Parse default and new args.
 						$defaults = array(
@@ -3502,7 +3502,7 @@ if ( ! function_exists( 'tgmpa_load_bulk_installer' ) ) {
 							/* translators: 1: plugin name. */
 							$this->upgrader->strings['skin_update_failed'] = __( 'The installation of %1$s failed.', 'chocolate-passion' );
 
-							if ( $this->tgmpa->is_automatic ) {
+							if ( $this->chocolate_passion->is_automatic ) {
 								// Automatic activation strings.
 								$this->upgrader->strings['skin_upgrade_start'] = __( 'The installation and activation process is starting. This process may take a while on some hosts, so please be patient.', 'chocolate-passion' );
 								/* translators: 1: plugin name. */
@@ -3567,20 +3567,20 @@ if ( ! function_exists( 'tgmpa_load_bulk_installer' ) ) {
 						// Flush plugins cache so we can make sure that the installed plugins list is always up to date.
 						wp_clean_plugins_cache();
 
-						$this->tgmpa->show_tgmpa_version();
+						$this->chocolate_passion->show_chocolate_passion_version();
 
 						// Display message based on if all plugins are now active or not.
 						$update_actions = array();
 
-						if ( $this->tgmpa->is_tgmpa_complete() ) {
+						if ( $this->chocolate_passion->is_chocolate_passion_complete() ) {
 							// All plugins are active, so we display the complete string and hide the menu to protect users.
 							echo '<style type="text/css">#adminmenu .wp-submenu li.current { display: none !important; }</style>';
 							$update_actions['dashboard'] = sprintf(
-								esc_html( $this->tgmpa->strings['complete'] ),
+								esc_html( $this->chocolate_passion->strings['complete'] ),
 								'<a href="' . esc_url( self_admin_url() ) . '">' . esc_html__( 'Return to the Dashboard', 'chocolate-passion' ) . '</a>'
 							);
 						} else {
-							$update_actions['tgmpa_page'] = '<a href="' . esc_url( $this->tgmpa->get_tgmpa_url() ) . '" target="_parent">' . esc_html( $this->tgmpa->strings['return'] ) . '</a>';
+							$update_actions['chocolate_passion_page'] = '<a href="' . esc_url( $this->chocolate_passion->get_chocolate_passion_url() ) . '" target="_parent">' . esc_html( $this->chocolate_passion->strings['return'] ) . '</a>';
 						}
 
 						/**
@@ -3591,7 +3591,7 @@ if ( ! function_exists( 'tgmpa_load_bulk_installer' ) ) {
 						 * @param array $update_actions Array of plugin action links.
 						 * @param array $plugin_info    Array of information for the last-handled plugin.
 						 */
-						$update_actions = apply_filters( 'tgmpa_update_bulk_plugins_complete_actions', $update_actions, $this->plugin_info );
+						$update_actions = apply_filters( 'chocolate_passion_update_bulk_plugins_complete_actions', $update_actions, $this->plugin_info );
 
 						if ( ! empty( $update_actions ) ) {
 							$this->feedback( implode( ' | ', (array) $update_actions ) );

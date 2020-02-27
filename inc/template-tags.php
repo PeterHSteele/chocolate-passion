@@ -189,7 +189,7 @@ if ( ! function_exists( 'chocolate_passion_footer_nav' ) ):
 		) 
 		?>
 			<nav class="<?php echo esc_attr( $class )?>" role="navigation" aria-label="<?php echo esc_attr( $labels[$location] ); ?>">
-				<h3><?php chocolate_passion_menu_name( $location ) ?></h3>
+				<h2><?php chocolate_passion_menu_name( $location ) ?></h2>
 				<?php 
 					wp_nav_menu( array(
 						'theme_location' => $location,

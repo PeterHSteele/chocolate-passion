@@ -1,5 +1,5 @@
 /*!
-Theme Name: chocolate passion
+Theme Name: Chocolate Passion
 Theme URI: github.com/peterhsteele/chocolate-passion
 Author: Peter Steele
 Description: A decluttered theme focused on readability and images.
@@ -10,7 +10,6 @@ Text Domain: chocolate-passion
 Tags: custom-background, custom-logo, custom-menu, featured-images, threaded-comments, translation-ready, blog, e-commerce, two-columns, right-sidebar, footer-widgets, accessibility-ready
 
 This theme, like WordPress, is licensed under the GPL.
-Use it to make something cool, have fun, and share what you've learned with others.
 
 chocolate passion is based on Underscores https://underscores.me/, (C) 2012-2017 Automattic, Inc.
 Underscores is distributed under the terms of the GNU GPL v2 or later.
@@ -1008,15 +1007,9 @@ Nav Media Query
 	padding: .5em 0 .5em .5em;
 }
 
-footer .secondary-navigation a,
-.footer-links a{
-	
-}
-
 .site-main .comment-navigation, .site-main
 .posts-navigation, .site-main
 .post-navigation {
-	/*margin: 0 0 1.5em;*/
 	overflow: hidden;
 }
 
@@ -1077,8 +1070,7 @@ footer .secondary-navigation a,
 .post-navigation .nav-next a,
 .slick-prev,
 .slick-next,
-.comment-form input[type="submit"]/*,
-select*/{
+.comment-form input[type="submit"]{
 	padding: .2em;
 	color: white;
 	background: black;
@@ -1112,39 +1104,9 @@ select*/{
 .posts-navigation .nav-next a:hover,
 .posts-navigation .nav-next a:focus,
 .post-navigation .nav-next a:hover,
-.post-navigation .nav-next a:focus,
-.slick-next:hover,
-.slick-next:focus,
-.slick-prev:hover,
-.slick-prev:focus{
+.post-navigation .nav-next a:focus{
 	background:white;
 	color: black;
-}
-
-.slick-next,
-.slick-prev{
-	margin: 0;
-	z-index: 10;
-	position: absolute;
-	bottom: -44px;
-	line-height: 1.5em;
-	min-width: 5em;
-	outline: none;
-}
-
-.slick-prev:focus,
-.slick-next:focus,
-.slick-prev:hover,
-.slick-next:hover{
-	border: 2px solid black;
-}
-
-.slick-prev{
-	right: 50.2%;
-}
-
-.slick-next{
-	left: 50.2%;
 }
 
 /*--------------------------------------------------------------
@@ -1994,44 +1956,7 @@ Panels
 	margin: 0;
 	padding: 0;
 }
-/*
-.slick-dots{
-	list-style: none;
-	text-align: center;
-	margin: 0;
-	padding: 0;
-}
 
-.slick-dots:after{
-	clear:both;
-	content:'';
-	display: table;
-}
-
-.slick-dots li{
-	display:inline;
-	position: relative;
-	margin: 5px;
-}
-
-.slick-dots li button{
-	outline: none;
-	text-indent: -9999px;
-	width: 15px;
-	height: 15px;
-	background: black;
-	border: 2px solid white;
-	padding: 0;
-	border-radius: 50%;
-}
-
-.slick-dots li button:hover,
-.slick-dots li button:focus,
-.slick-dots li.slick-active button{
-	border: 2px solid black;
-	background: white;
-}
-*/
 /*
 ===============
 Custom Styles - Single Post
@@ -2102,6 +2027,7 @@ Custom Styles - Sidebar
 	text-align: left;
 }
 
+
 /*
 ===============
 Custom Styles - Footer
@@ -2121,6 +2047,11 @@ Custom Styles - Footer
 	color: white;
 }
 
+.site-footer h2{
+	font-size: 1.3em;
+}
+
+/* privacy policy and copyright containers*/
 .site-footer .site-info{
 	padding: 2em 0 .5em;
 	font-size: .9em;
@@ -2139,6 +2070,7 @@ Custom Styles - Footer
 	border-left: 1px solid white;
 }
 
+/* footer extra links */
 .footer-links{
 	box-sizing: border-box;
 }
@@ -2156,6 +2088,8 @@ Custom Styles - Footer
 	color: orangered;
 }
 
+
+/* footer link behavior */
 .footer-links a:visited,
 .privacy-policy-link:visited{
 	color: white;
@@ -2166,10 +2100,7 @@ Custom Styles - Footer
 	transition: .2s color;
 }
 
-.privacy-policy-link:hover,
-.privacy-policy-link:focus{
-	color: orangered;
-}
+/* footer widget area */
 
 .footer-widgets{
 	background-image: url('./assets/img/bgwidget.svg');
@@ -2178,11 +2109,30 @@ Custom Styles - Footer
 	background-position: -5px -5em;
 }
 
-.footer-widgets section.widget a,
-.footer-widgets section.widget a:hover,
-.footer-widgets section.widget a:focus,
-.footer-widgets section.widget a:active{
+.footer-widgets ul{
+	padding: 0;
+	margin: 0;
+	list-style: none;
+}
+
+.footer-widgets a,
+.footer-widgets a:hover,
+.footer-widgets a:focus,
+.footer-widgets a:visited{
+	transition: .2s color;
 	color: white;
+}
+
+.footer-widgets a:hover{
+	text-decoration: underline;
+}
+
+.footer-widgets .row{
+	padding: 0;
+}
+
+.footer-widgets a{
+	text-decoration: none;
 }
 
 /*
@@ -2354,7 +2304,7 @@ Layout - Footer - Small Screen
 	}
 
 	.main-navigation > div > ul > li.menu-item-has-children > ul > li.menu-item-has-children > a:after{
-		border-top: .42em solid black
+		border-top: .42em solid black;
 	}
 
 	.main-navigation > div > ul > li.menu-item-has-children > a:hover:after,
@@ -2447,7 +2397,7 @@ Custom Styles - Sidebar - Large Screen
 */	
 
 	.widget-area{
-		padding: 0 .5em 0 1.5em;
+		padding: 0 8px 0 56px;
 		display: block;
 	}
 }
