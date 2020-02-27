@@ -33,7 +33,7 @@
 									the_custom_logo();
 								else :
 								?>
-									<h2 class="cp-logo-fallback"><a href="<?php esc_url( home_url( '/' )); ?>" rel="home"><?php bloginfo('name') ?></a></h2> 
+									<h2 class="cp-logo-fallback"><a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home"><?php bloginfo('name') ?></a></h2> 
 								<?php endif; ?>
 							</div><!-- .site-branding -->
 							<div class="header secondary-menu-wrap">
