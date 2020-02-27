@@ -811,21 +811,19 @@ ul ul li.menu-item-has-children a:hover:after{
 .menu-toggle{
 	width: 33px;
 	position: absolute;
-	padding: .45rem;
+	padding: .65rem;
 	background: #eee;
 	top: 0;
 	right: 0;
 	border-radius: 0;
 	color: #404040;
-	border: 5px solid #eee;
+	border: none;
 	font-size: .65rem;
 }
 
 .menu-toggle:hover,
 .menu-toggle:focus{
 	background: orangered;
-	border-width: 5px;
-	border-style: solid;
 	color: white;
 }
 
@@ -876,7 +874,7 @@ nav for banner header page template
 }
 
 .banner-header .menu-toggle{
-	border: 2px solid white;
+	padding:.55rem;
 	outline: none;
 	background: #fff;
 	color: #404040;
@@ -889,7 +887,6 @@ nav for banner header page template
 .banner-header .menu-toggle:focus{
 	background: #404040;
 	color: white;
-	border: 2px solid #404040;
 }
 
 .banner-header li.menu-item-has-children > a:hover:after{
@@ -1603,7 +1600,7 @@ Layout - Footer
 }
 
 .footer-widgets section.widget{
-	flex: 0 0 50%;
+	flex: 0 0 100%;
 }
 
 /*
@@ -1691,18 +1688,22 @@ Custom Styles - Header
 	padding: .45rem;
 	margin: 0;
 	border-radius: 0;
-	border: 2px solid white;
 }
 
 .search-form button{
+	padding: .65rem .55rem;
 	background: #eee;
-	border: 5px solid #eee;
 }
+
+.search-form input,
+.search-form button{
+	border: none;
+}
+
 
 .search-form button:hover,
 .search-form button:focus{
 	background: orangered;
-	border: 3px solid orangered;
 	color: white;
 }
 
@@ -2181,9 +2182,11 @@ Layout - Footer - Small Screen
 ==============
 */
 
-.footer-links{
+.footer-links,
+.footer-widgets section.widget{
 	flex: 0 0 50%;
 }
+
 
 
 	/*
@@ -2214,7 +2217,6 @@ Layout - Footer - Small Screen
 	.menu-toggle{
 		color: #505050;
 		width: 37px;
-		border: 3px solid #eee;
 	}
 
 	.menu-toggle,
@@ -2225,21 +2227,16 @@ Layout - Footer - Small Screen
 		padding: .6rem;
 	}
 
-
-
-	.banner-header .menu-toggle,
-	.banner-header .menu-toggle:hover,
-	.banner-header .menu-toggle:focus{
-		border: none;
-	}
-
 	.search-form button{
-		border: 3px solid #eee;
+		padding: .65rem;
 	}
 
-	.search-form button:hover{
-		background: orangered;
-		border: 3px solid orangered;
+	.menu-toggle{
+		padding: .65rem;
+	}
+
+	.banner-header .menu-toggle{
+		padding: .6rem;
 	}
 
 	.banner-header .main-navigation{
@@ -2511,17 +2508,13 @@ Custom Styles - Sidebar - Large Screen
 		padding: 0;
 	}
 
-	.search-form button{
-		border: 2.5px solid #eee;
-	}
-
 	.search-form input{
-		border: 1.5px solid white;
+		/*border: 1.5px solid white;*/
 	}
 
 	.search-form button:hover,
 	.search-form button:focus{
-		border: 2.5px solid orangered;
+		/*border: 2.5px solid orangered;*/
 	}
 
 	/*

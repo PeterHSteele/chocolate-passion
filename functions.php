@@ -373,7 +373,6 @@ if ( ! function_exists( 'chocolate_passion_customize_css' ) ):
 			.menu-toggle:hover,
 			.menu-toggle:focus{
 				background: $primary;
-				border: 5px solid $primary;
 			}
 
 			.footer-links a:hover,
@@ -435,30 +434,8 @@ if ( ! function_exists( 'chocolate_passion_customize_css' ) ):
 			.search-form button:hover,
 			.search-form button:focus{
 				background: $primary;
-				border: 5px solid $primary;
 			}
 
-			@media all and (min-width: 300px){
-				
-				.search-form button:hover,
-				.search-form button:focus{
-					border: 3px solid $primary;
-				}
-
-				.menu-toggle:hover,
-				.menu-toggle:focus{
-					border: 3px solid $primary;
-				}
-
-			}
-
-			@media all and (min-width: 1024px){
-				
-				.search-form button:hover,
-				.search-form button:focus{
-					border: 2.5px solid $primary;
-				}
-			}
 		";
 
 		return $css;
