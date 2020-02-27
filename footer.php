@@ -38,8 +38,7 @@
 		</div><!--.footer-row-one-->
 
 		<!---->	
-		<div class="footer-row-two footer-row footer-widgets" style="background-image: url(<?php echo esc_url( get_template_directory_uri() . '/assets/img/bgwidget.svg' )?>)">	
-			<?php //get_template_part('template-parts/footer','background'); ?>	
+		<div class="footer-row-two footer-row footer-widgets">		
 			<div class="col-80">
 				<?php get_sidebar( 'footer' ); ?>
 			 </div><!--.row-->

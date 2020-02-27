@@ -73,7 +73,28 @@ function chocolate_passion_customize_register( $wp_customize ) {
 		'active_callback' => 'chocolate_passion_is_panels',
 	));
 
+	$wp_customize->add_setting( 'chocolate_passion_panels_homepage', array(
+		'default' => 0,
+		'sanitize_callback' => 'chocolate_passion_sanitize_checkbox'
+	) );
+
+	$wp_customize->add_control( 'chocolate_passion_panels_homepage', array(
+		'label' => __( 'Show Panels on Blog Page', 'chocolate-passion' ),
+		'type' => 'checkbox',
+		'section' => 'chocolate_passion_panels',
+		'description' => __( 
+			'Normally, designating a page as the default "posts page" in settings -> reading 
+			prevents all content except the title and your posts from appearing. 
+			Checking this box means panels will show up there, regardless of whether
+			that page uses the Panels page template.', 'chocolate-passion' 
+		)
+	));
+
 	for( $count = 1; $count <= 4; $count++){
+		
+		/*
+		allows user to set the post to include in panel page
+		*/
 		$wp_customize->add_setting( 'chocolate_passion_panel_posts_' . $count, array(
 			'default' => '',
 			'sanitize_callback' => 'absint'
@@ -82,10 +103,13 @@ function chocolate_passion_customize_register( $wp_customize ) {
  		$wp_customize->add_control( new Chocolate_Passion_Dropdown_Posts_Control( $wp_customize, 'chocolate_passion_panel_posts_' . $count, array(
 			/* translators:  %s: panel number.*/
 			'label' => sprintf( __( 'Panel %s Content', 'chocolate-passion' ), $count ),
-			'section' => __( 'chocolate_passion_panels', 'chocolate-passion' ),
+			'section' => 'chocolate_passion_panels',
 			'settings' => 'chocolate_passion_panel_posts_' . $count,
 		)));
-	
+		/*
+		allows user to set the text position of the panel content
+		*/
+
 		$wp_customize->add_setting( 'chocolate_passion_panel_text_position_' . $count, array(
 			'default' => 'bottom-left',
 			'sanitize_callback' => 'chocolate_passion_sanitize_text_position'
@@ -129,33 +153,31 @@ function chocolate_passion_customize_register( $wp_customize ) {
 }
 add_action( 'customize_register', 'chocolate_passion_customize_register' );
 
-if ( ! function_exists( 'chocolate_passion_enqueue_customizer_css' ) ):
+/* enqueue customizer css for panels section */
 
-	function chocolate_passion_enqueue_customizer_css(){
-		wp_enqueue_style( 'chocolate-passion-customizer-styles', get_template_directory_uri() . '/css/customizer.css' );
-	}
-
-endif;
+function chocolate_passion_enqueue_customizer_css(){
+	wp_enqueue_style( 'chocolate-passion-customizer-styles', get_template_directory_uri() . '/css/customizer.css' );
+}
 
 add_action( 'customize_controls_print_styles', 'chocolate_passion_enqueue_customizer_css' );
+
+/** 
+*Custom Sanitization Functions
+*
+* sanitize_year is for the copyright year.
+*/
 
 function chocolate_passion_sanitize_year( $year ){
 	return absint( substr( $year, 0, 4) );
 }
 
 function chocolate_passion_sanitize_checkbox( $input ){
-    //returns true if checkbox is checked
     return $input > 0 ? 1 : 0;
 }
 
-function chocolate_passion_text_position_choices( ){
-	return array(
-		'bottom-left'  => __('bottom-left','chocolate-passion'),
-		'bottom-right' => __('bottom-right','chocolate-passion'),
-		'top-left'     => __('top-left', 'chocolate-passion'),
-		'top-right'	   => __('top-right', 'chocolate-passion')
-	);
-}
+/**
+* Sanitizes the text-position fields in the panels pane.
+*/
 
 function chocolate_passion_sanitize_text_position( $input ){
 	$save;
@@ -175,17 +197,24 @@ function chocolate_passion_sanitize_text_position( $input ){
 	return $save;
 }
 
-if ( ! function_exists( 'chocolate_passion_is_panels') ):
+/* populates the options in the text-position <selects> in the panels page */
 
-	/* checks if panels page template is being used*/
+function chocolate_passion_text_position_choices( ){
+	return array(
+		'bottom-left'  => __('bottom-left','chocolate-passion'),
+		'bottom-right' => __('bottom-right','chocolate-passion'),
+		'top-left'     => __('top-left', 'chocolate-passion'),
+		'top-right'	   => __('top-right', 'chocolate-passion')
+	);
+}
 
-	function chocolate_passion_is_panels(){
-		if ( is_page_template( 'page-templates/panel-page.php' ) ){
-			return true;
-		}
+/* checks if panels page template is being used*/
+
+function chocolate_passion_is_panels(){
+	if ( is_page_template( 'page-templates/panel-page.php' ) || is_home() ){
+		return true;
 	}
-
-endif;
+}
 
 /**
  * Render the site title for the selective refresh partial.

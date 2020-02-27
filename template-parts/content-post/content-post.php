@@ -17,16 +17,10 @@
 			<i class="fas fa-lg fa-thumbtack"></i>
 		</span>
 	<?php endif; ?>
-	<div class="cp-post-index-flex-container clear">  
+	  
 		<header class="entry-header">
 			<div class="header-content-wrap">
-				<?php
-				if ( is_singular() ) :
-					the_title( '<h1 class="entry-title">', '</h1>' );
-				else :
-					the_title( '<h2 class="entry-title"><a href="' . esc_url( get_permalink() ) . '" rel="bookmark">', '</a></h2>' );
-				endif;
-				?>
+				<?php the_title( '<h2 class="entry-title"><a href="' . esc_url( get_permalink() ) . '" rel="bookmark">', '</a></h2>' ); ?>
 				<div class="entry-meta">
 					<?php
 					chocolate_passion_posted_on();
@@ -38,7 +32,6 @@
 
 		<div class="entry-content">
 			<?php
-			
 			the_excerpt();
 
 			wp_link_pages( array(
@@ -47,8 +40,7 @@
 			) );
 			?>
 		</div><!-- .entry-content -->
-	</div><!--.thinkpiece-flex-container-->
-	<footer class="entry-footer">
-		<?php chocolate_passion_entry_footer(); ?>
-	</footer><!-- .entry-footer -->
+		<footer class="entry-footer">
+			<?php chocolate_passion_entry_footer(); ?>
+		</footer><!-- .entry-footer -->
 </article><!-- #post-<?php the_ID(); ?> -->
