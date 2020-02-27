@@ -13,8 +13,14 @@
  */
 
 get_header();
+
+
+if ( is_home() && get_theme_mod( 'chocolate_passion_panels_homepage', false ) ){
+	get_template_part( 'template-parts/panels' );
+}
+
 ?>
-	
+		
 	<div id="primary" class="content-area">
 		<div class="col-80">
 		<main id="main" class="site-main" role="main">
@@ -30,9 +36,15 @@ get_header();
 				<?php
 			endif;
 
+			global $post;
+
 			/* Start the Loop */
 			while ( have_posts() ) :
 				the_post();
+
+				if ( get_post_meta( $post->ID , 'chocolate_passion_post_view', true ) === 'background_image' ){
+					get_template_part( 'template-parts/content-post/content', 'post-background-image' );
+				} else {
 
 				/*
 				 * Include the Post-Type-specific template for the content.
@@ -40,13 +52,11 @@ get_header();
 				 * called content-___.php (where ___ is the Post Type name) and that will be used instead.
 				 */
 				
-				get_template_part( 'template-parts/content', get_post_type()  );
+				get_template_part( 'template-parts/content-post/content', get_post_type()  );
+
+				}
 				
-			
 			endwhile;
-
-
-
 		else :
 
 			get_template_part( 'template-parts/content', 'none' );
