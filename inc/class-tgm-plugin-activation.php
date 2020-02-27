@@ -2002,21 +2002,21 @@ if ( ! class_exists( 'TGM_Plugin_Activation' ) ) {
 		}
 	}
 
-	if ( ! function_exists( 'load_tgm_plugin_activation' ) ) {
+	if ( ! function_exists( 'chocolate_passion_load_tgm_plugin_activation' ) ) {
 		/**
 		 * Ensure only one instance of the class is ever invoked.
 		 *
 		 * @since 2.5.0
 		 */
-		function load_tgm_plugin_activation() {
+		function chocolate_passion_load_tgm_plugin_activation() {
 			$GLOBALS['chocolate_passion_tgmpa'] = TGM_Plugin_Activation::get_instance();
 		}
 	}
 
 	if ( did_action( 'plugins_loaded' ) ) {
-		load_tgm_plugin_activation();
+		chocolate_passion_load_tgm_plugin_activation();
 	} else {
-		add_action( 'plugins_loaded', 'load_tgm_plugin_activation' );
+		add_action( 'plugins_loaded', 'chocolate_passion_load_tgm_plugin_activation' );
 	}
 }
 
@@ -2864,8 +2864,8 @@ if ( ! class_exists( 'TGMPA_List_Table' ) ) {
 				unset( $slug, $name, $source );
 
 				// Create a new instance of TGMPA_Bulk_Installer.
-				$installer = new TGMPA_Bulk_Installer(
-					new TGMPA_Bulk_Installer_Skin(
+				$installer = new Chocolate_Passion_TGMPA_Bulk_Installer(
+					new Chocolate_Passion_TGMPA_Bulk_Installer_Skin(
 						array(
 							'url'          => esc_url_raw( $this->chocolate_passion->get_chocolate_passion_url() ),
 							'nonce'        => 'bulk-' . $this->_args['plural'],
@@ -2947,10 +2947,10 @@ if ( ! class_exists( 'TGMPA_List_Table' ) ) {
 					$last_plugin  = array_pop( $plugin_names ); // Pop off last name to prep for readability.
 					$imploded     = empty( $plugin_names ) ? $last_plugin : ( implode( ', ', $plugin_names ) . ' ' . esc_html_x( 'and', 'plugin A *and* plugin B', 'chocolate-passion' ) . ' ' . $last_plugin );
 
-					printf( // WPCS: xss ok.
+					printf( 
 						'<div id="message" class="updated"><p>%1$s %2$s.</p></div>',
 						esc_html( _n( 'The following plugin was activated successfully:', 'The following plugins were activated successfully:', $count, 'chocolate-passion' ) ),
-						$imploded
+						$imploded //phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 					);
 
 					// Update recently activated plugins option.
@@ -3014,7 +3014,7 @@ if ( ! class_exists( 'TGMPA_List_Table' ) ) {
 }
 
 
-if ( ! class_exists( 'TGM_Bulk_Installer' ) ) {
+if ( ! class_exists( 'Chocolate_Passion_TGM_Bulk_Installer' ) ) {
 
 	/**
 	 * Hack: Prevent TGMPA v2.4.1- bulk installer class from being loaded if 2.4.1- is loaded after 2.5+.
@@ -3024,10 +3024,10 @@ if ( ! class_exists( 'TGM_Bulk_Installer' ) ) {
 	 * {@internal The TGMPA_Bulk_Installer class was originally called TGM_Bulk_Installer.
 	 *            For more information, see that class.}}
 	 */
-	class TGM_Bulk_Installer {
+	class Chocolate_Passion_TGM_Bulk_Installer {
 	}
 }
-if ( ! class_exists( 'TGM_Bulk_Installer_Skin' ) ) {
+if ( ! class_exists( 'Chocolate_Passion_TGM_Bulk_Installer_Skin' ) ) {
 
 	/**
 	 * Hack: Prevent TGMPA v2.4.1- bulk installer skin class from being loaded if 2.4.1- is loaded after 2.5+.
@@ -3037,7 +3037,7 @@ if ( ! class_exists( 'TGM_Bulk_Installer_Skin' ) ) {
 	 * {@internal The TGMPA_Bulk_Installer_Skin class was originally called TGM_Bulk_Installer_Skin.
 	 *            For more information, see that class.}}
 	 */
-	class TGM_Bulk_Installer_Skin {
+	class Chocolate_Passion_TGM_Bulk_Installer_Skin {
 	}
 }
 
@@ -3070,7 +3070,7 @@ if ( ! function_exists( 'chocolate_passion_load_bulk_installer' ) ) {
 				require_once ABSPATH . 'wp-admin/includes/class-wp-upgrader.php';
 			}
 
-			if ( ! class_exists( 'TGMPA_Bulk_Installer' ) ) {
+			if ( ! class_exists( 'Chocolate_Passion_TGMPA_Bulk_Installer' ) ) {
 
 				/**
 				 * Installer class to handle bulk plugin installations.
@@ -3088,7 +3088,7 @@ if ( ! function_exists( 'chocolate_passion_load_bulk_installer' ) ) {
 				 * @author  Thomas Griffin
 				 * @author  Gary Jones
 				 */
-				class TGMPA_Bulk_Installer extends Plugin_Upgrader {
+				class Chocolate_Passion_TGMPA_Bulk_Installer extends Plugin_Upgrader {
 					/**
 					 * Holds result of bulk plugin installation.
 					 *
@@ -3146,7 +3146,7 @@ if ( ! function_exists( 'chocolate_passion_load_bulk_installer' ) ) {
 							$this->activate_strings();
 						}
 
-						add_action( 'upgrader_process_complete', array( $this->chocolate_passion, 'populate_file_path' ) );
+						add_action( 'chocolate_passion_upgrader_process_complete', array( $this->chocolate_passion, 'populate_file_path' ) );
 					}
 
 					/**
@@ -3314,7 +3314,7 @@ if ( ! function_exists( 'chocolate_passion_load_bulk_installer' ) ) {
 						 *     @type array  $packages Array of plugin, theme, or core packages to update.
 						 * }
 						 */
-						do_action( 'upgrader_process_complete', $this, array(
+						do_action( 'chocolate_passion_upgrader_process_complete', $this, array(
 							'action'  => 'install', // [TGMPA + ] adjusted.
 							'type'    => 'plugin',
 							'bulk'    => true,
@@ -3399,7 +3399,7 @@ if ( ! function_exists( 'chocolate_passion_load_bulk_installer' ) ) {
 				}
 			}
 
-			if ( ! class_exists( 'TGMPA_Bulk_Installer_Skin' ) ) {
+			if ( ! class_exists( 'Chocolate_Passion_TGMPA_Bulk_Installer_Skin' ) ) {
 
 				/**
 				 * Installer skin to set strings for the bulk plugin installations..
@@ -3419,7 +3419,7 @@ if ( ! function_exists( 'chocolate_passion_load_bulk_installer' ) ) {
 				 * @author  Thomas Griffin
 				 * @author  Gary Jones
 				 */
-				class TGMPA_Bulk_Installer_Skin extends Bulk_Upgrader_Skin {
+				class Chocolate_Passion_TGMPA_Bulk_Installer_Skin extends Bulk_Upgrader_Skin {
 					/**
 					 * Holds plugin info for each individual plugin installation.
 					 *
