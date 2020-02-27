@@ -48,7 +48,6 @@ if ( ! function_exists( 'chocolate_passion_setup' ) ) :
 		 */
 		add_theme_support( 'post-thumbnails' );
 
-		// This theme uses wp_nav_menu() in one location.
 		register_nav_menus( array(
 			'menu-1' => esc_html__( 'Primary', 'chocolate-passion' ),
 			'menu-2' => esc_html__( 'Secondary' , 'chocolate-passion' ),
@@ -71,7 +70,7 @@ if ( ! function_exists( 'chocolate_passion_setup' ) ) :
 		) );
 
 		// Set up the WordPress core custom background feature.
-		add_theme_support( 'custom-background', apply_filters( 'chocolate_passion_custom_background_args', array(
+		add_theme_support( 'custom-background', apply_filters( 'chocolate_passion_background_args', array(
 			'default-color' => 'ffffff',
 			'default-image' => '',
 		) ) );
@@ -90,6 +89,96 @@ if ( ! function_exists( 'chocolate_passion_setup' ) ) :
 			'flex-width'  => true,
 			'flex-height' => true,
 		) );
+
+		add_theme_support( 'starter-content', array(
+			'widgets' => array(
+		        'sidebar-footer' => array(
+					'text_business_info',
+				),
+		    ),
+		   
+
+		   'posts'       => array(
+				'home' 			   => array(
+					'thumbnail' => '{{image-symmetry}}',
+					'post_content' => '<p>' . esc_html__( 
+										"Thanks for installing Chocolate Passion! 
+										Please refer to the readme.md for information about a couple special features.",
+										'chocolate-passion'
+									) . '</p>',
+				),
+				'about'            => array(
+					'thumbnail' => '{{image-chicken}}',
+				),
+				'contact'          => array(
+					'thumbnail' => '{{image-dunes}}',
+				),
+				'blog',             
+				'homepage-section' => array(
+					'thumbnail' => '{{image-nature}}',
+				),
+			), 
+
+		   'attachments' => array(
+				'image-symmetry' => array(
+					'post_title' => _x( 'Natural Symmetry', 'Theme starter content', 'chocolate-passion' ),
+					'file'       => 'assets/img/natural-symmetry-1562705.jpg', 
+				),
+				'image-chicken' => array(
+					'post_title' => _x( 'Chicken', 'Theme starter content', 'chocolate-passion' ),
+					'file'       => 'assets/img/chicken.jpg',
+				),
+				'image-dunes'   => array(
+					'post_title' => _x( 'Dunes', 'Theme starter content', 'chocolate-passion' ),
+					'file'       => 'assets/img/dunes.jpg',
+				),	
+				'image-nature' => array(
+					'post_title' => _x( 'Nature', 'Theme starter content', 'chocolate-passion' ),
+					'file'       => 'assets/img/dunes.jpg',
+				),
+			),
+
+			'options'     => array(
+				'show_on_front'  => 'page',
+				'page_on_front'  => '{{home}}',
+				'page_for_posts' => '{{blog}}',
+			),
+
+			// Set the front page section theme mods to the IDs of the core-registered pages.
+			'theme_mods'  => array(
+				'chocolate_passion_panel_posts_1' => '{{homepage-section}}',
+				'chocolate_passion_panel_posts_2' => '{{about}}',
+				'chocolate_passion_panels_homepage' => 1,
+			),
+
+			// Set up two nav menus
+			'nav_menus'   => array(
+				// Assign a menu to the menu-1 location.
+				'menu-1'    => array(
+					'name'  => __( 'Primary Menu', 'chocolate-passion' ),
+					'items' => array(
+						'link_home', // Note that the core "home" page is actually a link in case a static front page is not used.
+						'page_about',
+						'page_blog',
+						'page_contact',
+					),
+				),
+
+				// Assign a menu to the "secondary" location.
+				'menu-2' => array(
+					'name'  => __( 'Secondary Menu', 'chocolate-passion' ),
+					'items' => array(
+						'link_yelp',
+						'link_facebook',
+						'link_twitter',
+						'link_instagram',
+						'link_email',
+					),
+				),
+			),
+
+		));
+
 	}
 endif;
 add_action( 'after_setup_theme', 'chocolate_passion_setup' );
@@ -105,7 +194,7 @@ function chocolate_passion_content_width() {
 	// This variable is intended to be overruled from themes.
 	// Open WPCS issue: {@link https://github.com/WordPress-Coding-Standards/WordPress-Coding-Standards/issues/1043}.
 	// phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedVariableFound
-	$GLOBALS['content_width'] = apply_filters( 'chocolate_passion_content_width', 640 );
+	$GLOBALS['content_width'] = apply_filters( 'chocolate_passion_content_width', 640 );// phpcs:ignore WPThemeReview.CoreFunctionality.PrefixAllGlobals.NonPrefixedVariableFound
 }
 add_action( 'after_setup_theme', 'chocolate_passion_content_width', 0 );
 
@@ -186,6 +275,12 @@ require get_template_directory() . '/inc/template-functions.php';
 require get_template_directory() . '/inc/customizer/customizer.php';
 
 /**
+ * TGM Plugin Activation.
+ */
+
+require_once get_template_directory() . '/inc/class-tgm-plugin-activation.php';
+
+/**
  *  Woocommmerce-specific functions.
  */
 if ( class_exists('WooCommerce') ){
@@ -219,13 +314,41 @@ if ( ! function_exists( 'chocolate_passion_footer_nav_class' ) ):
 	}
 endif;
 
+function chocolate_passion_register_required_plugins() {
+	$plugins = array(
+		// This is an example of how to include a plugin from the WordPress Plugin Repository.
+		array(
+			'name'      => 'Advanced Excerpt',
+			'slug'      => 'advanced-excerpt',
+			'required'  => false,
+		),
+	);
+
+$config = array(
+		'id'           => 'chocolate-passion',     // Unique ID for hashing notices for multiple instances of TGMPA.
+		'default_path' => '',                      // Default absolute path to bundled plugins.
+		'menu'         => 'tgmpa-install-plugins', // Menu slug.
+		'has_notices'  => true,                    // Show admin notices or not.
+		'dismissable'  => true,                    // If false, a user cannot dismiss the nag message.
+		'dismiss_msg'  => '',                      // If 'dismissable' is false, this message will be output at top of nag.
+		'is_automatic' => false,                   // Automatically activate plugins after installation or not.
+		'message'      => '',                      // Message to output right before the plugins table.	
+	);
+
+	tgmpa( $plugins, $config );
+
+}
+
+add_action( 'tgmpa_register', 'chocolate_passion_register_required_plugins' );
+
+
 /* Retrieve customizer options for primary color and accent colors */
 
 if ( ! function_exists( 'chocolate_passion_customize_css' ) ):
 
 	function chocolate_passion_customize_css(){
 		$primary = esc_attr( get_theme_mod( "chocolate_passion_primary_color", '#db3a00' ));
-		$link = esc_attr( get_theme_mod( 'chocolate_passion_link_color' ), 'royalblue' );
+		$link = esc_attr( get_theme_mod( 'chocolate_passion_link_color' ), '#4169e1' );
 		$hover = esc_attr( get_theme_mod( 'chocolate_passion_hover_link_color', '#191970' ) );
 
 		$css ="
@@ -260,12 +383,8 @@ if ( ! function_exists( 'chocolate_passion_customize_css' ) ):
 
 			.comment-navigation .nav-previous a,
 			.posts-navigation .nav-previous a,
-			.post-navigation .nav-previous a,
 			.comment-navigation .nav-next a,
-			.posts-navigation .nav-next a,
-			.post-navigation .nav-next a,
-			.slick-prev,
-			.slick-next{
+			.posts-navigation .nav-next a{
 				background: $primary;
 				border: 2px solid $primary;
 			}
@@ -274,18 +393,10 @@ if ( ! function_exists( 'chocolate_passion_customize_css' ) ):
 			.comment-navigation .nav-previous a:focus,
 			.posts-navigation .nav-previous a:hover,
 			.posts-navigation .nav-previous a:focus,
-			.post-navigation .nav-previous a:hover,
-			.post-navigation .nav-previous a:focus,
 			.comment-navigation .nav-next a:hover,
 			.comment-navigation .nav-next a:focus,
 			.posts-navigation .nav-next a:hover,
-			.posts-navigation .nav-next a:focus,
-			.post-navigation .nav-next a:hover,
-			.post-navigation .nav-next a:focus,
-			.slick-next:hover,
-			.slick-next:focus,
-			.slick-prev:hover,
-			.slick-prev:focus{
+			.posts-navigation .nav-next a:focus{
 				color: $primary;
 				border: 2px solid $primary;
 			}
@@ -360,8 +471,8 @@ if ( ! function_exists('chocolate_passion_get_panels') ):
 	/**
 	* Gets pages/posts for homepage panels.
 	*
-	* Retrieves ids for posts/pages whose excerpts will be included in panels feature. 
-	* Also retrieves text position location for each panel.
+	* Retrieves ids for posts/pages whose excerpts/thumbnails will be included  
+	* in panels feature. Also retrieves text position location for each panel.
 	*/
 
 	function chocolate_passion_get_panels(){
