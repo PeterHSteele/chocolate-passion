@@ -1406,6 +1406,22 @@ Layout - Site Header
 ============
 */
 
+.site-header .site-branding{
+	flex: 0 0 100%; 
+}
+
+h2.cp-logo-fallback{
+	margin: 0;
+}
+
+.site-header .cp-logo-fallback a,
+.site-header .cp-logo-fallback a:hover,
+.site-header .cp-logo-fallback a:visited,
+.site-header .cp-logo-fallback a:focus{
+	color: white;
+	text-decoration: none;
+}
+
 .site-header{
 	margin-bottom: 1em;
 }
@@ -2477,6 +2493,11 @@ Custom Styles - Sidebar - Large Screen
 	Custom Styles - Header - XL Screen
 	=============
 	*/
+
+	.site-header .site-branding{
+		flex: 0 0 40%;
+		align-self: flex-end;
+	}
 
 	.header-row-one{
 		padding: .75rem 0 0 0;

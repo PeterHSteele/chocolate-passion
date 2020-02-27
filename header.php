@@ -29,8 +29,12 @@
 						<div class="row">
 							<div class="site-branding">
 								<?php
+								if ( function_exists( 'the_custom_logo' ) && has_custom_logo() ) :
 									the_custom_logo();
+								else :
 								?>
+									<h2 class="cp-logo-fallback"><a href="<?php esc_url( home_url( '/' )); ?>" rel="home"><?php bloginfo('name') ?></a></h2> 
+								<?php endif; ?>
 							</div><!-- .site-branding -->
 							<div class="header secondary-menu-wrap">
 								<nav id="secondary-menu" class="secondary-navigation" role="navigation" aria-label="<?php esc_attr_e( 'Secondary', 'chocolate-passion' ); ?>">
