@@ -2410,7 +2410,7 @@ Custom Styles - Sidebar - Large Screen
 */	
 
 	.widget-area{
-		padding: 0 8px 0 56px;
+		padding: 0 8px 0 30px;
 		display: block;
 	}
 }
