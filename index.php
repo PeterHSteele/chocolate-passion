@@ -14,7 +14,6 @@
 
 get_header();
 
-
 if ( is_home() && get_theme_mod( 'chocolate_passion_panels_homepage', false ) ){
 	get_template_part( 'template-parts/panels' );
 }
