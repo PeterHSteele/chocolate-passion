@@ -811,7 +811,7 @@ ul ul li.menu-item-has-children a:hover:after{
 .menu-toggle{
 	width: 33px;
 	position: absolute;
-	padding: .65rem;
+	padding: .65rem ;
 	background: #eee;
 	top: 0;
 	right: 0;
@@ -819,6 +819,15 @@ ul ul li.menu-item-has-children a:hover:after{
 	color: #404040;
 	border: none;
 	font-size: .65rem;
+}
+
+@media only screen 
+  and (min-device-width: 320px) 
+  and (max-device-width: 568px)
+  and (-webkit-min-device-pixel-ratio: 2) {
+  	.site-header:not(.banner-header) .menu-toggle{
+  		padding-bottom: .8rem;
+  	}
 }
 
 .menu-toggle:hover,
@@ -1397,6 +1406,16 @@ Layout - General
 	align-items: flex-start;
 }
 
+.site{
+	display: flex;
+	flex-flow: column nowrap;
+	height: 100vh;
+}
+
+.site-content{ 
+	flex: 1 0;
+}
+
 /*
 ============
 Layout - Site Header
@@ -1578,6 +1597,7 @@ Layout - Footer
 
 .site-footer{
 	clear: both;
+	flex-shrink: 0;
 }
 
 .footer-navigation{
