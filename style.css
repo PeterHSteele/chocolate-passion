@@ -399,7 +399,7 @@ textarea {
 	color: #000000;
 	font-family: sans-serif;
 	font-size: 16px;
-	font-size: .875rem;
+	font-size: 1rem;
 	line-height: 1.5;
 	word-break: break-word;
 	word-wrap: break-word;
@@ -1661,6 +1661,10 @@ Custom Styles - Header
 ============
 */
 
+.site-header{
+	font-size: .875rem;
+}
+
 .header-row-one,
 .header-row-two{
 	color: white;
@@ -2082,6 +2086,10 @@ Custom Styles - Footer
 ===============
 */
 
+.site-footer{
+	font-size: .875rem
+}
+
 .footer-navigation{
 	padding-bottom: 1em;
 }
@@ -2329,7 +2337,8 @@ Layout - Footer - Small Screen
 	==============
 	*/
 
-	body{
+	.site-header,
+	.site-footer{
 		font-size: 1rem;
 	}
 
