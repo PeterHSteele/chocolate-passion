@@ -1059,6 +1059,10 @@ Nav Media Query
 	width: 50%;
 }
 
+.nav-next:first-child{
+	margin-right: 50%
+}
+
 .comment-navigation .nav-previous ,
 .posts-navigation .nav-previous ,
 .post-navigation .nav-previous {
