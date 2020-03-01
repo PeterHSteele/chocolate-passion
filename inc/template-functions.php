@@ -37,8 +37,8 @@ add_action( 'save_post', 'chocolate_passion_post_view', 10, 3 );
 * possible post layouts.
 */
 
-function sanitize_post_view_meta( $layout ){
+function chocolate_passion_sanitize_post_view_meta( $layout ){
 	return $layout === 'background_image' ? 'background_image' : 'normal';
 }	
 
-add_filter('sanitize_post_meta_chocolate_passion_post_view', 'sanitize_post_view_meta');
+add_filter('sanitize_post_meta_chocolate_passion_post_view', 'chocolate_passion_sanitize_post_view_meta');
