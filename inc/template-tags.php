@@ -189,7 +189,7 @@ if ( ! function_exists( 'chocolate_passion_footer_nav' ) ):
 		);
 
 		//add a css class based on how many menus there are
-		$footer_nav_class = chocolate_passion_footer_nav_class();
+		$footer_nav_base_class = chocolate_passion_footer_nav_class();
 		//get registered menu locations
 		$locations = get_nav_menu_locations();
 		//print the menu
@@ -197,8 +197,8 @@ if ( ! function_exists( 'chocolate_passion_footer_nav' ) ):
 			$obj = wp_get_nav_menu_object( $locations[$nav] );
 			$items = wp_get_nav_menu_items( $obj );
 			if ( $items ){
-				//add additional class to secondary menu
-				$nav == 'menu-2' ? $footer_nav_class . ' secondary-navigation' : $footer_nav_class		 
+				//add additional class to secondary menu;
+				$footer_nav_class = $nav == 'menu-2' ? $footer_nav_base_class . ' secondary-navigation' : $footer_nav_base_class;	
 		?>
 			<nav class="<?php echo esc_attr( $footer_nav_class )?>" role="navigation" aria-label="<?php echo esc_attr( $labels[$nav] ); ?>">
 				<h2><?php chocolate_passion_menu_name( $nav ) ?></h2>
