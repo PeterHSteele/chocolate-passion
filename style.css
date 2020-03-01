@@ -2021,13 +2021,25 @@ Custom Styles - Single Post
 
 .single-post .posted-on,
 .single-post .byline{
-	font-style: italic;
 	padding: .2em .5em .2em .2em;
+	background: #f0f0f0;
 }
 
 .single-post .posted-on{
-	padding: .2em .5em .2em 0;
-	border-right: 1px solid #ccc;
+	padding: .2em .5em .2em .2em;
+	position: relative;
+	/*border-right: 1px solid #ccc;*/
+}
+
+.single-post .posted-on:after{
+	position: absolute;
+	right: -3px;
+	top: 10px;
+	background: #777;
+	width: 5px;
+	height: 5px;
+	border-radius: 50%;
+	content: '';
 }
 
 .single-post .byline{
