@@ -967,8 +967,8 @@ Nav Media Query
 }
 
 @media only screen 
-  and (min-device-width: 320px) 
-  and (max-device-width: 568px)
+  and (min-width: 320px) 
+  and (max-width: 564px)
   and (-webkit-min-device-pixel-ratio: 2) {
   	body:not(.banner-header) .site-header .menu-toggle{
   		padding: .65rem .65rem .8rem .65rem;
