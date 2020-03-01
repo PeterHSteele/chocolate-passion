@@ -180,19 +180,31 @@ if ( ! function_exists( 'chocolate_passion_footer_nav' ) ):
 	* @param string 	$location 	the theme location slug of the menu to print.
 	* @param string 	$class 		css class to use for aligning navs in footer
 	*/
-	function chocolate_passion_footer_nav( $location, $class ){
+	function chocolate_passion_footer_navs(){
 		$labels = array(
 			'menu-2' 	  => __( 'secondary' , 'chocolate-passion' ),
 			'menu-3' 	  => __( 'first additional links', 'chocolate-passion'),
 			'menu-4' 	  => __( 'second additional links', 'chocolate-passion'),
 			'menu-5'	  => __( 'third additional links', 'chocolate-passion')
-		) 
+		);
+
+		//add a css class based on how many menus there are
+		$footer_nav_class = chocolate_passion_footer_nav_class();
+		//get registered menu locations
+		$locations = get_nav_menu_locations();
+		//print the menu
+		foreach ( $labels as $nav => $label ){
+			$obj = wp_get_nav_menu_object( $locations[$nav] );
+			$items = wp_get_nav_menu_items( $obj );
+			if ( $items ){
+				//add additional class to secondary menu
+				$nav == 'menu-2' ? $footer_nav_class . ' secondary-navigation' : $footer_nav_class		 
 		?>
-			<nav class="<?php echo esc_attr( $class )?>" role="navigation" aria-label="<?php echo esc_attr( $labels[$location] ); ?>">
-				<h2><?php chocolate_passion_menu_name( $location ) ?></h2>
+			<nav class="<?php echo esc_attr( $footer_nav_class )?>" role="navigation" aria-label="<?php echo esc_attr( $labels[$nav] ); ?>">
+				<h2><?php chocolate_passion_menu_name( $nav ) ?></h2>
 				<?php 
 					wp_nav_menu( array(
-						'theme_location' => $location,
+						'theme_location' => $nav,
 						'menu_id' => 'nav-secondary-menu',
 						'depth' => 1,
 						'fallback_cb' => false
@@ -200,6 +212,8 @@ if ( ! function_exists( 'chocolate_passion_footer_nav' ) ):
 				?>
 			</nav>	
 		<?php 	
+			}//endif
+		}//endforeach
 	}
 endif;
 

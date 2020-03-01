@@ -17,22 +17,7 @@
 		<div class="footer-row-one footer-row">
 			<div class="col-80">
 				<div class="footer-navigation">
-					
-				
-					<?php 	
-						//get menu locations, exclude primary menu
-						$footer_navs = array_slice( get_nav_menu_locations(), 1, 4 );
-						//add a css class based on how many menus there are
-						$footer_nav_class = chocolate_passion_footer_nav_class();
-						//print the menus
-						foreach ( $footer_navs as $nav => $items ){
-							chocolate_passion_footer_nav( 
-								$nav, 
-								$nav == 'menu-2' ? $footer_nav_class . ' secondary-navigation' : $footer_nav_class 
-							);
-						}
-					?>
-				
+					<?php chocolate_passion_footer_navs(); ?>
 				</div><!--.footer-navigation-->
 			</div><!--.col-80-->
 		</div><!--.footer-row-one-->
