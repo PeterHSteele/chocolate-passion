@@ -668,7 +668,6 @@ a:hover, a:active {
 	clear: both;
 	display: block;
 	position: relative;
-	margin-right: .5em;
 }
 
 .main-navigation.toggled{
@@ -891,6 +890,10 @@ nav for banner header page template
 
 .banner-header li.menu-item-has-children > a:hover:after{
 	border-top: .4em solid white
+}
+
+.banner-header .search-toggle{
+	margin: 0;
 }
 
 /*
@@ -1656,7 +1659,7 @@ Custom Styles - Header
 }
 
 .header-row-two{
-	padding: .5em 0;
+	padding: .5em;
 }
 
 .site-info h1,
@@ -1681,9 +1684,14 @@ Custom Styles - Header
 }
 
 .search-form{
-	float: right;
+	display: flex;
 	margin-right: 36px;
 	font-size: .65rem;
+}
+
+.search-form input{
+	flex: 1 0;
+	margin-right: 3px;
 }
 
 #searchbar-close{
@@ -1696,13 +1704,13 @@ Custom Styles - Header
 	color: #505050;
 	font-size: inherit;
 	padding: .45rem;
-	margin: 0;
 	border-radius: 0;
 }
 
 .search-form button{
 	padding: .65rem .55rem;
 	background: #eee;
+	margin: 0;
 }
 
 .search-form input,
@@ -2186,6 +2194,10 @@ Layout
 ==============
 */
 
+.header-row-two{
+	padding: .5em 0;
+}
+
 /*
 ==============
 Layout - Footer - Small Screen
@@ -2216,12 +2228,16 @@ Layout - Footer - Small Screen
 	}
 
 	.search-form{
+		display: block;
+		float: right;
 		margin-right: 40px;
 		font-size: .875em;
 	}
 
 	.search-form input{
+		flex: none;
 		max-width: none;
+		margin-right: 0;
 	}
 
 	.menu-toggle{
