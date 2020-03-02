@@ -1529,6 +1529,7 @@ Layout - Single Posts/Pages
 ===========
 */
 
+
 .site-main{
 	padding: .75em;
 }
@@ -2349,6 +2350,12 @@ Layout - Footer - Small Screen
 	==============
 	*/
 
+	/*
+	==============
+	General - Large Screen
+	==============
+	*/
+
 	.site-header,
 	.site-footer{
 		font-size: 1rem;
@@ -2411,7 +2418,7 @@ Layout - Footer - Small Screen
 	
 	/*
 	==============
-	Layout
+	Layout - General - Large Screen
 	==============
 	*/
 
@@ -2426,15 +2433,10 @@ Layout - Footer - Small Screen
 		max-width: 49.5%;
 	}
 
-	/*
-	==============
-	Header
-	==============
-	*/
 
 /*
 ==============
-Layout
+Layout - Single Posts - LargeScreen
 ==============
 */
 

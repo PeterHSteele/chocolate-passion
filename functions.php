@@ -205,9 +205,9 @@ add_action( 'after_setup_theme', 'chocolate_passion_content_width', 0 );
  */
 function chocolate_passion_widgets_init() {
 	register_sidebar( array(
-		'name'          => esc_html__( 'Sidebar', 'chocolate-passion' ),
+		'name'          => esc_html__( 'Page Sidebar', 'chocolate-passion' ),
 		'id'            => 'sidebar-right',
-		'description'   => esc_html__( 'Add widgets here.', 'chocolate-passion' ),
+		'description'   => esc_html__( 'The sidebar for pages', 'chocolate-passion' ),
 		'before_widget' => '<section id="%1$s" class="widget %2$s">',
 		'after_widget'  => '</section>',
 		'before_title'  => '<h2 class="widget-title">',
@@ -217,12 +217,22 @@ function chocolate_passion_widgets_init() {
 	register_sidebar( array(
 		'name'  	    => esc_html__( 'Footer Widgets', 'chocolate-passion' ),
 		'id'		    => 'footer-widgets',
-		'description'   => esc_html__( 'Add widgets here', 'chocolate-passion' ),
+		'description'   => esc_html__( 'A sidebar area for the footer.', 'chocolate-passion' ),
 		'before_widget' => '<section id="%1$s" class="widget %2$s">',
 		'after_widget'  => '</section>',
 		'before_title'  => '<h2 class="widget-title">',
 		'after_title'   => '</h2>',
 	));
+
+	register_sidebar( array(
+		'name'          => esc_html__( 'Single Post Sidebar', 'chocolate-passion' ),
+		'id'            => 'sidebar-single',
+		'description'   => esc_html__( 'The sidebar for single posts.', 'chocolate-passion' ),
+		'before_widget' => '<section id="%1$s" class="widget %2$s">',
+		'after_widget'  => '</section>',
+		'before_title'  => '<h2 class="widget-title">',
+		'after_title'   => '</h2>',
+	) );
 }
 add_action( 'widgets_init', 'chocolate_passion_widgets_init' );
 
@@ -236,7 +246,7 @@ function chocolate_passion_scripts() {
 	wp_enqueue_script( 'chocolate-passion-navigation', get_template_directory_uri() . '/js/navigation.js', array( 'jquery' ), '20151215', true );
 	wp_localize_script( 'chocolate-passion-navigation', 'template', array( 'bannerHeader' => is_page_template('page-templates/banner-header.php') ) );
 
-	if ( is_page_template( 'page-templates/sidebar-right.php' ) ){
+	if ( is_page_template( 'page-templates/sidebar-right.php' ) || is_single() ){
 		wp_enqueue_style( 'chocolate-passion-sidebar-right-style', get_template_directory_uri() . '/layouts/content-sidebar.css' );
 	}
 

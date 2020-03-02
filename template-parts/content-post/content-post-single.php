@@ -11,7 +11,6 @@
 
 <article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
 	<?php chocolate_passion_post_thumbnail(); ?>
-	<div class="col-60">
 		<header class="entry-header">
 			<?php
 			the_title( '<h1 class="entry-title">', '</h1>' );
@@ -52,5 +51,5 @@
 		<footer class="entry-footer">
 			<?php chocolate_passion_entry_footer(); ?>
 		</footer><!-- .entry-footer -->
-	</div><!--.col-60-->
+
 </article><!-- #post-<?php the_ID(); ?> -->

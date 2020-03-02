@@ -9,9 +9,8 @@
 
 get_header();
 ?>
-
-	<div id="primary" class="content-area">
-		<div class="col-80">
+	<div class="col-80">
+		<div id="primary" class="content-area">
 			<main id="main" class="site-main" role="main">
 			
 
@@ -27,9 +26,9 @@ get_header();
 
 				if ( comments_open() || get_comments_number() ) :
 				?>
-				<div class="col-60">
+				
 					<?php comments_template(); ?>
-				</div>
+				
 				<?php
 				endif;
 
@@ -38,9 +37,10 @@ get_header();
 
 			
 			<?php the_post_navigation(); ?>
-			</main><!-- #main -->
-		</div><!--.col-80-->	
-	</div><!-- #primary -->
+			</main><!-- #main -->	
+		</div><!-- #primary -->
+		<?php get_sidebar( 'single' ) ?>
+	</div><!--.col-80-->
 
 <?php
 get_footer();
