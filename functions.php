@@ -246,8 +246,13 @@ function chocolate_passion_scripts() {
 	wp_enqueue_script( 'chocolate-passion-navigation', get_template_directory_uri() . '/js/navigation.js', array( 'jquery' ), '20151215', true );
 	wp_localize_script( 'chocolate-passion-navigation', 'template', array( 'bannerHeader' => is_page_template('page-templates/banner-header.php') ) );
 
-	if ( is_page_template( 'page-templates/sidebar-right.php' ) || is_single() ){
+	if ( is_page_template( 'page-templates/sidebar-right.php' ) ){
 		wp_enqueue_style( 'chocolate-passion-sidebar-right-style', get_template_directory_uri() . '/layouts/content-sidebar.css' );
+	}
+
+	if (is_single()){
+
+		wp_enqueue_style( 'single-style', get_template_directory_uri() . '/layouts/single-post-sidebar.css' );
 	}
 
 	wp_enqueue_style( 'chocolate-passion-style', get_stylesheet_uri() );

@@ -1,0 +1,30 @@
+/*
+ * Theme Name: chocolate passion
+ *
+ * Layout:Single-Post-Sidebar
+ *
+ * Learn more: https://developer.wordpress.org/themes/basics/template-files/
+*/
+
+
+@media screen and (min-width: 750px){
+
+	.single aside.widget-area-single-post{
+		width: 25%;
+		float: right;
+	}
+
+	.site-main{
+		float: left;
+		width: 100%;
+		margin-right: -25%
+	}
+
+	.single .entry-header,
+	.single .entry-content,
+	.single .entry-footer,
+	.single .comments-area{
+		width: 60%;
+	}
+
+}

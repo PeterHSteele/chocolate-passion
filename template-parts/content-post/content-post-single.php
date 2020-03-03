@@ -10,7 +10,9 @@
 ?>
 
 <article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
-	<?php chocolate_passion_post_thumbnail(); ?>
+	<div class="screen-reader-text">
+		<?php chocolate_passion_post_thumbnail() ?>
+	</div>
 		<header class="entry-header">
 			<?php
 			the_title( '<h1 class="entry-title">', '</h1>' );
@@ -26,7 +28,7 @@
 			<?php endif; ?>
 		</header><!-- .entry-header -->
 
-		<div class="entry-content">
+		<div class="entry-content ">
 			<?php
 				the_content( sprintf(
 				wp_kses(
@@ -48,7 +50,7 @@
 			?>
 		</div><!-- .entry-content -->
 
-		<footer class="entry-footer">
+		<footer class="entry-footer ">
 			<?php chocolate_passion_entry_footer(); ?>
 		</footer><!-- .entry-footer -->
 
