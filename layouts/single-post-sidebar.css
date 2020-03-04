@@ -16,14 +16,6 @@
 
 	.site-main{
 		float: left;
-		width: 100%;
-		margin-right: -30%
-	}
-
-	.single .entry-header,
-	.single .entry-content,
-	.single .entry-footer,
-	.single .comments-area{
 		width: 70%;
 	}
 
@@ -35,7 +27,7 @@
 	.single .entry-content,
 	.single .entry-footer,
 	.single .comments-area{
-		width: 60%;
+		width: 85.7%;
 	}
 
 }

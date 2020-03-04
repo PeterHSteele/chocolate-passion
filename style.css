@@ -1585,7 +1585,6 @@ Layout - Sidebar
 	flex: 1 0;
 }
 
-
 /*
 ============
 Layout - Banner Header Template (banner-header.php)
@@ -2058,6 +2057,10 @@ Custom Styles - Single Post
 	padding-left: .3em;
 }
 
+.single-post .entry-content{
+	margin: 1.5em 0;
+}
+
 /*
 ===============
 Custom Styles - Comments
@@ -2084,6 +2087,10 @@ Custom Styles - 404 Page
 Custom Styles - Sidebar
 =============
 */
+
+.widget-area-single-post{
+	background: #f9f9f9;
+}
 
 .widget-area{
 	padding: .75em;

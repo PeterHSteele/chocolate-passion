@@ -40,7 +40,7 @@ get_header();
 				
 			<?php the_post_navigation(); ?>
 			</main><!-- #main -->	
-			</div><!--.content-area-->
+		</div><!--.content-area-->
 		<?php get_sidebar( 'single' ) ?>
 	</div><!--.col-80-->
 
