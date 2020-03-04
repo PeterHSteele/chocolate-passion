@@ -1265,10 +1265,20 @@ Nav Media Query
 --------------------------------------------------------------*/
 .comments-area{
 	margin-top: 75px;
+	padding: .5em;
 }
 
 .comment-content a {
 	word-wrap: break-word;
+}
+
+.comments-area ol{
+	margin: 0;
+	padding: 0;
+}
+
+.comments-area ol ol{
+	margin-left: 20px;
 }
 
 li.comment{
@@ -1279,6 +1289,7 @@ li.comment{
 li.comment:nth-child(odd){
 	background: #eee;
 }
+
 
 .bypostauthor {
 	display: block;

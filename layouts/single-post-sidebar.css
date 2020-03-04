@@ -10,15 +10,26 @@
 @media screen and (min-width: 750px){
 
 	.single aside.widget-area-single-post{
-		width: 25%;
+		width: 30%;
 		float: right;
 	}
 
 	.site-main{
 		float: left;
 		width: 100%;
-		margin-right: -25%
+		margin-right: -30%
 	}
+
+	.single .entry-header,
+	.single .entry-content,
+	.single .entry-footer,
+	.single .comments-area{
+		width: 70%;
+	}
+
+}
+
+@media screen and (min-width: 1024px){
 
 	.single .entry-header,
 	.single .entry-content,

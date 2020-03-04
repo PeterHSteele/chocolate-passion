@@ -10,7 +10,7 @@
 get_header();
 ?>
 	<div class="col-80">
-		<div class="content-area">
+		<div id="primary" class="content-area">
 			<div aria-hidden="true">
 				<?php chocolate_passion_post_thumbnail() ?>
 			</div>
