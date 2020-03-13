@@ -758,11 +758,11 @@ body:not(.banner-header) .main-navigation > div > ul > .menu-item-has-children >
 body:not(.banner-header) .main-navigation > div > ul > .menu-item-has-children > a:hover:after{
 	border-top: .42em solid black;
 }
-/*
-.main-navigation > div > ul > li.menu-item-has-children > ul > li.menu-item-has-children > a:after{
+
+.main-navigation > div > ul ul ul li.menu-item-has-children > a:after{
 	border-top: none;
 }
-*/
+
 li.menu-item-has-children a:hover:after{
 	border-top: .42em solid black;
 }
@@ -889,8 +889,13 @@ nav for banner header page template
 }
 
 .banner-header li.menu-item-has-children > a:hover:after{
-	border-top: .4em solid white
+	border-top: .4em solid white;
 }
+
+.banner-header li.menu-item-has-children ul ul a:hover:after{
+	border-top: none;
+}
+
 
 .banner-header .search-toggle{
 	margin: 0;
@@ -1666,6 +1671,13 @@ Custom Styles - General
 	position: absolute;
 }
 
+.wp-block-image figcaption{
+	margin-top: .5em;
+    margin-bottom: 1em;
+    color: #555d66;
+    text-align: center;
+    font-size: 13px;
+}
 /*
 ============
 Custom Styles - Header

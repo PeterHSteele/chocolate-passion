@@ -42,7 +42,8 @@
 										wp_nav_menu( array(
 											'theme_location' => 'menu-2',
 											'menu_id' => 'nav-secondary-menu',
-											'fallback_cb' => false
+											'fallback_cb' => false,
+											'depth' => 1,
 										));
 									?>
 								</nav>
@@ -62,7 +63,8 @@
 								wp_nav_menu( array(
 									'theme_location' => 'menu-1',
 									'menu_id'        => 'primary-menu',
-									'menu_class'	 => 'clear accessible-hide nav-menu'
+									'menu_class'	 => 'clear accessible-hide nav-menu',
+									'depth' => 3,
 								) );
 								?>
 							</nav><!-- #site-navigation -->					
