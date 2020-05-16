@@ -13,11 +13,11 @@
 require get_template_directory() . '/inc/customizer/class-dropdown-posts-control.php';// phpcs:ignore WPThemeReview.CoreFunctionality.FileInclude.FileIncludeFound
 
 function chocolate_passion_customize_register( $wp_customize ) {
-	
+
 	$wp_customize->get_setting( 'blogname' )->transport         = 'postMessage';
 	$wp_customize->get_setting( 'blogdescription' )->transport  = 'postMessage';
-	$wp_customize->get_setting( 'header_textcolor' )->transport = 'postMessage';
-
+	$wp_customize->get_setting( 'custom_logo' )->transport  = 'postMessage';
+	
 	if ( isset( $wp_customize->selective_refresh ) ) {
 		$wp_customize->selective_refresh->add_partial( 'blogname', array(
 			'selector'        => '.site-title a',
@@ -64,12 +64,14 @@ function chocolate_passion_customize_register( $wp_customize ) {
 		'settings' => 'chocolate_passion_hover_link_color'
 	)));
 	//Panels
+
 	$wp_customize->add_section('chocolate_passion_panels',array(
 		'title' => __( 'CP Panels' , 'chocolate-passion' ),
 		'description' => __( 
-			'Here you can add pages and posts to the panels section on the homepage. 
-			Any panels that do not have a featured image will be skipped. ', 
-			'chocolate-passion'),
+				"Set pages and posts to appear as panels at the top of the page. 
+				Any posts that do not have a featured image will be skipped. ", 
+				'chocolate_passion' 
+		),
 		'active_callback' => 'chocolate_passion_is_panels',
 	));
 
@@ -77,18 +79,14 @@ function chocolate_passion_customize_register( $wp_customize ) {
 		'default' => 0,
 		'sanitize_callback' => 'chocolate_passion_sanitize_checkbox'
 	) );
-
-	$wp_customize->add_control( 'chocolate_passion_panels_homepage', array(
-		'label' => __( 'Show Panels on Blog Page', 'chocolate-passion' ),
-		'type' => 'checkbox',
-		'section' => 'chocolate_passion_panels',
-		'description' => __( 
-			'Normally, designating a page as the default "posts page" in settings -> reading 
-			prevents all content except the title and your posts from appearing. 
-			Checking this box means panels will show up there, regardless of whether
-			that page uses the Panels page template.', 'chocolate-passion' 
-		)
-	));
+	
+		$wp_customize->add_control( 'chocolate_passion_panels_homepage', array(
+			'label' => __( 'Show Panels on Blog Page', 'chocolate-passion' ),
+			'type' => 'checkbox',
+			'section' => 'chocolate_passion_panels',
+			'active_callback' => 'chocolate_passion_is_home'
+		));
+	
 
 	for( $count = 1; $count <= 4; $count++){
 		
@@ -105,6 +103,7 @@ function chocolate_passion_customize_register( $wp_customize ) {
 			'label' => sprintf( __( 'Panel %s Content', 'chocolate-passion' ), $count ),
 			'section' => 'chocolate_passion_panels',
 			'settings' => 'chocolate_passion_panel_posts_' . $count,
+			'active_callback' => 'chocolate_passion_show_panel_control'
 		)));
 		/*
 		allows user to set the text position of the panel content
@@ -121,6 +120,7 @@ function chocolate_passion_customize_register( $wp_customize ) {
 			'type' => 'select',
 			'choices' => chocolate_passion_text_position_choices(),
 			'section' => 'chocolate_passion_panels',
+			'active_callback' => 'chocolate_passion_show_panel_control'
 		));
 
 	}
@@ -208,12 +208,36 @@ function chocolate_passion_text_position_choices( ){
 	);
 }
 
-/* checks if panels page template is being used*/
+/* 
+	Checks if panels page template is being used.
+	Active callback for whether to show the CP Panels section
+*/
 
 function chocolate_passion_is_panels(){
 	if ( is_page_template( 'page-templates/panel-page.php' ) || is_home() ){
 		return true;
 	}
+}
+
+/*
+ Checks for blog page. Active callback for
+ 'show panels on blog page' checkbox
+*/
+
+function chocolate_passion_is_home(){
+	return is_home();
+}
+
+/*
+	Checks whether panel and text position controls should appear.
+	Active callback for panel controls and text position controls.
+*/
+
+function chocolate_passion_show_panel_control(){
+	return (
+		is_home() && get_theme_mod( 'chocolate_passion_panels_homepage' ) || 
+		!is_home() && is_page_template( 'page-templates/panel-page.php' )
+	); 
 }
 
 /**
@@ -223,17 +247,6 @@ function chocolate_passion_is_panels(){
  */
 function chocolate_passion_customize_partial_blogname() {
 	bloginfo( 'name' );
-}
-
-function chocolate_passion_render_dropdown_posts(){
-	$posts = get_posts( -1 );
-	?>
-	<select>
-	<?php foreach ($posts as $post): ?>
-		<option data-id="<?php echo esc_attr( $post->id ) ?>">echo get_the_title( $post )</option>
-	<?php endforeach; ?>
-	</select>
-	<?php
 }
 
 /**
@@ -250,6 +263,11 @@ function chocolate_passion_customize_partial_blogdescription() {
  * Binds JS handlers to make Theme Customizer preview reload changes asynchronously.
  */
 function chocolate_passion_customize_preview_js() {
-	wp_enqueue_script( 'chocolate-passion-customizer', get_template_directory_uri() . '/js/customizer.js', array( 'customize-preview' ), '20151215', true );
+	wp_enqueue_script( 'chocolate-passion-customize-preview', get_template_directory_uri() . '/js/customize-preview.js', array( 'customize-preview' ), '20151215', true );
 }
 add_action( 'customize_preview_init', 'chocolate_passion_customize_preview_js' );
+
+function chocolate_passion_customize_controls_js(){
+	wp_enqueue_script( 'chocolate-passion-customize-controls', get_template_directory_uri() . '/js/customize-controls.js', array( 'customize-controls' ), '20151215', true );
+}
+add_action( 'customize_controls_enqueue_scripts', 'chocolate_passion_customize_controls_js' );

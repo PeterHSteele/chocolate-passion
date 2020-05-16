@@ -26,7 +26,7 @@ if ( $panels ) :
 						</h2>
 					</header>
 					<div class="entry-content">
-						<p><?php echo esc_html( get_the_excerpt( $panel['post'] ) ); ?></p>
+						<p><?php echo apply_filters( 'the excerpt', get_the_excerpt( $panel['post'] ) ); ?></p>
 					</div>
 				</div><!--.panel-content-->
 			</div><!--.panel-->

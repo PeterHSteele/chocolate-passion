@@ -43,7 +43,8 @@ function chocolate_passion_woocommerce_scripts() {
 			font-style: normal;
 		}';
 
-		$primary = get_theme_mod( 'chocolate_passion_primary_color' );
+		$primary = esc_attr( get_theme_mod( 'chocolate_passion_primary_color', '#db4a00' ) );
+		
 		$inline_style .= "
 			.woocommerce-message,
 			.woocommerce-info{
@@ -56,12 +57,12 @@ function chocolate_passion_woocommerce_scripts() {
 
 			.woocommerce ul.products li.product .price,
 			.woocommerce div.product p.price{
-				color: $primary;
+				color: $primary ;
 			}
 
 			.woocommerce button.button.alt,
 			.woocommerce a.button.alt{
-				background: $primary;
+				background: $primary ;
 			}
 
 			.woocommerce button.button.alt:hover,
@@ -70,16 +71,16 @@ function chocolate_passion_woocommerce_scripts() {
 			}
 
 			.woocommerce .single_add_to_cart_button.button.alt{
-				border: 2px solid $primary;
+				border: 2px solid $primary ;
 			}
 
 			ul.site-header-cart > li{
-				background: $primary;
+				background: $primary ;
 			}
 
 			ul.site-header-cart > li:hover > a,
 			.woocommerce .single_add_to_cart_button.button.alt:hover{
-				color: $primary
+				color: $primary ;
 			}
 		";
 

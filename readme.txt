@@ -37,26 +37,84 @@ Chocolate Passion includes support for Infinite Scroll in Jetpack and WooCommerc
 
 == Changelog ==
 
+= 1.1.0 =
+* Added wp_body_open to header files.
+* Replaced non-GPL compatible images.
+* Removing custom logo in customizer will properly show fallback text.
+* 'Show Panels on Blog Page' customizer control restricted to appearing when blog page is previewed.
+* Setting a post to 'background image' view is now done via post template file rather than post meta box.
+* Added support for jetpack social menu
+* Minor styling changes to posts in archive views
+* Styling changes to comments
+* Some escaping fixes. 
+* Some code formatting fixes
+* Fixed errors in TGM Plugin Activation
+* Added license information for fonts
+
 = 1.0 =
 * Initial release
 
-== Resources ==
+== Copyright ==
 
-Font Awesome, © Fonticons, Inc., Creative Commons By 4.0 
-TGM Plugin Activation, @ 2011 Thomas Griffin Media, GPUv2
+Copyright 2020 Peter Steele.
+Chocolate Passion is distributed under the terms of the GNU GPL
 
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 2 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+GNU General Public License for more details.
 
 == Credits ==
 
 * Based on Underscores https://underscores.me/, (C) 2012-2017 Automattic, Inc., [GPLv2 or later](https://www.gnu.org/licenses/gpl-2.0.html)
 * normalize.css https://necolas.github.io/normalize.css/, (C) 2012-2016 Nicolas Gallagher and Jonathan Neal, [MIT](https://opensource.org/licenses/MIT)
-* Starter Content based on twentyseventeen theme by WordPress [GPLv2 or later](https://www.gnu.org/licenses/gpl-2.0.html)
-Photos: 
-* Pajaro Dunes - Gregory DiPaolo - FreeImages
-by <a href="/photographer/dipaolg-41049">Gregory DiPaolo</a> from <a href="https://freeimages.com/">FreeImages</a>
-* Chicken - Laura Panduru - FreeImages
-Photo by <a href="/photographer/laura_zz-54347">laura panduru</a> from <a href="https://freeimages.com/">FreeImages</a>
-* Nature - createsima - FreeImages
-Photo by <a href="/photographer/createsima-47728">createsima</a> from <a href="https://freeimages.com/">FreeImages</a>
-* Natural Symmetry - Marsy - FreeImages
-Photo by <a href="/photographer/marsy-43108">marsy</a> from <a href="https://freeimages.com/">FreeImages</a>
+* TGM Plugin Activation, Copyright 2011 Thomas Griffin Media, [GPUv2](https://www.gnu.org/licenses/gpl-2.0.html),
+http://tgmpluginactivation.com/
+* Font Awesome, © Fonticons, Inc., Creative Commons BY 4.0, https://fontawesome.com. 
+* Chocolate Passion incorporates code from Twentyseventeen theme by WordPress, Copyright 2016 WordPress.org.
+ Twentyseventeen Theme is distributed under the terms of the GNU GPL. Twentyseventeen code can be found in 
+ chocolate_passion_setup function in functions.php.
+
+Fonts:
+
+"Nunito"
+Primary font, Copyright Vernon Adams, principal designer, and Jacques Le Bailly
+License: SIL Open Font License (OFL) v1.1
+Source: https://fonts.google.com/specimen/Nunito
+
+"Abel"
+Secondary font, Copright MadType 
+License: SIL Open Font License (OFL) v1.1
+Source: https://fonts.google.com/specimen/Abel
+
+Photos:
+
+“Waterlillies”
+Image for theme starter content, Copyright Cristian Ungureanu
+License: CC0 1.0 Universal (CC0 1.0)
+Source: https://mystock.themeisle.com/photo/waterlilies/
+
+“Landscape with trees and fog”
+Image for theme starter content, Copyright Lisa Yount
+License: CC0 1.0 Universal (CC0 1.0)
+Source: https://skitterphoto.com/photos/1731/landscape-with-trees-and-fog
+
+“Sunrise”
+Image for theme screenshot & starter content, Copyright Erik van den Broek
+License: CC0 1.0 Universal (CC0 1.0)
+Source: https://skitterphoto.com/photos/1071/sunrise
+
+"Woods"
+Image for theme screenshot & starter content, Copyright Peter Steele
+License: GNU General Public License v2
+Source: original
+
+"bgwidget"
+Background texture, copyright Peter Steele
+License: GNU General Public License v2 
+source: original

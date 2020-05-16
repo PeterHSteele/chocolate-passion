@@ -12,11 +12,12 @@
     let searchToggle = $(".search-toggle");
     let searchForm = $(".search-form");
     let searchInput = $('.banner-header .site-header .search-form input');
+    let lisWithSubmenus = $('.menu-item-has-children')
     let searchFormControls = $(
       ".banner-header .site-header .search-form #search," +
       ".banner-header .site-header .search-form button"
     );
-    let searchClose = $("#searchbar-close");
+    let searchClose = $("#searchbar-close");   
     
   // Hide menu toggle button if menu is empty and return early.
   if ( ! navContainer ){
@@ -60,6 +61,9 @@
       expandMenu();
     }
   }
+
+  //add aria attributes to lis
+  lisWithSubmenus.attr( 'aria-haspopup', true );
 
   //handle clicks on the menu-toggle button
   button.click(function(){
@@ -110,7 +114,7 @@
   function toggleFocus( ele ) {
     while ( ! ele.hasClass("nav-menu") ){
       if ( ele.is( "li" ) ){
-        if ( ele.hasClass("focus") ){
+        if ( ele.hasClass( "focus" ) ){
           ele.removeClass(" focus" );
         } else {
           ele.addClass( "focus" );

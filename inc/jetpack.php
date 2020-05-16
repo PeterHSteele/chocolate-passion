@@ -41,6 +41,8 @@ function chocolate_passion_jetpack_setup() {
 			'page'       => true,
 		),
 	) );
+
+	add_theme_support( 'jetpack-social-menu' );
 }
 add_action( 'after_setup_theme', 'chocolate_passion_jetpack_setup' );
 

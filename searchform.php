@@ -12,7 +12,7 @@
 		<label for="search" class="screen-reader-text">
 			<?php esc_html_e( 'Search for:' , 'chocolate-passion'); ?>
 		</label>
-		<input type='text' required placeholder="search" id='search' name='s'>
+		<input type='text' required placeholder="<?php esc_attr_e( 'search', 'chocolate-passion') ?>" id='search' name='s'>
 		<button type="submit" role="submit">
 			<i class="fas fa-search"></i>
 			<span class="screen-reader-text"><?php esc_html_e( 'Submit search form', 'chocolate-passion' ); ?></span>

@@ -159,6 +159,21 @@ if ( ! function_exists( 'chocolate_passion_post_thumbnail' ) ) :
 	}
 endif;
 
+if ( ! function_exists( 'chocolate_passion_grid_sizer' ) ) :
+
+	/**
+	* echos a div to size the masonry container on archive pages.
+	*/
+
+	function chocolate_passion_grid_sizer(){
+		?>
+		<div class="cp-grid-sizer"></div>
+		<div class="cp-gutter-sizer"></div>
+		<?php
+	}
+
+endif;
+
 if ( ! function_exists( 'chocolate_passion_menu_name' ) ) :
 	/**
 	* Displays the name of a menu
@@ -194,24 +209,24 @@ if ( ! function_exists( 'chocolate_passion_footer_nav' ) ):
 		$locations = get_nav_menu_locations();
 		//print the menu
 		foreach ( $labels as $nav => $label ){
-			$obj = wp_get_nav_menu_object( $locations[$nav] );
-			$items = wp_get_nav_menu_items( $obj );
-			if ( $items ){
-				//add additional class to secondary menu;
-				$footer_nav_class = $nav == 'menu-2' ? $footer_nav_base_class . ' secondary-navigation' : $footer_nav_base_class;	
-		?>
-			<nav class="<?php echo esc_attr( $footer_nav_class )?>" role="navigation" aria-label="<?php echo esc_attr( $labels[$nav] ); ?>">
-				<h2><?php chocolate_passion_menu_name( $nav ) ?></h2>
-				<?php 
-					wp_nav_menu( array(
-						'theme_location' => $nav,
-						'menu_id' => 'nav-secondary-menu',
-						'depth' => 1,
-						'fallback_cb' => false
-					));
-				?>
-			</nav>	
-		<?php 	
+			if ( isset( $nav ) && array_key_exists( $nav, $locations ) ){
+				if ( wp_get_nav_menu_object( $locations[$nav] ) ){
+					//add additional class to secondary menu;
+					$footer_nav_class = $nav == 'menu-2' ? $footer_nav_base_class . ' secondary-navigation' : $footer_nav_base_class;	
+			?>
+				<nav class="<?php echo esc_attr( $footer_nav_class )?>" role="navigation" aria-label="<?php echo esc_attr( $labels[$nav] ); ?>">
+					<h2><?php chocolate_passion_menu_name( $nav ) ?></h2>
+					<?php 
+						wp_nav_menu( array(
+							'theme_location' => $nav,
+							'menu_id' => 'nav-secondary-menu',
+							'depth' => 1,
+							'fallback_cb' => false
+						));
+					?>
+				</nav>	
+			<?php 	
+				}//endif
 			}//endif
 		}//endforeach
 	}
@@ -222,14 +237,13 @@ if ( ! function_exists( 'chocolate_passion_copyright' ) ):
 	* Prints a copyright statement.
 	*/
 	function chocolate_passion_copyright(){
-		$date = get_theme_mod( 'chocolate_passion_copyright_year' );
+		$date = get_theme_mod( 'chocolate_passion_copyright_year', date( 'o' ) );
 		if ( isset( $date ) && get_theme_mod( 'chocolate_passion_copyright_visible' ) ){
 			?>
 			<span class="copyright">
 			<?php
 				printf(
-					/* translators: %1$s: name of the site. %2$s: Copyright year */
-					esc_html__( '&copy; %2$s %1$s', 'chocolate-passion' ), 
+					esc_html( '&copy; %2$s %1$s' ), 
 					get_bloginfo( 'name' ),// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 					$date// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 				); 

@@ -9,7 +9,7 @@
 
 ?>
 
-<article id="post-<?php the_ID(); ?>" <?php post_class( 'cp-post-index' ); ?>>
+<article id="post-<?php the_ID(); ?>" <?php post_class( 'cp-post-index cp-grid-item' ); ?>>
 	<?php chocolate_passion_post_thumbnail(); ?>
 	<?php if ( is_sticky() && ! is_single() ): ?>
 		<span class="sticky-icon">

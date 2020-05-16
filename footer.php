@@ -32,11 +32,9 @@
 			<div class="col-80">
 				<nav class="social-links" role='navigation' aria-label="<?php esc_attr_e( 'Social' , 'chocolate-passion' ) ?>">
 					<?php
-					wp_nav_menu(array(
-						'theme_location' => 'menu-social',
-						'depth'			 => 1,
-						'fallback_cb'	 => false
-					)); 
+					if ( function_exists( 'jetpack_social_menu' ) ){
+						jetpack_social_menu();
+					}
 					?>
 				</nav>
 			</div><!--.col-80-->

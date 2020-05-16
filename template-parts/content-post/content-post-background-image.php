@@ -1,17 +1,17 @@
 <?php
 /**
- * Special, Feature Image-Oriented template for displaying posts as part of an index page (index.php, archive.php)
+ * image template for displaying posts as part of an index page (index.php, archive.php)
+ *
  *
  * @link https://developer.wordpress.org/themes/basics/template-hierarchy/
  *
  * @package chocolate_passion
  */
-
 ?>
 
 <article 
 	id="post-<?php the_ID(); ?>" 
-	<?php post_class( 'cp-post-background-image' ); ?> 
+	<?php post_class( 'cp-post-background-image cp-grid-item' ); ?> 
 	style="background-image: url(<?php echo esc_url( wp_get_attachment_image_src( get_post_thumbnail_id(), 'small' )[0]) ?>)"
 >
 <div class="mask"> 

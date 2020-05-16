@@ -3,9 +3,57 @@
  * chocolate passion functions and definitions
  *
  * @link https://developer.wordpress.org/themes/basics/theme-functions/
- *
+ * @copyright 2020 Peter Steele
  * @package chocolate_passion
+ *
+ * A portion of this file, specifically the part of chocolate_passion_setup which 
+ * creates starter content, incorporates code from twentyseventeen theme.
+ * Twentyseventeen:
+ * @copyright 2016 Wordpress.org.
+ * @license GPL v2
+ * @link https://wordpress.org/themes/twentyseventeen/
  */
+
+if ( !function_exists( 'chocolate_passion_php_version_check' ) ):
+
+	/**
+	* disable theme if the php version is less than 7
+	*/
+	function chocolate_passion_php_version_check( $old_theme ){
+
+		define( 'CP_REQUIRED_PHP_VERSION', '7.0.0' );
+
+		if ( version_compare( phpversion(), CP_REQUIRED_PHP_VERSION, '<' ) ){
+
+			function chocolate_passion_php_version_notification(){
+				echo '<div class="update-nag">';
+				esc_html_e( 'Chocolate Passion requires PHP version 7.0.', 'chocolate-passion' );
+				echo '</div>';
+			}
+
+			add_action( 'admin_notices', 'chocolate_passion_php_version_notification' );
+
+			if ( is_string( $old_theme ) ){
+				$old_theme = wp_get_theme( str_replace(' ', '-', strtolower( $old_theme ) ) );
+			}
+			$old_theme_exists = $old_theme->exists();
+				
+			if ( $old_theme_exists ){
+				switch_theme( $old_theme->get_stylesheet() );
+			} else {
+				$themes = wp_get_themes();
+				foreach ( $themes as $theme ){
+					if ( $theme->exists() && $theme->get_stylesheet() !== 'chocolate-passion' ){
+						switch_theme( $theme->get_stylesheet() );
+						return;
+					}
+				}
+			}
+		}
+	}
+endif;
+
+add_action( 'after_switch_theme', 'chocolate_passion_php_version_check' );
 
 if ( ! function_exists( 'chocolate_passion_setup' ) ) :
 	/**
@@ -16,6 +64,7 @@ if ( ! function_exists( 'chocolate_passion_setup' ) ) :
 	 * as indicating support for post thumbnails.
 	 */
 	function chocolate_passion_setup() {
+
 		/*
 		 * Make theme available for translation.
 		 * Translations can be filed in the /languages/ directory.
@@ -48,13 +97,18 @@ if ( ! function_exists( 'chocolate_passion_setup' ) ) :
 		 */
 		add_theme_support( 'post-thumbnails' );
 
+		/*
+		 * Register Nav Menus
+		 *
+		 * @link https://developer.wordpress.org/themes/functionality/navigation-menus/
+		 */
+
 		register_nav_menus( array(
 			'menu-1' => esc_html__( 'Primary', 'chocolate-passion' ),
 			'menu-2' => esc_html__( 'Secondary' , 'chocolate-passion' ),
 			'menu-3' => esc_html__( 'Footer Links 1' , 'chocolate-passion' ),
 			'menu-4' => esc_html__( 'Footer Links 2' , 'chocolate-passion' ),
-			'menu-5' => esc_html__( 'Footer Links 3' , 'chocolate-passion' ),
-			'menu-social' => esc_html__( 'Social Menu' , 'chocolate-passion' ),
+			'menu-5' => esc_html__( 'Footer Links 3' , 'chocolate-passion' )
 		) );
 
 		/*
@@ -90,6 +144,16 @@ if ( ! function_exists( 'chocolate_passion_setup' ) ) :
 			'flex-height' => true,
 		) );
 
+		/**
+		* Set up starter content
+		*
+		* Incorporated code from twentyseventeen theme by WordPress, 
+		* @copyright 2016 Wordpress.org.
+		* @license GPL v2
+		* @link https://wordpress.org/themes/twentyseventeen/ 
+		*
+		*/
+
 		add_theme_support( 'starter-content', array(
 			'widgets' => array(
 		        'sidebar-footer' => array(
@@ -100,7 +164,7 @@ if ( ! function_exists( 'chocolate_passion_setup' ) ) :
 
 		   'posts'       => array(
 				'home' 			   => array(
-					'thumbnail' => '{{image-symmetry}}',
+					'thumbnail' => '{{image-woods}}',
 					'post_content' => '<p>' . esc_html__( 
 										"Thanks for installing Chocolate Passion! 
 										Please refer to the readme.md for information about a couple special features.",
@@ -108,33 +172,33 @@ if ( ! function_exists( 'chocolate_passion_setup' ) ) :
 									) . '</p>',
 				),
 				'about'            => array(
-					'thumbnail' => '{{image-chicken}}',
+					'thumbnail' => '{{image-landscape}}',
 				),
 				'contact'          => array(
-					'thumbnail' => '{{image-dunes}}',
+					'thumbnail' => '{{image-waterlillies}}',
 				),
 				'blog',             
 				'homepage-section' => array(
-					'thumbnail' => '{{image-nature}}',
+					'thumbnail' => '{{image-sunrise}}',
 				),
 			), 
 
 		   'attachments' => array(
-				'image-symmetry' => array(
-					'post_title' => _x( 'Natural Symmetry', 'Theme starter content', 'chocolate-passion' ),
-					'file'       => 'assets/img/natural-symmetry-1562705.jpg', 
+				'image-woods' => array(
+					'post_title' => _x( 'Woods', 'Theme starter content', 'chocolate-passion' ),
+					'file'       => 'assets/img/woods.jpg', 
 				),
-				'image-chicken' => array(
-					'post_title' => _x( 'Chicken', 'Theme starter content', 'chocolate-passion' ),
-					'file'       => 'assets/img/chicken.jpg',
+				'image-landscape' => array(
+					'post_title' => _x( 'Landscape', 'Theme starter content', 'chocolate-passion' ),
+					'file'       => 'assets/img/landscape-with-trees-and-fog.jpg',
 				),
-				'image-dunes'   => array(
-					'post_title' => _x( 'Dunes', 'Theme starter content', 'chocolate-passion' ),
-					'file'       => 'assets/img/dunes.jpg',
+				'image-waterlillies'   => array(
+					'post_title' => _x( 'Waterlillies', 'Theme starter content', 'chocolate-passion' ),
+					'file'       => 'assets/img/waterlillies.jpg',
 				),	
-				'image-nature' => array(
-					'post_title' => _x( 'Nature', 'Theme starter content', 'chocolate-passion' ),
-					'file'       => 'assets/img/dunes.jpg',
+				'image-sunrise' => array(
+					'post_title' => _x( 'Sunrise', 'Theme starter content', 'chocolate-passion' ),
+					'file'       => 'assets/img/sunrise.jpg',
 				),
 			),
 
@@ -241,7 +305,7 @@ add_action( 'widgets_init', 'chocolate_passion_widgets_init' );
  */
 function chocolate_passion_scripts() {
 	//fontawesome
-	wp_enqueue_style( 'fontawesome', get_stylesheet_directory_uri() . '/assets/fontawesome/css/all.css' );
+	wp_enqueue_style( 'chocolate-passion-fontawesome', get_stylesheet_directory_uri() . '/assets/fontawesome/css/all.css' );
 
 	wp_enqueue_script( 'chocolate-passion-navigation', get_template_directory_uri() . '/js/navigation.js', array( 'jquery' ), '20151215', true );
 	wp_localize_script( 'chocolate-passion-navigation', 'template', array( 'bannerHeader' => is_page_template('page-templates/banner-header.php') ) );
@@ -251,15 +315,18 @@ function chocolate_passion_scripts() {
 	}
 
 	if (is_single()){
+		wp_enqueue_style( 'chocolate-passion-single-style', get_template_directory_uri() . '/layouts/single-post-sidebar.css' );
+	}
 
-		wp_enqueue_style( 'single-style', get_template_directory_uri() . '/layouts/single-post-sidebar.css' );
+	if ( is_home() || is_archive() || is_page_template( ' index.php' ) ){
+		wp_enqueue_script( 'chocolate-passion-masonry', get_template_directory_uri() . '/js/masonry.js', array( 'jquery' , 'imagesloaded', 'masonry' ), '20151215', true );
 	}
 
 	wp_enqueue_style( 'chocolate-passion-style', get_stylesheet_uri() );
 	wp_add_inline_style('chocolate-passion-style', chocolate_passion_customize_css() );
 	
 	wp_enqueue_style( 'chocolate-passion-google-font-nunito', 'https://fonts.googleapis.com/css?family=Nunito&display=swap' );
-	wp_enqueue_style( 'chocolate-paddion-google-font-permanent', "https://fonts.googleapis.com/css?family=Abel&display=swap" );
+	wp_enqueue_style( 'chocolate-passion-google-font-permanent', "https://fonts.googleapis.com/css?family=Abel&display=swap" );
 
 	wp_enqueue_script( 'chocolate-passion-skip-link-focus-fix', get_template_directory_uri() . '/js/skip-link-focus-fix.js', array(), '20151215', true );
 
@@ -309,6 +376,18 @@ if ( defined( 'JETPACK__VERSION' ) ) {
 	require get_template_directory() . '/inc/jetpack.php';
 }
 
+if ( ! function_exists( 'wp_body_open' ) ):
+
+	/**
+	* fallback for wp_body_open.
+	*/
+
+	function wp_body_open() {
+         do_action( 'wp_body_open' );
+    }
+
+endif;	 
+
 if ( ! function_exists( 'chocolate_passion_footer_nav_class' ) ):
 
 	/**
@@ -331,7 +410,6 @@ endif;
 
 function chocolate_passion_register_required_plugins() {
 	$plugins = array(
-		// This is an example of how to include a plugin from the WordPress Plugin Repository.
 		array(
 			'name'      => 'Advanced Excerpt',
 			'slug'      => 'advanced-excerpt',
@@ -385,6 +463,15 @@ if ( ! function_exists( 'chocolate_passion_customize_css' ) ):
 				color:  $primary;
 			}
 
+			.cp-post-index .entry-title a:chocolate_passion_hover_link_color,
+			.cp-post-index .tags-links a:hover,
+			.cp-post-index .cat-links a:hover,
+			.cp-post-index .comments-link a:hover,
+			.cp-post-index .edit-link a:hover,
+			.byline a:hover{
+				color: $hover;
+			}
+
 			.menu-toggle:hover,
 			.menu-toggle:focus{
 				background: $primary;
@@ -415,7 +502,7 @@ if ( ! function_exists( 'chocolate_passion_customize_css' ) ):
 				border: 2px solid $primary;
 			}
 
-			.bypostauthor{
+			.bypostauthor .comment-body{
 				border-left: 5px solid $primary;
 			}
 

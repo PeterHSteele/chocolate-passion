@@ -21,6 +21,7 @@
 </head>
 
 <body <?php body_class(); ?>>
+<?php wp_body_open(); ?>
 <div id="page" class="site">
 	<a class="skip-link screen-reader-text" href="#content"><?php esc_html_e( 'Skip to content', 'chocolate-passion' ); ?></a>
 	<header id="masthead" class="site-header" role="banner">
@@ -33,7 +34,7 @@
 									the_custom_logo();
 								else :
 								?>
-									<h2 class="cp-logo-fallback"><a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home"><?php bloginfo('name') ?></a></h2> 
+								<h2 class="cp-logo-fallback"><a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home"><?php bloginfo('name') ?></a></h2> 
 								<?php endif; ?>
 							</div><!-- .site-branding -->
 							<div class="header secondary-menu-wrap">
@@ -64,7 +65,7 @@
 									'theme_location' => 'menu-1',
 									'menu_id'        => 'primary-menu',
 									'menu_class'	 => 'clear accessible-hide nav-menu',
-									'depth' => 3,
+									'depth' 		 => 3,
 								) );
 								?>
 							</nav><!-- #site-navigation -->					
