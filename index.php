@@ -34,7 +34,7 @@ if ( is_home() && get_theme_mod( 'chocolate_passion_panels_homepage', false ) ){
 				</header>
 				<?php
 			endif;
-			chocolate_passion_grid_sizer();
+			
 			/* Start the Loop */
 			while ( have_posts() ) :
 				the_post();

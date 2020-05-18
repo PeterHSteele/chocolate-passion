@@ -159,21 +159,6 @@ if ( ! function_exists( 'chocolate_passion_post_thumbnail' ) ) :
 	}
 endif;
 
-if ( ! function_exists( 'chocolate_passion_grid_sizer' ) ) :
-
-	/**
-	* echos a div to size the masonry container on archive pages.
-	*/
-
-	function chocolate_passion_grid_sizer(){
-		?>
-		<div class="cp-grid-sizer"></div>
-		<div class="cp-gutter-sizer"></div>
-		<?php
-	}
-
-endif;
-
 if ( ! function_exists( 'chocolate_passion_menu_name' ) ) :
 	/**
 	* Displays the name of a menu

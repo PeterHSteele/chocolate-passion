@@ -25,7 +25,6 @@ get_header();
 
 				<?php
 
-				chocolate_passion_grid_sizer();
 				/* Start the Loop */
 				while ( have_posts() ) :
 					the_post();

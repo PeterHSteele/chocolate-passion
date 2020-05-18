@@ -318,10 +318,6 @@ function chocolate_passion_scripts() {
 		wp_enqueue_style( 'chocolate-passion-single-style', get_template_directory_uri() . '/layouts/single-post-sidebar.css' );
 	}
 
-	if ( is_home() || is_archive() || is_page_template( ' index.php' ) ){
-		wp_enqueue_script( 'chocolate-passion-masonry', get_template_directory_uri() . '/js/masonry.js', array( 'jquery' , 'imagesloaded', 'masonry' ), '20151215', true );
-	}
-
 	wp_enqueue_style( 'chocolate-passion-style', get_stylesheet_uri() );
 	wp_add_inline_style('chocolate-passion-style', chocolate_passion_customize_css() );
 	
