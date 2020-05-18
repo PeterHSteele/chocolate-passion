@@ -167,7 +167,7 @@ if ( ! function_exists( 'chocolate_passion_menu_name' ) ) :
 	* @param string 	$location 	theme location of menu whose name to display
 	*/
 	function chocolate_passion_menu_name( $location = '' ){
-		echo esc_html( get_term( get_nav_menu_locations()[$location] )->name );
+		echo esc_html( wp_get_nav_menu_name( $location ) );
 	}
 
 endif;
@@ -190,14 +190,11 @@ if ( ! function_exists( 'chocolate_passion_footer_nav' ) ):
 
 		//add a css class based on how many menus there are
 		$footer_nav_base_class = chocolate_passion_footer_nav_class();
-		//get registered menu locations
-		$locations = get_nav_menu_locations();
 		//print the menu
 		foreach ( $labels as $nav => $label ){
-			if ( isset( $nav ) && array_key_exists( $nav, $locations ) ){
-				if ( wp_get_nav_menu_object( $locations[$nav] ) ){
-					//add additional class to secondary menu;
-					$footer_nav_class = $nav == 'menu-2' ? $footer_nav_base_class . ' secondary-navigation' : $footer_nav_base_class;	
+			if ( isset( $nav ) && has_nav_menu( $nav ) ){
+				//add additional class to secondary menu;
+				$footer_nav_class = $nav == 'menu-2' ? $footer_nav_base_class . ' secondary-navigation' : $footer_nav_base_class;	
 			?>
 				<nav class="<?php echo esc_attr( $footer_nav_class )?>" role="navigation" aria-label="<?php echo esc_attr( $labels[$nav] ); ?>">
 					<h2><?php chocolate_passion_menu_name( $nav ) ?></h2>
@@ -211,7 +208,6 @@ if ( ! function_exists( 'chocolate_passion_footer_nav' ) ):
 					?>
 				</nav>	
 			<?php 	
-				}//endif
 			}//endif
 		}//endforeach
 	}

@@ -38,6 +38,7 @@
 								<?php endif; ?>
 							</div><!-- .site-branding -->
 							<div class="header secondary-menu-wrap">
+								<?php if ( has_nav_menu( 'menu-2' ) ) : ?>
 								<nav id="secondary-menu" class="secondary-navigation" role="navigation" aria-label="<?php esc_attr_e( 'Secondary', 'chocolate-passion' ); ?>">
 									<?php 
 										wp_nav_menu( array(
@@ -48,6 +49,7 @@
 										));
 									?>
 								</nav>
+								<?php endif; ?>
 							</div><!--secondary-menu-wrap-->
 						</div><!--.row-->
 					</div><!--.col-80-->

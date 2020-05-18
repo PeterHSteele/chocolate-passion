@@ -1622,15 +1622,13 @@ Layout - Posts Indexes ( Home & Archive Templates )
 
 .blog .site-main > article,
 .archive .site-main > article{
-	flex: 0 0 99.5%;
-	margin: .25%;
-	width: 98%;
-	margin: .75em 1%;
+	flex: 0 0 98%;
+	margin: 1em 1%;
 }
 
 .page-header{
-	flex: 0 0 99.5%;
-	margin: .25% .25% .125%;
+	flex: 0 0 98%;
+	margin: 1%;
 }
 
 .posts-navigation{
@@ -1943,14 +1941,13 @@ Custom Styles - Posts Index ( styles for non-single posts including Home, Archiv
 .archive .site-main > article {
 	padding: .5em 1em;
 	background: #fff;
-	/*border: 3px solid #ddd;*/
 	line-height: 1.3;
 	position: relative;
 	box-shadow: 5px 5px  0px 0px #ddd;
 	display: flex;
 	flex-direction: column;
 	justify-content: flex-start;
-	border-radius: 10px;
+	border-radius: 10px;	
 }
 
 .blog .site-main .attachment-post-thumbnail,
@@ -1970,8 +1967,10 @@ Custom Styles - Posts Index ( styles for non-single posts including Home, Archiv
 
 .page-header{
 	background: #fff;
-	border: 3px solid #ddd;
 	padding: .5em;
+	/*border: 3px solid #ddd;*/
+	border-radius: 10px;
+	box-shadow: 5px 5px  0px 0px #ddd;
 }
 
 .sticky-icon{
@@ -2703,7 +2702,7 @@ Layout - Footer - Small Screen
 	}
 
 	.blog .site-main > article,
-	.archive .site-main > article{
+	.archive .site-main > article {
 		flex:  0 0 48%;
 		margin: 8px 1%;
 	}
