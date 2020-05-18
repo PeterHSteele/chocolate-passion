@@ -17,10 +17,11 @@
 function chocolate_passion_jetpack_setup() {
 	// Add theme support for Infinite Scroll.
 	add_theme_support( 'infinite-scroll', array(
-		'container' => 'main',
-		'render'    => 'chocolate_passion_infinite_scroll_render',
-		'footer'    => 'page',
-		'wrapper'   => false
+		'container' 		=> 'main',
+		'render'    		=> 'chocolate_passion_infinite_scroll_render',
+		'footer'    		=> 'page',
+		'footer-widgets'	=> 'footer-widgets',
+		'wrapper'   		=> false
 	) );
 
 	// Add theme support for Responsive Videos.

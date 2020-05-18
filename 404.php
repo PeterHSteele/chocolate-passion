@@ -26,6 +26,8 @@ get_header();
 					the_widget( 'WP_Widget_Recent_Posts' );
 					?>
 
+					<div clas="col-80"><?php the_search_form() ?></div>
+
 					<div class="widget widget_categories">
 						<h2 class="widget-title"><?php esc_html_e( 'Most Used Categories', 'chocolate-passion' ); ?></h2>
 						<ul>

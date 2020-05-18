@@ -1,4 +1,4 @@
-/*!
+/*
 Theme Name: Chocolate Passion
 Theme URI: github.com/peterhsteele/chocolate-passion
 Author: Peter Steele
@@ -1655,24 +1655,53 @@ Layout - Search Results (search.php)
 ============
 */
 
-.search .site-main > article{
-	margin-bottom: 110px;
+.search .site-main article {
+	display: flex;
+	flex-wrap: nowrap;
 }
 
+.search .site-main article{
+
+}
 .no-results{
 	margin-bottom: 50px;
 }
 
-.no-results .search-form{
+.search .site-main article > .entry-summary{
+	display: none;
+}
+
+.search .site-main article > .post-thumbnail,
+.search .site-main article > .entry-header,
+.search .site-main article > .entry-summary{
+	flex: 1 0;
+}
+
+.search .site-main article > .entry-summary,
+.search .site-main article > .entry-header{
+	padding-left: 1em;
+}
+
+.search .site-main article > .post-thumbnail{
+	max-width: 150px;
+	align-self: center;
+}
+
+
+
+.no-results .search-form,
+.error404 .site-main .search-form{
 	float: none;
 	margin-right: 0;
 	border: 2px solid #404040;
 	display: flex;
 }
 
-.no-results .search-form input[type="text"]{
+.no-results .search-form input[type="text"],
+.error404 .site-main .search-form input[type="text"]{
 	flex: 1 0;
 }
+
 
 /*
 ============
@@ -1999,7 +2028,7 @@ Custom Styles - Posts Index ( styles for non-single posts including Home, Archiv
 .cp-post-index .cat-links a,
 .cp-post-index .comments-link a,
 .cp-post-index .edit-link a,
-.byline a{
+.cp-post-index .byline a{
 	color: #444;
 }
 
@@ -2230,6 +2259,68 @@ Custom Styles - Comments
 
 /*
 ===============
+Custom Styles - Search
+===============
+*/
+
+.search .page-header{
+	border: none;
+	padding: 0;
+}
+
+.search h1{
+	margin: 0;
+	padding: .67em 0;
+}
+
+.search .site-main  article{
+	padding: 1rem 0;
+	background: #fff;
+	border-bottom: 1px solid #ccc;
+	min-height: 170px;
+}
+
+.search .site-main  article:last-child{
+	border-bottom: none
+}
+
+.search .site-main  article .entry-title{
+	color: #000;
+	margin: .21em 0;
+}
+
+.search .entry-title a,
+.search .tags-links a,
+.search .cat-links a,
+.search .comments-link a,
+.search .edit-link a,
+.search .byline a{
+	/*color: #444;*/
+}
+
+.search .site-main  article{
+	/*border-left: 4px solid #000;*/
+}
+/*
+.search .site-main > article:nth-child(odd){
+	background: #f9f9f9;
+}
+*/
+.search .site-main  article .entry-summary {
+	margin: 0em;
+}
+
+.search .site-main  article .entry-summary p{
+	margin: .25em 0;
+}
+
+.search .entry-meta{
+	color: #777;
+}
+
+
+/*
+===============
 Custom Styles - 404 Page
 ===============
 */
@@ -2237,6 +2328,10 @@ Custom Styles - 404 Page
 .error404 .page-header{
 	border: none;
 	padding: 0;
+}
+
+.error404 .site-main .search-form{
+	border: 3px solid #444;
 }
 
 /*
@@ -2688,6 +2783,16 @@ Custom Styles - Sidebar - Large Screen
 	.col-60{
 		width: 60%;
 		margin: 0;
+	}
+
+	/*
+	==============
+	Layout - Search Results - XL Screen 
+	==============
+	*/
+
+	.search .site-main article > .entry-summary{
+		display: block;
 	}
 	
 	/*

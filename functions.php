@@ -534,6 +534,10 @@ if ( ! function_exists( 'chocolate_passion_customize_css' ) ):
 				background: $primary;
 			}
 
+			.search-results-query{
+				color: $primary;
+			}
+
 		";
 
 		return $css;

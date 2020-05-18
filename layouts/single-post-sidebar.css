@@ -9,13 +9,13 @@
 
 @media screen and (min-width: 750px){
 
-	.single aside.widget-area-single-post{
+	.single:not(.post-template-full-width) aside.widget-area-single-post{
 		width: 28%;
 		float: right;
 		padding-left:
 	}
 
-	.single .site-main{
+	.single:not(.post-template-full-width) .site-main{
 		float: left;
 		width: 72%;
 		padding-right: 1em;
