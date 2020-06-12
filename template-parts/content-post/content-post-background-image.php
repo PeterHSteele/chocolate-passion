@@ -11,11 +11,11 @@
 
 <article 
 	id="post-<?php the_ID(); ?>" 
-	<?php post_class( 'cp-post-background-image cp-grid-item' ); ?> 
-	style="background-image: url(<?php echo esc_url( wp_get_attachment_image_src( get_post_thumbnail_id(), 'small' )[0]) ?>)"
+	<?php post_class( 'cp-post-background-image' ); ?> 
+	style="background-image: url(<?php chocolate_passion_background_image( 'small' ) ?>)"
 >
-<div class="mask"> 
-	<?php if ( is_sticky() && ! is_single() ): ?>
+	<div class="mask"> 
+	<?php if ( is_sticky() && ! is_single() && ! is_paged() ): ?>
 		<span class="sticky-icon">
 			<span class="screen-reader-text"><?php esc_html_e( 'pinned post' , 'chocolate-passion' ) ?></span>
 			<i class="fas fa-lg fa-thumbtack"></i>

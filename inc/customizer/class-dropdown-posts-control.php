@@ -1,7 +1,7 @@
 <?php 
 
 /**
-* Class for rendering a new custom control for the customizer - a 'dropdown-pages'-like control for posts.
+* Class for rendering a custom control for the customizer - a 'dropdown-pages'-like control for posts.
 *
 * @package chocolate-passion
 */
@@ -18,7 +18,7 @@ function chocolate_passion_dropdown_posts(){
 					<?php echo esc_html($this->label); ?>
 				</span>
 				<select <?php $this->link() ?>>
-					<option value=""><?php esc_html_e( 'None (default)' , 'chocolate-passion' ) ?></option>
+					<option value="0"><?php esc_html_e( 'None (default)' , 'chocolate-passion' ) ?></option>
 				<?php foreach ( $posts as $post ) : ?>
 					<option value="<?php echo esc_attr($post->ID); ?>"><?php echo esc_html( get_the_title( $post ) )?></option>
 				<?php endforeach; ?>

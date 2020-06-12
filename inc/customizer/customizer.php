@@ -16,7 +16,7 @@ function chocolate_passion_customize_register( $wp_customize ) {
 
 	$wp_customize->get_setting( 'blogname' )->transport         = 'postMessage';
 	$wp_customize->get_setting( 'blogdescription' )->transport  = 'postMessage';
-	$wp_customize->get_setting( 'custom_logo' )->transport  = 'postMessage';
+	$wp_customize->get_setting( 'custom_logo' )->transport  	= 'postMessage';
 	
 	if ( isset( $wp_customize->selective_refresh ) ) {
 		$wp_customize->selective_refresh->add_partial( 'blogname', array(
@@ -27,7 +27,9 @@ function chocolate_passion_customize_register( $wp_customize ) {
 			'selector'        => '.site-description',
 			'render_callback' => 'chocolate_passion_customize_partial_blogdescription',
 		) );
+
 	}
+
 	//Colors
 	$wp_customize->add_setting( 'chocolate_passion_primary_color', array(
 		'default' => '#db3a00',
@@ -60,17 +62,17 @@ function chocolate_passion_customize_register( $wp_customize ) {
 	$wp_customize->add_control( new WP_Customize_Color_Control( $wp_customize, 'chocolate_passion_hover_link_color', array(
 		'label' => __( 'Link Color', 'chocolate-passion' ),
 		'section' => 'colors',
-		'description' => __( 'The color links in the content when hovered by the mouse.' , 'chocolate-passion' ),
+		'description' => __( 'The color links in the content appear when hovered by the mouse.' , 'chocolate-passion' ),
 		'settings' => 'chocolate_passion_hover_link_color'
 	)));
 	//Panels
 
-	$wp_customize->add_section('chocolate_passion_panels',array(
+	$wp_customize->add_section( 'chocolate_passion_panels' , array(
 		'title' => __( 'CP Panels' , 'chocolate-passion' ),
 		'description' => __( 
 				"Set pages and posts to appear as panels at the top of the page. 
 				Any posts that do not have a featured image will be skipped. ", 
-				'chocolate_passion' 
+				'chocolate-passion' 
 		),
 		'active_callback' => 'chocolate_passion_is_panels',
 	));
@@ -80,12 +82,12 @@ function chocolate_passion_customize_register( $wp_customize ) {
 		'sanitize_callback' => 'chocolate_passion_sanitize_checkbox'
 	) );
 	
-		$wp_customize->add_control( 'chocolate_passion_panels_homepage', array(
-			'label' => __( 'Show Panels on Blog Page', 'chocolate-passion' ),
-			'type' => 'checkbox',
-			'section' => 'chocolate_passion_panels',
-			'active_callback' => 'chocolate_passion_is_home'
-		));
+	$wp_customize->add_control( 'chocolate_passion_panels_homepage', array(
+		'label' => __( 'Show Panels on Blog Page', 'chocolate-passion' ),
+		'type' => 'checkbox',
+		'section' => 'chocolate_passion_panels',
+		'active_callback' => 'chocolate_passion_is_home'
+	));
 	
 
 	for( $count = 1; $count <= 4; $count++){
@@ -105,6 +107,7 @@ function chocolate_passion_customize_register( $wp_customize ) {
 			'settings' => 'chocolate_passion_panel_posts_' . $count,
 			'active_callback' => 'chocolate_passion_show_panel_control'
 		)));
+
 		/*
 		allows user to set the text position of the panel content
 		*/
@@ -122,7 +125,6 @@ function chocolate_passion_customize_register( $wp_customize ) {
 			'section' => 'chocolate_passion_panels',
 			'active_callback' => 'chocolate_passion_show_panel_control'
 		));
-
 	}
 
 	//Copyright
@@ -163,16 +165,23 @@ add_action( 'customize_controls_print_styles', 'chocolate_passion_enqueue_custom
 
 /** 
 *Custom Sanitization Functions
-*
-* sanitize_year is for the copyright year.
+*/
+
+/**
+* Sanitize the copyright year by converting to a number
+* and accepting up to four digits.
 */
 
 function chocolate_passion_sanitize_year( $year ){
 	return absint( substr( $year, 0, 4) );
 }
 
+/**
+* Sanitize a checkbox value by allowing only 0 or 1 to be saved
+*/
+
 function chocolate_passion_sanitize_checkbox( $input ){
-    return $input > 0 ? 1 : 0;
+    return intval( $input ) > 0 ? 1 : 0;
 }
 
 /**
@@ -180,19 +189,16 @@ function chocolate_passion_sanitize_checkbox( $input ){
 */
 
 function chocolate_passion_sanitize_text_position( $input ){
-	$save;
+	$save = '';
 	switch( $input ){
 		case 'top-left': 
-			$save = $input;
-			break;
-		case 'top-right': 
-			$save = $input;
-			break;
+		case 'top-right':
 		case 'bottom-right': 
+		case 'bottom-left':
 			$save = $input;
 			break;
 		default:
-			$save = 'bottom-left';
+			$save = '';
 	}
 	return $save;
 }
@@ -209,7 +215,10 @@ function chocolate_passion_text_position_choices( ){
 }
 
 /* 
-	Checks if panels page template is being used.
+	Checks if panels page template is being used. Alternately, 
+	checks if blog page is previewed, since users can choose
+	to have panels appear on blog page. 
+	
 	Active callback for whether to show the CP Panels section
 */
 
@@ -230,13 +239,13 @@ function chocolate_passion_is_home(){
 
 /*
 	Checks whether panel and text position controls should appear.
-	Active callback for panel controls and text position controls.
+	Active callback for panel and text position controls.
 */
 
 function chocolate_passion_show_panel_control(){
 	return (
-		is_home() && get_theme_mod( 'chocolate_passion_panels_homepage' ) || 
-		!is_home() && is_page_template( 'page-templates/panel-page.php' )
+		is_home() && get_theme_mod( 'chocolate_passion_panels_homepage', false ) || 
+		is_page_template( 'page-templates/panel-page.php' )
 	); 
 }
 
@@ -258,16 +267,26 @@ function chocolate_passion_customize_partial_blogdescription() {
 	bloginfo( 'description' );
 }
 
+/**
+ * Render the site tagline for the selective refresh partial.
+ *
+ * @return void
+ */
 
 /**
  * Binds JS handlers to make Theme Customizer preview reload changes asynchronously.
  */
 function chocolate_passion_customize_preview_js() {
-	wp_enqueue_script( 'chocolate-passion-customize-preview', get_template_directory_uri() . '/js/customize-preview.js', array( 'customize-preview' ), '20151215', true );
+	wp_enqueue_script( 'chocolate-passion-customize-preview', get_template_directory_uri() . '/js/customize-preview.js', array( 'jquery', 'customize-preview' ), '20151215', true );
 }
 add_action( 'customize_preview_init', 'chocolate_passion_customize_preview_js' );
 
+/**
+ * Loads controls js to conditionally hide unused inputs in the panels section.
+ */
+
 function chocolate_passion_customize_controls_js(){
-	wp_enqueue_script( 'chocolate-passion-customize-controls', get_template_directory_uri() . '/js/customize-controls.js', array( 'customize-controls' ), '20151215', true );
+	wp_enqueue_script( 'chocolate-passion-customize-controls', get_template_directory_uri() . '/js/customize-controls.js', array( 'jquery', 'customize-controls' ), '20151215', true );
+
 }
 add_action( 'customize_controls_enqueue_scripts', 'chocolate_passion_customize_controls_js' );

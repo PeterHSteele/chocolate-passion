@@ -3,8 +3,8 @@
 Contributors: peterste
 Tags: custom-background, featured-images, threaded-comments, translation-ready, rtl, accessibility-ready
 Requires at least: 5.2
-Tested up to: 5.3
-Stable tag: 1.0.0
+Tested up to: 5.4
+Stable tag: 1.1.0
 Requires PHP: 7.0
 License: GNU General Public License v2 or later
 License URI: https://www.gnu.org/licenses/old-licenses/gpl-2.0.en.html	
@@ -18,10 +18,13 @@ WooCommerce to provide mom-and-pop scale ecommerce functionality.
 
 Two "features" which might need short explanations:
 * You can alter the way posts appear on index pages, namely the blog/posts page and taxonomy
-pages, by setting the 'chocolate_passion_post_view' custom field to 'background_image' in the 
-post editor. It's important that any post that does this has a featured image.
-*You can add panels, consisting of a large image with text layered on top, to a page on your site 
-by selecting the panel page template. The other page templates should be self-explanatory.
+pages, by choosing the background image template in the post editor. This template only affects posts 
+that appear in lists and will not affect the "single" view of the post. It's best that any 
+post that uses this template has a featured image.
+
+* You can add panels, consisting of a large image with text layered on top, to a page on your site 
+by selecting the panel page template. You can also include these panels on your blog page by navigating 
+to your blog page and checking the box in the CP Panels customizer section.
 
 == Installation ==
 
@@ -42,6 +45,7 @@ Chocolate Passion includes support for Infinite Scroll in Jetpack and WooCommerc
 * Replaced non-GPL compatible images.
 * Removing custom logo in customizer will properly show fallback text.
 * 'Show Panels on Blog Page' customizer control restricted to appearing when blog page is previewed.
+* Conditional show/hide functionality added to CP Panels section of customizer controls.
 * Setting a post to 'background image' view is now done via post template file rather than post meta box.
 * Added support for jetpack social menu
 * Minor styling changes to posts in archive views
@@ -50,14 +54,16 @@ Chocolate Passion includes support for Infinite Scroll in Jetpack and WooCommerc
 * Some code formatting fixes
 * Fixed errors in TGM Plugin Activation
 * Added license information for fonts
+* Minor style changes to search results page
+* Added version check to deactivate theme if PHP version is less than 7.0
 
 = 1.0 =
 * Initial release
 
 == Copyright ==
 
-Copyright 2020 Peter Steele.
-Chocolate Passion is distributed under the terms of the GNU GPL
+Chocolate Passion Theme, Copyright 2020 Peter Steele.
+Chocolate Passion is distributed under the terms of the GNU GPL.
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -93,11 +99,6 @@ License: SIL Open Font License (OFL) v1.1
 Source: https://fonts.google.com/specimen/Abel
 
 Photos:
-
-“Waterlillies”
-Image for theme starter content, Copyright Cristian Ungureanu
-License: CC0 1.0 Universal (CC0 1.0)
-Source: https://mystock.themeisle.com/photo/waterlilies/
 
 “Landscape with trees and fog”
 Image for theme starter content, Copyright Lisa Yount

@@ -23,15 +23,18 @@ if ( ! function_exists( 'chocolate_passion_posted_on' ) ) :
 			esc_attr( get_the_modified_date( DATE_W3C ) ),
 			esc_html( get_the_modified_date() )
 		);
-		/*
-		$posted_on = sprintf(
-			/* translators: %s: post date. */
-			/*esc_html_x( 'Posted on'.' %s', 'post date', 'chocolate-passion' ),
-			'<a href="' . esc_url( get_permalink() ) . '" rel="bookmark">' . $time_string . '</a>'
-		);
-		*/
-		echo '<span class="posted-on">' . $time_string . '</span>';// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 
+		$output = $time_string;
+		$title = trim( get_the_title() );
+		if ( empty( $title ) && !is_single() ){
+			$output = sprintf( 
+				'<a href="%1$s" rel="bookmark">%2$s</a>',
+				esc_url( get_the_permalink() ),
+				$output
+			);
+		}
+
+		echo '<span class="posted-on">' . $output . '</span>';// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 	}
 endif;
 
@@ -81,7 +84,7 @@ if ( ! function_exists( 'chocolate_passion_entry_footer' ) ) :
 					'<span class="tags-links"><i class="fas fa-tags"></i> <span class="screen-reader-text">%1$s</span>%2$s</span><span class="sep"> </span>',
 					esc_html__( 'Tagged' , 'chocolate-passion' ),
 					$tags_list // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
-					);
+				);
 			}
 		}
 
@@ -91,14 +94,14 @@ if ( ! function_exists( 'chocolate_passion_entry_footer' ) ) :
 				sprintf(
 					wp_kses(
 						/* translators: %s: post title */
-						__( 'Leave a Comment<span class="screen-reader-text"> on %s</span>', 'chocolate-passion' ),
+						__( 'Comment<span class="screen-reader-text"> on %s</span>', 'chocolate-passion' ),
 						array(
 							'span' => array(
 								'class' => array(),
 							),
 						)
 					),
-					get_the_title()
+					wp_kses_post( get_the_title() )
 				)
 			);
 			echo ' </span>';
@@ -115,7 +118,7 @@ if ( ! function_exists( 'chocolate_passion_entry_footer' ) ) :
 						),
 					)
 				),
-				get_the_title()
+				wp_kses_post( get_the_title() )
 			),
 			'<span class="edit-link">',
 			'</span>'
@@ -159,6 +162,48 @@ if ( ! function_exists( 'chocolate_passion_post_thumbnail' ) ) :
 	}
 endif;
 
+if ( ! function_exists( 'chocolate_passion_header_text' ) ) :
+	/** 
+	* displays <h1> tag on front page depending
+	* on whether header text is displayed, whether
+	* title and tagline are set, and homepage settings.
+	*/
+
+	function chocolate_passion_header_text(){
+		$h1_class = display_header_text() ? 'site-title' : 'site-title screen-reader-text';
+		?>
+			<h1 class="<?php echo $h1_class // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped?>">
+		<?php 
+
+			if ( get_bloginfo( 'description' ) ) {
+				bloginfo( 'description' );
+			} elseif ( get_bloginfo( 'name' ) ){
+				bloginfo( 'name' );
+			} else {
+				esc_html_e( 'Recent Posts' , 'chocolate-passion' );
+			}
+
+		?>
+			</h1>
+		<?php
+	}
+
+endif;
+
+if ( ! function_exists( 'chocolate_passion_background_image' ) ) :
+
+	/**
+	* echos the background image url for posts using the background-image.php template. 
+	*/
+
+	function chocolate_passion_background_image( $size = 'large' ){
+		$image_attrs = wp_get_attachment_image_src( get_post_thumbnail_id(), $size );
+		$background_image = $image_attrs[0];
+		echo esc_url( $background_image );
+	}
+
+endif;
+
 if ( ! function_exists( 'chocolate_passion_menu_name' ) ) :
 	/**
 	* Displays the name of a menu
@@ -172,13 +217,37 @@ if ( ! function_exists( 'chocolate_passion_menu_name' ) ) :
 
 endif;
 
+if ( ! function_exists( 'chocolate_passion_edit_link') ):
+
+	/**
+	* Displays the edit link for banner-header, sidebar right, and regular
+	* page template parts.
+	*/
+	function chocolate_passion_edit_link(){
+		edit_post_link(
+			sprintf(
+				wp_kses(
+					/* translators: %s: Name of current post. Only visible to screen readers */
+					__( 'Edit <span class="screen-reader-text">%s</span>', 'chocolate-passion' ),
+					array(
+						'span' => array(
+							'class' => array(),
+						),
+					)
+				),
+				wp_kses_post( get_the_title() )
+			),
+			'<span class="edit-link">',
+			'</span>'
+		);
+	}
+endif;
+
 if ( ! function_exists( 'chocolate_passion_footer_nav' ) ):
 	/**
 	* Displays a list of auxiliary links.
 	*
-	* Allows you to stuff the footer with additional links.
-	* @param string 	$location 	the theme location slug of the menu to print.
-	* @param string 	$class 		css class to use for aligning navs in footer
+	* Allows addition of additional links to footer.
 	*/
 	function chocolate_passion_footer_navs(){
 		$labels = array(
@@ -201,7 +270,6 @@ if ( ! function_exists( 'chocolate_passion_footer_nav' ) ):
 					<?php 
 						wp_nav_menu( array(
 							'theme_location' => $nav,
-							'menu_id' => 'nav-secondary-menu',
 							'depth' => 1,
 							'fallback_cb' => false
 						));
@@ -219,18 +287,38 @@ if ( ! function_exists( 'chocolate_passion_copyright' ) ):
 	*/
 	function chocolate_passion_copyright(){
 		$date = get_theme_mod( 'chocolate_passion_copyright_year', date( 'o' ) );
-		if ( isset( $date ) && get_theme_mod( 'chocolate_passion_copyright_visible' ) ){
+		if ( isset( $date ) && get_theme_mod( 'chocolate_passion_copyright_visible', false ) ){
 			?>
 			<span class="copyright">
 			<?php
 				printf(
-					esc_html( '&copy; %2$s %1$s' ), 
-					get_bloginfo( 'name' ),// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
-					$date// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+					'&copy; %2$s %1$s',
+					esc_html( get_bloginfo( 'name' ) ),
+					esc_html( $date )
 				); 
 			?>
 			</span>
 			<?php
 		}
 	}	
+endif;
+
+if( ! function_exists( 'chocolate_passion_footer_widgets_aria_label' ) ) :
+
+	/**
+	* Adds an aria label to footer widget area if there is another <aside> on the page.
+	*/
+
+	function chocolate_passion_footer_widgets_aria_label(){
+		if ( 
+			is_active_sidebar( 'sidebar-right' ) && get_page_template_slug( 'page-templates/sidebar-right.php' ) || 
+			is_active_sidebar( 'sidebar-single' ) && is_single() || 
+			is_active_sidebar( 'sidebar-3' ) && function_exists( 'is_woocommerce' ) && is_woocommerce()
+		){
+			?>
+			aria-label="<?php esc_attr_e( 'Additional Supplementary Content', 'chocolate-passion' ) ?>"
+			<?php
+		}
+	}
+
 endif;

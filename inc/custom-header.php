@@ -7,8 +7,6 @@
 
 /**
  * Set up the WordPress core custom header feature.
- *
- * @uses chocolate_passion_header_style()
  */
 function chocolate_passion_custom_header_setup() {
 	add_theme_support( 'custom-header', apply_filters( 'chocolate_passion_custom_header_args', array(
@@ -18,7 +16,7 @@ function chocolate_passion_custom_header_setup() {
 		'height'                 => 250,
 		'flex-height'            => true,
 		'flex-width'			 => true,
-		'wp-head-callback'       => 'chocolate_passion_header_style',
+		'wp-head-callback'		 => 'chocolate_passion_header_style'
 	) ) );
 }
 add_action( 'after_setup_theme', 'chocolate_passion_custom_header_setup' );
@@ -29,8 +27,10 @@ if ( ! function_exists( 'chocolate_passion_header_style' ) ) :
 	 *
 	 * @see chocolate_passion_custom_header_setup().
 	 */
+	
 	function chocolate_passion_header_style() {
 		$header_text_color = get_header_textcolor();
+
 		/*
 		 * If no custom options for text are set, let's bail.
 		 * get_header_textcolor() options: Any hex value, 'blank' to hide text. Default: add_theme_support( 'custom-header' ).
@@ -41,7 +41,8 @@ if ( ! function_exists( 'chocolate_passion_header_style' ) ) :
 		// If we get this far, we have custom styles. Let's do this.
 		?>
 		<style type="text/css">
-			h1.site-title {
+			h1.site-title,
+			.site-header .site-branding h2.cp-logo-fallback a{
 				color: #<?php echo esc_attr( $header_text_color ); ?>;
 			}
 		</style>

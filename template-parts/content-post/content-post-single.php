@@ -6,7 +6,6 @@
  *
  * @package chocolate_passion
  */
-
 ?>
 
 <article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
@@ -40,7 +39,7 @@
 						),
 					)
 				),
-				get_the_title()
+				wp_kses_post( get_the_title() )
 			) );
 
 			wp_link_pages( array(

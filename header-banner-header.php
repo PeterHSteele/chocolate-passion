@@ -27,14 +27,14 @@
 
 	<header id="masthead" class="site-header" role="banner">
 		<nav id="site-navigation" class="main-navigation clear" role="navigation">
-			<button class="search-toggle toggle" aria-controls="primary-menu" aria-pressed="false">
+			<button class="search-toggle toggle" aria-pressed="false">
 				<i class="fas fa-search"></i>
 					<span class="screen-reader-text">
 						<?php esc_html_e( 'Search', 'chocolate-passion' ) . ' ' . bloginfo('name') ?>
 					</span>
 			</button>
 			<?php get_search_form(); ?>
-			<button class="menu-toggle toggle" aria-controls="primary-menu" aria-expanded="false">
+			<button class="menu-toggle toggle" aria-controls="primary-menu" aria-pressed="false">
 				<i class="fas fa-bars"></i>
 				<span class="screen-reader-text"><?php esc_html_e( 'Primary Menu', 'chocolate-passion' ); ?></span>
 			</button>	

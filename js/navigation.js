@@ -1,23 +1,20 @@
 (function($){
-    let container;
-    let menu;
-    let links;
-    let i;
-    let len;
+    let container, menu, links, i, len;
 
-    let button = $(".menu-toggle");
-    let navigation = $(".main-navigation");
-    let navContainer = $(".main-navigation > div > ul");
-    let primaryNavLink = $(".main-navigation > div > ul a")
-    let searchToggle = $(".search-toggle");
-    let searchForm = $(".search-form");
-    let searchInput = $('.banner-header .site-header .search-form input');
-    let searchFormControls = $(
-      ".banner-header .site-header .search-form #search," +
-      ".banner-header .site-header .search-form button"
-    );
-    let searchClose = $("#searchbar-close");   
-    
+    const button = $(".menu-toggle"),
+          navigation = $(".main-navigation"),
+          navContainer = $(".main-navigation > div > ul, .main-navigation > div#primary-menu"),
+          primaryNavLink = $(".main-navigation > div > ul a"),
+          searchToggle = $(".search-toggle"),
+          searchForm = $(".search-form"),
+          lisWithSubmenus = $('.menu-item-has-children'),
+          searchInput = $('.banner-header .site-header .search-form input'),
+          searchFormControls = $(
+            ".banner-header .site-header .search-form .search-term," +
+            ".banner-header .site-header .search-form button"
+          ),
+          searchClose = $(".searchbar-close");   
+
   // Hide menu toggle button if menu is empty and return early.
   if ( ! navContainer ){
     button.attr("style","display: none;");
@@ -27,17 +24,16 @@
   //Hides the search form in banner-header template
   const cpCloseSearch = function(){
     searchForm.removeClass("toggled").attr('aria-expanded',false);
-    searchToggle.attr('aria-expanded', false);
   }
 
   const cpOpenSearch = function(){
     searchForm.addClass("toggled").attr('aria-expanded',true);
-    searchToggle.attr('aria-expanded',true);
   }
 
   //expands primary menu
   const expandMenu = function(){
-    button.attr("aria-expanded",true);
+    button.attr("aria-pressed",true);
+    
     navContainer.slideUp(0, function(){
       navContainer.removeClass('accessible-hide')
       navContainer.slideDown(200).attr('aria-expanded',true);
@@ -46,7 +42,7 @@
 
   //hides primary menu
   const hideMenu = function(){
-    button.attr("aria-expanded",false);
+    button.attr("aria-pressed",false);
     navContainer.slideUp(200,function(){
       navContainer.addClass('accessible-hide').slideDown(0).attr('aria-expanded',false);
     });
@@ -67,7 +63,7 @@
   });
 
   //bring off-screen menus on-screen on when a link is focused
-  primaryNavLink.focus(function(e){
+  $(document).on('focus','.main-navigation a',null,function(e){
     const isHidden = navContainer.hasClass("accessible-hide"),
           clientWidth = document.getElementsByTagName('body')[0].clientWidth;
 
@@ -101,6 +97,8 @@
     cpCloseSearch();
   });
 
+  //add aria role to submenu parents
+  lisWithSubmenus.attr( 'aria-haspopup', true );  
 
   // Get all the link elements within the menu.
   links = $(".main-navigation ul a");

@@ -18,7 +18,13 @@ get_header( 'banner-header' );
 
 			// If comments are open or we have at least one comment, load up the comment template.
 			if ( comments_open() || get_comments_number() ) :
-				comments_template();
+			?>
+			<div class="col-80">
+				<div class="col-60">
+					<?php comments_template(); ?>
+				</div><!--.col-60-->
+			</div><!--.col-80-->
+			<?php
 			endif;
 
 		endwhile; // End of the loop.

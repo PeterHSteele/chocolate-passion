@@ -29,7 +29,7 @@ add_action( 'after_setup_theme', 'chocolate_passion_woocommerce_setup' );
  * @return void
  */
 function chocolate_passion_woocommerce_scripts() {
-	wp_enqueue_style( 'chocolate-passion-woocommerce-style', get_template_directory_uri() . '/woocommerce.css' );
+	wp_enqueue_style( 'chocolate-passion-woocommerce-style', get_template_directory_uri() . '/css/woocommerce.css' );
 
 	$font_path   = WC()->plugin_url() . '/assets/fonts/';
 	$inline_style = '@font-face {
@@ -98,6 +98,10 @@ function chocolate_passion_rearrange_hooks(){
 	remove_action( 'woocommerce_after_shop_loop','woocommerce_pagination');
 	add_action( 'woocommerce_after_main_content', 'woocommerce_pagination');
 	
+	/**
+	* Theme adds its own WC sidebar to replace woocommmerce_get_sidebar.
+	* @see chocolate_passion_register_wc_sidebar
+	*/
 	remove_action( 'woocommerce_sidebar', 'woocommerce_get_sidebar' );
 	
 	remove_action( 'woocommerce_before_main_content', 'woocommerce_breadcrumb', 20 );
@@ -111,15 +115,6 @@ function chocolate_passion_rearrange_hooks(){
 }
 
 add_action( 'init' , 'chocolate_passion_rearrange_hooks' );
-/**
- * Disable the default WooCommerce stylesheet.
- *
- * Removing the default WooCommerce stylesheet and enqueing your own will
- * protect you during WooCommerce core updates.
- *
- * @link https://docs.woocommerce.com/document/disable-the-default-stylesheet/
- */
-add_filter( 'woocommerce_enqueuechocolate_passiontyles', '__return_empty_array' );
 
 /**
  * Products per page.
@@ -127,10 +122,9 @@ add_filter( 'woocommerce_enqueuechocolate_passiontyles', '__return_empty_array' 
  * @return integer number of products.
  */
 function chocolate_passion_woocommerce_products_per_page() {
-	return 12;
+	return apply_filters( 'chocolate_passion_products_per_page', 12 );
 }
 add_filter( 'loop_shop_per_page', 'chocolate_passion_woocommerce_products_per_page' );
-
 
 /**
  * Related Products Args.
@@ -228,8 +222,9 @@ if ( ! function_exists( 'chocolate_passion_woocommerce_cart_link' ) ) {
 	 */
 	function chocolate_passion_woocommerce_cart_link() {
 		?>
-		<a class="cart-contents" href="<?php echo esc_url( wc_get_cart_url() ); ?>" title="<?php esc_attr_e( 'View your shopping cart', 'chocolate-passion' ); ?>">
+		<a class="cart-contents" href="<?php echo esc_url( wc_get_cart_url() ); ?>">
 			<i class="fas fa-shopping-cart"></i>
+			<span class="screen-reader-text"><?php esc_html_e( 'Shopping cart', 'chocolate-passion' ); ?></span>
 			<?php
 			$item_count_text = sprintf(
 				/* translators: number of items in the mini cart. */
@@ -276,7 +271,7 @@ if ( ! function_exists( 'chocolate_passion_woocommerce_header_cart' ) ) {
 if (! function_exists( 'chocolate_passion_register_wc_sidebar')){
 	/**
 	* Registers a sidebar for WC pages in which product filters 
-	* and other stuff can be placed.
+	* and other widgets can be placed.
 	*
 	* @return void
 	*/
@@ -309,9 +304,3 @@ if ( ! function_exists( "chocolate_passion_load_wc_sidebar") ){
 }
 
 add_action( 'woocommerce_before_shop_loop', 'chocolate_passion_load_wc_sidebar' );
-
-
-
-
-
-

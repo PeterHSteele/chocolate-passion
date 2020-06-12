@@ -8,8 +8,6 @@
 
 get_header();
 
-get_template_part( 'template-parts/panels' );
-
 ?>
 
 <div id="primary" class="content-area">
@@ -17,6 +15,9 @@ get_template_part( 'template-parts/panels' );
 		<main id="main" class="site-main" role="main">
 
 		<?php
+		
+		get_template_part( 'template-parts/panels' );
+		
 		while ( have_posts() ) :
 			the_post();
 			

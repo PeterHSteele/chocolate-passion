@@ -13,11 +13,12 @@
  * See: https://jetpack.com/support/infinite-scroll/
  * See: https://jetpack.com/support/responsive-videos/
  * See: https://jetpack.com/support/content-options/
+ * See: https://jetpack.com/support/social-menu/
  */
 function chocolate_passion_jetpack_setup() {
 	// Add theme support for Infinite Scroll.
 	add_theme_support( 'infinite-scroll', array(
-		'container' 		=> 'main',
+		'container' 		=> 'infinite-scroll-container',
 		'render'    		=> 'chocolate_passion_infinite_scroll_render',
 		'footer'    		=> 'page',
 		'footer-widgets'	=> 'footer-widgets',
@@ -44,6 +45,7 @@ function chocolate_passion_jetpack_setup() {
 		),
 	) );
 
+	// Add theme support for Social Menu.
 	add_theme_support( 'jetpack-social-menu' );
 }
 add_action( 'after_setup_theme', 'chocolate_passion_jetpack_setup' );
@@ -57,7 +59,7 @@ function chocolate_passion_infinite_scroll_render() {
 		if ( is_search() ) :
 			get_template_part( 'template-parts/content', 'search' );
 		else :
-			get_template_part( 'template-parts/content-post/content', get_post_type() );
+			chocolate_passion_load_post_layout();
 		endif;
 	}
 }

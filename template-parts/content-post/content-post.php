@@ -9,9 +9,9 @@
 
 ?>
 
-<article id="post-<?php the_ID(); ?>" <?php post_class( 'cp-post-index cp-grid-item' ); ?>>
+<article id="post-<?php the_ID(); ?>" <?php post_class( 'cp-post-index' ); ?>>
 	<?php chocolate_passion_post_thumbnail(); ?>
-	<?php if ( is_sticky() && ! is_single() ): ?>
+	<?php if ( is_sticky() && ! is_single() && ! is_paged() ): ?>
 		<span class="sticky-icon">
 			<span class="screen-reader-text"><?php esc_html_e( 'pinned post' , 'chocolate-passion' ) ?></span>
 			<i class="fas fa-lg fa-thumbtack"></i>

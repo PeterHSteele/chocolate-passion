@@ -27,10 +27,15 @@
 			if (! id ){
 				wp.customize( 'blogname', function(setting) {
 					const name = setting.get();
-					if ( ! branding.children('h2').length ){
-						const string = '<h2 style="font-size: 1.5em; margin: 0">' + name + '</h2>';
+					let header_textcolor = wp.customize( 'header_textcolor' ).get();
+					const display_header_text = 'blank' !== header_textcolor ;
+					if ( ! branding.children('h2').length && display_header_text ){
+						header_textcolor = '#000000' === header_textcolor ? '#fff' : header_textcolor;
+						const string = '<h2 style="font-size: 1.5em; margin: 0;' + header_textcolor + '">' +
+										name + 
+										'</h2>';
 						branding.append( string );
-					} else {
+					} else if ( display_header_text ) {
 						branding.children('h2').text( name );
 					}
 					
@@ -41,4 +46,14 @@
 		})
 	});
 
+
+	$( function() {
+		wp.customize.preview.bind( 'active', function() {
+		    const bodyClass = document.querySelector('body').className;
+		    const isBlog = bodyClass.indexOf( 'blog' ) > -1
+
+		    wp.customize.preview.send( 'checkBlog', isBlog );
+		} );
+	});
+	
 } )( jQuery );

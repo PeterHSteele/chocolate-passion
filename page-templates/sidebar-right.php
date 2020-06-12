@@ -8,7 +8,7 @@
 
 get_header();
 ?>
-	<div class="col-80"> 
+<div class="col-80"> 
 	<div id="primary" class="content-area">
 		
 		<main id="main" class="site-main">

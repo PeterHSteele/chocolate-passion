@@ -14,8 +14,9 @@ get_header();
 			<div aria-hidden="true">
 				<?php 
 				/*
-				Post thumbnail for sighted visitors.
-				Screen reader only post thumbnail will appear within <main>.
+				Post thumbnail for sighted visitors,
+				Screen reader only post thumbnail will appear within <main>
+				to avoid orphaned content.
 				*/
 				chocolate_passion_post_thumbnail() 
 				?>
@@ -27,31 +28,21 @@ get_header();
 						
 				get_template_part( 'template-parts/content-post/content', 'post-single' );
 
-				wp_link_pages();
-
 			endwhile; // End of the loop.
 			?>
 
 			</main><!-- #main -->	
 		</div><!--.content-area-->
-		<?php get_sidebar( 'single' ) ?>
 		<?php 
-			
-			the_post_navigation(
-				array(
-					'prev_text' => esc_html__( 'Previous: ', 'chocolate_passion' ) . '<span class="post-title">%title</span>',
-					'next_text' => esc_html__( 'Next: ', 'chocolate_passion' ) . '<span class="post-title">%title</span>',
-				)
-			); 
-		?>
-		<?php 
-			// If comments are open or we have at least one comment, load up the comment template.
+		get_sidebar( 'single' );
+		get_template_part('template-parts/post', 'navigation' );
+	
+		// If comments are open or we have at least one comment, load up the comment template.
+		
 			if ( comments_open() || get_comments_number() ) :
+				comments_template();
+			endif; 
 		?>
-		
-			<?php comments_template(); ?>
-		
-		<?php endif; ?>
 	</div><!--.col-80-->
 
 <?php

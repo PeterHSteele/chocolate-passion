@@ -30,9 +30,9 @@
 						<div class="row">
 							<div class="site-branding">
 								<?php
-								if ( function_exists( 'the_custom_logo' ) && has_custom_logo() ) :
+								if ( has_custom_logo() ) :
 									the_custom_logo();
-								else :
+								elseif ( display_header_text() ) :
 								?>
 								<h2 class="cp-logo-fallback"><a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home"><?php bloginfo('name') ?></a></h2> 
 								<?php endif; ?>
@@ -68,32 +68,34 @@
 									'menu_id'        => 'primary-menu',
 									'menu_class'	 => 'clear accessible-hide nav-menu',
 									'depth' 		 => 3,
-								) );
+									'fallback_cb'    => 'wp_page_menu'
+								) );	
 								?>
 							</nav><!-- #site-navigation -->					
 					</div><!--.col-80-->
 				</div><!--.header-row-two-->
+				<?php if ( is_front_page() && is_home() ) : ?>
 				<div class="header-row-three">
 					<div class="col-80">
 						<div class="row">
 							<div class="site-info">	
-							<?php
-								if ( is_front_page() && is_home() && get_bloginfo( 'description' ) ) : ?>
-									<h1 class="site-title"><?php bloginfo( 'description' ); ?></h1>
-								<?php elseif ( is_front_page() && is_home() ): ?> 
-									<h1 class="site-title"><?php bloginfo( 'name' ); ?></h1>
-								<?php endif; 
-							?>
+							<?php chocolate_passion_header_text(); ?>
 							</div><!--.site-info-->
 						</div><!--row-->
 					</div><!--.col-80-->
 				</div><!--.header-row-three-->
-				<?php if ( function_exists( 'is_woocommerce' ) && is_woocommerce() ) :
+				<?php
+				endif;
+				if ( function_exists( 'is_woocommerce' ) && is_woocommerce() ) :
 					get_template_part( 'template-parts/header', 'shop' );
-				endif; ?>
+				endif; 
+				if ( has_header_image() ):
+				?>
 				<div class="custom-header-wrap">
 					<?php the_header_image_tag(); ?>
 				</div>
+				<?php endif; ?>
 	</header><!-- #masthead -->
 
 	<div id="content" class="site-content">
+	

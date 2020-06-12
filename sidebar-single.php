@@ -12,6 +12,8 @@ if ( ! is_active_sidebar( 'sidebar-single' ) ) {
 }
 ?>
 
-<aside id="secondary" class="widget-area widget-area-single-post" role="complementary">
-	<?php dynamic_sidebar( 'sidebar-single' ); ?>
+<aside id="secondary" class="widget-area widget-area-single-post content-sidebar" role="complementary">
+	<?php 
+	dynamic_sidebar( 'sidebar-single' ); 
+	?>
 </aside><!-- #secondary -->

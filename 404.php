@@ -16,7 +16,7 @@ get_header();
 
 			<section class="error-404 not-found">
 				<header class="page-header">
-					<h1 class="page-title"><?php esc_html_e( 'Oops! That page can&rsquo;t be found.', 'chocolate-passion' ); ?></h1>
+					<h1 class="page-title"><?php esc_html_e( 'We&rsquo;re having some trouble.', 'chocolate-passion' ); ?></h1>
 				</header><!-- .page-header -->
 
 				<div class="page-content">
@@ -26,7 +26,8 @@ get_header();
 					the_widget( 'WP_Widget_Recent_Posts' );
 					?>
 
-					<div clas="col-80"><?php the_search_form() ?></div>
+					<h2><?php esc_html_e( 'Search', 'chocolate-passion' ) ?></h2>
+					<div class="search404"><?php get_search_form() ?></div>
 
 					<div class="widget widget_categories">
 						<h2 class="widget-title"><?php esc_html_e( 'Most Used Categories', 'chocolate-passion' ); ?></h2>
@@ -44,8 +45,7 @@ get_header();
 					</div><!-- .widget -->
 
 					<?php
-					/* translators: %1$s: smiley */
-					$chocolate_passion_archive_content = '<p>' . sprintf( esc_html__( 'Try looking in the monthly archives. %1$s', 'chocolate-passion' ), convert_smilies( ':)' ) ) . '</p>';
+					$chocolate_passion_archive_content = '<p>' . esc_html__( 'Try looking in the monthly archives.', 'chocolate-passion' )  . '</p>';
 					the_widget( 'WP_Widget_Archives', 'dropdown=1', "after_title=</h2>$chocolate_passion_archive_content" );
 
 					the_widget( 'WP_Widget_Tag_Cloud' );

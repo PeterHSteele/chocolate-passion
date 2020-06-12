@@ -10,5 +10,5 @@
  * @package chocolate_passion
  */
 
-//Choosing this template only affects the style on archive pages, so here it just grabs single.php.  
+//Choosing this template only affects the layout on archive pages, so here it just includes single.php.  
 get_template_part( 'single' );

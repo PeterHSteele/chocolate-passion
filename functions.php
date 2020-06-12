@@ -18,15 +18,18 @@ if ( !function_exists( 'chocolate_passion_php_version_check' ) ):
 
 	/**
 	* disable theme if the php version is less than 7
+	*
+	* Loads the previous theme if it exists, otherwise loads first available
+	* theme from the user's directory.
 	*/
 	function chocolate_passion_php_version_check( $old_theme ){
 
-		define( 'CP_REQUIRED_PHP_VERSION', '7.0.0' );
+		define( 'CHOCOLATE_PASSION_REQUIRED_PHP_VERSION', '7.0.0' );
 
-		if ( version_compare( phpversion(), CP_REQUIRED_PHP_VERSION, '<' ) ){
-
+		if ( version_compare( phpversion(), CHOCOLATE_PASSION_REQUIRED_PHP_VERSION, '<' ) ){
+			
 			function chocolate_passion_php_version_notification(){
-				echo '<div class="update-nag">';
+				echo '<div class="notice notice-error">';
 				esc_html_e( 'Chocolate Passion requires PHP version 7.0.', 'chocolate-passion' );
 				echo '</div>';
 			}
@@ -36,6 +39,7 @@ if ( !function_exists( 'chocolate_passion_php_version_check' ) ):
 			if ( is_string( $old_theme ) ){
 				$old_theme = wp_get_theme( str_replace(' ', '-', strtolower( $old_theme ) ) );
 			}
+			
 			$old_theme_exists = $old_theme->exists();
 				
 			if ( $old_theme_exists ){
@@ -45,7 +49,6 @@ if ( !function_exists( 'chocolate_passion_php_version_check' ) ):
 				foreach ( $themes as $theme ){
 					if ( $theme->exists() && $theme->get_stylesheet() !== 'chocolate-passion' ){
 						switch_theme( $theme->get_stylesheet() );
-						return;
 					}
 				}
 			}
@@ -75,12 +78,6 @@ if ( ! function_exists( 'chocolate_passion_setup' ) ) :
 
 		// Add default posts and comments RSS feed links to head.
 		add_theme_support( 'automatic-feed-links' );
-		
-
-		/**
-		* Support woocommerce
-		*/
-		add_theme_support( 'woocommerce' );
 
 		/*
 		 * Let WordPress manage the document title.
@@ -167,7 +164,7 @@ if ( ! function_exists( 'chocolate_passion_setup' ) ) :
 					'thumbnail' => '{{image-woods}}',
 					'post_content' => '<p>' . esc_html__( 
 										"Thanks for installing Chocolate Passion! 
-										Please refer to the readme.md for information about a couple special features.",
+										Please refer to the readme.txt for information about a couple special features.",
 										'chocolate-passion'
 									) . '</p>',
 				),
@@ -258,7 +255,7 @@ function chocolate_passion_content_width() {
 	// This variable is intended to be overruled from themes.
 	// Open WPCS issue: {@link https://github.com/WordPress-Coding-Standards/WordPress-Coding-Standards/issues/1043}.
 	// phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedVariableFound
-	$GLOBALS['content_width'] = apply_filters( 'chocolate_passion_content_width', 640 );// phpcs:ignore WPThemeReview.CoreFunctionality.PrefixAllGlobals.NonPrefixedVariableFound
+	$GLOBALS['content_width'] = apply_filters( 'chocolate_passion_content_width', 1012 );// phpcs:ignore WPThemeReview.CoreFunctionality.PrefixAllGlobals.NonPrefixedVariableFound
 }
 add_action( 'after_setup_theme', 'chocolate_passion_content_width', 0 );
 
@@ -305,29 +302,33 @@ add_action( 'widgets_init', 'chocolate_passion_widgets_init' );
  */
 function chocolate_passion_scripts() {
 	//fontawesome
-	wp_enqueue_style( 'chocolate-passion-fontawesome', get_stylesheet_directory_uri() . '/assets/fontawesome/css/all.css' );
-
-	wp_enqueue_script( 'chocolate-passion-navigation', get_template_directory_uri() . '/js/navigation.js', array( 'jquery' ), '20151215', true );
+	wp_enqueue_style( 'chocolate-passion-fontawesome', get_stylesheet_directory_uri() . '/assets/fontawesome/css/all.css'  );
+	
+	//navigation js
+	wp_enqueue_script( 'chocolate-passion-navigation', esc_url( get_template_directory_uri() . '/js/navigation.js' ), array( 'jquery' ), '20151215', true );
 	wp_localize_script( 'chocolate-passion-navigation', 'template', array( 'bannerHeader' => is_page_template('page-templates/banner-header.php') ) );
-	
-	wp_enqueue_script( 'chocolate-passion-roles-and-labels', get_template_directory_uri() . '/js/roles-and-labels.js', array( 'jquery' ), '20151215', true );
 
+	//sidebar layout
 	if ( is_page_template( 'page-templates/sidebar-right.php' ) ){
-		wp_enqueue_style( 'chocolate-passion-sidebar-right-style', get_template_directory_uri() . '/layouts/content-sidebar.css' );
+		wp_enqueue_style( 'chocolate-passion-sidebar-right-style', esc_url( get_template_directory_uri() . '/layouts/content-sidebar.css' ) );
 	}
 
+	//single post sidebar layout
 	if (is_single()){
-		wp_enqueue_style( 'chocolate-passion-single-style', get_template_directory_uri() . '/layouts/single-post-sidebar.css' );
+		wp_enqueue_style( 'chocolate-passion-single-style', esc_url( get_template_directory_uri() . '/layouts/single-post-sidebar.css' ) );
 	}
 
+	//main stylesheet
 	wp_enqueue_style( 'chocolate-passion-style', get_stylesheet_uri() );
-	wp_add_inline_style('chocolate-passion-style', chocolate_passion_customize_css() );
+	wp_add_inline_style( 'chocolate-passion-style', chocolate_passion_customize_css() );
 	
+	//fonts
 	wp_enqueue_style( 'chocolate-passion-google-font-nunito', 'https://fonts.googleapis.com/css?family=Nunito&display=swap' );
 	wp_enqueue_style( 'chocolate-passion-google-font-permanent', "https://fonts.googleapis.com/css?family=Abel&display=swap" );
 
-	wp_enqueue_script( 'chocolate-passion-skip-link-focus-fix', get_template_directory_uri() . '/js/skip-link-focus-fix.js', array(), '20151215', true );
-
+	//skip links
+	wp_enqueue_script( 'chocolate-passion-skip-link-focus-fix', esc_url( get_template_directory_uri() . '/js/skip-link-focus-fix.js' ), array(), '20151215', true );
+	
 	if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {
 		wp_enqueue_script( 'comment-reply' );
 	}
@@ -380,8 +381,8 @@ if ( ! function_exists( 'wp_body_open' ) ):
 	* fallback for wp_body_open.
 	*/
 
-	function wp_body_open() {
-         do_action( 'wp_body_open' );
+	function wp_body_open() {// phpcs:ignore WPThemeReview.CoreFunctionality.PrefixAllGlobals.NonPrefixedFunctionFound
+         do_action( 'wp_body_open' );// phpcs:ignore WPThemeReview.CoreFunctionality.PrefixAllGlobals.NonPrefixedHooknameFound
     }
 
 endif;	 
@@ -426,20 +427,23 @@ $config = array(
 		'message'      => '',                      // Message to output right before the plugins table.	
 	);
 
-	chocolate_passion( $plugins, $config );
+	tgmpa( $plugins, $config );
 
 }
 
-add_action( 'chocolate_passion_register', 'chocolate_passion_register_required_plugins' );
+add_action( 'tgmpa_register', 'chocolate_passion_register_required_plugins' );
 
-
-/* Retrieve customizer options for primary color and accent colors */
 
 if ( ! function_exists( 'chocolate_passion_customize_css' ) ):
 
+	/**
+	* Outputs styles incorporating user-chosen color settings.
+	*/
+
 	function chocolate_passion_customize_css(){
+		/* Retrieve customizer options for primary color and accent colors */
 		$primary = esc_attr( get_theme_mod( "chocolate_passion_primary_color", '#db3a00' ));
-		$link = esc_attr( get_theme_mod( 'chocolate_passion_link_color' ), '#4169e1' );
+		$link = esc_attr( get_theme_mod( 'chocolate_passion_link_color' , '#4169e1' ));
 		$hover = esc_attr( get_theme_mod( 'chocolate_passion_hover_link_color', '#191970' ) );
 
 		$css ="
@@ -461,7 +465,7 @@ if ( ! function_exists( 'chocolate_passion_customize_css' ) ):
 				color:  $primary;
 			}
 
-			.cp-post-index .entry-title a:chocolate_passion_hover_link_color,
+			.cp-post-index .entry-title a:hover,
 			.cp-post-index .tags-links a:hover,
 			.cp-post-index .cat-links a:hover,
 			.cp-post-index .comments-link a:hover,
@@ -480,20 +484,14 @@ if ( ! function_exists( 'chocolate_passion_customize_css' ) ):
 				color: $primary;
 			}
 
-			.comment-navigation .nav-previous a,
 			.posts-navigation .nav-previous a,
-			.comment-navigation .nav-next a,
 			.posts-navigation .nav-next a{
 				background: $primary;
 				border: 2px solid $primary;
 			}
 
-			.comment-navigation .nav-previous a:hover,
-			.comment-navigation .nav-previous a:focus,
 			.posts-navigation .nav-previous a:hover,
 			.posts-navigation .nav-previous a:focus,
-			.comment-navigation .nav-next a:hover,
-			.comment-navigation .nav-next a:focus,
 			.posts-navigation .nav-next a:hover,
 			.posts-navigation .nav-next a:focus{
 				color: $primary;
@@ -501,7 +499,14 @@ if ( ! function_exists( 'chocolate_passion_customize_css' ) ):
 			}
 
 			.bypostauthor .comment-body{
-				border-left: 5px solid $primary;
+				border-top: 5px solid $primary;
+			}
+
+			@media screen and ( min-width: 650px ){
+				.bypostauthor .comment-body{
+					border-left: 5px solid $primary;
+					border-top: none;
+				}
 			}
 
 			.comment-form input[type='submit'],
@@ -558,7 +563,7 @@ if ( ! function_exists('chocolate_passion_get_panels') ):
 
 	function chocolate_passion_get_panels(){
 		$panels = array();
-		for ( $count = 1; $count <= 6; $count++ ){
+		for ( $count = 1; $count <= 4; $count++ ){
 			$id = get_theme_mod( 'chocolate_passion_panel_posts_' . $count );
 			if ( $id && has_post_thumbnail( $id ) ){
 				$text_position = get_theme_mod( 'chocolate_passion_panel_text_position_' . $count, 'bottom-right');
@@ -569,6 +574,31 @@ if ( ! function_exists('chocolate_passion_get_panels') ):
 			}	
 		}
 		return !empty( $panels ) ? $panels : false;
+	}
+
+endif;
+
+if ( ! function_exists( 'chocolate_passion_load_post_layout' ) ) :
+
+	/**
+	* Loads a template part for posts in archive views 
+	* depending on the chosen post template.
+	*/
+
+	function chocolate_passion_load_post_layout(){
+
+		/*
+		* Include the Post-Type-specific template for the content.
+		* If you want to override this in a child theme, then include a file 
+		* in 'template-parts/content-post/' called content-___.php 
+		* (where ___ is the Post Type name) and that will be used instead.
+		*/
+
+		if ( get_page_template_slug() === "page-templates/background-image.php" ){
+			get_template_part( 'template-parts/content-post/content', 'post-background-image' );
+		} else {
+			get_template_part( 'template-parts/content-post/content', get_post_type() );
+		}
 	}
 
 endif;

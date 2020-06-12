@@ -20,7 +20,7 @@ if ( post_password_required() ) {
 }
 ?>
 
-<div id="comments" class="comments-area" role='complementary' aria-label="<?php _e( 'Comments Section' , 'chocolate-passion' ) ?>">
+<div id="comments" class="comments-area" role='complementary' aria-label="<?php esc_attr_e( 'Comments Section' , 'chocolate-passion' ) ?>">
 
 	<?php
 	// You can start editing here -- including this comment!
