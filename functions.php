@@ -461,6 +461,13 @@ if ( ! function_exists( 'chocolate_passion_customize_css' ) ):
 				color: $hover;
 			}
 
+			body:not(.banner-header) .site-header .menu-toggle:hover,
+			body:not(.banner-header) .site-header .menu-toggle:focus,
+			body:not(.banner-header) .site-header .search-form button:hover,
+			body:not(.banner-header) .site-header .search-form button:focus{
+				border-color: $primary;
+			}
+
 			.sticky-icon i{
 				color:  $primary;
 			}
